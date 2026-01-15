@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>visp_tk</name>
+  <version>0.1.0</version>
+  <description>
+    Virtual package providing ViSP related packages.
+  </description>
+  <maintainer email="fabien.spindler@inria.fr">Fabien Spindler</maintainer>
+  <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
+  <license>GPLv2</license>
+  <url type="website">http://wiki.ros.org/visp_tk</url>
+  <url type="repository">https://github.com/lagadic/visp_tk/tree/ros2</url>
+  <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>visp_common</exec_depend>
+  <exec_depend>visp_apriltag</exec_depend>
+  <exec_depend>visp_mbt</exec_depend>
+  <exec_depend>visp_rbt</exec_depend>
+  <exec_depend>visp_tracker_common</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

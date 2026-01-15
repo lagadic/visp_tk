@@ -1,0 +1,31 @@
+<package format="2">
+  <name>visp_common</name>
+  <version>0.1.0</version>
+  <description>
+    Converts between ROS structures and ViSP structures.
+  </description>
+
+  <maintainer email="Fabien.Spindler@inria.fr">Fabien Spindler</maintainer>
+  <author>Fabien Spindler</author>
+  <author>Riccardo Spica</author>
+  <author>Filip Novotny</author>
+  <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
+
+  <license>GPLv2</license>
+
+  <url type="website">http://wiki.ros.org/visp_common</url>
+  <url type="repository">https://github.com/lagadic/visp_tk/tree/ros2</url>
+  <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>
+
+  <buildtool_depend>ament_cmake_ros</buildtool_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>visp</build_depend>
+  <build_depend>camera_calibration_parsers</build_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
