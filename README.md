@@ -5,15 +5,14 @@ ViSP stack for ROS
 
 ## 1. Introduction
 
-ROS 2 vision_visp contains packages to interface ROS 2 with [ViSP](https://visp.inria.fr) which is a library designed
+ROS 2 visp_tk contains packages to interface ROS 2 with [ViSP](https://visp.inria.fr) which is a library designed
 for visual-servoing and visual tracking applications. This repository contains:
 
 - visp_common: Bridge between ROS 2 image and geometry messages and ViSP image and 3D transformation representation.
-- visp_tracker: ViSP model-based tracker interfaced in ROS 2 and initialized from a client that requires user interaction.
-- visp_auto_tracker: ViSP model-based tracker interfaced in ROS 2 and initialized thanks to a marker (AprilTag,
-  QRcode, flashcode). Recovers when tracking fails.
-- visp_camera_calibration: ViSP based tool to calibrate camera intrinsic parameters.
-- visp_handeye_calibration: ViSP based tool to estimated the robot end-effector to camera geometric transformation.
+- visp_tracker_common: Common tools for the tracker packages, such as a GUI
+- visp_apriltag: a package that contains a ROS2 based on the AprilTag detector of ViSP.
+- visp_mbt: a package that contains a ROS2 node based on the Model-Based Tracker (MBT) of ViSP
+- visp_rbt: a package that contains a ROS2 node based on the Render-Based Tracker (RBT) of ViSP
 
 ##  2. Install dependencies
 ### 2.1. Install ROS 2
@@ -31,27 +30,17 @@ Fetch the latest code and build
 
 ```
 $ cd <YOUR_ROS2_WORKSPACE>/src
-$ git clone https://github.com/lagadic/vision_visp.git -b rolling
+$ git clone https://github.com/lagadic/visp_tk.git -b humble
 $ cd ..
-$ colcon build --symlink-install
+$ colcon build --symlink-install --packages-up-to visp_tk
 ```
 
 If ViSP is not found, use `VISP_DIR` to point to `$VISP_WS/visp-build` folder like:
 
 ```
-$ colcon build --symlink-install --cmake-args -DVISP_DIR=$VISP_WS/visp-build
+$ colcon build --symlink-install --cmake-args -DVISP_DIR=$VISP_WS/visp-build --packages-up-to visp_tk
 ```
 
 ## 4. Usage
 
-- To run `visp_auto_tracker` launch:
-
-  ```
-  $ ros2 launch visp_auto_tracker tutorial_launch.xml
-  ```
-
-- To run `visp_tracker` launch:
-
-  ```
-  $ ros2 launch visp_tracker tutorial_launch.xml
-  ```
+TODO
