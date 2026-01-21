@@ -29,6 +29,8 @@ find_package(visp_common REQUIRED)
 # Msg generation #
 # ############## #
 rosidl_generate_interfaces(${PROJECT_NAME}
+    "msg/AprilTagDetection.msg"
+    "msg/AprilTagDetectionArray.msg"
     "msg/Ellipse2D.msg"
     "msg/InfoStrings.msg"
     "msg/NamedFeature.msg"
@@ -37,7 +39,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/NamedPoseArray.msg"
     "msg/Point2DTuple.msg"
     "msg/Polygon2D.msg"
-    DEPENDENCIES geometry_msgs vision_msgs # Add packages that above messages depend on
+    DEPENDENCIES geometry_msgs std_msgs vision_msgs # Add packages that above messages depend on
   )
 
 rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
@@ -54,6 +56,7 @@ add_library(${PROJECT_NAME}_library src/names.cpp src/BaseTracker.cpp src/BaseMu
 ament_target_dependencies(${PROJECT_NAME}_library
     ament_index_cpp
     geometry_msgs
+    message_filters
     rclcpp
     sensor_msgs
     std_srvs
@@ -89,6 +92,7 @@ ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(
   ament_index_cpp
   geometry_msgs
+  message_filters
   rclcpp
   rosidl_default_runtime
   sensor_msgs
