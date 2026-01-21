@@ -129,6 +129,12 @@ target_link_libraries(tracker_gui
   "${cpp_typesupport_target}"
 )
 
+install(
+  TARGETS
+  tracker_gui
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # ###### #
 # Others #
 # ###### #
