@@ -3,6 +3,10 @@
 
 #include <rclcpp/rclcpp.hpp>
 
+#include <message_filters/subscriber.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+
 #include <visp_tracker_common/BaseTracker.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/named_feature.hpp>
@@ -44,9 +48,15 @@ protected:
    */
   void depth_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
+  void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
+
   // ----- Services -----
 
   //@}
+
+  virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) = 0;
+  virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) = 0;
+  virtual void track() = 0;
 
   // ----- Parameters changes handling -----
 
@@ -54,6 +64,10 @@ protected:
 
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_depth_cam_info_sub; //!< Depth camera parameters subscriber
+  message_filters::Subscriber<sensor_msgs::msg::Image> m_rgb_stream_sub;
+  message_filters::Subscriber<sensor_msgs::msg::Image> m_depth_stream_sub;
+  std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<
+    sensor_msgs::msg::Image, sensor_msgs::msg::Image>>> m_streams_sync;
 
   // ----- Publisher -----
 

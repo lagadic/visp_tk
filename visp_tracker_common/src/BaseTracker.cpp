@@ -32,6 +32,13 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("visualization_debug", vis_debug_param);
   m_visualization_debug = vis_debug_param.as_bool();
 
+  auto config_file_param = rclcpp::Parameter();
+  auto config_file_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  config_file_desc.description = "If set, path to the configuration file to initialize the tracker. package:// will be replaced by the path to the share folder of the corresponding package.";
+  this->declare_parameter("config_file", "", config_file_desc);
+  this->get_parameter("config_file", config_file_param);
+  m_config_file = visp_common::path::path_retriever(config_file_param.as_string());
+
   // // ---- Parameters related to the services ----
 
   // // ---- Parameters related to the publishers / subscribers ----
@@ -104,8 +111,6 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   // NB: We do not subscribe to the RGB image stream because we might want to perform different operations dependeing on the tracker we use
 
   // ---- Publishing on different topics
-
-  // Service to get the list of strings giving info about the node
   if (does_publish_features) {
     auto qos_features_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
     std::string features_topic_name = std::string(this->get_name()) + visp_tracker_common::features2D_topic_name;
@@ -194,7 +199,7 @@ void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo:
     return;
   }
 
-  m_rgb_cam = visp_common::toVispCameraParameters(msg);
+  m_rgb_cam = visp_common::camera::toVispCameraParameters(msg);
 
   m_rgb_cam_info_received = true;
   m_ref_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions

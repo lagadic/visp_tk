@@ -5,209 +5,259 @@ namespace visp_apriltag
 AprilTagTracker::AprilTagTracker(const std::string &node_name)
   : visp_tracker_common::BaseTracker(node_name, true)
 {
+  //////////////////////////////////////////////////////////////////////
+  //                        ROS2 PARAMETERS                           //
+  //////////////////////////////////////////////////////////////////////
+  auto tag_size_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  tag_size_param_desc.description = "This parameter indicates the size of the tag, expressed in meters. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
+  this->declare_parameter<double>("tag_size", tag_size_param_desc);
 
+  auto tag_family_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  tag_family_param_desc.description = "This parameter indicates the family of the tag. Available families are " + vpDetectorAprilTag::getAvailableTagFamily();
+  this->declare_parameter<std::string>("tag_family", tag_family_param_desc);
+
+  auto pose_method_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  pose_method_param_desc.description = "This parameter indicates the pose estimation to use when a tag is detected. Available methods are " + vpDetectorAprilTag::getAvailablePoseMethod();
+  this->declare_parameter<std::string>("pose_method", pose_method_param_desc);
+
+  auto detection_margin_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  detection_margin_param_desc.description = "This parameter indicates the detection margin threshold. Setting -1 deactivate the feature. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
+  this->declare_parameter("detection_margin_thresh", -1.0, detection_margin_param_desc);
+
+  //////////////////////////////////////////////////////////////////////
+  //                        ROS2 PUB/SUB                              //
+  //////////////////////////////////////////////////////////////////////
+
+  // ---- Subscribing to the different topics
+  auto n = 10;
+  auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
+  m_rgb_stream_sub = this->create_subscription<sensor_msgs::msg::Image>(
+    m_rgb_stream_name, qos,
+    std::bind(&AprilTagTracker::image_callback, this, std::placeholders::_1));
+  RCLCPP_INFO(this->get_logger(), "Subscribed to image topic '%s'", m_rgb_stream_name.c_str());
+
+  // ---- Publishing on different topics
+  auto qos_tag_info_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
+  std::string tag_info_name = std::string(this->get_name()) + "/tags_info";
+  m_tags_info_pub = this->create_publisher<visp_tracker_common::msg::AprilTagDetectionArray>(tag_info_name, qos_tag_info_pub);
 }
 
 //////////////////////////////////////////////////////////////////////
 //                        INITIALIZATION                            //
 //////////////////////////////////////////////////////////////////////
 
-bool AprilTagTracker::init_tracker() { return true; }
-void AprilTagTracker::init_info_strings() { }
+bool AprilTagTracker::init_tracker()
+{
+  if (m_config_file.empty()) {
+    auto tag_size_param = rclcpp::Parameter();
+    bool isSet = this->get_parameter("tag_size", tag_size_param);
+    if (isSet) {
+      m_tag_size = tag_size_param.as_double();
+      RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
+    }
+    else {
+      RCLCPP_ERROR(this->get_logger(), "tag_size parameter is not set");
+      return false;
+    }
+
+    auto tag_family_param = rclcpp::Parameter();
+    isSet = this->get_parameter("tag_family", tag_family_param);
+    if (isSet) {
+      m_family_name = tag_family_param.as_string();
+      RCLCPP_INFO(this->get_logger(), "Tag family is set to %s\n", m_family_name.c_str());
+    }
+    else {
+      RCLCPP_ERROR(this->get_logger(), "tag_family parameter is not set");
+      return false;
+    }
+
+    try {
+      vpDetectorAprilTag::vpAprilTagFamily tag_family = vpDetectorAprilTag::tagFamilyFromString(m_family_name);
+      m_tag_detector.setAprilTagFamily(tag_family);
+    }
+    catch (const vpException &e) {
+      RCLCPP_ERROR(this->get_logger(), "tag_family parameter value '%s' cannot be converted to a known family. Allowed values are: %s", m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
+      return false;
+    }
+
+    auto pose_method_param = rclcpp::Parameter();
+    this->get_parameter("pose_method", pose_method_param);
+    auto pose_method_name = pose_method_param.as_string();
+    try {
+      vpDetectorAprilTag::vpPoseEstimationMethod pose_method = vpDetectorAprilTag::poseMethodFromString(pose_method_name);
+      m_tag_detector.setAprilTagPoseEstimationMethod(pose_method);
+    }
+    catch (const vpException &e) {
+      RCLCPP_ERROR(this->get_logger(), "pose_method parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
+      return false;
+    }
+
+    auto margin_thresh_param = rclcpp::Parameter();
+    this->get_parameter("detection_margin_thresh", margin_thresh_param);
+    auto margin_thresh = margin_thresh_param.as_double();
+    m_tag_detector.setAprilTagDecisionMarginThreshold(margin_thresh);
+
+    auto display_tag_param = rclcpp::Parameter();
+    this->get_parameter("display_tag", display_tag_param);
+    auto display_tag = margin_thresh_param.as_bool();
+    m_tag_detector.setDisplayTag(display_tag);
+
+    auto align_z_param = rclcpp::Parameter();
+    this->get_parameter("align_z", align_z_param);
+    auto align_z = align_z_param.as_bool();
+    m_tag_detector.setZAlignedWithCameraAxis(align_z);
+
+    return true;
+  }
+  else {
+    try {
+      m_tag_detector.loadConfigFile(m_config_file);
+    }
+    catch (const vpException &e) {
+      RCLCPP_ERROR(this->get_logger(), e.what());
+      return false;
+    }
+    return true;
+  }
+}
+
+void AprilTagTracker::init_info_strings()
+{
+  const unsigned int nb_digits = 3;
+  m_info_strings.info_strings.push_back(std::string("Tag Size.........: ") + std::to_string(m_tag_size).substr(0, std::to_string(m_tag_size).find(".") + nb_digits + 1));
+  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+  m_info_strings.info_strings.push_back(std::string("Tag famile.......: ") + m_family_name);
+  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+  m_info_strings.info_strings.push_back(std::string("Margin threshold.: ") + (m_tag_detector.getAprilTagDecisionMarginThreshold() < 0 ? std::string("deactivated") : std::to_string(m_tag_detector.getAprilTagDecisionMarginThreshold())));
+  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+}
 
 //////////////////////////////////////////////////////////////////////
 //                        ROS2 SUBCRIPTIONS                         //
 //////////////////////////////////////////////////////////////////////
 
+void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg)
+{
+  RCLCPP_DEBUG(this->get_logger(), "Receive image");
+  try {
+    bool quit = false;
+    {
+      std::scoped_lock lock(m_mutex_quit);
+      quit = m_quit;
+    }
+    if (quit || (!m_rgb_cam_info_received)) {
+      return;
+    }
+
+    // Check if frame has to be displayed
+    bool display_frame = (!m_is_headless_mode) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+
+    // Convert ROS image to ViSP image
+    visp_common::image::toVpImageRGBa(msg, m_I);
+
+    if ((!m_display_initialized) && display_frame) {
+      m_display = vpDisplayFactory::createDisplay(m_I);
+      m_display_initialized = true;
+    }
+
+    if (m_display_initialized) {
+      if (display_frame) {
+        vpDisplay::display(m_I);
+        static const int vert_offset = 20;
+        const int nb_info = m_info_strings.info_strings.size();
+        for (int idx = 0; idx < nb_info; ++idx) {
+          vpDisplay::displayText(m_I, vert_offset * (idx + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[idx], m_info_strings.info_strings[idx], vpColor::red);
+        }
+      }
+    }
+
+    std::vector<vpHomogeneousMatrix> c_M_o_vec;
+    bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
+
+    vpColVector v_ee(6, 0);
+    if (found) {
+      auto decision_margins = m_tag_detector.getTagsDecisionMargin();
+
+      RCLCPP_DEBUG_STREAM(this->get_logger(), "cam:\n " << m_camColor);
+      RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", c_M_o_vec.size());
+      for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
+        RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
+      }
+      if (c_M_o_vec.size() == 1) {
+        vpHomogeneousMatrix c_M_o = c_M_o_vec[0];  // First detected tag
+
+        if (m_display_initialized && display_frame) {
+          vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
+        }
+
+        if (m_is_headless_mode) {
+        // Publish the poses for display on a remote GUI if headless mode is active
+          visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
+
+          geometry_msgs::msg::Pose pose_c_M_o;
+          visp_common::pose::toPoseMsg(c_M_o, pose_c_M_o);
+          visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
+          namedPoseMsg_c_M_o.name = "c_M_o";
+          namedPoseMsg_c_M_o.pose = pose_c_M_o;
+          poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
+
+          m_poses_pub->publish(poseArrayMsg);
+
+          // Publish the tag corners
+          auto tags_corners = m_tag_detector.getTagsCorners();
+          const auto &detected_tag_corners = tags_corners[0];
+          visp_tracker_common::msg::NamedFeature feature2D;
+          feature2D.name = "Tag corners";
+          for (const auto &tag_corner: detected_tag_corners) {
+            feature2D.image_points.push_back(vision_msgs::msg::Point2D().set__x(tag_corner.get_j()).set__y(tag_corner.get_i()));
+          }
+          visp_tracker_common::msg::NamedFeatureArray namedFeaturesMsg;
+          namedFeaturesMsg.features.push_back(feature2D);
+          m_features_pub->publish(namedFeaturesMsg);
+        }
+      }
+    }
+
+    if (m_display_initialized && display_frame) {
+      vpDisplay::flush(m_I);
+    }
+
+    // Getting user interaction feedback
+    vpMouseButton::vpMouseButtonType button;
+    if (vpDisplay::getClick(m_I, button, false)) {
+      switch (button) {
+      case vpMouseButton::button1:
+      {
+        std::scoped_lock lock(m_mutex_send_velocities);
+        m_send_velocities = (!m_send_velocities);
+        break;
+      }
+      case vpMouseButton::button3:
+      {
+        {
+          std::scoped_lock lock(m_mutex_send_velocities);
+          m_send_velocities = false;
+        }
+        {
+          std::scoped_lock lock(m_mutex_quit);
+          m_quit = true;
+        }
+        break;
+      }
+      default:
+        break;
+      }
+    }
+
+    ++m_frame_cnt;
+  }
+  catch (const std::exception &e) {
+    RCLCPP_ERROR(this->get_logger(), "Image callback exception: %s", e.what());
+  }
+}
+
 //////////////////////////////////////////////////////////////////////
 //                        OTHERS                                    //
 //////////////////////////////////////////////////////////////////////
-
-std::string AprilTagTracker::tagFamilyToString(const vpDetectorAprilTag::vpAprilTagFamily &type)
-{
-  std::string name;
-  switch (type) {
-  case vpDetectorAprilTag::TAG_36h11:
-    name = "36h11";
-    break;
-  case vpDetectorAprilTag::TAG_36h10:
-    name = "36h10";
-    break;
-  case vpDetectorAprilTag::TAG_36ARTOOLKIT:
-    name = "36artoolkit";
-    break;
-  case vpDetectorAprilTag::TAG_25h9:
-    name = "25h9";
-    break;
-  case vpDetectorAprilTag::TAG_25h7:
-    name = "25h7";
-    break;
-  case vpDetectorAprilTag::TAG_16h5:
-    name = "16h5";
-    break;
-  case vpDetectorAprilTag::TAG_CIRCLE21h7:
-    name = "circle21h7";
-    break;
-  case vpDetectorAprilTag::TAG_CIRCLE49h12:
-    name = "circle49h12";
-    break;
-  case vpDetectorAprilTag::TAG_CUSTOM48h12:
-    name = "custom48h12";
-    break;
-  case vpDetectorAprilTag::TAG_STANDARD41h12:
-    name = "standard41h12";
-    break;
-  case vpDetectorAprilTag::TAG_STANDARD52h13:
-    name = "standard52h13";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_4x4_50:
-    name = "aruco_4x4_50";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_4x4_100:
-    name = "aruco_4x4_100";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_4x4_250:
-    name = "aruco_4x4_250";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_4x4_1000:
-    name = "aruco_4x4_1000";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_5x5_50:
-    name = "aruco_5x5_50";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_5x5_100:
-    name = "aruco_5x5_100";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_5x5_250:
-    name = "aruco_5x5_250";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_5x5_1000:
-    name = "aruco_5x5_1000";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_6x6_50:
-    name = "aruco_6x6_50";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_6x6_100:
-    name = "aruco_6x6_100";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_6x6_250:
-    name = "aruco_6x6_250";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_6x6_1000:
-    name = "aruco_6x6_1000";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_7x7_50:
-    name = "aruco_7x7_50";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_7x7_100:
-    name = "aruco_7x7_100";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_7x7_250:
-    name = "aruco_7x7_250";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_7x7_1000:
-    name = "aruco_7x7_1000";
-    break;
-  case vpDetectorAprilTag::TAG_ARUCO_MIP_36h12:
-    name = "aruco_mip_36h12";
-    break;
-  default:
-    name = "unknown";
-  }
-  return name;
-}
-
-vpDetectorAprilTag::vpAprilTagFamily AprilTagTracker::tagFamilyFromString(const std::string &name)
-{
-  vpDetectorAprilTag::vpAprilTagFamily res = vpDetectorAprilTag::vpAprilTagFamily::TAG_ARUCO_MIP_36h12;
-  bool wasFound = false;
-  std::string lowerCaseName = vpIoTools::toLowerCase(name);
-  unsigned int i = 0;
-  while ((i <= vpDetectorAprilTag::vpAprilTagFamily::TAG_ARUCO_MIP_36h12) && (!wasFound)) {
-    vpDetectorAprilTag::vpAprilTagFamily candidate = static_cast<vpDetectorAprilTag::vpAprilTagFamily>(i);
-    if (lowerCaseName == tagFamilyToString(candidate)) {
-      res = candidate;
-      wasFound = true;
-    }
-    ++i;
-  }
-  if (!wasFound) {
-    throw(vpException(vpException::badValue, "Could not find a tag family that corresponds to the name '%s'", name.c_str()));
-  }
-  return res;
-}
-
-std::string AprilTagTracker::getAvailableTagFamily(const std::string &prefix, const std::string &sep, const std::string &suffix)
-{
-  std::string modes(prefix);
-  for (unsigned int i = 0; i < vpDetectorAprilTag::vpAprilTagFamily::TAG_ARUCO_MIP_36h12; ++i) {
-    vpDetectorAprilTag::vpAprilTagFamily candidate = static_cast<vpDetectorAprilTag::vpAprilTagFamily>(i);
-    modes += tagFamilyToString(candidate) + sep;
-  }
-  vpDetectorAprilTag::vpAprilTagFamily candidate = static_cast<vpDetectorAprilTag::vpAprilTagFamily>(vpDetectorAprilTag::vpAprilTagFamily::TAG_ARUCO_MIP_36h12);
-  modes += tagFamilyToString(candidate) + suffix;
-  return modes;
-}
-
-std::string AprilTagTracker::poseMethodToString(const vpDetectorAprilTag::vpPoseEstimationMethod &method)
-{
-  std::string name;
-  switch (method) {
-  case vpDetectorAprilTag::HOMOGRAPHY:
-    name = "homography";
-    break;
-  case vpDetectorAprilTag::HOMOGRAPHY_VIRTUAL_VS:
-    name = "homography_virtual_vs";
-    break;
-  case vpDetectorAprilTag::DEMENTHON_VIRTUAL_VS:
-    name = "dementhon_virtual_vs";
-    break;
-  case vpDetectorAprilTag::LAGRANGE_VIRTUAL_VS:
-    name = "lagrange_virtual_vs";
-    break;
-  case vpDetectorAprilTag::BEST_RESIDUAL_VIRTUAL_VS:
-    name = "best_residual_virtual_vs";
-    break;
-  case vpDetectorAprilTag::HOMOGRAPHY_ORTHOGONAL_ITERATION:
-    name = "homography_orthogonal_iteration";
-    break;
-  default:
-    name = "unknown";
-  }
-  return name;
-}
-
-vpDetectorAprilTag::vpPoseEstimationMethod AprilTagTracker::poseMethodFromString(const std::string &name)
-{
-  vpDetectorAprilTag::vpPoseEstimationMethod res = vpDetectorAprilTag::vpPoseEstimationMethod::HOMOGRAPHY_ORTHOGONAL_ITERATION;
-  bool wasFound = false;
-  std::string lowerCaseName = vpIoTools::toLowerCase(name);
-  unsigned int i = 0;
-  while ((i <= vpDetectorAprilTag::vpPoseEstimationMethod::HOMOGRAPHY_ORTHOGONAL_ITERATION) && (!wasFound)) {
-    vpDetectorAprilTag::vpPoseEstimationMethod candidate = static_cast<vpDetectorAprilTag::vpPoseEstimationMethod>(i);
-    if (lowerCaseName == poseMethodToString(candidate)) {
-      res = candidate;
-      wasFound = true;
-    }
-    ++i;
-  }
-  if (!wasFound) {
-    throw(vpException(vpException::badValue, "Could not find a pose estimation method that corresponds to the name '%s'", name.c_str()));
-  }
-  return res;
-}
-
-std::string AprilTagTracker::getAvailablePoseMethod(const std::string &prefix, const std::string &sep, const std::string &suffix)
-{
-  std::string modes(prefix);
-  for (unsigned int i = 0; i < vpDetectorAprilTag::vpPoseEstimationMethod::HOMOGRAPHY_ORTHOGONAL_ITERATION; ++i) {
-    vpDetectorAprilTag::vpPoseEstimationMethod candidate = static_cast<vpDetectorAprilTag::vpPoseEstimationMethod>(i);
-    modes += poseMethodToString(candidate) + sep;
-  }
-  vpDetectorAprilTag::vpPoseEstimationMethod candidate = static_cast<vpDetectorAprilTag::vpPoseEstimationMethod>(vpDetectorAprilTag::vpPoseEstimationMethod::HOMOGRAPHY_ORTHOGONAL_ITERATION);
-  modes += poseMethodToString(candidate) + suffix;
-  return modes;
-}
-
 
 }

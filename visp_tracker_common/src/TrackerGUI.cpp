@@ -137,36 +137,8 @@ bool TrackerGUI::init()
 
   rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
   compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
-  visp_common::STREAM_QOS_DURABILITY color_qos_durability = visp_common::durabilityFromString(this->get_parameter("color_qos_durability").as_string());
-  visp_common::STREAM_QOS_RELIABILITY color_qos_reliability = visp_common::reliabilityFromString(this->get_parameter("color_qos_reliability").as_string());
-  switch (color_qos_durability) {
-  case visp_common::QOS_DURABILITY_TRANSIENT:
-    compressed_color_qos.durability = RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL;
-    break;
-  case visp_common::QOS_DURABILITY_VOLATILE:
-    compressed_color_qos.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
-    break;
-  default:
-  {
-    RCLCPP_ERROR(this->get_logger(), "Durability '%s' unknown, allowed values are %s", this->get_parameter("color_qos_durability").as_string().c_str(), visp_common::durabilityList().c_str());
-    return false;
-  }
-  }
-
-  switch (color_qos_reliability) {
-  case visp_common::QOS_RELIABILITY_BEST_EFFORT:
-    compressed_color_qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-    break;
-  case visp_common::QOS_RELIABILITY_RELIABLE:
-    compressed_color_qos.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-    break;
-  default:
-  {
-    RCLCPP_ERROR(this->get_logger(), "Reliability '%s' unknown, allowed values are %s", this->get_parameter("color_qos_reliability").as_string().c_str(), visp_common::reliabilityList().c_str());
-    return false;
-  }
-  }
-
+  compressed_color_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
+  compressed_color_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("color_qos_reliability").as_string().c_str());
   m_sub_color = m_it.subscribe(rgb_topic_name, compressed_color_qos, std::bind(&TrackerGUI::image_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), &m_hints, rclcpp::SubscriptionOptions());
 
   std::string rgb_cam_topic = this->get_parameter("camera_topic").as_string();
@@ -188,35 +160,9 @@ bool TrackerGUI::init()
     }
     rmw_qos_profile_t compressed_depth_qos = rmw_qos_profile_default;
     compressed_depth_qos.depth = this->get_parameter("depth_qos_queue_depth").as_int();
-    visp_common::STREAM_QOS_DURABILITY depth_qos_durability = visp_common::durabilityFromString(this->get_parameter("depth_qos_durability").as_string());
-    visp_common::STREAM_QOS_RELIABILITY depth_qos_reliability = visp_common::reliabilityFromString(this->get_parameter("depth_qos_reliability").as_string());
-    switch (depth_qos_durability) {
-    case visp_common::QOS_DURABILITY_TRANSIENT:
-      compressed_depth_qos.durability = RMW_QOS_POLICY_DURABILITY_TRANSIENT_LOCAL;
-      break;
-    case visp_common::QOS_DURABILITY_VOLATILE:
-      compressed_depth_qos.durability = RMW_QOS_POLICY_DURABILITY_VOLATILE;
-      break;
-    default:
-    {
-      RCLCPP_ERROR(this->get_logger(), "Durability '%s' unknown, allowed values are %s", this->get_parameter("depth_qos_durability").as_string().c_str(), visp_common::durabilityList().c_str());
-      return false;
-    }
-    }
+    compressed_depth_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("depth_qos_durability").as_string().c_str());
+    compressed_depth_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("depth_qos_reliability").as_string().c_str());
 
-    switch (depth_qos_reliability) {
-    case visp_common::QOS_RELIABILITY_BEST_EFFORT:
-      compressed_depth_qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
-      break;
-    case visp_common::QOS_RELIABILITY_RELIABLE:
-      compressed_depth_qos.reliability = RMW_QOS_POLICY_RELIABILITY_RELIABLE;
-      break;
-    default:
-    {
-      RCLCPP_ERROR(this->get_logger(), "Reliability '%s' unknown, allowed values are %s", this->get_parameter("depth_qos_reliability").as_string().c_str(), visp_common::reliabilityList().c_str());
-      return false;
-    }
-    }
     RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic '%s'", depth_topic_name.c_str());
 
     m_sub_depth = m_it.subscribe(depth_topic_name, compressed_depth_qos, std::bind(&TrackerGUI::depth_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), &m_hints_depth, rclcpp::SubscriptionOptions());
@@ -272,7 +218,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     return;
   }
 
-  m_I = std::move(visp_common::toVispImageRGBa(*msg));
+  m_I = std::move(visp_common::image::toVispImageRGBa(*msg));
 
   if (!m_display_color) {
     m_display_color = vpDisplayFactory::createDisplay(m_I, -1, -1, "Tracker GUI: color image");
@@ -308,7 +254,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
       std::scoped_lock sl(m_mutex_poses);
       if (m_opt_rgb_cam) {
         for (const auto &named_pose: m_pose_array.poses) {
-          vpHomogeneousMatrix H = visp_common::toVispHomogeneousMatrix(named_pose.pose);
+          vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(named_pose.pose);
           vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), named_pose.name, vpColor::red);
         }
       }
@@ -431,7 +377,7 @@ void TrackerGUI::depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
   static const unsigned int size = height * width;
   static vpImage<uint16_t> Iuint16(msg->height, msg->width);
 
-  Iuint16 = std::move(visp_common::toVispImageUint16(*msg));
+  Iuint16 = std::move(visp_common::image::toVispImageUint16(*msg));
 
   uint16_t min = std::numeric_limits<uint16_t>::max();
   uint16_t max = 0;

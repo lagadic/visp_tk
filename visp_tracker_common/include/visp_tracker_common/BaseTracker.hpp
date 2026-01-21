@@ -6,7 +6,8 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <std_srvs/srv/trigger.hpp>
 
-#include <visp_common/camera.h>
+#include <visp_common/camera.hpp>
+#include <visp_common/path_retriever.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
@@ -130,7 +131,7 @@ protected:
   rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_switch_visual_srv; //!< Service to switch ON/OFF the visual debbuging
 
   // ----- Subscribers -----
-  rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_ref_rgb_cam_info_sub; //!< (Reference, in case of a multi-rgb-camera system) RGB camera parameters subscriber
+  rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_ref_rgb_cam_info_sub; //!< RGB camera parameters subscriber
 
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; //!< 2D image points publisher, for remote GUI visualization when headless mode is active
@@ -146,9 +147,10 @@ protected:
 
   // ----- Tracking-related attributes -----
   bool m_rgb_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.
-  std::string m_rgb_camera_topic_name; //!< The name of the (reference, in case of multi-RGB-camera system) color camera topic.
-  std::string m_rgb_stream_name; //!< The name of the (reference, in case of multi-RGB-camera system) color image topic.
-  vpCameraParameters m_rgb_cam; //!< The (reference, in case of multi-RGB-camera system) color camera parameters
+  std::string m_rgb_camera_topic_name; //!< The name of the color camera topic.
+  std::string m_rgb_stream_name; //!< The name of the color image topic.
+  vpCameraParameters m_rgb_cam; //!< The color camera parameters.
+  std::string m_config_file; //!< If set, path to the configuration file that should be used to initialize the tracker.
 
   // ----- Other attributes -----
   std::mutex m_mutex_quit; //!< Mutex to protect m_quit from concurrent access

@@ -10,10 +10,10 @@
 // ---- ROS Services ----
 #include <std_srvs/srv/trigger.hpp>
 // ---- ViSP ROS packages ----
-#include <visp_common/3dpose.h>
-#include <visp_common/camera.h>
-#include <visp_common/image.h>
-#include <visp_common/qos.h>
+#include <visp_common/pose.hpp>
+#include <visp_common/camera.hpp>
+#include <visp_common/image.hpp>
+#include <visp_common/qos.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
