@@ -172,7 +172,7 @@ vpImage<unsigned char> toVispImageChar(const sensor_msgs::msg::Image &src)
       for (int idx = idxstart; idx < idxstop; ++idx) {
         int acc = 0;
         for (unsigned c = 0; c < cEnd; ++c) {
-          acc += src.data[j * src.step + i * nc + c];
+          acc += src.data[i * src.step + j * nc + c];
         }
         dst.bitmap[idx] = acc / nc;
         // Updating column index
