@@ -112,10 +112,10 @@ sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<vpRGBa> &src)
     i = idxstart / width;
 #endif
     for (int idx = idxstart; idx < idxstop; ++idx) {
-      dst.data[j * dst.step + i * nc + 0] = src.bitmap[j * src.getWidth() + i].R;
-      dst.data[j * dst.step + i * nc + 1] = src.bitmap[j * src.getWidth() + i].G;
-      dst.data[j * dst.step + i * nc + 2] = src.bitmap[j * src.getWidth() + i].B;
-      // dst.data[j * dst.step + i * nc + 3] = src.bitmap[j * dst.step + i].A;
+      dst.data[i * dst.step + j * nc + 0] = src.bitmap[i * src.getWidth() + j].R;
+      dst.data[i * dst.step + j * nc + 1] = src.bitmap[i * src.getWidth() + j].G;
+      dst.data[i * dst.step + j * nc + 2] = src.bitmap[i * src.getWidth() + j].B;
+      // dst.data[i * dst.step + j * nc + 3] = src.bitmap[i * dst.step + j].A;
       // Updating column index
       ++j;
       if (j == width) {
@@ -236,7 +236,7 @@ vpImage<vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src)
       i = idxstart / width;
 #endif
       for (int idx = idxstart; idx < idxstop; ++idx) {
-        dst.bitmap[idx] = vpRGBa(src.data[j * src.step + i], src.data[j * src.step + i], src.data[j * src.step + i]);
+        dst.bitmap[idx] = vpRGBa(src.data[i * src.step + j], src.data[i * src.step + j], src.data[i * src.step + j]);
         // Updating column index
         ++j;
         if (j == width) {
@@ -274,8 +274,8 @@ vpImage<vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src)
       i = idxstart / width;
 #endif
       for (int idx = idxstart; idx < idxstop; ++idx) {
-        dst.bitmap[idx] = vpRGBa(src.data[j * src.step + i * nc + 0], src.data[j * src.step + i * nc + 1],
-                           src.data[j * src.step + i * nc + 2]);
+        dst.bitmap[idx] = vpRGBa(src.data[i * src.step + j * nc + 0], src.data[i * src.step + j * nc + 1],
+                           src.data[i * src.step + j * nc + 2]);
         // Updating column index
         ++j;
         if (j == width) {
