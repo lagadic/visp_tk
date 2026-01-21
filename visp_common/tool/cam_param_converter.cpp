@@ -43,7 +43,7 @@
   file compatible with ROS drivers
  */
 
-#include <visp_common/camera.h>
+#include <visp_common/camera.hpp>
 
 #include <camera_calibration_parsers/parse.hpp>
 #include <visp3/core/vpCameraParameters.h>
@@ -269,7 +269,7 @@ int main(int argc, char **argv)
       return EXIT_FAILURE;
     }
 
-    rosParam = visp_common::toSensorMsgsCameraInfo(vispParam, opt_width, opt_height);
+    rosParam = visp_common::camera::toSensorMsgsCameraInfo(vispParam, opt_width, opt_height);
 
     if (!camera_calibration_parsers::writeCalibration(outPath.string(), opt_camera_name, rosParam)) {
       std::cout << "Error writing ros output file " << outPath.string() << std::endl;
@@ -302,7 +302,7 @@ int main(int argc, char **argv)
       return EXIT_FAILURE;
     }
 
-    vispParam = visp_common::toVispCameraParameters(rosParam);
+    vispParam = visp_common::camera::toVispCameraParameters(rosParam);
 
     if (parser.save(vispParam, outPath.string().c_str(), opt_camera_name, opt_width, opt_height) !=
         vpXmlParserCamera::SEQUENCE_OK) {

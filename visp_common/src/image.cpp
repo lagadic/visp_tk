@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2012 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,10 +30,7 @@
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
  *
- * Description:
- * Implements conversions between ViSP and ROS image types
- *
- *****************************************************************************/
+ */
 
 /*!
   \file image.cpp
@@ -46,7 +42,7 @@
 #include <sensor_msgs/image_encodings.hpp>
 #include <sensor_msgs/msg/image.hpp>
 
-#include "visp_common/image.h"
+#include <visp_common/image.hpp>
 #include <visp3/core/vpException.h>
 
 #include <visp3/core/vpConfig.h>
@@ -55,6 +51,8 @@
 #endif
 
 namespace visp_common
+{
+namespace image
 {
 sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<unsigned char> &src)
 {
@@ -292,5 +290,5 @@ vpImage<vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src)
   }
   return dst;
 }
-
+}
 } // namespace visp_common

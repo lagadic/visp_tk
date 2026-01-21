@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,25 +29,23 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS and ViSP structures representing camera parameters.
- *
- *****************************************************************************/
+ */
 
 /*!
-  \file camera.h
+  \file camera.hpp
   \brief Conversions between ROS and ViSP structures representing camera parameters
 */
 
-#ifndef visp_common__CAMERA_H_
-#define visp_common__CAMERA_H_
+#ifndef VISP_COMMON__CAMERA_H_
+#define VISP_COMMON__CAMERA_H_
 
 #include <sensor_msgs/msg/camera_info.hpp>
 
 #include <visp3/core/vpCameraParameters.h>
 
 namespace visp_common
+{
+namespace camera
 {
 /*!
   \brief Converts a sensor_msgs::CameraInfo to ViSP camera parameters (vpCameraParameters).
@@ -71,6 +68,7 @@ vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::Co
 */
 sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(vpCameraParameters &cam_info, unsigned int cam_image_width,
                                                     unsigned int cam_image_height);
+} // namespace camera
 } // namespace visp_common
 
-#endif // visp_common__CAMERA_H_
+#endif // VISP_COMMON__CAMERA_H_

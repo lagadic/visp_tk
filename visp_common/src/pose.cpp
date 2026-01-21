@@ -1,5 +1,4 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
  * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
  *
@@ -30,14 +29,10 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS and ViSP structures representing a 3D pose
- *
- *****************************************************************************/
+ */
 
 /*!
-  \file 3dpose.cpp
+  \file pose.cpp
   \brief conversions between ROS and ViSP structures representing a 3D pose
 */
 
@@ -47,9 +42,11 @@
 #include <visp3/core/vpRotationMatrix.h>
 #include <visp3/core/vpTranslationVector.h>
 
-#include "visp_common/3dpose.h"
+#include <visp_common/pose.hpp>
 
 namespace visp_common
+{
+namespace pose
 {
 vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose)
 {
@@ -129,4 +126,5 @@ geometry_msgs::msg::Pose toGeometryMsgsPose(const vpHomogeneousMatrix &mat)
 
   return pose;
 }
+} // namespace pose
 } // namespace visp_common

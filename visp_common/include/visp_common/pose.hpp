@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,14 +29,10 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS and ViSP structures representing a 3D pose.
- *
- *****************************************************************************/
+ */
 
 /*!
-  \file 3dpose.h
+  \file pose.hpp
   \brief Conversions between ROS and ViSP structures representing a 3D pose
 */
 
@@ -46,10 +41,12 @@
 
 #include <visp3/core/vpHomogeneousMatrix.h>
 
-#ifndef visp_common__3DPOSE_H_
-#define visp_common__3DPOSE_H_
+#ifndef VISP_COMMON__3DPOSE_H_
+#define VISP_COMMON__3DPOSE_H_
 
 namespace visp_common
+{
+namespace pose
 {
 /*!
   \brief Converts a geometry_msgs::msg::Transform to a ViSP homogeneous matrix (vpHomogeneousMatrix).
@@ -91,6 +88,7 @@ geometry_msgs::msg::Transform toGeometryMsgsTransform(const vpHomogeneousMatrix 
         \return: transformation in ROS/geometry_msgs format.
       */
 geometry_msgs::msg::Pose toGeometryMsgsPose(const vpHomogeneousMatrix &mat);
+} // namespace pose
 } // namespace visp_common
 
-#endif // visp_common__3DPOSE_H_
+#endif // VISP_COMMON__3DPOSE_H_

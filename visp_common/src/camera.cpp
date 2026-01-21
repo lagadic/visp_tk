@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,11 +29,7 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS and ViSP structures representing camera parameters
- *
- *****************************************************************************/
+ */
 
 /*!
   \file camera.cpp
@@ -43,9 +38,11 @@
 
 #include <sensor_msgs/distortion_models.hpp>
 
-#include "visp_common/camera.h"
+#include <visp_common/camera.hpp>
 
 namespace visp_common
+{
+namespace camera
 {
 vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info)
 {
@@ -151,5 +148,6 @@ sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(vpCameraParameters &cam_info
   ret.height = cam_image_height;
 
   return ret;
+}
 }
 } // namespace visp_common

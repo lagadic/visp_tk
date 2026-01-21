@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,20 +29,19 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS packages:// file:// and native filepath
- *****************************************************************************/
+ */
 
 /*!
-  \file path_retriever.h
+  \file path_retriever.hpp
   \brief Conversions between ROS packages:// file:// and native filepath
 */
 
-#ifndef visp_common__PATH_RETRIEVER_H_
-#define visp_common__PATH_RETRIEVER_H_
+#ifndef VISP_COMMON__PATH_RETRIEVER_H_
+#define VISP_COMMON__PATH_RETRIEVER_H_
 
 namespace visp_common
+{
+namespace path
 {
 /*!
   \brief Converts a ROS packages:// file:// and native filepath
@@ -51,7 +49,7 @@ namespace visp_common
   \return native filepath format OR "" if could no parse filepath
 */
 std::string path_retriever(const std::string path);
-
+}
 } // namespace visp_common
 
-#endif // visp_common__PATH_RETRIEVER_H_
+#endif // VISP_COMMON__PATH_RETRIEVER_H_

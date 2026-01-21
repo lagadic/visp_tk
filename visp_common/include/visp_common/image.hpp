@@ -1,7 +1,6 @@
-/****************************************************************************
- *
+/*
  * This file is part of the ViSP software.
- * Copyright (C) 2005 - 2022 by INRIA. All rights reserved.
+ * Copyright (C) 2005 - 2026 by INRIA. All rights reserved.
  *
  * This software is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,19 +29,15 @@
  *
  * Contact visp@irisa.fr if any conditions of this licensing are
  * not clear to you.
- *
- * Description:
- * Conversions between ROS and ViSP structures representing images.
- *
- *****************************************************************************/
+ */
 
 /*!
-  \file image.h
+  \file image.hpp
   \brief Defines conversions between ViSP and ROS image types
  */
 
-#ifndef visp_common__IMAGE_H__
-#define visp_common__IMAGE_H__
+#ifndef VISP_COMMON__IMAGE_H__
+#define VISP_COMMON__IMAGE_H__
 
 #include <sensor_msgs/msg/image.hpp>
 
@@ -50,6 +45,8 @@
 #include <visp3/core/vpRGBa.h>
 
 namespace visp_common
+{
+namespace image
 {
 /**
  * \brief Converts a ViSP image (vpImage) to a sensor_msgs::Image.
@@ -90,6 +87,7 @@ vpImage<uint16_t> toVispImageUint16(const sensor_msgs::msg::Image &src);
  * \return vpImage<vpRGBa> The ViSP color image.
  */
 vpImage<vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src);
+} // namespace image
 } // namespace visp_common
 
-#endif // visp_common__IMAGE_H__
+#endif // VISP_COMMON__IMAGE_H__

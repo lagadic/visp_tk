@@ -32,52 +32,46 @@
  */
 
 /*!
-  \file path_retriever
-  \brief conversions between ROS packages:// file:// and native filepath
+  \file qos.hpp
+  \brief Conversions between strings and ROS QoS
 */
-#include <cstring>
-#include <sstream>
+
+#ifndef VISP_COMMON__QOS_H
+#define VISP_COMMON__QOS_H
+
 #include <string>
-
-#include <ament_index_cpp/get_package_prefix.hpp>
-#include <ament_index_cpp/get_package_share_directory.hpp>
-
-#include <visp_common/path_retriever.hpp>
-
-using std::istringstream;
+#include <visp3/core/vpIoTools.h>
 
 namespace visp_common
 {
-namespace path
+namespace qos
 {
-std::string path_retriever(const std::string path)
+typedef enum STREAM_QOS_RELIABILITY
 {
-  std::string retrieve_path;
+  QOS_RELIABILITY_RELIABLE = 0,
+  QOS_RELIABILITY_BEST_EFFORT = 1,
+  QOS_RELIABILITY_COUNT = 2,
+  QOS_RELIABILITY_UNKNOWN = QOS_RELIABILITY_COUNT
+}STREAM_QOS_RELIABILITY;
 
-  std::string line;
-  std::istringstream sin;
+std::string reliabilityToString(const STREAM_QOS_RELIABILITY &type);
 
-  std::string mod_url = path;
-  if (path.find("package://") == 0) {
-    mod_url.erase(0, strlen("package://"));
-    size_t pos = mod_url.find("/");
-    if (pos == std::string::npos) {
-      return "";
-    }
+STREAM_QOS_RELIABILITY reliabilityFromString(const std::string &name);
 
-    std::string package = mod_url.substr(0, pos);
-    // delete package name
-    mod_url.erase(0, pos);
-    std::string package_path;
-    try {
-      package_path = ament_index_cpp::get_package_share_directory(package);
-    }
-    catch (const ament_index_cpp::PackageNotFoundError &) {
-      return "";
-    }
-    mod_url = package_path + mod_url;
-  }
-  return mod_url;
+std::string reliabilityList(const std::string &pref = "< ", const std::string sep = " , ", const std::string &suf = " >");
+
+typedef enum STREAM_QOS_DURABILITY
+{
+  QOS_DURABILITY_VOLATILE = 0,
+  QOS_DURABILITY_TRANSIENT = 1,
+  QOS_DURABILITY_COUNT = 2,
+  QOS_DURABILITY_UNKNOWN = QOS_DURABILITY_COUNT
+}STREAM_QOS_DURABILITY;
+
+std::string durabilityToString(const STREAM_QOS_DURABILITY &type);
+STREAM_QOS_DURABILITY durabilityFromString(const std::string &name);
+std::string durabilityList(const std::string &pref = "< ", const std::string sep = " , ", const std::string &suf = " >");
 }
 }
-} // namespace visp_common
+
+#endif

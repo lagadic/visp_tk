@@ -17,7 +17,7 @@ find_package(camera_calibration_parsers REQUIRED)
 find_package(VISP REQUIRED COMPONENTS visp_core)
 
 # add library
-add_library(${PROJECT_NAME} src/3dpose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp src/qos.cpp)
+add_library(${PROJECT_NAME} src/pose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp src/qos.cpp)
 
 ament_target_dependencies(${PROJECT_NAME}
   geometry_msgs
