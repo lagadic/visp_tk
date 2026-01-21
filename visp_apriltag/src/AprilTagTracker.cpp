@@ -2,6 +2,12 @@
 
 namespace visp_apriltag
 {
+void fromImagePoint(const vpImagePoint &ip, vision_msgs::msg::Point2D &out)
+{
+  out.x = ip.get_u();
+  out.y = ip.get_v();
+}
+
 AprilTagTracker::AprilTagTracker(const std::string &node_name)
   : visp_tracker_common::BaseTracker(node_name, true)
 {
@@ -22,7 +28,15 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
 
   auto detection_margin_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   detection_margin_param_desc.description = "This parameter indicates the detection margin threshold. Setting -1 deactivate the feature. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
-  this->declare_parameter("detection_margin_thresh", -1.0, detection_margin_param_desc);
+  this->declare_parameter<double>("detection_margin_thresh", -1.0, detection_margin_param_desc);
+
+  auto align_z_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  align_z_param_desc.description = "This parameter indicates if the Z axis of the tag must be aligned with the one of the camera. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
+  this->declare_parameter<bool>("align_z", false, align_z_param_desc);
+
+  auto display_tag_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  display_tag_param_desc.description = "This parameter indicates if the detector must display the tag on screen. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
+  this->declare_parameter<bool>("display_tag", false, display_tag_param_desc);
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PUB/SUB                              //
@@ -86,6 +100,7 @@ bool AprilTagTracker::init_tracker()
     try {
       vpDetectorAprilTag::vpPoseEstimationMethod pose_method = vpDetectorAprilTag::poseMethodFromString(pose_method_name);
       m_tag_detector.setAprilTagPoseEstimationMethod(pose_method);
+      RCLCPP_INFO(this->get_logger(), "Pose estimation method is set to %s\n", pose_method_name.c_str());
     }
     catch (const vpException &e) {
       RCLCPP_ERROR(this->get_logger(), "pose_method parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
@@ -99,7 +114,7 @@ bool AprilTagTracker::init_tracker()
 
     auto display_tag_param = rclcpp::Parameter();
     this->get_parameter("display_tag", display_tag_param);
-    auto display_tag = margin_thresh_param.as_bool();
+    auto display_tag = display_tag_param.as_bool();
     m_tag_detector.setDisplayTag(display_tag);
 
     auto align_z_param = rclcpp::Parameter();
@@ -107,6 +122,7 @@ bool AprilTagTracker::init_tracker()
     auto align_z = align_z_param.as_bool();
     m_tag_detector.setZAlignedWithCameraAxis(align_z);
 
+    RCLCPP_INFO(this->get_logger(), "Done !");
     return true;
   }
   else {
@@ -125,11 +141,11 @@ void AprilTagTracker::init_info_strings()
 {
   const unsigned int nb_digits = 3;
   m_info_strings.info_strings.push_back(std::string("Tag Size.........: ") + std::to_string(m_tag_size).substr(0, std::to_string(m_tag_size).find(".") + nb_digits + 1));
-  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
-  m_info_strings.info_strings.push_back(std::string("Tag famile.......: ") + m_family_name);
-  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
+  m_info_strings.info_strings.push_back(std::string("Tag family.......: ") + m_family_name);
+  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
   m_info_strings.info_strings.push_back(std::string("Margin threshold.: ") + (m_tag_detector.getAprilTagDecisionMarginThreshold() < 0 ? std::string("deactivated") : std::to_string(m_tag_detector.getAprilTagDecisionMarginThreshold())));
-  m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -145,7 +161,12 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       std::scoped_lock lock(m_mutex_quit);
       quit = m_quit;
     }
-    if (quit || (!m_rgb_cam_info_received)) {
+    bool has_to_track = false;
+    {
+      std::scoped_lock lock(m_mutex_tracking);
+      has_to_track = m_has_to_track;
+    }
+    if (quit || (!m_rgb_cam_info_received) || (!has_to_track)) {
       return;
     }
 
@@ -153,7 +174,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     bool display_frame = (!m_is_headless_mode) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
     // Convert ROS image to ViSP image
-    visp_common::image::toVpImageRGBa(msg, m_I);
+    m_I = std::move(visp_common::image::toVispImageChar(*msg));
 
     if ((!m_display_initialized) && display_frame) {
       m_display = vpDisplayFactory::createDisplay(m_I);
@@ -176,46 +197,62 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 
     vpColVector v_ee(6, 0);
     if (found) {
-      auto decision_margins = m_tag_detector.getTagsDecisionMargin();
-
-      RCLCPP_DEBUG_STREAM(this->get_logger(), "cam:\n " << m_camColor);
       RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", c_M_o_vec.size());
+      auto decision_margins = m_tag_detector.getTagsDecisionMargin();
+      auto tags_IDs = m_tag_detector.getTagsId();
+      auto tags_corners = m_tag_detector.getTagsCorners();
+      visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
+      visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
+      detectionArray.header = msg->header;
       for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
         RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
-      }
-      if (c_M_o_vec.size() == 1) {
-        vpHomogeneousMatrix c_M_o = c_M_o_vec[0];  // First detected tag
+        vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
+        auto tag_corners = tags_corners[i];
 
         if (m_display_initialized && display_frame) {
           vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
         }
 
-        if (m_is_headless_mode) {
-        // Publish the poses for display on a remote GUI if headless mode is active
-          visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
+        geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
+        visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
+        namedPoseMsg_c_M_o.name = m_family_name + "_" + std::to_string(tags_IDs[i]);
+        namedPoseMsg_c_M_o.pose.pose = pose_c_M_o;
+        namedPoseMsg_c_M_o.pose.header = msg->header;
+        poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
 
-          geometry_msgs::msg::Pose pose_c_M_o;
-          visp_common::pose::toPoseMsg(c_M_o, pose_c_M_o);
-          visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
-          namedPoseMsg_c_M_o.name = "c_M_o";
-          namedPoseMsg_c_M_o.pose = pose_c_M_o;
-          poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
+        visp_tracker_common::msg::AprilTagDetection detectionMsg;
+        detectionMsg.family = m_family_name;
+        detectionMsg.id = tags_IDs[i];
+        detectionMsg.pose = namedPoseMsg_c_M_o.pose;
+        vpImagePoint cog = m_tag_detector.getCog(i);
+        fromImagePoint(cog, detectionMsg.center);
+        fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
+        fromImagePoint(tag_corners[1], detectionMsg.corners[1]);
+        fromImagePoint(tag_corners[2], detectionMsg.corners[2]);
+        fromImagePoint(tag_corners[3], detectionMsg.corners[3]);
+        detectionArray.detections.push_back(detectionMsg);
 
-          m_poses_pub->publish(poseArrayMsg);
-
+        if (m_is_headless_mode && m_visualization_debug) {
           // Publish the tag corners
-          auto tags_corners = m_tag_detector.getTagsCorners();
-          const auto &detected_tag_corners = tags_corners[0];
           visp_tracker_common::msg::NamedFeature feature2D;
-          feature2D.name = "Tag corners";
-          for (const auto &tag_corner: detected_tag_corners) {
-            feature2D.image_points.push_back(vision_msgs::msg::Point2D().set__x(tag_corner.get_j()).set__y(tag_corner.get_i()));
+          feature2D.name = "Tag_" + std::to_string(tags_IDs[i]);
+          for (unsigned int i = 0; i < 3; ++i) {
+            vision_msgs::msg::Point2D start, end;
+            fromImagePoint(tag_corners[i], start);
+            fromImagePoint(tag_corners[i+1], end);
+            feature2D.lines.push_back(visp_tracker_common::msg::Point2DTuple().set__start(start).set__end(end));
           }
+          vision_msgs::msg::Point2D start, end;
+          fromImagePoint(tag_corners[3], start);
+          fromImagePoint(tag_corners[0], end);
+          feature2D.lines.push_back(visp_tracker_common::msg::Point2DTuple().set__start(start).set__end(end));
           visp_tracker_common::msg::NamedFeatureArray namedFeaturesMsg;
           namedFeaturesMsg.features.push_back(feature2D);
           m_features_pub->publish(namedFeaturesMsg);
         }
       }
+      m_poses_pub->publish(poseArrayMsg);
+      m_tags_info_pub->publish(detectionArray);
     }
 
     if (m_display_initialized && display_frame) {
@@ -228,15 +265,15 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       switch (button) {
       case vpMouseButton::button1:
       {
-        std::scoped_lock lock(m_mutex_send_velocities);
-        m_send_velocities = (!m_send_velocities);
+        std::scoped_lock lock(m_mutex_tracking);
+        m_has_to_track = (!m_has_to_track);
         break;
       }
       case vpMouseButton::button3:
       {
         {
-          std::scoped_lock lock(m_mutex_send_velocities);
-          m_send_velocities = false;
+          std::scoped_lock lock(m_mutex_tracking);
+          m_has_to_track = false;
         }
         {
           std::scoped_lock lock(m_mutex_quit);

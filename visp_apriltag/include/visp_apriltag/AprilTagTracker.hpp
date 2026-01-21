@@ -3,10 +3,12 @@
 
 #include <sensor_msgs/msg/image.hpp>
 #include <visp_common/image.hpp>
+#include <visp_common/pose.hpp>
 #include <visp_tracker_common/BaseTracker.hpp>
 #include <visp_tracker_common/msg/april_tag_detection_array.hpp>
 
 #include <visp3/core/vpIoTools.h>
+#include <visp3/gui/vpDisplayFactory.h>
 #include <visp3/detection/vpDetectorAprilTag.h>
 
 namespace visp_apriltag
@@ -62,12 +64,14 @@ protected:
   rclcpp::Publisher<visp_tracker_common::msg::AprilTagDetectionArray>::SharedPtr m_tags_info_pub; //!< Publisher of the tag IDs, centers and so on.
 
   // ----- Display-related attributes -----
+  bool m_display_initialized = false;
+  std::shared_ptr<vpDisplay> m_display;
 
   // ----- Tracking-related attributes -----
   vpDetectorAprilTag m_tag_detector; //!< The detector.
   std::string m_family_name; //!< Name of the tag family.
   double m_tag_size; //!< Size of the tag, in meters.
-  vpImage<vpRGBa> m_I; //!< Color image on which the detection is performed.
+  vpImage<unsigned char> m_I; //!< Color image on which the detection is performed.
 };
 }
 
