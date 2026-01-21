@@ -147,11 +147,11 @@ protected:
   std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>> m_client_switch_visualization; //!< Client to turn ON/OFF the visualization of 2D features.
 
   // ----- Subscribers -----
-  image_transport::ImageTransport m_it;
-  image_transport::TransportHints m_hints;
+  std::shared_ptr<image_transport::ImageTransport> m_it;
+  std::shared_ptr<image_transport::TransportHints> m_hints;
   image_transport::Subscriber m_sub_color;
   // image_transport::ImageTransport m_it_depth;
-  image_transport::TransportHints m_hints_depth;
+  std::shared_ptr<image_transport::TransportHints> m_hints_depth;
   image_transport::Subscriber m_sub_depth;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_sub; //!< Subscriber to the RGB camera topic.
   rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_feat_2D_sub; //!< Subscriber to the 2D features topic.

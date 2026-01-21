@@ -175,7 +175,7 @@ void BaseTracker::switch_tracking_status_callback(const  std::shared_ptr<std_srv
   (void)request;
   std::scoped_lock lock(m_mutex_tracking);
   m_has_to_track = (!m_has_to_track);
-  response->success = true;
+  response->success = m_has_to_track;
   response->message = "The node will " + (m_has_to_track ? std::string("start") : std::string("stop")) + " tracking as soon as its last loop ends";
 }
 
@@ -185,7 +185,7 @@ void BaseTracker::switch_visual_status_callback(const  std::shared_ptr<std_srvs:
   (void)request;
   std::scoped_lock lock(m_mutex_visualization);
   m_visualization_debug = (!m_visualization_debug);
-  response->success = true;
+  response->success = m_visualization_debug;
   response->message = "The node will " + (m_visualization_debug ? std::string("start") : std::string("stop")) + " sending visualization information as soon as its last loop ends";
 }
 
@@ -204,7 +204,7 @@ void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo:
   m_rgb_cam_info_received = true;
   m_ref_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
-  RCLCPP_INFO(this->get_logger(), "(Reference) RGB camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
+  RCLCPP_INFO(this->get_logger(), "RGB camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
 }
 
 //////////////////////////////////////////////////////////////////////

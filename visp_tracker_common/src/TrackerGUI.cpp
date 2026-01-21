@@ -4,15 +4,10 @@ namespace visp_tracker_common
 {
 TrackerGUI::TrackerGUI(const std::string &node_name)
   : rclcpp::Node(node_name)
-  , m_it(std::shared_ptr<rclcpp::Node>(this))
-  , m_hints(std::shared_ptr<rclcpp::Node>(this).get())
-  // , m_it_depth(std::shared_ptr<rclcpp::Node>(this))
-  , m_hints_depth(std::shared_ptr<rclcpp::Node>(this).get(), "compressedDepth", "depth_image_transport")
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
   //////////////////////////////////////////////////////////////////////
-
   // // ---- Parameters related to the services ----
 
   // // ---- Parameters related to the publishers / subscribers ----
@@ -103,6 +98,7 @@ bool TrackerGUI::init()
     }
     RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", quit_srv_name.c_str());
   }
+  RCLCPP_INFO(this->get_logger(), "service %s is now available", quit_srv_name.c_str());
 
   std::string switch_tracking_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::switch_tracking_srv_name;
   m_client_switch_tracking = m_service_node->create_client<std_srvs::srv::Trigger>(switch_tracking_srv_name);
@@ -113,6 +109,7 @@ bool TrackerGUI::init()
     }
     RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_tracking_srv_name.c_str());
   }
+  RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_tracking_srv_name.c_str());
 
   std::string switch_visual_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::switch_vismode_srv_name;
   m_client_switch_visualization = m_service_node->create_client<std_srvs::srv::Trigger>(switch_visual_srv_name);
@@ -123,6 +120,7 @@ bool TrackerGUI::init()
     }
     RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_visual_srv_name.c_str());
   }
+  RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_visual_srv_name.c_str());
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PUB/SUB                              //
@@ -135,11 +133,13 @@ bool TrackerGUI::init()
     return false;
   }
 
+  m_it = std::make_shared<image_transport::ImageTransport>(std::shared_ptr<rclcpp::Node>(this));
+  m_hints = std::make_shared<image_transport::TransportHints>(this);
   rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
   compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
   compressed_color_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
   compressed_color_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("color_qos_reliability").as_string().c_str());
-  m_sub_color = m_it.subscribe(rgb_topic_name, compressed_color_qos, std::bind(&TrackerGUI::image_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), &m_hints, rclcpp::SubscriptionOptions());
+  m_sub_color = m_it->subscribe(rgb_topic_name, compressed_color_qos, std::bind(&TrackerGUI::image_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), m_hints.get(), rclcpp::SubscriptionOptions());
 
   std::string rgb_cam_topic = this->get_parameter("camera_topic").as_string();
   if (rgb_cam_topic.empty()) {
@@ -164,8 +164,8 @@ bool TrackerGUI::init()
     compressed_depth_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("depth_qos_reliability").as_string().c_str());
 
     RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic '%s'", depth_topic_name.c_str());
-
-    m_sub_depth = m_it.subscribe(depth_topic_name, compressed_depth_qos, std::bind(&TrackerGUI::depth_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), &m_hints_depth, rclcpp::SubscriptionOptions());
+    m_hints_depth = std::make_shared<image_transport::TransportHints>(this, "compressedDepth", "depth_image_transport");
+    m_sub_depth = m_it->subscribe(depth_topic_name, compressed_depth_qos, std::bind(&TrackerGUI::depth_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), m_hints_depth.get(), rclcpp::SubscriptionOptions());
 
     const double depth_scale = this->get_parameter("depth_scale").as_double();
     double min_depth = this->get_parameter("min_depth").as_double();
@@ -182,7 +182,7 @@ bool TrackerGUI::init()
   auto qos_infostr_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
   std::string info_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::info_strings_topic_name;
   m_info_strings_sub = this->create_subscription<visp_tracker_common::msg::InfoStrings>(info_srv_name, qos_infostr_pub, std::bind(&TrackerGUI::info_callback, this, std::placeholders::_1));
-
+  RCLCPP_INFO(this->get_logger(), "Subscribed to info strings topic '%s'", m_info_strings_sub->get_topic_name());
   return true;
 }
 
@@ -195,13 +195,10 @@ void TrackerGUI::camera_info_callback(const sensor_msgs::msg::CameraInfo::Shared
     return;
   }
 
-  double fx = msg->k[0]; // fx
-  double fy = msg->k[4]; // fy
-  double cx = msg->k[2]; // cx
-  double cy = msg->k[5]; // cy
+  m_opt_rgb_cam = visp_common::camera::toVispCameraParameters(*msg);
+  m_rgb_cam_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
-  m_opt_rgb_cam = vpCameraParameters();
-  m_opt_rgb_cam->initPersProjWithoutDistortion(fx, fy, cx, cy);
+  RCLCPP_INFO_STREAM(this->get_logger(), "RGB camera intrinsics :" << std::endl << *m_opt_rgb_cam);
 }
 
 void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg)
@@ -218,11 +215,14 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     return;
   }
 
+  // Converting RGB image
   m_I = std::move(visp_common::image::toVispImageRGBa(*msg));
 
   if (!m_display_color) {
     m_display_color = vpDisplayFactory::createDisplay(m_I, -1, -1, "Tracker GUI: color image");
   }
+
+  // Getting depth image, if available
   static std::optional<vpImage<vpRGBa>> opt_Id = std::nullopt;
   if (m_opt_Id) {
     {
@@ -235,6 +235,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
       m_display_depth = vpDisplayFactory::createDisplay(opt_Id.value(), m_display_color->getWidth() + 20, -1, "Remote GUI: depth image");
     }
   }
+
   bool display_frame = (m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0);
   ++m_frame_cnt;
   if (display_frame) {
@@ -243,6 +244,12 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
       vpDisplay::display(opt_Id.value());
     }
 
+    // Displaying how to use the GUI
+    vpDisplay::displayText(m_I, v_offset, left_hor_offset, "Left click to turn ON/OFF the tracking.", vpColor::red);
+    vpDisplay::displayText(m_I, v_offset * 2, left_hor_offset, "Middle click to turn ON/OFF the visual debug.", vpColor::red);
+    vpDisplay::displayText(m_I, v_offset * 3, left_hor_offset, "Right click to stop the tracker and quit the GUI.", vpColor::red);
+
+    // Displaying text info from the tracker
     {
       std::scoped_lock sl(m_mutex_info);
       for (unsigned int r = 0; r < m_vec_info.info_strings.size(); ++r) {
@@ -250,22 +257,26 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
       }
     }
 
+    // Displaying poses, if any
     {
       std::scoped_lock sl(m_mutex_poses);
       if (m_opt_rgb_cam) {
         for (const auto &named_pose: m_pose_array.poses) {
-          vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(named_pose.pose);
+          vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(named_pose.pose.pose);
           vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), named_pose.name, vpColor::red);
         }
       }
     }
 
+    // Displaying 2D features, if any
     {
       std::scoped_lock sl(m_mutex_features);
       int idx = 0;
       for (const auto &named_feature: m_feature_array.features) {
         vpColor color = vpColor::allColors[idx % vpColor::nbColors];
         vpDisplay::displayText(m_I, m_display_color->getHeight() -  v_offset * (idx + 1), left_hor_offset, named_feature.name, color);
+
+        // Displaying 2D points
         switch (m_features_type) {
         case FeaturesType::CROSS:
         {
@@ -284,20 +295,29 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         default:
           RCLCPP_WARN_STREAM(this->get_logger(), "Visualization type for the 2D features is unknown, available types are: " << getAvailableFeaturesType());
         }
+
+        // Displaying ellipses
         for (const auto &ellipse: named_feature.ellipses) {
           vpDisplay::displayEllipse(m_I, vpImagePoint(ellipse.center.y, ellipse.center.x), ellipse.n20, ellipse.n11, ellipse.n02, true, color, m_features_thickness);
         }
+
+        // Displaying lines
         for (const auto &line: named_feature.lines) {
           vpDisplay::displayLine(m_I, vpImagePoint(line.start.y, line.start.x), vpImagePoint(line.end.y, line.end.x), color, m_features_thickness);
         }
+
+        // Displaying polygons
         for (const auto &poly: named_feature.polygons) {
           std::vector<vpImagePoint> poly_points;
           poly_points.push_back(vpImagePoint(poly.lines[0].start.y, poly.lines[0].start.x));
+          // Displaying each line of the polygon
           for (const auto &line: poly.lines) {
             poly_points.push_back(vpImagePoint(line.end.y, line.end.x));
           }
           vpDisplay::displayPolygon(m_I, poly_points, color, m_features_thickness);
         }
+
+        // Displaying rectangles
         for (const auto &rect: named_feature.rectangles) {
           vpDisplay::displayRectangle(m_I, vpImagePoint(rect.start.y, rect.start.x), vpImagePoint(rect.end.y, rect.end.x), color, false, m_features_thickness);
         }
@@ -325,7 +345,11 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         RCLCPP_INFO(this->get_logger(), "Got a response !");
         auto response = result.get();
         RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-        // m_tracker_active = response->is_tracker_active;
+        if (!response->success) {
+          RCLCPP_INFO(this->get_logger(), "Forgetting last sent poses ...");
+          std::scoped_lock sl(m_mutex_poses);
+          m_pose_array.poses.clear();
+        }
       }
       else {
         RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
@@ -341,6 +365,11 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         RCLCPP_INFO(this->get_logger(), "Got a response !");
         auto response = result.get();
         RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+        if (!response->success) {
+          RCLCPP_INFO(this->get_logger(), "Forgetting last sent features ...");
+          std::scoped_lock sl(m_mutex_features);
+          m_feature_array.features.clear();
+        }
       }
       else {
         RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
