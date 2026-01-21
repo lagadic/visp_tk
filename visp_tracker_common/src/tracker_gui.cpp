@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
-  std::shared_ptr<visp_tracker_common::TrackerGUI> gui = std::make_shared<visp_tracker_common::TrackerGUI>("tracekr_gui");
+  std::shared_ptr<visp_tracker_common::TrackerGUI> gui = std::make_shared<visp_tracker_common::TrackerGUI>("tracker_gui");
   bool status = gui->init();
   if (status) {
     while (gui->has_to_run()) {
