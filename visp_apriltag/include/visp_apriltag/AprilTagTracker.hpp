@@ -21,26 +21,22 @@ public:
 
 protected:
   /** @name  Initialization */
-  //@{
+  ///@{
 
   /**
-   * @brief Initilize the tracker used by the servoing node.
-   *
-   * @return true The initialization went well
-   * @return false A problem occured
+   * @copydoc visp_tracker_common::BaseTracker::init_tracker()
    */
   virtual bool init_tracker() override;
 
   /**
-   * @brief Initialize the m_info_strings vector with constant strings to
-   * give the user some info.
+   * @copydoc visp_tracker_common::BaseTracker::init_info_strings()
    */
   virtual void init_info_strings() override;
 
-  //@}
+  ///@}
 
   /** @name  Callbacks */
-  //@{
+  ///@{
 
   // ----- Subscriptions -----
 
@@ -53,7 +49,7 @@ protected:
 
   // ----- Services -----
 
-  //@}
+  ///@}
 
   // ----- Services -----
 

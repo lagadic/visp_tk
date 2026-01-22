@@ -23,46 +23,51 @@ public:
   virtual ~MBTTracker() = default;
 protected:
   /** @name  Initialization */
-  //@{
-
+  ///@{
   /**
-   * @brief Initilize the tracker used by the servoing node.
-   *
-   * @return true The initialization went well
-   * @return false A problem occured
+   * @copydoc visp_tracker_common::BaseTracker::init_tracker()
    */
   virtual bool init_tracker() override;
 
+  /**
+   * @brief Initilize the tracker using an XML file and some node parameters.
+   *
+   * @return true The initialization went well.
+   * @return false An error occured.
+   */
   bool init_from_xml();
 
+  /**
+   * @brief Initilize the tracker using a JSON file and some node parameters.
+   *
+   * @return true The initialization went well.
+   * @return false An error occured.
+   */
   bool init_from_json();
 
   /**
-   * @brief Initialize the m_info_strings vector with constant strings to
-   * give the user some info.
+   * @copydoc visp_tracker_common::BaseTracker::init_info_strings()
    */
   virtual void init_info_strings() override;
 
   /**
-   * @brief Check the tracker settings in order to know if the depth
-   * is actually required and set m_depth_is_required accordingly.
+   * @copydoc visp_tracker_common::BaseMultiModalTracker::check_requires_depth()
    */
   virtual void check_requires_depth() override;
-
-  //@}
+  ///@}
 
   /**
-   * @copydoc visp_tracker_common::BaseMultiModalTracker::treat_rgb() .
+   * @copydoc visp_tracker_common::BaseMultiModalTracker::treat_rgb()
    */
   virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) override;
 
   /**
-   * @copydoc visp_tracker_common::BaseMultiModalTracker::treat_depth() .
+   * @copydoc visp_tracker_common::BaseMultiModalTracker::treat_depth()
    */
   virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) override;
 
   /**
-   * @copydoc visp_tracker_common::BaseMultiModalTracker::track() .
+   * @copydoc visp_tracker_common::BaseMultiModalTracker::track()
    */
   virtual void track() override;
 

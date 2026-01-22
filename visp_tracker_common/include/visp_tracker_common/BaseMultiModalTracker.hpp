@@ -20,11 +20,14 @@ public:
   BaseMultiModalTracker(const std::string &name, const bool &does_publish_features);
   virtual ~BaseMultiModalTracker() = default;
 
+  /**
+   * @copydoc visp_tracker_common::BaseTracker::init()
+   */
   virtual bool init() override;
 
 protected:
   /** @name  Initialization */
-  //@{
+  ///@{
 
   /**
    * @brief Check the tracker settings in order to know if the depth
@@ -32,11 +35,11 @@ protected:
    */
   virtual void check_requires_depth() = 0;
 
-  //@}
+  ///@}
 
 
   /** @name  Callbacks */
-  //@{
+  ///@{
 
   // ----- Subscriptions -----
 
@@ -48,11 +51,17 @@ protected:
    */
   virtual void depth_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
+  /**
+   * @brief Callback called when the tracker requires both a RGB stream and a depth stream.
+   *
+   * @param rgb Message from the RGB stream.
+   * @param depth Message from the depth stream.
+   */
   virtual void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
 
   // ----- Services -----
 
-  //@}
+  ///@}
 
   /**
    * @brief Convert the RGB stream into usable data.

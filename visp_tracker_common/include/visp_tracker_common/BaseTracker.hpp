@@ -58,10 +58,10 @@ public:
 
 protected:
   /** @name  Initialization */
-  //@{
+  ///@{
 
   /**
-   * @brief Initilize the tracker used by the servoing node.
+   * @brief Initilize the tracker.
    *
    * @return true The initialization went well
    * @return false A problem occured
@@ -74,11 +74,11 @@ protected:
    */
   virtual void init_info_strings() = 0;
 
-  //@}
+  ///@}
 
 
   /** @name  Callbacks */
-  //@{
+  ///@{
 
   // ----- Subscriptions -----
 
@@ -119,7 +119,7 @@ protected:
   void switch_visual_status_callback(const  std::shared_ptr<std_srvs::srv::Trigger::Request> request,
                              std::shared_ptr<std_srvs::srv::Trigger::Response> response);
 
-  //@}
+  ///@}
 
   // ----- Parameters changes handling -----
   std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_;
