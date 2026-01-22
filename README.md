@@ -24,7 +24,7 @@ Firstly, it assumes that the ROS 2 core has already been installed, please refer
 
 Please refer to the official installation guide from [ViSP installation tutorials](https://visp-doc.inria.fr/doxygen/visp-daily/tutorial_install.html).
 
-## 3. Build vision_visp
+## 3. Build visp_tk
 
 Fetch the latest code and build
 
