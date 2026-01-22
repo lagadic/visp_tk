@@ -47,9 +47,30 @@ class TrackerGUI : public rclcpp::Node
 public:
   TrackerGUI(const std::string &node_name);
 
-  bool init();
+  virtual ~TrackerGUI() = default;
 
+  /**
+   * @brief Self is required to initialize the m_it attribute.
+   *
+   * @param self A std::shared_ptr towards the current object.
+   * @return true Initialization went well.
+   * @return false A problem occured.
+   */
+  bool init(std::shared_ptr<rclcpp::Node> self);
+
+  /**
+   * @brief Indicates if the node must still run or should be stopped.
+   *
+   * @return true The node should continue to run.
+   * @return false The node should stop.
+   */
   inline bool has_to_run() const { return m_run; }
+
+  /**
+   * @brief Method to properly stop the node.
+   */
+  void quit();
+
 protected:
   /** @name  Callbacks */
   //@{
@@ -147,6 +168,7 @@ protected:
   std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>> m_client_switch_visualization; //!< Client to turn ON/OFF the visualization of 2D features.
 
   // ----- Subscribers -----
+  rclcpp::Node::SharedPtr m_it_node;
   std::shared_ptr<image_transport::ImageTransport> m_it;
   std::shared_ptr<image_transport::TransportHints> m_hints;
   image_transport::Subscriber m_sub_color;

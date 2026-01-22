@@ -79,7 +79,7 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
 
 }
 
-bool TrackerGUI::init()
+bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
 {
   if (m_client_node_name.empty()) {
     RCLCPP_ERROR(this->get_logger(), "client_node parameter was not set");
@@ -133,7 +133,8 @@ bool TrackerGUI::init()
     return false;
   }
 
-  m_it = std::make_shared<image_transport::ImageTransport>(std::shared_ptr<rclcpp::Node>(this));
+  m_it_node = self;
+  m_it = std::make_shared<image_transport::ImageTransport>(m_it_node);
   m_hints = std::make_shared<image_transport::TransportHints>(this);
   rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
   compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
@@ -184,6 +185,35 @@ bool TrackerGUI::init()
   m_info_strings_sub = this->create_subscription<visp_tracker_common::msg::InfoStrings>(info_srv_name, qos_infostr_pub, std::bind(&TrackerGUI::info_callback, this, std::placeholders::_1));
   RCLCPP_INFO(this->get_logger(), "Subscribed to info strings topic '%s'", m_info_strings_sub->get_topic_name());
   return true;
+}
+
+void TrackerGUI::quit()
+{
+  auto result = m_client_quit->async_send_request(m_quit_request);
+  RCLCPP_INFO(this->get_logger(), "Sent a quit request...");
+  // Wait for the result.
+  auto status = rclcpp::spin_until_future_complete(m_service_node, result, std::chrono::seconds(1));
+  if (status == rclcpp::FutureReturnCode::SUCCESS) {
+    RCLCPP_INFO(this->get_logger(), "Got a response !");
+    auto response = result.get();
+    RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+    if (!response->success) {
+      RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+    }
+  }
+  else if (status == rclcpp::FutureReturnCode::TIMEOUT) {
+    m_client_quit->remove_pending_request(result);
+    RCLCPP_ERROR(this->get_logger(), "Calling the quit service resulted in a timeout.");
+  }
+  else {
+    RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+  }
+  std::scoped_lock sl(m_mutex_run);
+  m_run = false;
+  m_it.reset();
+  m_hints.reset();
+  m_hints_depth.reset();
+  m_it_node.reset();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -266,6 +296,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
           vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), named_pose.name, vpColor::red);
         }
       }
+      m_pose_array.poses.clear();
     }
 
     // Displaying 2D features, if any
@@ -324,6 +355,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
 
         ++idx;
       }
+      m_feature_array.features.clear();
     }
 
     vpDisplay::flush(m_I);
@@ -346,9 +378,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         auto response = result.get();
         RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
         if (!response->success) {
-          RCLCPP_INFO(this->get_logger(), "Forgetting last sent poses ...");
-          std::scoped_lock sl(m_mutex_poses);
-          m_pose_array.poses.clear();
+          RCLCPP_INFO(this->get_logger(), "Stopping tracking");
         }
       }
       else {
@@ -366,9 +396,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         auto response = result.get();
         RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
         if (!response->success) {
-          RCLCPP_INFO(this->get_logger(), "Forgetting last sent features ...");
-          std::scoped_lock sl(m_mutex_features);
-          m_feature_array.features.clear();
+          RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
         }
       }
       else {
@@ -378,18 +406,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     }
     case vpMouseButton::button3:
     {
-      std::scoped_lock sl(m_mutex_run);
-      auto result = m_client_quit->async_send_request(m_quit_request);
-      RCLCPP_INFO(this->get_logger(), "Sent a quit request...");
-      // Wait for the result.
-      if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
-        RCLCPP_INFO(this->get_logger(), "Got a response !");
-        RCLCPP_INFO(this->get_logger(), "Message : '%s'", result.get()->message.c_str());
-        m_run = false;
-      }
-      else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call quit service");
-      }
+      quit();
       break;
     }
     default:
