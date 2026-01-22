@@ -14,6 +14,10 @@
 
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
 
+#ifdef VISP_HAVE_NLOHMANN_JSON
+#include VISP_NLOHMANN_JSON(json.hpp)
+#endif
+
 namespace visp_mbt
 {
 class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
@@ -21,6 +25,11 @@ class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
 public:
   MBTTracker(const std::string &name);
   virtual ~MBTTracker() = default;
+
+  /**
+   * @copydoc visp_tracker_common::BaseTracker::init()
+   */
+  virtual bool init() override;
 protected:
   /** @name  Initialization */
   ///@{
@@ -32,18 +41,20 @@ protected:
   /**
    * @brief Initilize the tracker using an XML file and some node parameters.
    *
+   * @param config_file_path Path towards the configuration file.
    * @return true The initialization went well.
    * @return false An error occured.
    */
-  bool init_from_xml();
+  bool init_from_xml(const std::string &config_file_path);
 
   /**
    * @brief Initilize the tracker using a JSON file and some node parameters.
    *
+   * @param config_file_path Path towards the configuration file.
    * @return true The initialization went well.
    * @return false An error occured.
    */
-  bool init_from_json();
+  bool init_from_json(const std::string &config_file_path);
 
   /**
    * @copydoc visp_tracker_common::BaseTracker::init_info_strings()
@@ -79,7 +90,17 @@ protected:
    * @param logger rclcpp::Logger to display messages if needed.
    * @return visp_tracker_common::msg::NamedFeature Message containing the model.
    */
-  static visp_tracker_common::msg::NamedFeature mbtModelToMsg(const std::vector<std::vector<double>> &model, const std::string &name, const rclcpp::Logger &logger);
+  static visp_tracker_common::msg::NamedFeature mbt_model_to_msg(const std::vector<std::vector<double>> &model, const std::string &name, const rclcpp::Logger &logger);
+
+  /**
+   * @brief Check if the model file parameter is correctly set, perform path substitution if needed
+   * and store the result in value.
+   *
+   * @param param The ROS2 parameter from which the value must be read.
+   * @param logger rclcpp::Logger to display messages if needed.
+   * @param value The resulting path after substitution (if needed).
+   */
+  static bool check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, std::string &value);
 
   // ----- Services -----
 
@@ -96,7 +117,10 @@ protected:
 
   // ----- Tracking-related attributes -----
   vpMbGenericTracker m_tracker;
-  std::string m_init_file_path;
+  std::string m_init_file_path; //!< Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker.
+  bool m_load_models_from_params = false; //!< If true, the model files must be read from the node parameters.
+  std::string m_rgb_model; //!< If the models must be read from the node parameters, the path towards the model of the RGB tracker.
+  std::string m_depth_model; //!< If the models must be read from the node parameters, the path towards the model of the depth tracker.
   std::vector<std::string> m_color_trackers_name; //!< Name(s) of the tracker(s) based on color information.
   std::vector<std::string> m_depth_trackers_name; //!< Name(s) of the tracker(s) based on depth information.
   bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
