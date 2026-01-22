@@ -46,16 +46,32 @@ protected:
    *
    * @param msg Color camera parameters message
    */
-  void depth_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
+  virtual void depth_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
-  void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
+  virtual void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
 
   // ----- Services -----
 
   //@}
 
+  /**
+   * @brief Convert the RGB stream into usable data.
+   *
+   * @param rgb The RGB stream message.
+   */
   virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) = 0;
+
+  /**
+   * @brief Treat the depth stream into usable data.
+   *
+   * @param depth The depth stream message.
+   */
   virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) = 0;
+
+  /**
+   * @brief Perform the tracking.
+   *
+   */
   virtual void track() = 0;
 
   // ----- Parameters changes handling -----
