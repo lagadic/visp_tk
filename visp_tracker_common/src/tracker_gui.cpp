@@ -8,7 +8,7 @@ std::shared_ptr<visp_tracker_common::TrackerGUI> gui;
 
 void signalHandler(int signum)
 {
-  // Send a null velocity to the robot and set its state to quit
+  // Send a quit request to the tracker and set the GUI state to quit
   if (gui) {
     gui->quit();
   }
