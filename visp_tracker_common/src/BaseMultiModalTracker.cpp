@@ -20,7 +20,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   this->get_parameter("depth_camera_topic_name", depth_camera_topic_name_param);
   m_depth_camera_topic_name = depth_camera_topic_name_param.as_string();
   if (m_depth_camera_topic_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'depth_camera_topic_name' has not been set ! Setting a dumb value.");
+    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_camera_topic_name_param.get_name().c_str());
     m_depth_camera_topic_name = BaseTracker::s_dumb_topic_name;
   }
 
@@ -31,7 +31,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   this->get_parameter("depth_stream_topic_name", depth_stream_topic_name_param);
   m_depth_stream_name = depth_stream_topic_name_param.as_string();
   if (m_depth_stream_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'depth_stream_topic_name' has not been set ! Setting a dumb value.");
+    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_stream_topic_name_param.get_name().c_str());
     m_depth_stream_name = BaseTracker::s_dumb_topic_name;
   }
 

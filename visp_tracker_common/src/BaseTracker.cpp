@@ -49,7 +49,7 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("rgb_camera_topic_name", camera_topic_name_param);
   m_rgb_camera_topic_name = camera_topic_name_param.as_string();
   if (m_rgb_camera_topic_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'rgb_camera_topic_name' has not been set ! Setting a dumb value.");
+    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", camera_topic_name_param.get_name().c_str());
     m_rgb_camera_topic_name = s_dumb_topic_name;
   }
 
@@ -60,7 +60,7 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("rgb_stream_topic_name", rgb_stream_topic_name_param);
   m_rgb_stream_name = rgb_stream_topic_name_param.as_string();
   if (m_rgb_stream_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'rgb_stream_topic_name' has not been set ! Setting a dumb value.");
+    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", rgb_stream_topic_name_param.get_name().c_str());
     m_rgb_stream_name = s_dumb_topic_name;
   }
 
@@ -103,7 +103,7 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   auto n = 10;
   auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
 
-  m_ref_rgb_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
+  m_rgb_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
     m_rgb_camera_topic_name, qos,
     std::bind(&BaseTracker::color_camera_info_callback, this, std::placeholders::_1));
   RCLCPP_INFO(this->get_logger(), "Subscribed to color camera topic %s", m_rgb_camera_topic_name.c_str());
@@ -132,7 +132,7 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
 
 bool BaseTracker::init()
 {
-  if (std::string(m_ref_rgb_cam_info_sub->get_topic_name()) == s_dumb_topic_name) {
+  if (std::string(m_rgb_cam_info_sub->get_topic_name()) == s_dumb_topic_name) {
     RCLCPP_ERROR(this->get_logger(), "'rgb_camera_topic_name' parameter was not set, so the color camera subscriber is ill-initialized.");
     return false;
   }
@@ -202,7 +202,7 @@ void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo:
   m_rgb_cam = visp_common::camera::toVispCameraParameters(msg);
 
   m_rgb_cam_info_received = true;
-  m_ref_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
+  m_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
   RCLCPP_INFO(this->get_logger(), "RGB camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
 }

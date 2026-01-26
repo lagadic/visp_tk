@@ -70,7 +70,7 @@ bool AprilTagTracker::init_tracker()
       RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
     }
     else {
-      RCLCPP_ERROR(this->get_logger(), "tag_size parameter is not set");
+      RCLCPP_ERROR(this->get_logger(), "%s parameter is not set", tag_size_param.get_name().c_str());
       return false;
     }
 
@@ -81,7 +81,7 @@ bool AprilTagTracker::init_tracker()
       RCLCPP_INFO(this->get_logger(), "Tag family is set to %s\n", m_family_name.c_str());
     }
     else {
-      RCLCPP_ERROR(this->get_logger(), "tag_family parameter is not set");
+      RCLCPP_ERROR(this->get_logger(), "%s parameter is not set", tag_family_param.get_name().c_str());
       return false;
     }
 
@@ -90,7 +90,7 @@ bool AprilTagTracker::init_tracker()
       m_tag_detector.setAprilTagFamily(tag_family);
     }
     catch (const vpException &e) {
-      RCLCPP_ERROR(this->get_logger(), "tag_family parameter value '%s' cannot be converted to a known family. Allowed values are: %s", m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
+      RCLCPP_ERROR(this->get_logger(), "%s parameter value '%s' cannot be converted to a known family. Allowed values are: %s", tag_family_param.get_name().c_str(), m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
       return false;
     }
 
@@ -103,7 +103,7 @@ bool AprilTagTracker::init_tracker()
       RCLCPP_INFO(this->get_logger(), "Pose estimation method is set to %s\n", pose_method_name.c_str());
     }
     catch (const vpException &e) {
-      RCLCPP_ERROR(this->get_logger(), "pose_method parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
+      RCLCPP_ERROR(this->get_logger(), "%s parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_param.get_name().c_str(), pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
       return false;
     }
 

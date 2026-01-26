@@ -131,7 +131,7 @@ protected:
   rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_switch_visual_srv; //!< Service to switch ON/OFF the visual debbuging
 
   // ----- Subscribers -----
-  rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_ref_rgb_cam_info_sub; //!< RGB camera parameters subscriber
+  rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; //!< RGB camera parameters subscriber
 
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; //!< 2D image points publisher, for remote GUI visualization when headless mode is active
