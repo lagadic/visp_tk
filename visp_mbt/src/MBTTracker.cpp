@@ -84,10 +84,10 @@ bool MBTTracker::init()
 
     // Use the dedicated loadModel method depending on the depth is required or not
     if (m_depth_is_required) {
-      m_tracker.loadModel(m_rgb_model, m_depth_model, true);
+      m_tracker->loadModel(m_rgb_model, m_depth_model, true);
     }
     else {
-      m_tracker.loadModel(m_rgb_model, true);
+      m_tracker->loadModel(m_rgb_model, true);
     }
   }
   return true;
@@ -158,30 +158,38 @@ bool MBTTracker::init_from_xml(const std::string &config_file_path)
 
 
   // Getting tracker type(s) and camera name(s) that should be found in the XML file
-  std::map<std::string, int> map_name_types;
-  std::string name_rgb, name_depth;
+  int rgb_type = 0, depth_type = 0;
+  std::string rgb_name, depth_name;
   bool requires_depth = false;
   const unsigned int nb_trackers = names_vec.size();
   for (unsigned char i = 0; i < nb_trackers; ++i) {
     std::vector<std::string> split = vpIoTools::splitChain(types_vec[i], "+");
     int type = trackerTypeFromStr(split[0]);
     if ((type == vpMbGenericTracker::DEPTH_DENSE_TRACKER) || (type == vpMbGenericTracker::DEPTH_NORMAL_TRACKER)) {
-      name_depth = names_vec[i];
       requires_depth = true;
+      depth_name = names_vec[i];
+      depth_type = type;
+      for (unsigned char j = 1; j < split.size(); ++j) {
+        int type = trackerTypeFromStr(split[j]);
+        depth_type = depth_type | type;
+      }
     }
     else {
-      name_rgb = names_vec[i];
+      rgb_name = names_vec[i];
+      rgb_type = type;
+      for (unsigned char j = 1; j < split.size(); ++j) {
+        int type = trackerTypeFromStr(split[j]);
+        rgb_type = rgb_type | type;
+      }
     }
-    for (unsigned char j = 0; j < split.size(); ++j) {
-      type = type | trackerTypeFromStr(split[j]);
-    }
-    map_name_types[names_vec[i]] = type;
   }
-  m_tracker.setTrackerType(map_name_types);
 
   // Loading configuration file(s)
   if (!requires_depth) {
-    m_tracker.loadConfigFile(config_file_path);
+    std::vector<std::string> names({ rgb_name });
+    std::vector<int> types({ rgb_type });
+    m_tracker = std::make_shared<vpMbGenericTracker>(names, types);
+    m_tracker->loadConfigFile(config_file_path);
   }
   else {
     auto depth_config_file_param = rclcpp::Parameter();
@@ -205,10 +213,17 @@ bool MBTTracker::init_from_xml(const std::string &config_file_path)
       RCLCPP_ERROR(this->get_logger(), "The file '%s' referenced by the parameter '%s' does not exist or the package it refers to using the notation 'package://' is not sourced.", depth_config_file_param.as_string().c_str(), depth_config_file_param.get_name().c_str());
       return false;
     }
-    std::map<std::string, std::string> map_name_configs;
-    map_name_configs[name_rgb] = m_config_file;
-    map_name_configs[name_depth] = depth_config_file;
-    m_tracker.loadConfigFile(map_name_configs);
+
+    RCLCPP_INFO(this->get_logger(), "The depth tracker will be initialized using the configuration file '%s'", depth_config_file.c_str());
+
+    std::vector<std::string> names({ rgb_name, depth_name });
+    std::vector<int> types({ rgb_type, depth_type });
+    m_tracker = m_tracker = std::make_shared<vpMbGenericTracker>(names, types);
+    std::map<std::string, std::string> map_configs;
+    map_configs[rgb_name] = m_config_file;
+    map_configs[depth_name] = depth_config_file;
+    m_tracker->loadConfigFile(map_configs, true);
+    m_tracker->setReferenceCameraName(rgb_name);
   }
 
   // Model(s) is/are mandatory
@@ -282,7 +297,8 @@ bool MBTTracker::init_from_json(const std::string &config_file_path)
     RCLCPP_ERROR_STREAM(this->get_logger(), "Could not save tracker configuration to JSON file: '" << settings_file << "'");
     return false;
   }
-  m_tracker.loadConfigFile(settings_file);
+  m_tracker = std::make_shared<vpMbGenericTracker>();
+  m_tracker->loadConfigFile(settings_file);
   if (!vpIoTools::remove(temp_dir)) {
     RCLCPP_ERROR_STREAM(this->get_logger(), "Could not delete the temp directory: '" << temp_dir << "'");
     return false;
@@ -315,7 +331,7 @@ void MBTTracker::init_info_strings() { }
 
 void MBTTracker::check_requires_depth()
 {
-  const auto typemap = m_tracker.getCameraTrackerTypes();
+  const auto typemap = m_tracker->getCameraTrackerTypes();
   m_depth_is_required = false;
   for (const auto &pair : typemap) {
     if (pair.second & vpMbGenericTracker::EDGE_TRACKER
@@ -441,11 +457,11 @@ void MBTTracker::track()
   if (!m_tracker_cams_set) {
     if (!m_depth_is_required) {
       RCLCPP_DEBUG(this->get_logger(), "Setting the tracker camera parameters using the color camera intrinsics only");
-      m_tracker.setCameraParameters(m_rgb_cam);
+      m_tracker->setCameraParameters(m_rgb_cam);
     }
     else {
       RCLCPP_DEBUG(this->get_logger(), "Setting the tracker camera parameters using the depth and color camera intrinsics");
-      m_tracker.setCameraParameters(m_rgb_cam, m_depth_cam);
+      m_tracker->setCameraParameters(m_rgb_cam, m_depth_cam);
     }
     m_tracker_cams_set = true;
   }
@@ -474,8 +490,8 @@ void MBTTracker::track()
     RCLCPP_INFO(this->get_logger(), "DBG Starting tracking");
     if (!m_tracker_initialized) {
       RCLCPP_INFO(this->get_logger(), "DBG Initializing tracker ...");
-      m_tracker.initClick(m_Ic, m_init_file_path, true);
-      m_tracker.getPose(cMo);
+      m_tracker->initClick(m_Ic, m_init_file_path, true);
+      m_tracker->getPose(cMo);
       m_tracker_initialized = true;
       if (m_is_headless_mode) {
         vpDisplay::close(m_Ic);
@@ -498,18 +514,18 @@ void MBTTracker::track()
           m_map_pc[name] = &m_pointcloud;
         }
 
-        m_tracker.track(m_map_img, m_map_pc, m_map_pcw, m_map_pch);
+        m_tracker->track(m_map_img, m_map_pc, m_map_pcw, m_map_pch);
         RCLCPP_INFO(this->get_logger(), "DBG Done depth tracking");
       }
       else {
         RCLCPP_INFO(this->get_logger(), "DBG Tracking with RGB only");
-        m_tracker.track(m_Ic);
+        m_tracker->track(m_Ic);
         RCLCPP_INFO(this->get_logger(), "DBG Done RGB tracking");
       }
       double t_end_tracking = vpTime::measureTimeMs();
       RCLCPP_INFO_STREAM(this->get_logger(), "DBG Tracking time: " << (t_end_tracking - t_start) << "ms");
 
-      m_tracker.getPose(cMo);
+      m_tracker->getPose(cMo);
       RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
     }
     catch (vpTrackingException &e) {
@@ -536,7 +552,7 @@ void MBTTracker::track()
 
       // Publish the model
       if (m_visualization_debug && m_is_headless_mode) {
-        const auto &model = m_tracker.getModelForDisplay(m_Ic.getWidth(), m_Ic.getHeight(), cMo, m_rgb_cam);
+        const auto &model = m_tracker->getModelForDisplay(m_Ic.getWidth(), m_Ic.getHeight(), cMo, m_rgb_cam);
         const std::string name = "Current MBT model";
         const visp_tracker_common::msg::NamedFeature &features_msg = mbt_model_to_msg(model, name, this->get_logger());
         visp_tracker_common::msg::NamedFeatureArray features_array;
@@ -548,10 +564,10 @@ void MBTTracker::track()
 
   if (display_frame) {
     if (m_tracker_initialized && m_has_to_track) {
-      m_tracker.display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
+      m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
       std::stringstream ss;
-      ss << "Features: edges " << m_tracker.getNbFeaturesEdge() << ", klt " << m_tracker.getNbFeaturesKlt();
-      ss << ", depth dense " << m_tracker.getNbFeaturesDepthDense() << ", depth normal " << m_tracker.getNbFeaturesDepthNormal();
+      ss << "Features: edges " << m_tracker->getNbFeaturesEdge() << ", klt " << m_tracker->getNbFeaturesKlt();
+      ss << ", depth dense " << m_tracker->getNbFeaturesDepthDense() << ", depth normal " << m_tracker->getNbFeaturesDepthNormal();
       vpDisplay::displayText(m_Ic, (m_display->getHeight() - 25)*m_display->getDownScalingFactor(), 20, ss.str(), vpColor::red);
       vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
     }

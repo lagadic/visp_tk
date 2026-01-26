@@ -143,7 +143,7 @@ protected:
   bool m_display_initialized = false; //!< True when the RGB image display is up and running
 
   // ----- Tracking-related attributes -----
-  vpMbGenericTracker m_tracker;
+  std::shared_ptr<vpMbGenericTracker> m_tracker;
   std::string m_init_file_path; //!< Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker.
   bool m_load_models_from_params = false; //!< If true, the model files must be read from the node parameters.
   std::string m_rgb_model; //!< If the models must be read from the node parameters, the path towards the model of the RGB tracker.
