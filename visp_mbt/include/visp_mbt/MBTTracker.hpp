@@ -98,9 +98,36 @@ protected:
    *
    * @param param The ROS2 parameter from which the value must be read.
    * @param logger rclcpp::Logger to display messages if needed.
+   * @param required If true, the parameter cannot be empty.
    * @param value The resulting path after substitution (if needed).
    */
-  static bool check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, std::string &value);
+  static bool check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, const bool &required, std::string &value);
+
+  /**
+   * @brief Cast a vpMbGenericTracker::vpTrackerType into its corresponding name.
+   *
+   * @param type The vpMbGenericTracker::vpTrackerType we want to know the name.
+   * @return std::string The corresponding name.
+   */
+  static std::string trackerTypeToStr(const vpMbGenericTracker::vpTrackerType &type);
+
+  /**
+   * @brief Cast a name into its corresponding vpMbGenericTracker::vpTrackerType.
+   *
+   * @param name The name of the tracker type.
+   * @return vpMbGenericTracker::vpTrackerType The corresponding vpMbGenericTracker::vpTrackerType.
+   */
+  static vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
+
+  /**
+   * @brief Get the list of names of the available vpMbGenericTracker::vpTrackerType.
+   *
+   * @param prefix The prefix of the list.
+   * @param sep The separator for the list.
+   * @param suffix The suffix for the list.
+   * @return std::string The resulting list of names.
+   */
+  static std::string getAvailableTrackerType(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
 
   // ----- Services -----
 

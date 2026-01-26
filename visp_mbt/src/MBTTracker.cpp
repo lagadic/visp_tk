@@ -20,6 +20,10 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   this->get_parameter("init_file", init_file_param);
   m_init_file_path = init_file_param.as_string();
 
+  auto config_file_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  config_file_desc.description = "When using an XML file, path to the configuration file to initialize the depth tracker, if any. package:// will be replaced by the path to the share folder of the corresponding package.";
+  this->declare_parameter("depth_config_file", "", config_file_desc);
+
   auto rgb_model_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   rgb_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the RGB tracker.";
   this->declare_parameter("rgb_model_file", "", rgb_model_param_desc);
@@ -27,6 +31,16 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   auto depth_model_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   depth_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the depth tracker, if there is one and if it does not use the same model than the RGB tracker.";
   this->declare_parameter("depth_model_file", "", depth_model_param_desc);
+
+  auto types_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  types_param_desc.description = "When using an XML file, this parameter must be set as an array of types of trackers to use and must be of the same size than the parameter 'tracker_names'. If a tracker must have several types (e.g. edge tracker + klt), the types name must be separated by a + (e.g. 'edge+klt' is a valid value).\n";
+  // types_param_desc.description += "Tolerated values are " + getAvailableTrackerType();
+  types_param_desc.additional_constraints += "Tolerated values are " + getAvailableTrackerType();
+  this->declare_parameter<std::vector<std::string>>("tracker_types", std::vector<std::string>(), types_param_desc);
+
+  auto tracker_names_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  tracker_names_desc.description = "When using an XML file, this parameter must be set as an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter 'tracker_types'.";
+  this->declare_parameter<std::vector<std::string>>("tracker_names", std::vector<std::string>(), tracker_names_desc);
 
   auto max_z_param = rclcpp::Parameter();
   auto max_z_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -121,14 +135,99 @@ bool MBTTracker::init_tracker()
 
 bool MBTTracker::init_from_xml(const std::string &config_file_path)
 {
-///TODO: types are mandatory
-// std::map<std::string, int> map_name_types;
-// map_name_types["Color"] = vpMbGenericTracker::EDGE_TRACKER | vpMbGenericTracker::KLT_TRACKER;
-// map_name_types["Depth"] = vpMbGenericTracker::DEPTH_NORMAL_TRACKER;
-// m_tracker.setTrackerType(map_name_types);
+  // Checking that the parameters are correctly set
+  auto types_param = rclcpp::Parameter();
+  this->get_parameter("tracker_types", types_param);
+  std::vector<std::string> types_vec = types_param.as_string_array();
+  if (types_vec.empty()) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "Using an XML file for the configuration, the parameter '" << types_param.get_name() << "' is required.");
+    return false;
+  }
 
-///TODO: model(s) is/are mandatory
-  throw(vpException(vpException::notImplementedError, "XML initialization is not implemented yet"));
+  auto tracker_names_param = rclcpp::Parameter();
+  this->get_parameter("tracker_names", tracker_names_param);
+  std::vector<std::string> names_vec = tracker_names_param.as_string_array();
+  if (names_vec.empty()) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "Using an XML file for the configuration, the parameter '" << tracker_names_param.get_name() << "' is required.");
+    return false;
+  }
+  if (names_vec.size() != types_vec.size()) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "Using an XML file for the configuration, the parameters '" << tracker_names_param.get_name() << "' and '" << types_param.get_name() << "' must have the same number of items.");
+    return false;
+  }
+
+
+  // Getting tracker type(s) and camera name(s) that should be found in the XML file
+  std::map<std::string, int> map_name_types;
+  std::string name_rgb, name_depth;
+  bool requires_depth = false;
+  const unsigned int nb_trackers = names_vec.size();
+  for (unsigned char i = 0; i < nb_trackers; ++i) {
+    std::vector<std::string> split = vpIoTools::splitChain(types_vec[i], "+");
+    int type = trackerTypeFromStr(split[0]);
+    if ((type == vpMbGenericTracker::DEPTH_DENSE_TRACKER) || (type == vpMbGenericTracker::DEPTH_NORMAL_TRACKER)) {
+      name_depth = names_vec[i];
+      requires_depth = true;
+    }
+    else {
+      name_rgb = names_vec[i];
+    }
+    for (unsigned char j = 0; j < split.size(); ++j) {
+      type = type | trackerTypeFromStr(split[j]);
+    }
+    map_name_types[names_vec[i]] = type;
+  }
+  m_tracker.setTrackerType(map_name_types);
+
+  // Loading configuration file(s)
+  if (!requires_depth) {
+    m_tracker.loadConfigFile(config_file_path);
+  }
+  else {
+    auto depth_config_file_param = rclcpp::Parameter();
+    this->get_parameter("depth_config_file", depth_config_file_param);
+    std::string depth_config_file = depth_config_file_param.as_string();
+    if (depth_config_file.empty()) {
+      RCLCPP_ERROR(this->get_logger(), "When using an XML file to configure the tracker, if depth features are used the parameter '%s' must be set towards the configuration file of the depth tracker", depth_config_file_param.get_name().c_str());
+      return false;
+    }
+
+    // Interpreting path written as package://
+    depth_config_file = visp_common::path::path_retriever(depth_config_file_param.as_string());
+    if (depth_config_file.empty()) {
+      // This can happen if the path towards the depth configuration file is wrong
+      RCLCPP_ERROR(this->get_logger(), "The value '%s' of the parameter '%s' is uncorrect, it is neither a path nor a path that respects the notation 'package://'", depth_config_file_param.as_string().c_str(), depth_config_file_param.get_name().c_str());
+      return false;
+    }
+
+    // Checking that the files exist
+    if (!vpIoTools::checkFilename(depth_config_file)) {
+      RCLCPP_ERROR(this->get_logger(), "The file '%s' referenced by the parameter '%s' does not exist or the package it refers to using the notation 'package://' is not sourced.", depth_config_file_param.as_string().c_str(), depth_config_file_param.get_name().c_str());
+      return false;
+    }
+    std::map<std::string, std::string> map_name_configs;
+    map_name_configs[name_rgb] = m_config_file;
+    map_name_configs[name_depth] = depth_config_file;
+    m_tracker.loadConfigFile(map_name_configs);
+  }
+
+  // Model(s) is/are mandatory
+  m_load_models_from_params = true;
+  auto rgb_model_file_param = rclcpp::Parameter();
+  bool is_required = true;
+  this->get_parameter("rgb_model_file", rgb_model_file_param);
+  bool rgb_ok = check_model_parameter(rgb_model_file_param, this->get_logger(), is_required, m_rgb_model);
+  if (!rgb_ok) {
+    return false;
+  }
+
+  auto depth_model_file_param = rclcpp::Parameter();
+  is_required = requires_depth;
+  this->get_parameter("depth_model_file", depth_model_file_param);
+  bool depth_ok = check_model_parameter(depth_model_file_param, this->get_logger(), is_required, m_depth_model);
+  if (!depth_ok) {
+    return false;
+  }
   return true;
 }
 
@@ -193,15 +292,17 @@ bool MBTTracker::init_from_json(const std::string &config_file_path)
   if ((model_defined_in_json != nb_trackers) && (!global_model_defined_in_json)) {
     m_load_models_from_params = true;
     auto rgb_model_file_param = rclcpp::Parameter();
+    bool is_required = true;
     this->get_parameter("rgb_model_file", rgb_model_file_param);
-    bool rgb_ok = check_model_parameter(rgb_model_file_param, this->get_logger(), m_rgb_model);
+    bool rgb_ok = check_model_parameter(rgb_model_file_param, this->get_logger(), is_required, m_rgb_model);
     if (!rgb_ok) {
       return false;
     }
 
     auto depth_model_file_param = rclcpp::Parameter();
+    is_required = false;
     this->get_parameter("depth_model_file", depth_model_file_param);
-    bool depth_ok = check_model_parameter(depth_model_file_param, this->get_logger(), m_depth_model);
+    bool depth_ok = check_model_parameter(depth_model_file_param, this->get_logger(), is_required, m_depth_model);
     if (!depth_ok) {
       return false;
     }
@@ -217,7 +318,11 @@ void MBTTracker::check_requires_depth()
   const auto typemap = m_tracker.getCameraTrackerTypes();
   m_depth_is_required = false;
   for (const auto &pair : typemap) {
-    if (pair.second & vpMbGenericTracker::EDGE_TRACKER || pair.second & vpMbGenericTracker::KLT_TRACKER) {
+    if (pair.second & vpMbGenericTracker::EDGE_TRACKER
+#if defined(VISP_HAVE_MODULE_KLT) && defined(VISP_HAVE_OPENCV) && defined(HAVE_OPENCV_IMGPROC) && defined(HAVE_OPENCV_VIDEO)
+      || pair.second & vpMbGenericTracker::KLT_TRACKER
+#endif
+      ) {
       m_color_trackers_name.push_back(pair.first);
     }
     else if (pair.second & vpMbGenericTracker::DEPTH_DENSE_TRACKER || pair.second & vpMbGenericTracker::DEPTH_NORMAL_TRACKER) {
@@ -513,14 +618,86 @@ visp_tracker_common::msg::NamedFeature MBTTracker::mbt_model_to_msg(const std::v
 }
 
 
-bool MBTTracker::check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, std::string &value)
+bool MBTTracker::check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, const bool &required, std::string &value)
 {
   value = param.as_string();
+  if (value.empty() && required) {
+    RCLCPP_ERROR_STREAM(logger, "'" << param.get_name() << "' parameter is empty but is required.");
+    return false;
+  }
   value = visp_common::path::path_retriever(value);
   if ((!value.empty()) && (!vpIoTools::checkFilename(value))) {
     RCLCPP_ERROR_STREAM(logger, "'" << param.get_name() << "' parameter is set to '" << value << "' but the file does not exist.");
     return false;
   }
+  else if (value.empty() && required) {
+    // This can happen if value was set to a package that is not known at execution time (e.g. the workspace has not been sourced)
+    std::vector<std::string> split = vpIoTools::splitChain(param.as_string(), ":");
+    if (split.size() > 1) {
+      RCLCPP_ERROR_STREAM(logger, "'" << param.get_name() << "' parameter is set to search in an unknown package '" << split[0] << "'.");
+    }
+    else {
+      RCLCPP_ERROR_STREAM(logger, "'" << param.get_name() << "' parameter is ill-formed '" << split[0] << "' (expected valid path or package://path/to/file/in/package).");
+    }
+    return false;
+  }
   return true;
+}
+
+std::string MBTTracker::trackerTypeToStr(const vpMbGenericTracker::vpTrackerType &type)
+{
+  std::string name;
+  switch (type) {
+  case vpMbGenericTracker::EDGE_TRACKER:
+    name = "edge";
+    break;
+#if defined(VISP_HAVE_MODULE_KLT) && defined(VISP_HAVE_OPENCV) && defined(HAVE_OPENCV_IMGPROC) && defined(HAVE_OPENCV_VIDEO)
+  case vpMbGenericTracker::KLT_TRACKER:
+    name = "klt";
+    break;
+#endif
+  case vpMbGenericTracker::DEPTH_DENSE_TRACKER:
+    name = "depthDense";
+    break;
+  case vpMbGenericTracker::DEPTH_NORMAL_TRACKER:
+    name = "depthNormal";
+    break;
+  default:
+    throw(vpException(vpException::notImplementedError, "A name has not been defined for the tracker type '%d' yet.", static_cast<int>(type)));
+  }
+  return name;
+}
+
+vpMbGenericTracker::vpTrackerType MBTTracker::trackerTypeFromStr(const std::string &name)
+{
+  vpMbGenericTracker::vpTrackerType type = vpMbGenericTracker::EDGE_TRACKER;
+  bool has_not_been_found = true;
+  int i = 1;
+  while ((i <= vpMbGenericTracker::DEPTH_DENSE_TRACKER) && has_not_been_found) {
+    vpMbGenericTracker::vpTrackerType candidate = static_cast<vpMbGenericTracker::vpTrackerType>(i);
+    if (name == trackerTypeToStr(candidate)) {
+      type = candidate;
+      has_not_been_found = false;
+    }
+    i *= 2;
+  }
+  if (has_not_been_found) {
+    throw(vpException(vpException::fatalError, "The name '%s' does not correspond to a known tracker type. Allowed values are %s", name.c_str(), getAvailableTrackerType().c_str()));
+  }
+  return type;
+}
+
+std::string MBTTracker::getAvailableTrackerType(const std::string &prefix, const std::string &sep, const std::string &suffix)
+{
+  std::string list = prefix;
+  for (int i = 1; i < vpMbGenericTracker::DEPTH_DENSE_TRACKER; i *= 2) {
+    vpMbGenericTracker::vpTrackerType candidate = static_cast<vpMbGenericTracker::vpTrackerType>(i);
+    std::string name = trackerTypeToStr(candidate);
+    list += name + sep;
+  }
+  vpMbGenericTracker::vpTrackerType candidate = static_cast<vpMbGenericTracker::vpTrackerType>(vpMbGenericTracker::DEPTH_DENSE_TRACKER);
+  std::string name = trackerTypeToStr(candidate);
+  list += name + suffix;
+  return list;
 }
 }
