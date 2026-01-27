@@ -52,6 +52,13 @@ protected:
   virtual void depth_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
   /**
+   * @brief Callback called when the tracker only requires a RGB stream.
+   *
+   * @param rgb Message from the RGB stream.
+   */
+  virtual void rgb_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb);
+
+  /**
    * @brief Callback called when the tracker requires both a RGB stream and a depth stream.
    *
    * @param rgb Message from the RGB stream.
@@ -93,6 +100,7 @@ protected:
   message_filters::Subscriber<sensor_msgs::msg::Image> m_depth_stream_sub;
   std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<
     sensor_msgs::msg::Image, sensor_msgs::msg::Image>>> m_streams_sync;
+  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_rgb_only_stream_sub; //!< RGB stream subscriber when depth is not used
 
   // ----- Publisher -----
 

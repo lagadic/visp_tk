@@ -20,7 +20,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   this->get_parameter("depth_camera_topic_name", depth_camera_topic_name_param);
   m_depth_camera_topic_name = depth_camera_topic_name_param.as_string();
   if (m_depth_camera_topic_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_camera_topic_name_param.get_name().c_str());
+    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_camera_topic_name_param.get_name().c_str());
     m_depth_camera_topic_name = BaseTracker::s_dumb_topic_name;
   }
 
@@ -31,7 +31,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   this->get_parameter("depth_stream_topic_name", depth_stream_topic_name_param);
   m_depth_stream_name = depth_stream_topic_name_param.as_string();
   if (m_depth_stream_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_stream_topic_name_param.get_name().c_str());
+    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_stream_topic_name_param.get_name().c_str());
     m_depth_stream_name = BaseTracker::s_dumb_topic_name;
   }
 
@@ -58,15 +58,8 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   //////////////////////////////////////////////////////////////////////
 
   // ---- Subscribing to the different topics
-  auto n = 10;
-  auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
 
-  m_depth_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-    m_depth_camera_topic_name, qos,
-    std::bind(&BaseMultiModalTracker::depth_camera_info_callback, this, std::placeholders::_1));
-  RCLCPP_INFO(this->get_logger(), "Subscribed to depth camera topic %s", m_depth_camera_topic_name.c_str());
-
-  // NB: We do not subscribe to the depth image stream because we might want to perform different operations dependeing on the tracker we use
+  // NB: We do not subscribe to the depth image stream nor the depth camera info because we might want to perform different operations depending on the tracker we use
 
   // ---- Publishing on different topics
 
@@ -86,10 +79,17 @@ bool BaseMultiModalTracker::init()
   check_requires_depth();
 
   if (m_depth_is_required) {
-    if (std::string(m_depth_cam_info_sub->get_topic_name()) == BaseTracker::s_dumb_topic_name) {
+    if (m_depth_camera_topic_name == BaseTracker::s_dumb_topic_name) {
       RCLCPP_ERROR(this->get_logger(), "'depth_camera_topic_name' parameter was not set, so the depth camera subscriber is ill-initialized.");
       return false;
     }
+    auto n = 10;
+    auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
+
+    m_depth_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
+      m_depth_camera_topic_name, qos,
+      std::bind(&BaseMultiModalTracker::depth_camera_info_callback, this, std::placeholders::_1));
+    RCLCPP_INFO(this->get_logger(), "Subscribed to depth camera topic %s", m_depth_camera_topic_name.c_str());
 
     if (m_depth_stream_name == BaseTracker::s_dumb_topic_name) {
       RCLCPP_ERROR(this->get_logger(), "'depth_stream_topic_name' parameter was not set, so the depth stream subscriber is ill-initialized.");
@@ -114,6 +114,18 @@ bool BaseMultiModalTracker::init()
 
     m_streams_sync->setMaxIntervalDuration(rclcpp::Duration(0, 5000000)); // Allow maximum 5ms of difference between two messages
     m_streams_sync->registerCallback(std::bind(&BaseMultiModalTracker::sync_callback, this, std::placeholders::_1, std::placeholders::_2));
+  }
+  else {
+    rmw_qos_profile_t streams_qos = rmw_qos_profile_default;
+    std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
+    streams_qos.durability = rmw_qos_durability_policy_from_str(durability_name.c_str());
+    std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
+    streams_qos.reliability = rmw_qos_reliability_policy_from_str(reliability_name.c_str());
+    streams_qos.depth = this->get_parameter("stream_qos_depth").as_int();
+    rclcpp::QoS qos(streams_qos.depth);
+    qos.durability(streams_qos.durability);
+    qos.reliability(streams_qos.reliability);
+    m_rgb_only_stream_sub = this->create_subscription<sensor_msgs::msg::Image>(m_rgb_stream_name, qos, std::bind(&BaseMultiModalTracker::rgb_callback, this, std::placeholders::_1));
   }
 
   if (!m_is_headless_mode) {
@@ -149,14 +161,21 @@ void BaseMultiModalTracker::depth_camera_info_callback(const sensor_msgs::msg::C
   RCLCPP_INFO(this->get_logger(), "Depth camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
 }
 
+void BaseMultiModalTracker::rgb_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb)
+{
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "IN rgb_callback");
+  this->treat_rgb(rgb);
+  this->track();
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "OUT rgb_callback");
+}
 
 void BaseMultiModalTracker::sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth)
 {
-  RCLCPP_INFO_STREAM(this->get_logger(), "IN sync_callback");
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "IN sync_callback");
   this->treat_rgb(rgb);
   this->treat_depth(depth);
   this->track();
-  RCLCPP_INFO_STREAM(this->get_logger(), "OUT sync_callback");
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "OUT sync_callback");
 }
 //////////////////////////////////////////////////////////////////////
 //                        OTHERS                                    //
