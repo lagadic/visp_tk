@@ -74,6 +74,15 @@ protected:
    */
   virtual void init_info_strings() = 0;
 
+  /**
+   * @brief Initialize the m_init_attribute from the associated ROS2 parameter.
+   *
+   * @param p The associated ROS2 parameter.
+   * @return true The initialization was successful.
+   * @return false Otherwise.
+   */
+  bool init_initialization_method(const rclcpp::Parameter &p);
+
   ///@}
 
 
@@ -121,9 +130,47 @@ protected:
 
   ///@}
 
+  /**
+   * @brief Enumeration that list the different ways of initializing the trackers.
+   */
+  typedef enum InitializationMethod
+  {
+    CLICK = 0, //!< The initialization of the tracker is done through user-interaction by clicking on particular points in the image. Requires visp_gui
+    TOPIC = 1, //!< When the tracker is not initialized, it will listen on a dedicated topic to get the initial pose.
+    FILE = 2, //!< When the tracker is not initialized, it will read the file that is given as node parameter.
+    INITIALIZATION_METHOD_COUNT = 3 //!< Number of initilialization method.
+  } InitializationMethod;
+
+  /**
+   * @brief Cast a BaseTracker::InitializationMethod into a string.
+   *
+   * @param method The method we want the name.
+   * @return std::string The corresponding name.
+   */
+  static std::string initializationMethodToString(const InitializationMethod &method);
+
+  /**
+   * @brief Cast a string into a BaseTracker::InitializationMethod.
+   *
+   * @param name The name of the method.
+   * @return InitializationMethod The corresponding enum value.
+   */
+  static InitializationMethod initializationMethodFromString(const std::string &name);
+
+  /**
+   * @brief Get the list of available InitializationMethod.
+   *
+   * @param prefix The prefix for the list.
+   * @param sep The separator in the list.
+   * @param suffix The suffix of the list.
+   * @return std::string The list as a single string.
+   */
+  static std::string getAvailableInitializationMethod(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
+
   // ----- Parameters changes handling -----
-  std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_;
-  std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_;
+  std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_; //!< Suscriber to parameters changes.
+  std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_; //!< Callback handler for dynamic change of the number of frames to skip when not in headless mode.
+  std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_init_; //!< Callback handler for dynamic change of the initialization method.
 
   // ----- Services -----
   rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_quit_srv; //!< Service to quit the node using ros2 service
@@ -151,6 +198,7 @@ protected:
   std::string m_rgb_stream_name; //!< The name of the color image topic.
   vpCameraParameters m_rgb_cam; //!< The color camera parameters.
   std::string m_config_file; //!< If set, path to the configuration file that should be used to initialize the tracker.
+  InitializationMethod m_init_method; //!< How the tracker should be initialized.
 
   // ----- Other attributes -----
   std::mutex m_mutex_quit; //!< Mutex to protect m_quit from concurrent access

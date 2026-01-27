@@ -62,6 +62,8 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
 
 bool AprilTagTracker::init_tracker()
 {
+  RCLCPP_INFO(this->get_logger(), "This node does not require an initialization method");
+
   if (m_config_file.empty()) {
     auto tag_size_param = rclcpp::Parameter();
     bool isSet = this->get_parameter("tag_size", tag_size_param);

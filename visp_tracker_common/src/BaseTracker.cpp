@@ -39,6 +39,10 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("config_file", config_file_param);
   m_config_file = visp_common::path::path_retriever(config_file_param.as_string());
 
+  auto init_method_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  init_method_desc.description = "Set the method to initialize the tracker, if required. Available types are " + getAvailableInitializationMethod();
+  this->declare_parameter("init_method", "click", init_method_desc);
+
   // // ---- Parameters related to the services ----
 
   // // ---- Parameters related to the publishers / subscribers ----
@@ -75,6 +79,12 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
     m_display_nb_frames_skipped = p.as_int();
     };
   cb_handle_ = param_subscriber_->add_parameter_callback("display_nb_frames_skipped", cb);
+
+  auto cb_init_method = [this](const rclcpp::Parameter &p) {
+    this->init_initialization_method(p);
+    };
+  cb_handle_init_ = param_subscriber_->add_parameter_callback("init_method", cb_init_method);
+
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 SERVICES                             //
@@ -142,6 +152,10 @@ bool BaseTracker::init()
     return false;
   }
 
+  if (!init_initialization_method(this->get_parameter("init_method"))) {
+    return false;
+  }
+
   bool status = this->init_tracker();
   if (!status) {
     return false;
@@ -152,6 +166,30 @@ bool BaseTracker::init()
     m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
   }
   this->init_info_strings(); // Call the overrided method of the inheriting class
+  return true;
+}
+
+bool BaseTracker::init_initialization_method(const rclcpp::Parameter &p)
+{
+  try {
+    m_init_method = BaseTracker::initializationMethodFromString(p.as_string());
+  }
+  catch (const vpException &e) {
+    RCLCPP_ERROR(this->get_logger(), "Error: could not parse %s into a valid initialization method. Tolerated values are %s", p.as_string().c_str(), BaseTracker::getAvailableInitializationMethod().c_str());
+    return false;
+  }
+  catch (const rclcpp::ParameterTypeException &e) {
+    RCLCPP_ERROR(this->get_logger(), "Error: could not parse the value of the parameter %s into a string.", p.get_name().c_str());
+    return false;
+  }
+  if (m_init_method == BaseTracker::FILE) {
+    ///TODO: check that the file parameter has been set
+    throw(vpException(vpException::notImplementedError, "File-based initilization method has not been implemented yet"));
+  }
+  else if (m_init_method == BaseTracker::TOPIC) {
+    ///TODO: check that the topic parameter has been set
+    throw(vpException(vpException::notImplementedError, "Topic-based initilization method has not been implemented yet"));
+  }
   return true;
 }
 
@@ -215,5 +253,56 @@ void BaseTracker::stop_and_quit()
 {
   std::scoped_lock lock(m_mutex_quit);
   m_quit = true;
+}
+
+std::string BaseTracker::initializationMethodToString(const InitializationMethod &method)
+{
+  std::string name;
+  switch (method) {
+  case BaseTracker::CLICK:
+    name = "click";
+    break;
+  case BaseTracker::TOPIC:
+    name = "topic";
+    break;
+  case BaseTracker::FILE:
+    name = "file";
+    break;
+  default:
+    throw(vpException(vpException::functionNotImplementedError, "The requested InitializationMethod has not been given a name yet"));
+  }
+  return name;
+}
+
+BaseTracker::InitializationMethod BaseTracker::initializationMethodFromString(const std::string &name)
+{
+  InitializationMethod method = BaseTracker::INITIALIZATION_METHOD_COUNT;
+  bool has_not_been_found = true;
+  int idx = 0;
+  while ((idx < BaseTracker::INITIALIZATION_METHOD_COUNT) && has_not_been_found) {
+    InitializationMethod temp = static_cast<InitializationMethod>(idx);
+    if (name == initializationMethodToString(temp)) {
+      has_not_been_found = false;
+      method = temp;
+    }
+    ++idx;
+  }
+  if (has_not_been_found) {
+    throw(vpException(vpException::fatalError, "Name %s does not correspond to any known InitializationMethod. Valid names are %s", name.c_str(), getAvailableInitializationMethod().c_str()));
+  }
+  return method;
+}
+
+std::string BaseTracker::getAvailableInitializationMethod(const std::string &prefix, const std::string &sep, const std::string &suffix)
+{
+  std::string list = prefix;
+  for (unsigned char idx = 0; idx < BaseTracker::INITIALIZATION_METHOD_COUNT - 1; ++idx) {
+    InitializationMethod temp = static_cast<InitializationMethod>(idx);
+    list += initializationMethodToString(temp);
+    list += sep;
+  }
+  list += initializationMethodToString(static_cast<InitializationMethod>(BaseTracker::INITIALIZATION_METHOD_COUNT - 1));
+  list += suffix;
+  return list;
 }
 }

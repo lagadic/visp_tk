@@ -476,7 +476,7 @@ void MBTTracker::track()
 
   // Check if frame has to be displayed
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-  bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track)) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+  bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
   if (display_frame) {
 
@@ -499,18 +499,25 @@ void MBTTracker::track()
   if (m_has_to_track) {
     RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
     if (!m_tracker_initialized) {
+      if (m_init_method == BaseTracker::CLICK) {
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-      RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
-      m_tracker->initClick(m_Ic, m_init_file_path, true);
-      m_tracker->getPose(cMo);
-      m_tracker_initialized = true;
-      if (m_is_headless_mode) {
-        vpDisplay::close(m_Ic);
-        m_display.reset();
-        m_display_initialized = false;
-        display_frame = false;
-      }
+        RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
+        m_tracker->initClick(m_Ic, m_init_file_path, true);
+        m_tracker->getPose(cMo);
+        m_tracker_initialized = true;
+        if (m_is_headless_mode) {
+          vpDisplay::close(m_Ic);
+          m_display.reset();
+          m_display_initialized = false;
+          display_frame = false;
+        }
+#else
+        throw(vpException(vpException::fatalError, "The tracker cannot be initialized by click if the module visp_gui is not available and/or if a GUI library is not installed. See https://visp-doc.inria.fr/doxygen/visp-daily/supported-third-parties.html"));
 #endif
+      }
+      else {
+        throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click is handled."));
+      }
       RCLCPP_DEBUG(this->get_logger(), "Done init");
     }
 
