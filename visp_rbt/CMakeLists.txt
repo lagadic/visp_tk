@@ -16,25 +16,42 @@ ament_auto_find_build_dependencies()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(message_filters REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
 find_package(visp_tracker_common REQUIRED)
 find_package(VISP REQUIRED COMPONENTS visp_core visp_ar visp_rbt OPTIONAL_COMPONENTS visp_gui)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+add_executable(${PROJECT_NAME}_main
+  src/rbt.cpp
+  src/RBTTracker.cpp
+)
+
+target_include_directories(${PROJECT_NAME}_main PUBLIC
+  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
+)
+
+target_link_libraries(${PROJECT_NAME}_main
+  ${VISP_LIBRARIES}
+)
+
+ament_target_dependencies(${PROJECT_NAME}_main
+  geometry_msgs
+  message_filters
+  rclcpp
+  sensor_msgs
+  visp_common
+  visp_tracker_common
+)
+
+install(
+  TARGETS
+  ${PROJECT_NAME}_main
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()
