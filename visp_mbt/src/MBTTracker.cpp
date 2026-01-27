@@ -487,9 +487,9 @@ void MBTTracker::track()
 
   vpHomogeneousMatrix cMo;
   if (m_has_to_track) {
-    RCLCPP_INFO(this->get_logger(), "DBG Starting tracking");
+    RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
     if (!m_tracker_initialized) {
-      RCLCPP_INFO(this->get_logger(), "DBG Initializing tracker ...");
+      RCLCPP_DEBUG(this->get_logger(), "Initializing tracker ...");
       m_tracker->initClick(m_Ic, m_init_file_path, true);
       m_tracker->getPose(cMo);
       m_tracker_initialized = true;
@@ -499,13 +499,13 @@ void MBTTracker::track()
         m_display_initialized = false;
         display_frame = false;
       }
-      RCLCPP_INFO(this->get_logger(), "DBG Done init");
+      RCLCPP_DEBUG(this->get_logger(), "Done init");
     }
 
     double t_start = vpTime::measureTimeMs();
     try {
       if (m_depth_is_required) {
-        RCLCPP_INFO(this->get_logger(), "DBG Tracking with depth ...");
+        RCLCPP_DEBUG(this->get_logger(), "Tracking with depth ...");
         for (auto name: m_color_trackers_name) {
           m_map_img[name] = &m_Ic;
         }
@@ -515,15 +515,15 @@ void MBTTracker::track()
         }
 
         m_tracker->track(m_map_img, m_map_pc, m_map_pcw, m_map_pch);
-        RCLCPP_INFO(this->get_logger(), "DBG Done depth tracking");
+        RCLCPP_DEBUG(this->get_logger(), "Done depth tracking");
       }
       else {
-        RCLCPP_INFO(this->get_logger(), "DBG Tracking with RGB only");
+        RCLCPP_DEBUG(this->get_logger(), "Tracking with RGB only");
         m_tracker->track(m_Ic);
-        RCLCPP_INFO(this->get_logger(), "DBG Done RGB tracking");
+        RCLCPP_DEBUG(this->get_logger(), "Done RGB tracking");
       }
       double t_end_tracking = vpTime::measureTimeMs();
-      RCLCPP_INFO_STREAM(this->get_logger(), "DBG Tracking time: " << (t_end_tracking - t_start) << "ms");
+      RCLCPP_DEBUG_STREAM(this->get_logger(), "Tracking time: " << (t_end_tracking - t_start) << "ms");
 
       m_tracker->getPose(cMo);
       RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
