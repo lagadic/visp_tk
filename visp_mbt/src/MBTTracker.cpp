@@ -98,16 +98,24 @@ bool MBTTracker::init()
 bool MBTTracker::init_tracker()
 {
   // Retrieving init file
-  m_init_file_path = visp_common::path::path_retriever(m_init_file_path);
-  if (m_init_file_path.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "init file path is empty");
-    return false;
+  if (m_init_method == BaseTracker::CLICK) {
+    if (m_init_file_path.empty()) {
+      RCLCPP_ERROR(this->get_logger(), "init file path is empty");
+      return false;
+    }
+    std::vector<std::string> split = vpIoTools::splitChain(m_init_file_path, "://");
+    m_init_file_path = visp_common::path::path_retriever(m_init_file_path);
+    if (m_init_file_path.empty() && split.size() > 1) {
+      // This can occur if the package we tried to load from is not sourced
+      RCLCPP_ERROR(this->get_logger(), "Failed to locate package %s to load the init file %s", split[0], split[1]);
+      return false;
+    }
+    else if (!vpIoTools::checkFilename(m_init_file_path)) {
+      RCLCPP_ERROR(this->get_logger(), "init file %s does not exist", m_init_file_path.c_str());
+      return false;
+    }
+    RCLCPP_INFO(this->get_logger(), "MBT will use the init file %s", m_init_file_path.c_str());
   }
-  else if (!vpIoTools::checkFilename(m_init_file_path)) {
-    RCLCPP_ERROR(this->get_logger(), "init file %s does not exist", m_init_file_path.c_str());
-    return false;
-  }
-  RCLCPP_INFO(this->get_logger(), "MBT will use the init file %s", m_init_file_path.c_str());
 
   // Retrieving config file
   std::string config_file_path = this->get_parameter("config_file").as_string();
