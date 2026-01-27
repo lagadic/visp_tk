@@ -107,7 +107,7 @@ bool MBTTracker::init_tracker()
     m_init_file_path = visp_common::path::path_retriever(m_init_file_path);
     if (m_init_file_path.empty() && split.size() > 1) {
       // This can occur if the package we tried to load from is not sourced
-      RCLCPP_ERROR(this->get_logger(), "Failed to locate package %s to load the init file %s", split[0], split[1]);
+      RCLCPP_ERROR(this->get_logger(), "Failed to locate package %s to load the init file %s", split[0].c_str(), split[1].c_str());
       return false;
     }
     else if (!vpIoTools::checkFilename(m_init_file_path)) {
@@ -119,10 +119,16 @@ bool MBTTracker::init_tracker()
 
   // Retrieving config file
   std::string config_file_path = this->get_parameter("config_file").as_string();
-  config_file_path = visp_common::path::path_retriever(config_file_path);
-
   if (config_file_path.empty()) {
     RCLCPP_ERROR(this->get_logger(), "config file path is empty");
+    return false;
+  }
+
+  std::vector<std::string> split = vpIoTools::splitChain(config_file_path, "://");
+  config_file_path = visp_common::path::path_retriever(config_file_path);
+  if (config_file_path.empty() && split.size() > 1) {
+    // This can occur if the package we tried to load from is not sourced
+    RCLCPP_ERROR(this->get_logger(), "Failed to locate package %s to load the config file %s", split[0].c_str(), split[1].c_str());
     return false;
   }
   else if (!vpIoTools::checkFilename(config_file_path)) {
@@ -402,7 +408,6 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
 
   // Clear the point cloud
   m_pointcloud.resize(I_depth_raw.getSize(), vpColVector(3, 0.));
-  static const double Z_factor = 0.001;
   int width = I_depth_raw.getWidth();
   int size = I_depth_raw.getSize();
   int idxstart = 0, idxstop = size;
@@ -426,7 +431,7 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
 #endif
     for (int idx = idxstart; idx < idxstop; ++idx) {
       uint16_t Z_raw = I_depth_raw.bitmap[idx];
-      double Z = Z_raw * Z_factor;
+      double Z = Z_raw * m_z_factor;
       if ((Z > 0.) && (!std::isnan(Z_raw)) && std::isfinite(Z)) {
         double x = 0.0, y = 0.0;
         vpPixelMeterConversion::convertPoint(m_depth_cam, j, i, x, y);

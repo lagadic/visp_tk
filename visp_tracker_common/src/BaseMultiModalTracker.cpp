@@ -47,6 +47,14 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   qos_depth_desc.description = "The depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.";
   this->declare_parameter("stream_qos_depth", 1, qos_depth_desc);
 
+  auto z_factor_param = rclcpp::Parameter();
+  auto z_factor_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  z_factor_desc.description = "Factor to convert the depth image expressed as uint16_t into meters.";
+  this->declare_parameter("z_factor", 0.001, z_factor_desc);
+  this->get_parameter("z_factor", z_factor_param);
+  m_z_factor = z_factor_param.as_double();
+
+
   // // ---- Parameters changes handling ----
 
   //////////////////////////////////////////////////////////////////////
