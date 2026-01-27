@@ -47,7 +47,24 @@ class TrackerGUI : public rclcpp::Node
 public:
   TrackerGUI(const std::string &node_name);
 
-  virtual ~TrackerGUI() = default;
+  virtual ~TrackerGUI()
+  {
+    if (m_hints) {
+      m_hints.reset();
+    }
+
+    if (m_hints_depth) {
+      m_hints_depth.reset();
+    }
+
+    if (m_it) {
+      m_it.reset();
+    }
+
+    if (m_it_node) {
+      m_it_node.reset();
+    }
+  }
 
   /**
    * @brief Self is required to initialize the m_it attribute.

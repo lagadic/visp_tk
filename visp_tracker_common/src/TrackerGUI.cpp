@@ -135,7 +135,7 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
 
   m_it_node = self;
   m_it = std::make_shared<image_transport::ImageTransport>(m_it_node);
-  m_hints = std::make_shared<image_transport::TransportHints>(this);
+  m_hints = std::make_shared<image_transport::TransportHints>(m_it_node.get());
   rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
   compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
   compressed_color_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
@@ -165,7 +165,7 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
     compressed_depth_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("depth_qos_reliability").as_string().c_str());
 
     RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic '%s'", depth_topic_name.c_str());
-    m_hints_depth = std::make_shared<image_transport::TransportHints>(this, "compressedDepth", "depth_image_transport");
+    m_hints_depth = std::make_shared<image_transport::TransportHints>(m_it_node.get(), "compressedDepth", "depth_image_transport");
     m_sub_depth = m_it->subscribe(depth_topic_name, compressed_depth_qos, std::bind(&TrackerGUI::depth_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), m_hints_depth.get(), rclcpp::SubscriptionOptions());
 
     const double depth_scale = this->get_parameter("depth_scale").as_double();
