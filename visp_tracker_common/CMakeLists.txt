@@ -22,7 +22,7 @@ find_package(std_srvs REQUIRED)
 find_package(vision_msgs REQUIRED)
 
 # Find ViSP libraries and packages
-find_package(VISP REQUIRED)
+find_package(VISP REQUIRED COMPONENTS visp_core OPTIONAL_COMPONENTS visp_gui)
 find_package(visp_common REQUIRED)
 
 # ############## #
@@ -106,34 +106,38 @@ ament_export_dependencies(
 # ##### #
 # Nodes #
 # ##### #
+if(VISP_GUI_FOUND)
+  add_executable(tracker_gui src/tracker_gui.cpp src/TrackerGUI.cpp)
 
-add_executable(tracker_gui src/tracker_gui.cpp src/TrackerGUI.cpp)
+  set_property(TARGET tracker_gui PROPERTY CXX_STANDARD_REQUIRED ON)
+  set_property(TARGET tracker_gui PROPERTY CXX_STANDARD 17)
 
-set_property(TARGET tracker_gui PROPERTY CXX_STANDARD_REQUIRED ON)
-set_property(TARGET tracker_gui PROPERTY CXX_STANDARD 17)
+  ament_target_dependencies(tracker_gui
+      ament_index_cpp
+      geometry_msgs
+      image_transport
+      rclcpp
+      sensor_msgs
+      std_srvs
+      visp_common
+      VISP
+    )
 
-ament_target_dependencies(tracker_gui
-    ament_index_cpp
-    geometry_msgs
-    image_transport
-    rclcpp
-    sensor_msgs
-    std_srvs
-    visp_common
-    VISP
+  target_link_libraries(tracker_gui
+    ${VISP_LIBRARIES}
+    ${PROJECT_NAME}_library
+    "${cpp_typesupport_target}"
   )
 
-target_link_libraries(tracker_gui
-  ${VISP_LIBRARIES}
-  ${PROJECT_NAME}_library
-  "${cpp_typesupport_target}"
-)
+  install(
+    TARGETS
+    tracker_gui
+    DESTINATION lib/${PROJECT_NAME}
+  )
+else()
+  message(WARNING "The module visp_gui has not been found, the tracker GUI will not be built.")
+endif()
 
-install(
-  TARGETS
-  tracker_gui
-  DESTINATION lib/${PROJECT_NAME}
-)
 
 # ###### #
 # Others #

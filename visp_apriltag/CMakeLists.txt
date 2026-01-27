@@ -22,7 +22,7 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core visp_detection)
+find_package(VISP REQUIRED COMPONENTS visp_core visp_detection OPTIONAL_COMPONENTS visp_gui)
 
 add_executable(${PROJECT_NAME}_main
   src/april_tag_tracker.cpp

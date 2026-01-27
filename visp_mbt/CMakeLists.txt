@@ -23,7 +23,7 @@ find_package(visp_common REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core visp_mbt)
+find_package(VISP REQUIRED COMPONENTS visp_core visp_mbt OPTIONAL_COMPONENTS visp_gui)
 
 add_executable(${PROJECT_NAME}_main
   src/mbt.cpp

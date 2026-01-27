@@ -23,7 +23,7 @@ find_package(visp_common REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core visp_ar visp_rbt)
+find_package(VISP REQUIRED COMPONENTS visp_core visp_ar visp_rbt OPTIONAL_COMPONENTS visp_gui)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

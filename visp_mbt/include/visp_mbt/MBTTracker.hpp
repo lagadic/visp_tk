@@ -9,7 +9,9 @@
 #include <visp3/core/vpImageConvert.h>
 #include <visp3/core/vpIoTools.h>
 #include <visp3/core/vpTrackingException.h>
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
 #include <visp3/gui/vpDisplayFactory.h>
+#endif
 #include <visp3/mbt/vpMbGenericTracker.h>
 
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
@@ -136,11 +138,13 @@ protected:
   // ----- Publisher -----
 
   // ----- Display-related attributes -----
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
   double m_max_z_display; // Maximum depth we want to display
   std::shared_ptr<vpDisplay> m_display; //!< RGB image display
   std::shared_ptr<vpDisplay> m_display_depth; //!< Depth display
   bool m_display_initialized = false; //!< True when the RGB image display is up and running
+#endif
 
   // ----- Tracking-related attributes -----
   std::shared_ptr<vpMbGenericTracker> m_tracker;

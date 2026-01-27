@@ -42,12 +42,14 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   tracker_names_desc.description = "When using an XML file, this parameter must be set as an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter 'tracker_types'.";
   this->declare_parameter<std::vector<std::string>>("tracker_names", std::vector<std::string>(), tracker_names_desc);
 
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   auto max_z_param = rclcpp::Parameter();
   auto max_z_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   max_z_param_desc.description = "This parameter permits the maximum depth we want to display.";
   this->declare_parameter("max_z_display", 2.0, max_z_param_desc);
   this->get_parameter("max_z_display", max_z_param);
   m_max_z_display = max_z_param.as_double();
+#endif
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 SERVICES                             //
@@ -374,9 +376,11 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
   static bool once = true;
   if (once) {
     if (!m_is_headless_mode) {
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
       // Initialize depth display
       m_I_depth_display.resize(I_depth_raw.getHeight(), I_depth_raw.getWidth());
       m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display);
+#endif
     }
 
     for (auto name: m_depth_trackers_name) {
@@ -421,13 +425,17 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
         m_pointcloud[idx][0] = x * Z;
         m_pointcloud[idx][1] = y * Z;
         m_pointcloud[idx][2] = Z;
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
         if (!m_is_headless_mode) {
           m_I_depth_display.bitmap[idx] = Z > m_max_z_display ? 0 : static_cast<unsigned int>((Z / m_max_z_display) * 255.f);
         }
+#endif
       }
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
       else if (!m_is_headless_mode) {
         m_I_depth_display.bitmap[idx] = 0;
       }
+#endif
       // Updating column index
       ++j;
       if (j == width) {
@@ -467,6 +475,7 @@ void MBTTracker::track()
   }
 
   // Check if frame has to be displayed
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track)) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
   if (display_frame) {
@@ -484,12 +493,14 @@ void MBTTracker::track()
       vpDisplay::displayText(m_Ic, 20, 20, ss.str(), vpColor::red);
     }
   }
+#endif
 
   vpHomogeneousMatrix cMo;
   if (m_has_to_track) {
     RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
     if (!m_tracker_initialized) {
-      RCLCPP_DEBUG(this->get_logger(), "Initializing tracker ...");
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+      RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
       m_tracker->initClick(m_Ic, m_init_file_path, true);
       m_tracker->getPose(cMo);
       m_tracker_initialized = true;
@@ -499,6 +510,7 @@ void MBTTracker::track()
         m_display_initialized = false;
         display_frame = false;
       }
+#endif
       RCLCPP_DEBUG(this->get_logger(), "Done init");
     }
 
@@ -562,6 +574,7 @@ void MBTTracker::track()
     }
   }
 
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   if (display_frame) {
     if (m_tracker_initialized && m_has_to_track) {
       m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
@@ -602,6 +615,7 @@ void MBTTracker::track()
       }
     }
   }
+#endif
 }
 
 visp_tracker_common::msg::NamedFeature MBTTracker::mbt_model_to_msg(const std::vector<std::vector<double>> &model, const std::string &name, const rclcpp::Logger &logger)

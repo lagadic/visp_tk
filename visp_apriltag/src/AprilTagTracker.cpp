@@ -171,11 +171,14 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     }
 
     // Check if frame has to be displayed
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     bool display_frame = (!m_is_headless_mode) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+#endif
 
-    // Convert ROS image to ViSP image
+// Convert ROS image to ViSP image
     m_I = std::move(visp_common::image::toVispImageChar(*msg));
 
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if ((!m_display_initialized) && display_frame) {
       m_display = vpDisplayFactory::createDisplay(m_I);
       m_display_initialized = true;
@@ -191,6 +194,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         }
       }
     }
+#endif
 
     std::vector<vpHomogeneousMatrix> c_M_o_vec;
     bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
@@ -209,9 +213,11 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
         auto tag_corners = tags_corners[i];
 
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
         if (m_display_initialized && display_frame) {
           vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
         }
+#endif
 
         geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
         visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
@@ -255,6 +261,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       m_tags_info_pub->publish(detectionArray);
     }
 
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if (m_display_initialized && display_frame) {
       vpDisplay::flush(m_I);
     }
@@ -285,6 +292,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         break;
       }
     }
+#endif
 
     ++m_frame_cnt;
   }
