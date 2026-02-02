@@ -563,6 +563,42 @@ void MBTTracker::track()
       double t_end_tracking = vpTime::measureTimeMs();
       RCLCPP_DEBUG_STREAM(this->get_logger(), "Tracking time: " << (t_end_tracking - t_start) << "ms");
 
+      m_info_strings.info_strings.clear();
+      {
+        std::stringstream ss;
+        ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
+        m_info_strings.info_strings.push_back(ss.str());
+        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+      }
+      {
+        std::stringstream ss;
+        ss << "Features: edges " << m_tracker->getNbFeaturesEdge();
+        m_info_strings.info_strings.push_back(ss.str());
+        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+      }
+      {
+        std::stringstream ss;
+        ss << "Features: klt " << m_tracker->getNbFeaturesKlt();
+        m_info_strings.info_strings.push_back(ss.str());
+        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+      }
+
+      if (m_depth_is_required) {
+        {
+          std::stringstream ss;
+          ss << "Features: depth dense " << m_tracker->getNbFeaturesDepthDense();
+          m_info_strings.info_strings.push_back(ss.str());
+          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        }
+        {
+          std::stringstream ss;
+          ss << "Features: depth normal " << m_tracker->getNbFeaturesDepthNormal();
+          m_info_strings.info_strings.push_back(ss.str());
+          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        }
+      }
+      m_info_strings_pub->publish(m_info_strings);
+
       m_tracker->getPose(cMo);
       RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
     }
@@ -604,11 +640,12 @@ void MBTTracker::track()
   if (display_frame) {
     if (m_tracker_initialized && m_has_to_track) {
       m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
-      std::stringstream ss;
-      ss << "Features: edges " << m_tracker->getNbFeaturesEdge() << ", klt " << m_tracker->getNbFeaturesKlt();
-      ss << ", depth dense " << m_tracker->getNbFeaturesDepthDense() << ", depth normal " << m_tracker->getNbFeaturesDepthNormal();
-      vpDisplay::displayText(m_Ic, (m_display->getHeight() - 25)*m_display->getDownScalingFactor(), 20, ss.str(), vpColor::red);
       vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
+    }
+    unsigned int nb_infos = m_info_strings.info_strings.size();
+    const unsigned int v_offset = 20;
+    for (unsigned int r = 0; r < nb_infos; ++r) {
+      vpDisplay::displayText(m_I, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
     }
     vpDisplay::flush(m_Ic);
     vpDisplay::flush(m_I_depth_display);

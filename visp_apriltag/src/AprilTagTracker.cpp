@@ -199,7 +199,18 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #endif
 
     std::vector<vpHomogeneousMatrix> c_M_o_vec;
+    double t_start = vpTime::measureTimeMs();
     bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
+    double t_end_tracking = vpTime::measureTimeMs();
+    m_info_strings.info_strings.clear();
+    m_info_strings.hor_offset_right_border.clear();
+    static const unsigned int hor_offset = 120;
+    {
+      std::stringstream ss;
+      ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
+      m_info_strings.info_strings.push_back(ss.str());
+      m_info_strings.hor_offset_right_border.push_back(hor_offset);
+    }
 
     vpColVector v_ee(6, 0);
     if (found) {
@@ -210,8 +221,16 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
       visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
       detectionArray.header = msg->header;
+
       for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
         RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
+        {
+          std::stringstream ss;
+          ss << "Tag " << i << ": margin = " << decision_margins[i];
+          m_info_strings.info_strings.push_back(ss.str());
+          m_info_strings.hor_offset_right_border.push_back(hor_offset);
+        }
+
         vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
         auto tag_corners = tags_corners[i];
 
@@ -262,9 +281,15 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       m_poses_pub->publish(poseArrayMsg);
       m_tags_info_pub->publish(detectionArray);
     }
+    m_info_strings_pub->publish(m_info_strings);
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if (m_display_initialized && display_frame) {
+      unsigned int nb_infos = m_info_strings.info_strings.size();
+      const unsigned int v_offset = 20;
+      for (unsigned int r = 0; r < nb_infos; ++r) {
+        vpDisplay::displayText(m_I, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
+      }
       vpDisplay::flush(m_I);
     }
 

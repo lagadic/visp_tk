@@ -13,6 +13,7 @@
 #include <visp3/gui/vpDisplayFactory.h>
 #endif
 #include <visp3/rbt/vpRBTracker.h>
+#include <visp3/rbt/vpRBDriftDetector.h>
 
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
 

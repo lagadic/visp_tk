@@ -374,6 +374,24 @@ void RBTTracker::track()
 
       m_poses_pub->publish(poseArrayMsg);
 
+      m_info_strings.info_strings.clear();
+      {
+        std::stringstream ss;
+        ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
+        m_info_strings.info_strings.push_back(ss.str());
+        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+      }
+      {
+        auto drift_detector = m_tracker.getDriftDetector();
+        if (drift_detector) {
+          std::stringstream ss;
+          ss << "Drift score: " << drift_detector->getScore();
+          m_info_strings.info_strings.push_back(ss.str());
+          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        }
+      }
+      m_info_strings_pub->publish(m_info_strings);
+
       // Publish the model
       if (m_visualization_debug && m_is_headless_mode) {
         const std::vector<vpRBSilhouettePoint> &silhouettePts = m_tracker.getMostRecentFrame().silhouettePoints;
@@ -394,6 +412,11 @@ void RBTTracker::track()
     if (m_tracker_initialized && m_has_to_track) {
       m_tracker.display(m_I, m_Ic, m_I_depth_display);
       vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
+    }
+    unsigned int nb_infos = m_info_strings.info_strings.size();
+    const unsigned int v_offset = 20;
+    for (unsigned int r = 0; r < nb_infos; ++r) {
+      vpDisplay::displayText(m_I, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
     }
     vpDisplay::flush(m_I);
     vpDisplay::flush(m_Ic);
