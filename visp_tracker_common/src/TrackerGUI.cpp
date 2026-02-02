@@ -135,7 +135,7 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
 
   m_it_node = self;
   m_it = std::make_shared<image_transport::ImageTransport>(m_it_node);
-  m_hints = std::make_shared<image_transport::TransportHints>(m_it_node.get());
+  m_hints = std::make_shared<image_transport::TransportHints>(m_it_node.get(), "compressed");
   rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
   compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
   compressed_color_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
