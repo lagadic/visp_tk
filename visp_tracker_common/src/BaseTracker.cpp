@@ -110,15 +110,8 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   //////////////////////////////////////////////////////////////////////
 
   // ---- Subscribing to the different topics
-  auto n = 10;
-  auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
 
-  m_rgb_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-    m_rgb_camera_topic_name, qos,
-    std::bind(&BaseTracker::color_camera_info_callback, this, std::placeholders::_1));
-  RCLCPP_INFO(this->get_logger(), "Subscribed to color camera topic %s", m_rgb_camera_topic_name.c_str());
-
-  // NB: We do not subscribe to the RGB image stream because we might want to perform different operations dependeing on the tracker we use
+  // NB: We do not subscribe to the RGB image stream and camera because we might want to perform different operations dependeing on the tracker we use
 
   // ---- Publishing on different topics
   if (does_publish_features) {
@@ -142,9 +135,18 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
 
 bool BaseTracker::init()
 {
-  if (std::string(m_rgb_cam_info_sub->get_topic_name()) == s_dumb_topic_name) {
+  if (m_rgb_camera_topic_name == s_dumb_topic_name) {
     RCLCPP_ERROR(this->get_logger(), "'rgb_camera_topic_name' parameter was not set, so the color camera subscriber is ill-initialized.");
     return false;
+  }
+  else {
+    auto n = 10;
+    auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
+
+    m_rgb_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
+      m_rgb_camera_topic_name, qos,
+      std::bind(&BaseTracker::color_camera_info_callback, this, std::placeholders::_1));
+    RCLCPP_INFO(this->get_logger(), "Subscribed to color camera topic %s", m_rgb_camera_topic_name.c_str());
   }
 
   if (m_rgb_stream_name == s_dumb_topic_name) {
