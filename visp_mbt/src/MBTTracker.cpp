@@ -264,6 +264,7 @@ bool MBTTracker::init_from_xml(const std::string &config_file_path)
 
 bool MBTTracker::init_from_json(const std::string &config_file_path)
 {
+#ifdef VISP_HAVE_NLOHMANN_JSON
   using json = nlohmann::json;
 
   std::ifstream file(config_file_path);
@@ -341,6 +342,11 @@ bool MBTTracker::init_from_json(const std::string &config_file_path)
   }
 
   return true;
+#else
+  (void)config_file_path;
+  RCLCPP_ERROR(this->get_logger(), "To use a JSON file to initialize the tracker, ViSP must be compiled with nlohmann-json library.");
+  return false;
+#endif
 }
 
 void MBTTracker::init_info_strings() { }
