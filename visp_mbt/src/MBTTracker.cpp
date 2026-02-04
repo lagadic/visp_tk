@@ -349,7 +349,10 @@ bool MBTTracker::init_from_json(const std::string &config_file_path)
 #endif
 }
 
-void MBTTracker::init_info_strings() { }
+void MBTTracker::init_info_strings()
+{
+  m_info_nb_static = m_info_strings.info_strings.size();
+}
 
 void MBTTracker::check_requires_depth()
 {
@@ -563,40 +566,49 @@ void MBTTracker::track()
       double t_end_tracking = vpTime::measureTimeMs();
       RCLCPP_DEBUG_STREAM(this->get_logger(), "Tracking time: " << (t_end_tracking - t_start) << "ms");
 
-      m_info_strings.info_strings.clear();
+      // Fill info strings
+      std::vector<std::string> vec_info;
       {
         std::stringstream ss;
         ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-        m_info_strings.info_strings.push_back(ss.str());
-        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        vec_info.push_back(ss.str());
       }
       {
         std::stringstream ss;
         ss << "Features: edges " << m_tracker->getNbFeaturesEdge();
-        m_info_strings.info_strings.push_back(ss.str());
-        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        vec_info.push_back(ss.str());
       }
       {
         std::stringstream ss;
         ss << "Features: klt " << m_tracker->getNbFeaturesKlt();
-        m_info_strings.info_strings.push_back(ss.str());
-        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        vec_info.push_back(ss.str());
       }
 
       if (m_depth_is_required) {
         {
           std::stringstream ss;
           ss << "Features: depth dense " << m_tracker->getNbFeaturesDepthDense();
-          m_info_strings.info_strings.push_back(ss.str());
-          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+          vec_info.push_back(ss.str());
         }
         {
           std::stringstream ss;
           ss << "Features: depth normal " << m_tracker->getNbFeaturesDepthNormal();
-          m_info_strings.info_strings.push_back(ss.str());
-          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+          vec_info.push_back(ss.str());
         }
       }
+
+      // Manage info strings publication
+      if (m_info_strings.info_strings.size() == m_info_nb_static) {
+        m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+      }
+      else {
+        unsigned int nb_infos = vec_info.size();
+        m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
+        for (unsigned int i = 0; i < nb_infos; ++i) {
+          m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
+        }
+      }
+      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
       m_info_strings_pub->publish(m_info_strings);
 
       m_tracker->getPose(cMo);

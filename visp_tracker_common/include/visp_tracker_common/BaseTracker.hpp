@@ -190,6 +190,7 @@ protected:
   int m_display_nb_frames_skipped = -1; //!< If positive, the display will be updated only one every m_display_nb_frames_skipped frames, otherwise the display is always updated.
   unsigned int m_frame_cnt = 0; //!< Counter for the display frame skip
   visp_tracker_common::msg::InfoStrings m_info_strings; //!< Vector that contains strings to display on string to give the user some info.
+  unsigned int m_info_nb_static; //!< Number of info strings that must be visible all the time.
   bool m_visualization_debug = false; //!< Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ
 
   // ----- Tracking-related attributes -----

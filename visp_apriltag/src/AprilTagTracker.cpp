@@ -148,6 +148,7 @@ void AprilTagTracker::init_info_strings()
   m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
   m_info_strings.info_strings.push_back(std::string("Margin threshold.: ") + (m_tag_detector.getAprilTagDecisionMarginThreshold() < 0 ? std::string("deactivated") : std::to_string(m_tag_detector.getAprilTagDecisionMarginThreshold())));
   m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
+  m_info_nb_static = m_info_strings.info_strings.size();
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -202,14 +203,11 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     double t_start = vpTime::measureTimeMs();
     bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
     double t_end_tracking = vpTime::measureTimeMs();
-    m_info_strings.info_strings.clear();
-    m_info_strings.hor_offset_right_border.clear();
-    static const unsigned int hor_offset = 120;
+    std::vector<std::string> vec_info;
     {
       std::stringstream ss;
       ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-      m_info_strings.info_strings.push_back(ss.str());
-      m_info_strings.hor_offset_right_border.push_back(hor_offset);
+      vec_info.push_back(ss.str());
     }
 
     vpColVector v_ee(6, 0);
@@ -227,8 +225,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         {
           std::stringstream ss;
           ss << "Tag " << i << ": margin = " << decision_margins[i];
-          m_info_strings.info_strings.push_back(ss.str());
-          m_info_strings.hor_offset_right_border.push_back(hor_offset);
+          vec_info.push_back(ss.str());
         }
 
         vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
@@ -282,6 +279,19 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       m_poses_pub->publish(poseArrayMsg);
       m_tags_info_pub->publish(detectionArray);
     }
+
+    // Manage info strings publication
+    if (m_info_strings.info_strings.size() == m_info_nb_static) {
+      m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+    }
+    else {
+      unsigned int nb_infos = vec_info.size();
+      m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
+      for (unsigned int i = 0; i < nb_infos; ++i) {
+        m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
+      }
+    }
+    m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
     m_info_strings_pub->publish(m_info_strings);
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)

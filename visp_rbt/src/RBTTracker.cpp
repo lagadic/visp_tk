@@ -147,7 +147,10 @@ bool RBTTracker::init_from_json(const std::string &config_file_path)
   return true;
 }
 
-void RBTTracker::init_info_strings() { }
+void RBTTracker::init_info_strings()
+{
+  m_info_nb_static = m_info_strings.info_strings.size();
+}
 
 void RBTTracker::check_requires_depth()
 {
@@ -376,22 +379,34 @@ void RBTTracker::track()
 
       m_poses_pub->publish(poseArrayMsg);
 
-      m_info_strings.info_strings.clear();
+      // Fill info strings
+      std::vector<std::string> vec_info;
       {
         std::stringstream ss;
         ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-        m_info_strings.info_strings.push_back(ss.str());
-        m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+        vec_info.push_back(ss.str());
       }
       {
         auto drift_detector = m_tracker.getDriftDetector();
         if (drift_detector) {
           std::stringstream ss;
           ss << "Drift score: " << drift_detector->getScore();
-          m_info_strings.info_strings.push_back(ss.str());
-          m_info_strings.hor_offset_right_border.push_back(BaseTracker::s_default_hor_offset);
+          vec_info.push_back(ss.str());
         }
       }
+
+      // Manage info strings publication
+      if (m_info_strings.info_strings.size() == m_info_nb_static) {
+        m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+      }
+      else {
+        unsigned int nb_infos = vec_info.size();
+        m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
+        for (unsigned int i = 0; i < nb_infos; ++i) {
+          m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
+        }
+      }
+      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
       m_info_strings_pub->publish(m_info_strings);
 
       // Publish the model
