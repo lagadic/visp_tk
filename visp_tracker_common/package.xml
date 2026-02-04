@@ -12,7 +12,7 @@
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 
   <depend>geometry_msgs</depend>
-  <depend>image_transport</depend>
+  <depend>image_transport_plugins</depend>
   <depend>message_filters</depend>
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
