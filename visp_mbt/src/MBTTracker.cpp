@@ -617,6 +617,8 @@ void MBTTracker::track()
 
       geometry_msgs::msg::PoseStamped pose_c_M_o;
       pose_c_M_o.pose = std::move(visp_common::pose::toGeometryMsgsPose(cMo));
+      pose_c_M_o.header.frame_id = m_frame_id;
+      pose_c_M_o.header.stamp = this->get_clock()->now();
       visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
       namedPoseMsg_c_M_o.name = "c_M_o";
       namedPoseMsg_c_M_o.pose = pose_c_M_o;

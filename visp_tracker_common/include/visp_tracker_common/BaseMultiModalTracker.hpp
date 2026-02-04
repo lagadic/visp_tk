@@ -113,6 +113,7 @@ protected:
   vpCameraParameters m_depth_cam; //!< The depth camera parameters.
   bool m_depth_is_required = false; //!< If true, it means that the tracker requires a depth stream to run.
   double m_z_factor; //!< Factor to translate uint16_t depth image into meters.
+  std::string m_frame_id; //!< The frame ID of the RGB stream, in which will be expressed the tracking result.
 
   // ----- Other attributes -----
 

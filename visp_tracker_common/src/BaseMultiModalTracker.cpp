@@ -180,6 +180,7 @@ void BaseMultiModalTracker::rgb_callback(const sensor_msgs::msg::Image::ConstSha
 void BaseMultiModalTracker::sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth)
 {
   RCLCPP_DEBUG_STREAM(this->get_logger(), "IN sync_callback");
+  m_frame_id = rgb->header.frame_id;
   this->treat_rgb(rgb);
   this->treat_depth(depth);
   this->track();

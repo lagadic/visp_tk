@@ -244,7 +244,8 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
         namedPoseMsg_c_M_o.name = m_family_name + "_" + std::to_string(tags_IDs[i]);
         namedPoseMsg_c_M_o.pose.pose = pose_c_M_o;
-        namedPoseMsg_c_M_o.pose.header = msg->header;
+        namedPoseMsg_c_M_o.pose.header.frame_id = msg->header.frame_id;
+        namedPoseMsg_c_M_o.pose.header.stamp = this->get_clock()->now();
         poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
 
         visp_tracker_common::msg::AprilTagDetection detectionMsg;
