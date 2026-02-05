@@ -203,12 +203,11 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     double t_start = vpTime::measureTimeMs();
     bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
     double t_end_tracking = vpTime::measureTimeMs();
-    std::vector<std::string> vec_info;
-    {
-      std::stringstream ss;
-      ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-      vec_info.push_back(ss.str());
-    }
+    std::vector<std::string> vec_info; // Vector that contains info to display on screen
+    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+    std::string t_string = std::to_string(t_end_tracking - t_start);
+    std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+    vec_info.push_back(tracking_time);
 
     vpColVector v_ee(6, 0);
     if (found) {

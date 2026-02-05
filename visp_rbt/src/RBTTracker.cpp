@@ -335,7 +335,10 @@ void RBTTracker::track()
       result = m_tracker.track(m_I, m_Ic);
     }
     double t_end_tracking = vpTime::measureTimeMs();
-    RCLCPP_DEBUG_STREAM(this->get_logger(), "Tracking time: " << (t_end_tracking - t_start) << "ms");
+    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+    std::string t_string = std::to_string(t_end_tracking - t_start);
+    std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+    RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
 
     if ((result.getStoppingReason() == vpRBTrackingStoppingReason::CONVERGENCE_CRITERION) || (result.getStoppingReason() == vpRBTrackingStoppingReason::MAX_ITERS)) {
       m_tracker.getPose(cMo);
@@ -380,12 +383,8 @@ void RBTTracker::track()
       m_poses_pub->publish(poseArrayMsg);
 
       // Fill info strings
-      std::vector<std::string> vec_info;
-      {
-        std::stringstream ss;
-        ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-        vec_info.push_back(ss.str());
-      }
+      std::vector<std::string> vec_info; // Vector that contains info to display on screen
+      vec_info.push_back(tracking_time);
       {
         auto drift_detector = m_tracker.getDriftDetector();
         if (drift_detector) {
