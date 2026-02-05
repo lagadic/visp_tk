@@ -42,6 +42,20 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   tracker_names_desc.description = "When using an XML file, this parameter must be set as an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter 'tracker_types'.";
   this->declare_parameter<std::vector<std::string>>("tracker_names", std::vector<std::string>(), tracker_names_desc);
 
+  auto detect_failure_param = rclcpp::Parameter();
+  auto detect_failure_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  detect_failure_param_desc.description = "This parameter permits to activate the detection of tracking failure based on the projection error.";
+  this->declare_parameter("detect_failure", m_must_detect_failure, detect_failure_param_desc);
+  this->get_parameter("detect_failure", detect_failure_param);
+  m_must_detect_failure = detect_failure_param.as_bool();
+
+  auto proj_error_thresh_param = rclcpp::Parameter();
+  auto proj_error_thresh_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  proj_error_thresh_param_desc.description = "This parameter indicates the maximum tolerated projection error, if detect_failure is set to true.";
+  this->declare_parameter("projection_error_threshold", m_projection_error_thresh, proj_error_thresh_param_desc);
+  this->get_parameter("projection_error_threshold", proj_error_thresh_param);
+  m_projection_error_thresh = proj_error_thresh_param.as_double();
+
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   auto max_z_param = rclcpp::Parameter();
   auto max_z_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -137,16 +151,22 @@ bool MBTTracker::init_tracker()
   }
   RCLCPP_INFO(this->get_logger(), "MBT will use the config file %s", config_file_path.c_str());
 
+  bool success = true;
   if (config_file_path.find(".xml") != std::string::npos) {
-    return init_from_xml(config_file_path);
+    success = init_from_xml(config_file_path);
   }
   else if (config_file_path.find(".json") != std::string::npos) {
-    return init_from_json(config_file_path);
+    success = init_from_json(config_file_path);
   }
   else {
     RCLCPP_ERROR(this->get_logger(), "config file %s is neither an XML file nor a JSON file", config_file_path.c_str());
     return false;
   }
+
+  if (success) {
+    m_tracker->setProjectionErrorComputation(m_must_detect_failure);
+  }
+  return success;
 }
 
 bool MBTTracker::init_from_xml(const std::string &config_file_path)
@@ -543,12 +563,15 @@ void MBTTracker::track()
       RCLCPP_DEBUG(this->get_logger(), "Done init");
     }
 
+    std::vector<std::string> vec_info; // Vector that contains info to display on screen
+    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+    double reprojection_error = 0.;
     double t_start = vpTime::measureTimeMs();
     try {
       if (m_depth_is_required) {
         RCLCPP_DEBUG(this->get_logger(), "Tracking with depth ...");
         for (auto name: m_color_trackers_name) {
-          m_map_img[name] = &m_Ic;
+          m_map_img[name] = &m_I;
         }
 
         for (auto name: m_depth_trackers_name) {
@@ -560,19 +583,31 @@ void MBTTracker::track()
       }
       else {
         RCLCPP_DEBUG(this->get_logger(), "Tracking with RGB only");
-        m_tracker->track(m_Ic);
+        m_tracker->track(m_I);
         RCLCPP_DEBUG(this->get_logger(), "Done RGB tracking");
       }
       double t_end_tracking = vpTime::measureTimeMs();
-      RCLCPP_DEBUG_STREAM(this->get_logger(), "Tracking time: " << (t_end_tracking - t_start) << "ms");
+      std::string t_string = std::to_string(t_end_tracking - t_start);
+      std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+      RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
+      m_tracker->getPose(cMo);
 
       // Fill info strings
-      std::vector<std::string> vec_info;
-      {
-        std::stringstream ss;
-        ss << "Tracking time " << (t_end_tracking - t_start) << "ms";
-        vec_info.push_back(ss.str());
+      vec_info.push_back(tracking_time);
+      if (m_must_detect_failure) {
+        if (m_tracker->getTrackerType() & vpMbGenericTracker::EDGE_TRACKER) {
+          reprojection_error = m_tracker->getProjectionError();
+        }
+        else {
+          reprojection_error = m_tracker->computeCurrentProjectionError(m_I, cMo, m_rgb_cam);
+        }
+        std::string reprojection_error_str = std::to_string(reprojection_error);
+        reprojection_error_str = reprojection_error_str.substr(0, reprojection_error_str.find(".") + nb_digits + 1);
+        reprojection_error_str = "Projection error: " + reprojection_error_str;
+        RCLCPP_DEBUG_STREAM(this->get_logger(), reprojection_error_str);
+        vec_info.push_back(reprojection_error_str);
       }
+
       {
         std::stringstream ss;
         ss << "Features: edges " << m_tracker->getNbFeaturesEdge();
@@ -597,31 +632,42 @@ void MBTTracker::track()
         }
       }
 
-      // Manage info strings publication
-      if (m_info_strings.info_strings.size() == m_info_nb_static) {
-        m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+      // Check if the projection error is below the threshold, if the user activated this option
+      if (m_must_detect_failure && (reprojection_error > m_projection_error_thresh)) {
+        RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: projection error (%f) too high (thresh = %f)", reprojection_error, m_projection_error_thresh);
+        m_tracker_initialized = false;
       }
       else {
-        unsigned int nb_infos = vec_info.size();
-        m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
-        for (unsigned int i = 0; i < nb_infos; ++i) {
-          m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
-        }
+        RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
       }
-      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
-      m_info_strings_pub->publish(m_info_strings);
-
-      m_tracker->getPose(cMo);
-      RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
     }
     catch (vpTrackingException &e) {
       RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: %s", e.getMessage());
       m_tracker_initialized = false;
+      std::string tracking_time = "Tracking failed";
+      vec_info.push_back(tracking_time);
+      if (m_must_detect_failure) {
+        vec_info.push_back("Projection error: N/A");
+      }
     }
     catch (vpException &e) {
       RCLCPP_ERROR(this->get_logger(), "Got unexpected error: %s", e.getMessage());
       throw;
     }
+
+    // Manage info strings publication
+    if (m_info_strings.info_strings.size() == m_info_nb_static) {
+      m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+    }
+    else {
+      unsigned int nb_infos = vec_info.size();
+      m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
+      for (unsigned int i = 0; i < nb_infos; ++i) {
+        m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
+      }
+    }
+    m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
+    m_info_strings_pub->publish(m_info_strings);
 
     if (m_tracker_initialized) {
        // Publish the poses for display on a remote GUI if headless mode is active

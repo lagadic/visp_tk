@@ -156,10 +156,12 @@ protected:
   std::vector<std::string> m_depth_trackers_name; //!< Name(s) of the tracker(s) based on depth information.
   bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
+  bool m_must_detect_failure = false; //!< If true, the tracker must monitor the projection error to invalidate the tracking if needed.
+  double m_projection_error_thresh = 30.; //!< If m_must_detect_failure , maximum tolerated projection error.
   vpImage<unsigned char> m_I; //!< Gray-scale image.
   vpImage<vpRGBa> m_Ic; //!< RGB image.
   std::vector<vpColVector> m_pointcloud; //!< Depth information for the vpMbGenericTracker if it requires depth information.
-  std::map<std::string, const vpImage<vpRGBa> *> m_map_img; //!< Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image.
+  std::map<std::string, const vpImage<unsigned char> *> m_map_img; //!< Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image.
   std::map<std::string, const std::vector<vpColVector> *> m_map_pc; //!< Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information.
   std::map<std::string, unsigned int> m_map_pcw; //!< Map that contains the width of the depth information.
   std::map<std::string, unsigned int> m_map_pch; //!< Map that contains the height of the depth information.
