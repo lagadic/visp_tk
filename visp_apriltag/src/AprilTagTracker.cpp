@@ -215,7 +215,6 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       auto decision_margins = m_tag_detector.getTagsDecisionMargin();
       auto tags_IDs = m_tag_detector.getTagsId();
       auto tags_corners = m_tag_detector.getTagsCorners();
-      visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
       visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
       detectionArray.header = msg->header;
 
@@ -237,17 +236,15 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #endif
 
         geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
-        visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
-        namedPoseMsg_c_M_o.name = m_family_name + "_" + std::to_string(tags_IDs[i]);
-        namedPoseMsg_c_M_o.pose.pose = pose_c_M_o;
-        namedPoseMsg_c_M_o.pose.header.frame_id = msg->header.frame_id;
-        namedPoseMsg_c_M_o.pose.header.stamp = this->get_clock()->now();
-        poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
+        geometry_msgs::msg::PoseStamped stamped_pose;
+        stamped_pose.pose = pose_c_M_o;
+        stamped_pose.header.frame_id = msg->header.frame_id;
+        stamped_pose.header.stamp = this->get_clock()->now();
 
         visp_tracker_common::msg::AprilTagDetection detectionMsg;
         detectionMsg.family = m_family_name;
         detectionMsg.id = tags_IDs[i];
-        detectionMsg.pose = namedPoseMsg_c_M_o.pose;
+        detectionMsg.pose = stamped_pose;
         vpImagePoint cog = m_tag_detector.getCog(i);
         fromImagePoint(cog, detectionMsg.center);
         fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
@@ -275,7 +272,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
           m_features_pub->publish(namedFeaturesMsg);
         }
       }
-      m_poses_pub->publish(poseArrayMsg);
+      // m_poses_pub->publish(stamped_pose);
       m_tags_info_pub->publish(detectionArray);
     }
 

@@ -125,8 +125,8 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   m_info_strings_pub = this->create_publisher<visp_tracker_common::msg::InfoStrings>(infostr_topic_name, qos_infostr_pub);
 
   auto qos_poses_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
-  std::string poses_topic_name = std::string(this->get_name()) + visp_tracker_common::poses_topic_name;
-  m_poses_pub = this->create_publisher<visp_tracker_common::msg::NamedPoseArray>(poses_topic_name, qos_poses_pub);
+  std::string poses_topic_name = std::string(this->get_name()) + visp_tracker_common::pose_topic_name;
+  m_poses_pub = this->create_publisher<geometry_msgs::msg::PoseStamped>(poses_topic_name, qos_poses_pub);
 }
 
 //////////////////////////////////////////////////////////////////////

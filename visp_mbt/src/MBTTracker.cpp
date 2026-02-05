@@ -671,18 +671,11 @@ void MBTTracker::track()
 
     if (m_tracker_initialized) {
        // Publish the poses for display on a remote GUI if headless mode is active
-      visp_tracker_common::msg::NamedPoseArray poseArrayMsg;
-
       geometry_msgs::msg::PoseStamped pose_c_M_o;
       pose_c_M_o.pose = std::move(visp_common::pose::toGeometryMsgsPose(cMo));
       pose_c_M_o.header.frame_id = m_frame_id;
       pose_c_M_o.header.stamp = this->get_clock()->now();
-      visp_tracker_common::msg::NamedPose namedPoseMsg_c_M_o;
-      namedPoseMsg_c_M_o.name = "c_M_o";
-      namedPoseMsg_c_M_o.pose = pose_c_M_o;
-      poseArrayMsg.poses.push_back(namedPoseMsg_c_M_o);
-
-      m_poses_pub->publish(poseArrayMsg);
+      m_poses_pub->publish(pose_c_M_o);
 
       // Publish the model
       if (m_visualization_debug && m_is_headless_mode) {

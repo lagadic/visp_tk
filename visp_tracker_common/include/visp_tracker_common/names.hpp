@@ -11,6 +11,6 @@ extern const std::string switch_vismode_srv_name; //!< Name of the service to ac
 
 extern const std::string features2D_topic_name; //!< Name of the topic on which are published 2D features to display in the remote GUI.
 extern const std::string info_strings_topic_name; //!< Name of the topic on which is published some messages to display on screen.
-extern const std::string poses_topic_name; //!< Name of the topic on which are published some poses of interest.
+extern const std::string pose_topic_name; //!< Name of the topic on which are published the pose.
 }
 #endif

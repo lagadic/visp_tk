@@ -35,8 +35,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
     "msg/InfoStrings.msg"
     "msg/NamedFeature.msg"
     "msg/NamedFeatureArray.msg"
-    "msg/NamedPose.msg"
-    "msg/NamedPoseArray.msg"
     "msg/Point2DTuple.msg"
     "msg/Polygon2D.msg"
     DEPENDENCIES geometry_msgs std_msgs vision_msgs # Add packages that above messages depend on
@@ -50,8 +48,7 @@ ament_export_dependencies(rosidl_default_runtime)
 # Libraries #
 # ############
 add_library(${PROJECT_NAME}_library src/names.cpp src/BaseTracker.cpp src/BaseMultiModalTracker.cpp)
-# rosidl_target_interfaces(${PROJECT_NAME}_library
-#   ${PROJECT_NAME} "rosidl_typesupport_cpp")
+add_library(${PROJECT_NAME}::${PROJECT_NAME}_library ALIAS ${PROJECT_NAME}_library)
 
 ament_target_dependencies(${PROJECT_NAME}_library
     ament_index_cpp
@@ -85,6 +82,15 @@ install(
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
+)
+
+install(EXPORT export_${PROJECT_NAME}
+  NAMESPACE ${PROJECT_NAME}::
+  DESTINATION share/${PROJECT_NAME}/cmake
+)
+
+ament_export_include_directories(
+  include
 )
 
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)

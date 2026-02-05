@@ -2,6 +2,7 @@
 #define BASE_TRACKER_HPP
 
 #include <rclcpp/rclcpp.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <std_srvs/srv/trigger.hpp>
@@ -11,7 +12,6 @@
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
-#include <visp_tracker_common/msg/named_pose_array.hpp>
 
 #include <visp3/core/vpCameraParameters.h>
 
@@ -183,7 +183,7 @@ protected:
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; //!< 2D image points publisher, for remote GUI visualization when headless mode is active
   rclcpp::Publisher<visp_tracker_common::msg::InfoStrings>::SharedPtr m_info_strings_pub; //!< Publisher of the infos that are displayed on screen
-  rclcpp::Publisher<visp_tracker_common::msg::NamedPoseArray>::SharedPtr m_poses_pub; //!< Poses publisher, for remote GUI visualization when headless mode is active
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr m_poses_pub; //!< Poses publisher, for remote GUI visualization when headless mode is active
 
   // ----- Display-related attributes -----
   bool m_is_headless_mode = false; //!< True if the GUI is managed by another node

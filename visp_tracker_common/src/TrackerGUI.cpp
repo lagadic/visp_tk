@@ -17,13 +17,14 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   this->declare_parameter("color_qos_queue_depth", 1);
   this->declare_parameter("color_qos_durability", "volatile");
   this->declare_parameter("color_qos_reliability", "reliable");
-  this->declare_parameter("features_topic", "");
-  this->declare_parameter("poses_topic", "");
+  this->declare_parameter("features_topics", std::vector<std::string>());
+  this->declare_parameter("poses_topics", std::vector<std::string>());
+  this->declare_parameter("poses_names", std::vector<std::string>());
   this->declare_parameter("depth_topic", "");
   this->declare_parameter("depth_qos_queue_depth", 1);
   this->declare_parameter("depth_qos_durability", "volatile");
   this->declare_parameter("depth_qos_reliability", "reliable");
-  m_client_node_name = this->declare_parameter<std::string>("client_node", "");
+  m_client_nodes_name = this->declare_parameter<std::vector<std::string>>("client_nodes", std::vector<std::string>());
 
   // // ---- Other parameters ----
   auto use_depth_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -64,69 +65,59 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PUB/SUB                              //
   //////////////////////////////////////////////////////////////////////
-  auto qos_display = rclcpp::QoS(rclcpp::KeepLast(10)).best_effort().durability_volatile();
-  std::string features_topic_name = this->get_parameter("features_topic").as_string();
-  if (!features_topic_name.empty()) {
-    RCLCPP_INFO(this->get_logger(), "Subscribing to features topic '%s'", features_topic_name.c_str());
-    m_feat_2D_sub = this->create_subscription<visp_tracker_common::msg::NamedFeatureArray>(features_topic_name, qos_display, std::bind(&TrackerGUI::features_callback, this, std::placeholders::_1));
-  }
-
-  std::string poses_topic_name = this->get_parameter("poses_topic").as_string();
-  if (!poses_topic_name.empty()) {
-    RCLCPP_INFO(this->get_logger(), "Subscribing to poses topic '%s'", poses_topic_name.c_str());
-    m_poses_sub = this->create_subscription<visp_tracker_common::msg::NamedPoseArray>(poses_topic_name, qos_display, std::bind(&TrackerGUI::poses_callback, this, std::placeholders::_1));
-  }
 
 }
 
 bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
 {
-  if (m_client_node_name.empty()) {
-    RCLCPP_ERROR(this->get_logger(), "client_node parameter was not set");
+  if (m_client_nodes_name.empty()) {
+    RCLCPP_ERROR(this->get_logger(), "client_nodes parameter was not set");
     return false;
   }
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 SERVICES                             //
   //////////////////////////////////////////////////////////////////////
-  std::string quit_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::quit_srv_name;
-  m_client_quit = m_service_node->create_client<std_srvs::srv::Trigger>(quit_srv_name);
-  while (!m_client_quit->wait_for_service(std::chrono::seconds(1))) {
-    if (!rclcpp::ok()) {
-      RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
-      return false;
+  for (const auto &client_name: m_client_nodes_name) {
+    std::string quit_srv_name = std::string("/") + client_name + visp_tracker_common::quit_srv_name;
+    m_clients_quit.emplace_back(m_service_node->create_client<std_srvs::srv::Trigger>(quit_srv_name));
+    while (!m_clients_quit.back()->wait_for_service(std::chrono::seconds(1))) {
+      if (!rclcpp::ok()) {
+        RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+        return false;
+      }
+      RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", quit_srv_name.c_str());
     }
-    RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", quit_srv_name.c_str());
-  }
-  RCLCPP_INFO(this->get_logger(), "service %s is now available", quit_srv_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "service %s is now available", quit_srv_name.c_str());
 
-  std::string switch_tracking_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::switch_tracking_srv_name;
-  m_client_switch_tracking = m_service_node->create_client<std_srvs::srv::Trigger>(switch_tracking_srv_name);
-  while (!m_client_switch_tracking->wait_for_service(std::chrono::seconds(1))) {
-    if (!rclcpp::ok()) {
-      RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
-      return false;
+    std::string switch_tracking_srv_name = std::string("/") + client_name + visp_tracker_common::switch_tracking_srv_name;
+    m_clients_switch_tracking.emplace_back(m_service_node->create_client<std_srvs::srv::Trigger>(switch_tracking_srv_name));
+    while (!m_clients_switch_tracking.back()->wait_for_service(std::chrono::seconds(1))) {
+      if (!rclcpp::ok()) {
+        RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+        return false;
+      }
+      RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_tracking_srv_name.c_str());
     }
-    RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_tracking_srv_name.c_str());
-  }
-  RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_tracking_srv_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_tracking_srv_name.c_str());
 
-  std::string switch_visual_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::switch_vismode_srv_name;
-  m_client_switch_visualization = m_service_node->create_client<std_srvs::srv::Trigger>(switch_visual_srv_name);
-  while (!m_client_switch_visualization->wait_for_service(std::chrono::seconds(1))) {
-    if (!rclcpp::ok()) {
-      RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
-      return false;
+    std::string switch_visual_srv_name = std::string("/") + client_name + visp_tracker_common::switch_vismode_srv_name;
+    m_clients_switch_visualization.emplace_back(m_service_node->create_client<std_srvs::srv::Trigger>(switch_visual_srv_name));
+    while (!m_clients_switch_visualization.back()->wait_for_service(std::chrono::seconds(1))) {
+      if (!rclcpp::ok()) {
+        RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+        return false;
+      }
+      RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_visual_srv_name.c_str());
     }
-    RCLCPP_INFO(this->get_logger(), "service %s not available, waiting again...", switch_visual_srv_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_visual_srv_name.c_str());
   }
-  RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_visual_srv_name.c_str());
 
-  //////////////////////////////////////////////////////////////////////
-  //                        ROS2 PUB/SUB                              //
-  //////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//                        ROS2 PUB/SUB                              //
+//////////////////////////////////////////////////////////////////////
 
-  // ---- RGB-related ----
+// ---- RGB-related ----
   std::string rgb_topic_name = this->get_parameter("color_topic").as_string();
   if (rgb_topic_name.empty()) {
     RCLCPP_ERROR(this->get_logger(), "'color_topic' has not been set");
@@ -181,32 +172,68 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
 
   // ---- info/visual-features -related
   auto qos_infostr_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
-  std::string info_srv_name = std::string("/") + m_client_node_name + visp_tracker_common::info_strings_topic_name;
+  std::string info_srv_name = std::string("/") + m_client_nodes_name[0] + visp_tracker_common::info_strings_topic_name;
   m_info_strings_sub = this->create_subscription<visp_tracker_common::msg::InfoStrings>(info_srv_name, qos_infostr_pub, std::bind(&TrackerGUI::info_callback, this, std::placeholders::_1));
   RCLCPP_INFO(this->get_logger(), "Subscribed to info strings topic '%s'", m_info_strings_sub->get_topic_name());
+
+  auto qos_display = rclcpp::QoS(rclcpp::KeepLast(10)).best_effort().durability_volatile();
+  std::vector<std::string> features_topic_name = this->get_parameter("features_topics").as_string_array();
+  if (!features_topic_name.empty()) {
+    const unsigned int nb_topics = features_topic_name.size();
+    m_feature_array.resize(nb_topics, std::nullopt);
+    for (unsigned int i = 0; i < nb_topics; ++i) {
+      RCLCPP_INFO(this->get_logger(), "Subscribing to features topic '%s'", features_topic_name[i].c_str());
+      m_feat_2D_sub.emplace_back(this->create_subscription<visp_tracker_common::msg::NamedFeatureArray>(features_topic_name[i], qos_display, [this, i](const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg)
+                                                                                                        {
+                                                                                                          std::scoped_lock sl(m_mutex_features);
+                                                                                                          m_feature_array[i] = std::move(*msg);
+                                                                                                        }));
+    }
+  }
+
+  std::vector<std::string> poses_topics_names = this->get_parameter("poses_topics").as_string_array();
+  m_pose_name_array = this->get_parameter("poses_names").as_string_array();
+  if (poses_topics_names.size() != m_pose_name_array.size()) {
+    RCLCPP_ERROR(this->get_logger(), "'poses_names' and 'poses_topics' do not contain the same number of items");
+    return false;
+  }
+  if (!pose_topic_name.empty()) {
+    const unsigned int nb_topics = poses_topics_names.size();
+    m_pose_array.resize(nb_topics, std::nullopt);
+    for (unsigned int i = 0; i < nb_topics; ++i) {
+      RCLCPP_INFO(this->get_logger(), "Subscribing to poses topic '%s'", poses_topics_names[i].c_str());
+      m_poses_sub.emplace_back(this->create_subscription<geometry_msgs::msg::PoseStamped>(poses_topics_names[i], qos_display, [this, i](const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
+                                                                                          {
+                                                                                            std::scoped_lock sl(m_mutex_poses);
+                                                                                            m_pose_array[i] = std::move(*msg);
+                                                                                          }));
+    }
+  }
   return true;
 }
 
 void TrackerGUI::quit()
 {
-  auto result = m_client_quit->async_send_request(m_quit_request);
-  RCLCPP_INFO(this->get_logger(), "Sent a quit request...");
-  // Wait for the result.
-  auto status = rclcpp::spin_until_future_complete(m_service_node, result, std::chrono::seconds(1));
-  if (status == rclcpp::FutureReturnCode::SUCCESS) {
-    RCLCPP_INFO(this->get_logger(), "Got a response !");
-    auto response = result.get();
-    RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-    if (!response->success) {
-      RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+  for (auto &client_quit: m_clients_quit) {
+    auto result = client_quit->async_send_request(m_quit_request);
+    RCLCPP_INFO(this->get_logger(), "Sent a quit request...");
+    // Wait for the result.
+    auto status = rclcpp::spin_until_future_complete(m_service_node, result, std::chrono::seconds(1));
+    if (status == rclcpp::FutureReturnCode::SUCCESS) {
+      RCLCPP_INFO(this->get_logger(), "Got a response !");
+      auto response = result.get();
+      RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+      if (!response->success) {
+        RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+      }
     }
-  }
-  else if (status == rclcpp::FutureReturnCode::TIMEOUT) {
-    m_client_quit->remove_pending_request(result);
-    RCLCPP_ERROR(this->get_logger(), "Calling the quit service resulted in a timeout.");
-  }
-  else {
-    RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+    else if (status == rclcpp::FutureReturnCode::TIMEOUT) {
+      client_quit->remove_pending_request(result);
+      RCLCPP_ERROR(this->get_logger(), "Calling the quit service resulted in a timeout.");
+    }
+    else {
+      RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+    }
   }
   std::scoped_lock sl(m_mutex_run);
   m_run = false;
@@ -291,71 +318,80 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     {
       std::scoped_lock sl(m_mutex_poses);
       if (m_opt_rgb_cam) {
-        for (const auto &named_pose: m_pose_array.poses) {
-          vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(named_pose.pose.pose);
-          vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), named_pose.name, vpColor::red);
+        unsigned int id = 0;
+        for (auto &opt_pose: m_pose_array) {
+          if (opt_pose) {
+            vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(opt_pose->pose);
+            vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), m_pose_name_array[id], vpColor::red);
+          }
+          opt_pose = std::nullopt;
+          ++id;
         }
       }
-      m_pose_array.poses.clear();
     }
 
     // Displaying 2D features, if any
     {
       std::scoped_lock sl(m_mutex_features);
       int idx = 0;
-      for (const auto &named_feature: m_feature_array.features) {
-        vpColor color = vpColor::allColors[idx % vpColor::nbColors];
-        vpDisplay::displayText(m_I, m_display_color->getHeight() -  v_offset * (idx + 1), left_hor_offset, named_feature.name, color);
+      for (auto &feature_array: m_feature_array) {
+        if (!feature_array) {
+          continue;
+        }
+        for (const auto &named_feature: feature_array->features) {
+          vpColor color = vpColor::allColors[idx % vpColor::nbColors];
+          vpDisplay::displayText(m_I, m_display_color->getHeight() -  v_offset * (idx + 1), left_hor_offset, named_feature.name, color);
 
-        // Displaying 2D points
-        switch (m_features_type) {
-        case FeaturesType::CROSS:
-        {
-          for (const auto &ip: named_feature.image_points) {
-            vpDisplay::displayCross(m_I, ip.y, ip.x, 10, color, m_features_thickness);
+          // Displaying 2D points
+          switch (m_features_type) {
+          case FeaturesType::CROSS:
+          {
+            for (const auto &ip: named_feature.image_points) {
+              vpDisplay::displayCross(m_I, ip.y, ip.x, 10, color, m_features_thickness);
+            }
+            break;
           }
-          break;
-        }
-        case FeaturesType::POINT:
-        {
-          for (const auto &ip: named_feature.image_points) {
-            vpDisplay::displayPoint(m_I, ip.y, ip.x, color, m_features_thickness);
+          case FeaturesType::POINT:
+          {
+            for (const auto &ip: named_feature.image_points) {
+              vpDisplay::displayPoint(m_I, ip.y, ip.x, color, m_features_thickness);
+            }
+            break;
           }
-          break;
-        }
-        default:
-          RCLCPP_WARN_STREAM(this->get_logger(), "Visualization type for the 2D features is unknown, available types are: " << getAvailableFeaturesType());
-        }
-
-        // Displaying ellipses
-        for (const auto &ellipse: named_feature.ellipses) {
-          vpDisplay::displayEllipse(m_I, vpImagePoint(ellipse.center.y, ellipse.center.x), ellipse.n20, ellipse.n11, ellipse.n02, true, color, m_features_thickness);
-        }
-
-        // Displaying lines
-        for (const auto &line: named_feature.lines) {
-          vpDisplay::displayLine(m_I, vpImagePoint(line.start.y, line.start.x), vpImagePoint(line.end.y, line.end.x), color, m_features_thickness);
-        }
-
-        // Displaying polygons
-        for (const auto &poly: named_feature.polygons) {
-          std::vector<vpImagePoint> poly_points;
-          poly_points.push_back(vpImagePoint(poly.lines[0].start.y, poly.lines[0].start.x));
-          // Displaying each line of the polygon
-          for (const auto &line: poly.lines) {
-            poly_points.push_back(vpImagePoint(line.end.y, line.end.x));
+          default:
+            RCLCPP_WARN_STREAM(this->get_logger(), "Visualization type for the 2D features is unknown, available types are: " << getAvailableFeaturesType());
           }
-          vpDisplay::displayPolygon(m_I, poly_points, color, m_features_thickness);
-        }
 
-        // Displaying rectangles
-        for (const auto &rect: named_feature.rectangles) {
-          vpDisplay::displayRectangle(m_I, vpImagePoint(rect.start.y, rect.start.x), vpImagePoint(rect.end.y, rect.end.x), color, false, m_features_thickness);
-        }
+          // Displaying ellipses
+          for (const auto &ellipse: named_feature.ellipses) {
+            vpDisplay::displayEllipse(m_I, vpImagePoint(ellipse.center.y, ellipse.center.x), ellipse.n20, ellipse.n11, ellipse.n02, true, color, m_features_thickness);
+          }
 
-        ++idx;
+          // Displaying lines
+          for (const auto &line: named_feature.lines) {
+            vpDisplay::displayLine(m_I, vpImagePoint(line.start.y, line.start.x), vpImagePoint(line.end.y, line.end.x), color, m_features_thickness);
+          }
+
+          // Displaying polygons
+          for (const auto &poly: named_feature.polygons) {
+            std::vector<vpImagePoint> poly_points;
+            poly_points.push_back(vpImagePoint(poly.lines[0].start.y, poly.lines[0].start.x));
+            // Displaying each line of the polygon
+            for (const auto &line: poly.lines) {
+              poly_points.push_back(vpImagePoint(line.end.y, line.end.x));
+            }
+            vpDisplay::displayPolygon(m_I, poly_points, color, m_features_thickness);
+          }
+
+          // Displaying rectangles
+          for (const auto &rect: named_feature.rectangles) {
+            vpDisplay::displayRectangle(m_I, vpImagePoint(rect.start.y, rect.start.x), vpImagePoint(rect.end.y, rect.end.x), color, false, m_features_thickness);
+          }
+
+          ++idx;
+        }
+        feature_array = std::nullopt;
       }
-      m_feature_array.features.clear();
     }
 
     vpDisplay::flush(m_I);
@@ -370,37 +406,41 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     switch (button) {
     case vpMouseButton::button1:
     {
-      auto result = m_client_switch_tracking->async_send_request(m_switch_request);
-      RCLCPP_INFO(this->get_logger(), "Sent a switch tracking request...");
-      // Wait for the result.
-      if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
-        RCLCPP_INFO(this->get_logger(), "Got a response !");
-        auto response = result.get();
-        RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-        if (!response->success) {
-          RCLCPP_INFO(this->get_logger(), "Stopping tracking");
+      for (auto &client_switch_tracking: m_clients_switch_tracking) {
+        auto result = client_switch_tracking->async_send_request(m_switch_request);
+        RCLCPP_INFO(this->get_logger(), "Sent a switch tracking request...");
+        // Wait for the result.
+        if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
+          RCLCPP_INFO(this->get_logger(), "Got a response !");
+          auto response = result.get();
+          RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+          if (!response->success) {
+            RCLCPP_INFO(this->get_logger(), "Stopping tracking");
+          }
         }
-      }
-      else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+        else {
+          RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+        }
       }
       break;
     }
     case vpMouseButton::button2:
     {
-      auto result = m_client_switch_visualization->async_send_request(m_switch_request);
-      RCLCPP_INFO(this->get_logger(), "Sent a switch visualization request...");
-      // Wait for the result.
-      if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
-        RCLCPP_INFO(this->get_logger(), "Got a response !");
-        auto response = result.get();
-        RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-        if (!response->success) {
-          RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+      for (auto &client_switch_visualization: m_clients_switch_visualization) {
+        auto result = client_switch_visualization->async_send_request(m_switch_request);
+        RCLCPP_INFO(this->get_logger(), "Sent a switch visualization request...");
+        // Wait for the result.
+        if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
+          RCLCPP_INFO(this->get_logger(), "Got a response !");
+          auto response = result.get();
+          RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+          if (!response->success) {
+            RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+          }
         }
-      }
-      else {
-        RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+        else {
+          RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+        }
       }
       break;
     }
@@ -473,22 +513,10 @@ void TrackerGUI::depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
   }
 }
 
-void TrackerGUI::features_callback(const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg)
-{
-  std::scoped_lock sl(m_mutex_features);
-  m_feature_array = std::move(*msg);
-}
-
 void TrackerGUI::info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg)
 {
   std::scoped_lock sl(m_mutex_info);
   m_vec_info = std::move(*msg);
-}
-
-void TrackerGUI::poses_callback(const visp_tracker_common::msg::NamedPoseArray::ConstSharedPtr msg)
-{
-  std::scoped_lock sl(m_mutex_poses);
-  m_pose_array = std::move(*msg);
 }
 
 //////////////////////////////////////////////////////////////////////

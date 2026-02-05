@@ -6,6 +6,7 @@
 // ---- ROS Images ----
 #include <image_transport/image_transport.hpp>
 // ---- ROS Messages ----
+#include <geometry_msgs/msg/pose_stamped.hpp>
 #include <sensor_msgs/msg/image.hpp>
 // ---- ROS Services ----
 #include <std_srvs/srv/trigger.hpp>
@@ -17,7 +18,6 @@
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
-#include <visp_tracker_common/msg/named_pose_array.hpp>
 // ---- ViSP includes ----
 #include <visp3/core/vpConfig.h>
 #include <visp3/core/vpCameraParameters.h>
@@ -114,25 +114,11 @@ protected:
   void depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
 
   /**
-   * @brief Callback for named 2D features.
-   *
-   * @param msg
-   */
-  void features_callback(const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg);
-
-  /**
    * @brief Callback for the informational strings to display.
    *
    * @param msg
    */
   void info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg);
-
-  /**
-   * @brief Callback for named 2D poses.
-   *
-   * @param msg
-   */
-  void poses_callback(const visp_tracker_common::msg::NamedPoseArray::ConstSharedPtr msg);
   //@}
 
   /** @name  Enum and associated tools */
@@ -179,10 +165,10 @@ protected:
   // ----- Services -----
   rclcpp::Node::SharedPtr m_service_node; //!< Node to wait until a service is completed.
   std_srvs::srv::Trigger::Request::SharedPtr m_quit_request; //!< Request for the quit service.
-  std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>> m_client_quit; //!< Client to the quit service.
+  std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_quit; //!< Client to the quit service.
   std_srvs::srv::Trigger::Request::SharedPtr m_switch_request; //!< Request for any switch service.
-  std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>> m_client_switch_tracking; //!< Client to turn ON/OFF the tracking.
-  std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>> m_client_switch_visualization; //!< Client to turn ON/OFF the visualization of 2D features.
+  std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_switch_tracking; //!< Client to turn ON/OFF the tracking.
+  std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_switch_visualization; //!< Client to turn ON/OFF the visualization of 2D features.
 
   // ----- Subscribers -----
   rclcpp::Node::SharedPtr m_it_node;
@@ -193,12 +179,13 @@ protected:
   std::shared_ptr<image_transport::TransportHints> m_hints_depth;
   image_transport::Subscriber m_sub_depth;
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_sub; //!< Subscriber to the RGB camera topic.
-  rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_feat_2D_sub; //!< Subscriber to the 2D features topic.
+  std::vector<rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr> m_feat_2D_sub; //!< Subscriber to the 2D features topic.
   rclcpp::Subscription<visp_tracker_common::msg::InfoStrings>::SharedPtr m_info_strings_sub; //!< Subscriber to the info strings topic.
-  rclcpp::Subscription<visp_tracker_common::msg::NamedPoseArray>::SharedPtr m_poses_sub; //!< Subscriber to the poses topic.
-  visp_tracker_common::msg::NamedFeatureArray m_feature_array; //!< The 2D features published by the tracker that must be displayed.
+  std::vector<rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr> m_poses_sub; //!< Subscribers to the pose topics.
+  std::vector<std::optional<visp_tracker_common::msg::NamedFeatureArray>> m_feature_array; //!< The 2D features published by the tracker that must be displayed.
   std::mutex m_mutex_features; //!< Mutex that protects the 2D features array.
-  visp_tracker_common::msg::NamedPoseArray m_pose_array; //!< The named poses published by the tracker.
+  std::vector<std::optional<geometry_msgs::msg::PoseStamped>> m_pose_array; //!< The pose(s) published by the tracker(s).
+  std::vector<std::string> m_pose_name_array; //!< The name(s) of the pose(s)
   std::mutex m_mutex_poses; //!< Mutex that protects the poses.
   visp_tracker_common::msg::InfoStrings m_vec_info; //!< Strings to display on screen to give info to the user.
   std::mutex m_mutex_info; //!< Mutex that protects the info.
@@ -222,7 +209,7 @@ protected:
   // ----- Others -----
   bool m_run = true; //!< When set to false, the TrackerGUI will shutdown.
   std::mutex m_mutex_run; //!< Mutex that protects m_run.
-  std::string m_client_node_name; //!< Name of the tracker node, that prepends the different topics.
+  std::vector<std::string> m_client_nodes_name; //!< Name of the tracker(s) node(s), that prepends the different topics.
 };
 }
 
