@@ -73,7 +73,7 @@ public:
    * @return true Initialization went well.
    * @return false A problem occured.
    */
-  bool init(std::shared_ptr<rclcpp::Node> self);
+  virtual bool init(std::shared_ptr<rclcpp::Node> self);
 
   /**
    * @brief Indicates if the node must still run or should be stopped.
@@ -86,7 +86,7 @@ public:
   /**
    * @brief Method to properly stop the node.
    */
-  void quit();
+  virtual void quit();
 
 protected:
   /** @name  Callbacks */
@@ -97,28 +97,41 @@ protected:
    *
    * @param msg Camera parameters message
    */
-  void camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
+  virtual void camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
   /**
    * @brief Color image callback, that manages the display of both images
    *
    * @param msg The color image
    */
-  void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
+  virtual void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
 
   /**
    * @brief Callback for the depth image, if used.
    *
    * @param msg
    */
-  void depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
+  virtual void depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
 
   /**
    * @brief Callback for the informational strings to display.
    *
    * @param msg
    */
-  void info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg);
+  virtual void info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg);
+  //@}
+
+  /** @name  Services calls */
+  //@{
+  /**
+   * @brief Ask the tracker(s) to turn ON/OFF tracking
+   */
+  virtual void switch_tracking();
+
+  /**
+   * @brief Ask the tracker(s) to turn ON/OFF visualization debug.
+   */
+  virtual void switch_visualization();
   //@}
 
   /** @name  Enum and associated tools */

@@ -243,6 +243,45 @@ void TrackerGUI::quit()
   m_it_node.reset();
 }
 
+void TrackerGUI::switch_tracking()
+{
+  for (auto &client_switch_tracking: m_clients_switch_tracking) {
+    auto result = client_switch_tracking->async_send_request(m_switch_request);
+    RCLCPP_INFO(this->get_logger(), "Sent a switch tracking request...");
+    // Wait for the result.
+    if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
+      RCLCPP_INFO(this->get_logger(), "Got a response !");
+      auto response = result.get();
+      RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+      if (!response->success) {
+        RCLCPP_INFO(this->get_logger(), "Stopping tracking");
+      }
+    }
+    else {
+      RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+    }
+  }
+}
+
+void TrackerGUI::switch_visualization()
+{
+  for (auto &client_switch_visualization: m_clients_switch_visualization) {
+    auto result = client_switch_visualization->async_send_request(m_switch_request);
+    RCLCPP_INFO(this->get_logger(), "Sent a switch visualization request...");
+    // Wait for the result.
+    if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
+      RCLCPP_INFO(this->get_logger(), "Got a response !");
+      auto response = result.get();
+      RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
+      if (!response->success) {
+        RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
+      }
+    }
+    else {
+      RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
+    }
+  }
+}
 //////////////////////////////////////////////////////////////////////
 //                        ROS2 SUBCRIPTIONS                         //
 //////////////////////////////////////////////////////////////////////
@@ -406,42 +445,12 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     switch (button) {
     case vpMouseButton::button1:
     {
-      for (auto &client_switch_tracking: m_clients_switch_tracking) {
-        auto result = client_switch_tracking->async_send_request(m_switch_request);
-        RCLCPP_INFO(this->get_logger(), "Sent a switch tracking request...");
-        // Wait for the result.
-        if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
-          RCLCPP_INFO(this->get_logger(), "Got a response !");
-          auto response = result.get();
-          RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-          if (!response->success) {
-            RCLCPP_INFO(this->get_logger(), "Stopping tracking");
-          }
-        }
-        else {
-          RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
-        }
-      }
+      switch_tracking();
       break;
     }
     case vpMouseButton::button2:
     {
-      for (auto &client_switch_visualization: m_clients_switch_visualization) {
-        auto result = client_switch_visualization->async_send_request(m_switch_request);
-        RCLCPP_INFO(this->get_logger(), "Sent a switch visualization request...");
-        // Wait for the result.
-        if (rclcpp::spin_until_future_complete(m_service_node, result) == rclcpp::FutureReturnCode::SUCCESS) {
-          RCLCPP_INFO(this->get_logger(), "Got a response !");
-          auto response = result.get();
-          RCLCPP_INFO(this->get_logger(), "Message : '%s'", response->message.c_str());
-          if (!response->success) {
-            RCLCPP_INFO(this->get_logger(), "Stop visualization debug ...");
-          }
-        }
-        else {
-          RCLCPP_ERROR(this->get_logger(), "Failed to call switch service");
-        }
-      }
+      switch_visualization();
       break;
     }
     case vpMouseButton::button3:
