@@ -72,6 +72,7 @@ protected:
   std::string m_family_name; //!< Name of the tag family.
   float m_tag_size; //!< Size of the tag, in meters.
   vpImage<unsigned char> m_I; //!< Color image on which the detection is performed.
+  std::optional<int> m_opt_id = std::nullopt; //!< If set, the ID of the tag whose pose must be published
 };
 }
 

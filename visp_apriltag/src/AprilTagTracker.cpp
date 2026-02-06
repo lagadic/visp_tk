@@ -18,6 +18,10 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
   tag_size_param_desc.description = "This parameter indicates the size of the tag, expressed in meters. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
   this->declare_parameter<double>("tag_size", tag_size_param_desc);
 
+  auto id_pub_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  id_pub_param_desc.description = "If set, the ID of the tag whose pose must be published on the pose topic.";
+  this->declare_parameter<int>("id_published", -1, id_pub_param_desc);
+
   auto tag_family_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   tag_family_param_desc.description = "This parameter indicates the family of the tag. Available families are " + vpDetectorAprilTag::getAvailableTagFamily();
   this->declare_parameter<std::string>("tag_family", tag_family_param_desc);
@@ -63,6 +67,12 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
 bool AprilTagTracker::init_tracker()
 {
   RCLCPP_INFO(this->get_logger(), "This node does not require an initialization method");
+  auto id_pub_param = rclcpp::Parameter();
+  this->get_parameter("id_published", id_pub_param);
+  m_opt_id = (id_pub_param.as_int() >= 0 ? std::optional<int>(id_pub_param.as_int()) : std::nullopt);
+  if (m_opt_id) {
+    RCLCPP_INFO(this->get_logger(), "The pose of the tag ID %d will be published on the topic %s.", *m_opt_id, m_poses_pub->get_topic_name());
+  }
 
   if (m_config_file.empty()) {
     auto tag_size_param = rclcpp::Parameter();
@@ -253,6 +263,12 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         fromImagePoint(tag_corners[2], detectionMsg.corners[2]);
         fromImagePoint(tag_corners[3], detectionMsg.corners[3]);
         detectionArray.detections.push_back(detectionMsg);
+
+        if (m_opt_id) {
+          if (tags_IDs[i] == *m_opt_id) {
+            m_poses_pub->publish(stamped_pose);
+          }
+        }
 
         if (m_is_headless_mode && m_visualization_debug) {
           // Publish the tag corners
