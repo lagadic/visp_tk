@@ -44,7 +44,7 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->declare_parameter("init_method", initializationMethodToString(BaseTracker::CLICK), init_method_desc);
 
   auto init_topic_desc = rcl_interfaces::msg::ParameterDescriptor {};
-  init_topic_desc.description = "If 'init_method' is set to '" + initializationMethodToString(BaseTracker::TOPIC), "', this parameter must be set to the topic the tracker must use to get the init pose.";
+  init_topic_desc.description = "If 'init_method' is set to '" + initializationMethodToString(BaseTracker::TOPIC) + "', this parameter must be set to the topic the tracker must use to get the init pose.";
   this->declare_parameter("init_topic", "", init_topic_desc);
 
   // // ---- Parameters related to the services ----
