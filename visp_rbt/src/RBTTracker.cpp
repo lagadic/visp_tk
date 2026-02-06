@@ -270,9 +270,10 @@ void RBTTracker::track()
     m_tracker_cams_set = true;
   }
 
-  // Check if frame has to be displayed
+  bool display_frame = false;
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-  bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+  // Check if frame has to be displayed
+  display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
   if (display_frame) {
 
@@ -298,94 +299,23 @@ void RBTTracker::track()
 #endif
 
   vpHomogeneousMatrix cMo;
+  bool tracking_successful = false;
   if (m_has_to_track) {
     RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
     if (!m_tracker_initialized) {
-      if (m_init_method == BaseTracker::CLICK) {
-#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-        RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
-        m_tracker.initClick(m_Ic, m_init_file_path, true);
-        m_tracker.getPose(cMo);
-        m_tracker_initialized = true;
-        if (m_is_headless_mode) {
-          vpDisplay::close(m_I);
-          vpDisplay::close(m_Ic);
-          m_display_uchar.reset();
-          m_display.reset();
-          // Depth display is not created in headless mode, no need to close it nor to reset it
-          m_display_initialized = false;
-          display_frame = false;
-        }
-#else
-        throw(vpException(vpException::fatalError, "The tracker cannot be initialized by click if the module visp_gui is not available and/or if a GUI library is not installed. See https://visp-doc.inria.fr/doxygen/visp-daily/supported-third-parties.html"));
-#endif
-      }
-      else {
-        throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click is handled."));
-      }
-      RCLCPP_DEBUG(this->get_logger(), "Done init");
+      m_tracker_initialized = init_tracking(cMo, display_frame);
     }
 
-    double t_start = vpTime::measureTimeMs();
-    vpRBTrackingResult result;
-    if (m_depth_is_required) {
-      result = m_tracker.track(m_I, m_Ic, m_I_depth);
-    }
-    else {
-      result = m_tracker.track(m_I, m_Ic);
-    }
-    double t_end_tracking = vpTime::measureTimeMs();
-    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
-    std::string t_string = std::to_string(t_end_tracking - t_start);
-    std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
-    RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
+    std::vector<std::string> vec_info; // Vector that contains info to display on screen
+    tracking_successful = perform_tracking(cMo, vec_info);
 
-    if ((result.getStoppingReason() == vpRBTrackingStoppingReason::CONVERGENCE_CRITERION) || (result.getStoppingReason() == vpRBTrackingStoppingReason::MAX_ITERS)) {
-      m_tracker.getPose(cMo);
-      RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
-    }
-    else {
-      switch (result.getStoppingReason()) {
-      case vpRBTrackingStoppingReason::EXCEPTION:
-      {
-        RCLCPP_WARN_STREAM(this->get_logger(), "Encountered an exception during tracking, pose was not updated!" << std::endl);
-        break;
-      }
-      case vpRBTrackingStoppingReason::NOT_ENOUGH_FEATURES:
-      {
-        RCLCPP_WARN_STREAM(this->get_logger(), "There were not enough feature to perform tracking!" << std::endl);
-        break;
-      }
-      case vpRBTrackingStoppingReason::OBJECT_NOT_IN_IMAGE:
-      {
-        RCLCPP_WARN_STREAM(this->get_logger(), "Object is not in image!" << std::endl);
-        break;
-      }
-      default:
-      { }
-      }
-      m_tracker_initialized = false;
-    }
-
-    if (m_tracker_initialized) {
+    if (tracking_successful) {
        // Publish the poses
       geometry_msgs::msg::PoseStamped pose_c_M_o;
       pose_c_M_o.pose = std::move(visp_common::pose::toGeometryMsgsPose(cMo));
       pose_c_M_o.header.frame_id = m_frame_id;
       pose_c_M_o.header.stamp = this->get_clock()->now();
       m_poses_pub->publish(pose_c_M_o);
-
-      // Fill info strings
-      std::vector<std::string> vec_info; // Vector that contains info to display on screen
-      vec_info.push_back(tracking_time);
-      {
-        auto drift_detector = m_tracker.getDriftDetector();
-        if (drift_detector) {
-          std::stringstream ss;
-          ss << "Drift score: " << drift_detector->getScore();
-          vec_info.push_back(ss.str());
-        }
-      }
 
       // Manage info strings publication
       if (m_info_strings.info_strings.size() == m_info_nb_static) {
@@ -418,7 +348,7 @@ void RBTTracker::track()
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   if (display_frame) {
-    if (m_tracker_initialized && m_has_to_track) {
+    if (tracking_successful) {
       m_tracker.display(m_I, m_Ic, m_I_depth_display);
       vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
     }
@@ -460,6 +390,101 @@ void RBTTracker::track()
     }
   }
 #endif
+}
+
+bool RBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
+{
+  if (m_init_method == BaseTracker::CLICK) {
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+    RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
+    m_tracker.initClick(m_Ic, m_init_file_path, true);
+    m_tracker.getPose(cMo);
+    m_tracker_initialized = true;
+    if (m_is_headless_mode) {
+      vpDisplay::close(m_I);
+      vpDisplay::close(m_Ic);
+      m_display_uchar.reset();
+      m_display.reset();
+      // Depth display is not created in headless mode, no need to close it nor to reset it
+      m_display_initialized = false;
+      display_frame = false;
+    }
+#else
+    throw(vpException(vpException::fatalError, "The tracker cannot be initialized by click if the module visp_gui is not available and/or if a GUI library is not installed. See https://visp-doc.inria.fr/doxygen/visp-daily/supported-third-parties.html"));
+#endif
+  }
+  else if (m_init_method == BaseTracker::TOPIC) {
+    if (!m_opt_init_pose) {
+      return false;
+    }
+    if (m_frame_id != m_opt_init_pose->header.frame_id) {
+      RCLCPP_ERROR_STREAM(this->get_logger(), "Init pose is expressed in the '" << m_opt_init_pose->header.frame_id << "' frame while the tracker works in the '" << m_frame_id << "' frame.");
+      return false;
+    }
+    m_tracker.setPose(visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose));
+  }
+  else {
+    throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click or by topic is handled."));
+  }
+  RCLCPP_DEBUG(this->get_logger(), "Done init");
+  return true;
+}
+
+bool RBTTracker::perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info)
+{
+  double t_start = vpTime::measureTimeMs();
+  vpRBTrackingResult result;
+  if (m_depth_is_required) {
+    result = m_tracker.track(m_I, m_Ic, m_I_depth);
+  }
+  else {
+    result = m_tracker.track(m_I, m_Ic);
+  }
+  double t_end_tracking = vpTime::measureTimeMs();
+  static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+  std::string t_string = std::to_string(t_end_tracking - t_start);
+  std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+  RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
+
+  if ((result.getStoppingReason() == vpRBTrackingStoppingReason::CONVERGENCE_CRITERION) || (result.getStoppingReason() == vpRBTrackingStoppingReason::MAX_ITERS)) {
+    m_tracker.getPose(cMo);
+  }
+  else {
+    switch (result.getStoppingReason()) {
+    case vpRBTrackingStoppingReason::EXCEPTION:
+    {
+      RCLCPP_WARN_STREAM(this->get_logger(), "Encountered an exception during tracking, pose was not updated!" << std::endl);
+      break;
+    }
+    case vpRBTrackingStoppingReason::NOT_ENOUGH_FEATURES:
+    {
+      RCLCPP_WARN_STREAM(this->get_logger(), "There were not enough feature to perform tracking!" << std::endl);
+      break;
+    }
+    case vpRBTrackingStoppingReason::OBJECT_NOT_IN_IMAGE:
+    {
+      RCLCPP_WARN_STREAM(this->get_logger(), "Object is not in image!" << std::endl);
+      break;
+    }
+    default:
+    {
+      throw(vpException(vpException::notImplementedError, "RBT tracking result unknown"));
+    }
+    }
+    m_tracker_initialized = false;
+    return false;
+  }
+  vec_info.push_back(tracking_time);
+  {
+    auto drift_detector = m_tracker.getDriftDetector();
+    if (drift_detector) {
+      std::stringstream ss;
+      ss << "Drift score: " << drift_detector->getScore();
+      vec_info.push_back(ss.str());
+    }
+  }
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
+  return true;
 }
 
 }
