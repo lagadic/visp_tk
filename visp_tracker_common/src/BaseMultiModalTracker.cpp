@@ -101,6 +101,9 @@ bool BaseMultiModalTracker::init()
       RCLCPP_ERROR(this->get_logger(), "'depth_stream_topic_name' parameter was not set, so the depth stream subscriber is ill-initialized.");
       return false;
     }
+    else {
+      RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic %s", m_depth_stream_name.c_str());
+    }
 
     rmw_qos_profile_t streams_qos = rmw_qos_profile_default;
     std::string durability_name = this->get_parameter("stream_qos_durability").as_string();

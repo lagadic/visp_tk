@@ -16,6 +16,8 @@
   <depend>sensor_msgs</depend>
   <depend>visp_common</depend>
   <depend>geometry_msgs</depend>
+  <depend> tf2 </depend>
+  <depend> tf2_ros </depend>
   <depend>visp_tracker_common</depend>
 
   <test_depend>ament_lint_auto</test_depend>

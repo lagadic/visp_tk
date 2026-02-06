@@ -42,6 +42,14 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   tracker_names_desc.description = "When using an XML file, this parameter must be set as an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter 'tracker_types'.";
   this->declare_parameter<std::vector<std::string>>("tracker_names", std::vector<std::string>(), tracker_names_desc);
 
+  auto ref_tracker_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  ref_tracker_desc.description = "When set, the extrinsics will be loaded from a TF2 topic and this parameter must be a vector of size 2 such as [\"${REF_TRACKER_NAME}\",\"${REF_TRACKER_FRAME_NAME}\"]. The parameter 'other_tracker' must also be set.";
+  this->declare_parameter<std::vector<std::string>>("reference_tracker", std::vector<std::string>(), ref_tracker_desc);
+
+  auto other_tracker_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  other_tracker_desc.description = "When set, the extrinsics will be loaded from a TF2 topic and this parameter must be a vector of size 2 such as [\"${OTHER_TRACKER_NAME}\",\"${OTHER_TRACKER_FRAME_NAME}\"]. The parameter 'reference_tracker' must also be set.";
+  this->declare_parameter<std::vector<std::string>>("other_tracker", std::vector<std::string>(), other_tracker_desc);
+
   auto detect_failure_param = rclcpp::Parameter();
   auto detect_failure_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   detect_failure_param_desc.description = "This parameter permits to activate the detection of tracking failure based on the projection error.";
@@ -105,6 +113,32 @@ bool MBTTracker::init()
     else {
       m_tracker->loadModel(m_rgb_model, true);
     }
+  }
+
+  std::vector<std::string> ref_tracker = this->get_parameter("reference_tracker").as_string_array();
+  std::vector<std::string> other_tracker = this->get_parameter("other_tracker").as_string_array();
+  if (ref_tracker.size() != other_tracker.size()) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "'reference_tracker' size(" << ref_tracker.size() << ") and 'other_tracker' size(" << other_tracker.size() << ") must be equal.");
+    return false;
+  }
+  if (((m_color_trackers_name.size() + m_depth_trackers_name.size() < 2)) && (other_tracker.size() != 0)) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), std::string("Extrinsics parameters are not required because there is only one type of tracker (") << (m_color_trackers_name.size() !=0 ? std::string("RGB") : std::string("depth")) << std::string(")."));
+    return false;
+  }
+  if (other_tracker.size() == 2) {
+    RCLCPP_INFO(this->get_logger(), "Node will subscribe to TF2 topics to get the extrinsics parameters");
+    m_tf_buffer = std::make_unique<tf2_ros::Buffer>(this->get_clock());
+    m_tf_listener = std::make_shared<tf2_ros::TransformListener>(*m_tf_buffer);
+
+    m_ref_cam.m_tracker_name = ref_tracker[0];
+    m_ref_cam.m_frame_name = ref_tracker[1];
+
+    m_other_cam.m_tracker_name = other_tracker[0];
+    m_other_cam.m_frame_name = other_tracker[1];
+  }
+  else if (other_tracker.size() != 0) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "'reference_tracker' and 'other_tracker' are expected to have a size of 2 (given " << other_tracker.size() << ") and be of the format [\"${TRACKER_NAME}\",\"${TRACKER_FRAME_NAME}\"]");
+    return false;
   }
   return true;
 }
@@ -516,8 +550,33 @@ void MBTTracker::track()
     m_tracker_cams_set = true;
   }
 
-  // Check if frame has to be displayed
+  if (m_tf_listener && !m_extrinsics_set) {
+    geometry_msgs::msg::TransformStamped other_M_ref;
+    const std::string &fromFrame = m_other_cam.m_frame_name;
+    const std::string &toFrame = m_ref_cam.m_frame_name;
+    // Look up for the transformation between reference camera frame and the other camera frame
+    try {
+      other_M_ref = m_tf_buffer->lookupTransform(
+        fromFrame, toFrame,
+        tf2::TimePointZero);
+    }
+    catch (const tf2::TransformException &ex) {
+      RCLCPP_INFO(
+        this->get_logger(), "Could not get %s_M_ %s: %s",
+        fromFrame.c_str(), toFrame.c_str(), ex.what());
+      return;
+    }
+
+    std::map< std::string, vpHomogeneousMatrix > mapOfCameraTransformations;
+    mapOfCameraTransformations[m_other_cam.m_tracker_name] = visp_common::pose::toVispHomogeneousMatrix(other_M_ref.transform);
+    m_tracker->setReferenceCameraName(m_ref_cam.m_tracker_name);
+    m_tracker->setCameraTransformationMatrix(mapOfCameraTransformations);
+    m_extrinsics_set = true;
+  }
+
+
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+  // Check if frame has to be displayed
   bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
   if (display_frame) {
