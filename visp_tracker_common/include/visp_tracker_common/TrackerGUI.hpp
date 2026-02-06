@@ -14,7 +14,6 @@
 #include <visp_common/pose.hpp>
 #include <visp_common/camera.hpp>
 #include <visp_common/image.hpp>
-#include <visp_common/qos.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/april_tag_detection_array.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>

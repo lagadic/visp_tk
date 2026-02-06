@@ -1,7 +1,5 @@
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
 
-#include <visp_common/qos.hpp>
-
 namespace visp_tracker_common
 {
 BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool &does_publish_features) : BaseTracker(name, does_publish_features)
