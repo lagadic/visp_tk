@@ -70,7 +70,7 @@ protected:
   // ----- Tracking-related attributes -----
   vpDetectorAprilTag m_tag_detector; //!< The detector.
   std::string m_family_name; //!< Name of the tag family.
-  double m_tag_size; //!< Size of the tag, in meters.
+  float m_tag_size; //!< Size of the tag, in meters.
   vpImage<unsigned char> m_I; //!< Color image on which the detection is performed.
 };
 }

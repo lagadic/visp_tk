@@ -17,6 +17,7 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   this->declare_parameter("color_qos_queue_depth", 1);
   this->declare_parameter("color_qos_durability", "volatile");
   this->declare_parameter("color_qos_reliability", "reliable");
+  this->declare_parameter("apriltag_topics", std::vector<std::string>());
   this->declare_parameter("features_topics", std::vector<std::string>());
   this->declare_parameter("poses_topics", std::vector<std::string>());
   this->declare_parameter("poses_names", std::vector<std::string>());
@@ -113,11 +114,11 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
     RCLCPP_INFO(this->get_logger(), "service %s is now available", switch_visual_srv_name.c_str());
   }
 
-//////////////////////////////////////////////////////////////////////
-//                        ROS2 PUB/SUB                              //
-//////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
+  //                        ROS2 PUB/SUB                              //
+  //////////////////////////////////////////////////////////////////////
 
-// ---- RGB-related ----
+  // ---- RGB-related ----
   std::string rgb_topic_name = this->get_parameter("color_topic").as_string();
   if (rgb_topic_name.empty()) {
     RCLCPP_ERROR(this->get_logger(), "'color_topic' has not been set");
@@ -180,13 +181,13 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
   std::vector<std::string> features_topic_name = this->get_parameter("features_topics").as_string_array();
   if (!features_topic_name.empty()) {
     const unsigned int nb_topics = features_topic_name.size();
-    m_feature_array.resize(nb_topics, std::nullopt);
+    m_feature_opt_vec.resize(nb_topics, std::nullopt);
     for (unsigned int i = 0; i < nb_topics; ++i) {
       RCLCPP_INFO(this->get_logger(), "Subscribing to features topic '%s'", features_topic_name[i].c_str());
       m_feat_2D_sub.emplace_back(this->create_subscription<visp_tracker_common::msg::NamedFeatureArray>(features_topic_name[i], qos_display, [this, i](const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg)
                                                                                                         {
                                                                                                           std::scoped_lock sl(m_mutex_features);
-                                                                                                          m_feature_array[i] = std::move(*msg);
+                                                                                                          m_feature_opt_vec[i] = std::move(*msg);
                                                                                                         }));
     }
   }
@@ -197,16 +198,31 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
     RCLCPP_ERROR(this->get_logger(), "'poses_names' and 'poses_topics' do not contain the same number of items");
     return false;
   }
-  if (!pose_topic_name.empty()) {
+  if (!poses_topics_names.empty()) {
     const unsigned int nb_topics = poses_topics_names.size();
-    m_pose_array.resize(nb_topics, std::nullopt);
+    m_pose_opt_vec.resize(nb_topics, std::nullopt);
     for (unsigned int i = 0; i < nb_topics; ++i) {
       RCLCPP_INFO(this->get_logger(), "Subscribing to poses topic '%s'", poses_topics_names[i].c_str());
       m_poses_sub.emplace_back(this->create_subscription<geometry_msgs::msg::PoseStamped>(poses_topics_names[i], qos_display, [this, i](const geometry_msgs::msg::PoseStamped::ConstSharedPtr msg)
                                                                                           {
                                                                                             std::scoped_lock sl(m_mutex_poses);
-                                                                                            m_pose_array[i] = std::move(*msg);
+                                                                                            m_pose_opt_vec[i] = std::move(*msg);
                                                                                           }));
+    }
+  }
+
+  std::vector<std::string> tag_topics_names = this->get_parameter("apriltag_topics").as_string_array();
+  if (!tag_topics_names.empty()) {
+    auto qos_tag_info_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
+    const unsigned int nb_topics = tag_topics_names.size();
+    m_apriltag_opt_vec.resize(nb_topics, std::nullopt);
+    for (unsigned int i = 0; i < nb_topics; ++i) {
+      RCLCPP_INFO(this->get_logger(), "Subscribing to AprilTag topic '%s'", tag_topics_names[i].c_str());
+      m_apriltag_sub.emplace_back(this->create_subscription<visp_tracker_common::msg::AprilTagDetectionArray>(tag_topics_names[i], qos_tag_info_pub, [this, i](const visp_tracker_common::msg::AprilTagDetectionArray::ConstSharedPtr msg)
+                                                                                                              {
+                                                                                                                std::scoped_lock sl(m_mutex_apriltag);
+                                                                                                                m_apriltag_opt_vec[i] = std::move(*msg);
+                                                                                                              }));
     }
   }
   return true;
@@ -353,12 +369,32 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
       }
     }
 
+    // Displaying AprilTag detection, if any
+    {
+      std::scoped_lock sl(m_mutex_apriltag);
+      for (auto &opt_apriltag_detection: m_apriltag_opt_vec) {
+        if (opt_apriltag_detection) {
+          for (const auto &detection: opt_apriltag_detection->detections) {
+            if (m_opt_rgb_cam) {
+              vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(detection.pose.pose);
+              vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), detection.size / 2.f, vpColor::none, 2, vpImagePoint(0, 0), "ID: " + std::to_string(detection.id), vpColor::red);
+            }
+            for (unsigned int i = 0; i < detection.corners.size() - 1; ++i) {
+              vpDisplay::displayLine(m_I, vpImagePoint(detection.corners[i].y, detection.corners[i].x), vpImagePoint(detection.corners[i + 1].y, detection.corners[i + 1].x), vpColor::blue, m_features_thickness);
+            }
+            vpDisplay::displayLine(m_I, vpImagePoint(detection.corners[3].y, detection.corners[3].x), vpImagePoint(detection.corners[0].y, detection.corners[0].x), vpColor::blue, m_features_thickness);
+          }
+        }
+        opt_apriltag_detection = std::nullopt;
+      }
+    }
+
     // Displaying poses, if any
     {
       std::scoped_lock sl(m_mutex_poses);
       if (m_opt_rgb_cam) {
         unsigned int id = 0;
-        for (auto &opt_pose: m_pose_array) {
+        for (auto &opt_pose: m_pose_opt_vec) {
           if (opt_pose) {
             vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(opt_pose->pose);
             vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), 0.03, vpColor::none, 2, vpImagePoint(0, 0), m_pose_name_array[id], vpColor::red);
@@ -373,7 +409,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
     {
       std::scoped_lock sl(m_mutex_features);
       int idx = 0;
-      for (auto &feature_array: m_feature_array) {
+      for (auto &feature_array: m_feature_opt_vec) {
         if (!feature_array) {
           continue;
         }

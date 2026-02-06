@@ -16,6 +16,7 @@
 #include <visp_common/image.hpp>
 #include <visp_common/qos.hpp>
 #include <visp_tracker_common/names.hpp>
+#include <visp_tracker_common/msg/april_tag_detection_array.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
 // ---- ViSP includes ----
@@ -195,13 +196,16 @@ protected:
   std::vector<rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr> m_feat_2D_sub; //!< Subscriber to the 2D features topic.
   rclcpp::Subscription<visp_tracker_common::msg::InfoStrings>::SharedPtr m_info_strings_sub; //!< Subscriber to the info strings topic.
   std::vector<rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr> m_poses_sub; //!< Subscribers to the pose topics.
-  std::vector<std::optional<visp_tracker_common::msg::NamedFeatureArray>> m_feature_array; //!< The 2D features published by the tracker that must be displayed.
+  std::vector<std::optional<visp_tracker_common::msg::NamedFeatureArray>> m_feature_opt_vec; //!< The 2D features published by the tracker that must be displayed.
   std::mutex m_mutex_features; //!< Mutex that protects the 2D features array.
-  std::vector<std::optional<geometry_msgs::msg::PoseStamped>> m_pose_array; //!< The pose(s) published by the tracker(s).
+  std::vector<std::optional<geometry_msgs::msg::PoseStamped>> m_pose_opt_vec; //!< The pose(s) published by the tracker(s).
   std::vector<std::string> m_pose_name_array; //!< The name(s) of the pose(s)
   std::mutex m_mutex_poses; //!< Mutex that protects the poses.
   visp_tracker_common::msg::InfoStrings m_vec_info; //!< Strings to display on screen to give info to the user.
   std::mutex m_mutex_info; //!< Mutex that protects the info.
+  std::vector<rclcpp::Subscription<visp_tracker_common::msg::AprilTagDetectionArray>::SharedPtr> m_apriltag_sub; //!< Subscribers to the AprilTag detection topics.
+  std::vector<std::optional<visp_tracker_common::msg::AprilTagDetectionArray>> m_apriltag_opt_vec; //!< The result of AprilTag detection.
+  std::mutex m_mutex_apriltag; //!< Mutex that protects the AprilTag detection.
 
   // ----- Display-related -----
   bool m_use_depth = false; //!< If true, the depth image will be displayed using a color encoding.

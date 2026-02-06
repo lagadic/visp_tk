@@ -68,7 +68,7 @@ bool AprilTagTracker::init_tracker()
     auto tag_size_param = rclcpp::Parameter();
     bool isSet = this->get_parameter("tag_size", tag_size_param);
     if (isSet) {
-      m_tag_size = tag_size_param.as_double();
+      m_tag_size = static_cast<float>(tag_size_param.as_double());
       RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
     }
     else {
@@ -244,6 +244,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         visp_tracker_common::msg::AprilTagDetection detectionMsg;
         detectionMsg.family = m_family_name;
         detectionMsg.id = tags_IDs[i];
+        detectionMsg.size = m_tag_size;
         detectionMsg.pose = stamped_pose;
         vpImagePoint cog = m_tag_detector.getCog(i);
         fromImagePoint(cog, detectionMsg.center);
