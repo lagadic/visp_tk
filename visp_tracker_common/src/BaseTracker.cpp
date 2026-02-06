@@ -41,7 +41,11 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
 
   auto init_method_desc = rcl_interfaces::msg::ParameterDescriptor {};
   init_method_desc.description = "Set the method to initialize the tracker, if required. Available types are " + getAvailableInitializationMethod();
-  this->declare_parameter("init_method", "click", init_method_desc);
+  this->declare_parameter("init_method", initializationMethodToString(BaseTracker::CLICK), init_method_desc);
+
+  auto init_topic_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  init_topic_desc.description = "If 'init_method' is set to '" + initializationMethodToString(BaseTracker::TOPIC), "', this parameter must be set to the topic the tracker must use to get the init pose.";
+  this->declare_parameter("init_topic", "", init_topic_desc);
 
   // // ---- Parameters related to the services ----
 
@@ -189,8 +193,13 @@ bool BaseTracker::init_initialization_method(const rclcpp::Parameter &p)
     throw(vpException(vpException::notImplementedError, "File-based initilization method has not been implemented yet"));
   }
   else if (m_init_method == BaseTracker::TOPIC) {
-    ///TODO: check that the topic parameter has been set
-    throw(vpException(vpException::notImplementedError, "Topic-based initilization method has not been implemented yet"));
+    std::string init_topic = this->get_parameter("init_topic").as_string();
+    if (init_topic.empty()) {
+      RCLCPP_ERROR(this->get_logger(), "Error: the parameter '%s' is set to %s but the parameter 'init_topic' is empty.", p.get_name().c_str(), initializationMethodToString(m_init_method).c_str());
+      return false;
+    }
+    auto qos_init_sub = m_poses_pub->get_actual_qos();
+    m_init_sub = this->create_subscription<geometry_msgs::msg::PoseStamped>(init_topic, qos_init_sub, std::bind(&BaseTracker::init_pose_callback, this, std::placeholders::_1));
   }
   return true;
 }
@@ -232,6 +241,11 @@ void BaseTracker::switch_visual_status_callback(const  std::shared_ptr<std_srvs:
 //////////////////////////////////////////////////////////////////////
 //                        ROS2 SUBCRIPTIONS                         //
 //////////////////////////////////////////////////////////////////////
+
+void BaseTracker::init_pose_callback(const geometry_msgs::msg::PoseStamped::SharedPtr msg)
+{
+  m_opt_init_pose = *msg;
+}
 
 void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
 {

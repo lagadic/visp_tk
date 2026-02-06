@@ -15,6 +15,7 @@
 
 #include <visp3/core/vpCameraParameters.h>
 
+#include <optional>
 
 namespace visp_tracker_common
 {
@@ -99,6 +100,13 @@ protected:
    */
   void color_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
 
+  /**
+   * @brief Initial pose callback.
+   *
+   * @param msg Initial pose message
+   */
+  void init_pose_callback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
+
   // ----- Services -----
 
   /**
@@ -179,6 +187,7 @@ protected:
 
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; //!< RGB camera parameters subscriber
+  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr m_init_sub; //!< Subscriber to the init topic, if the init method is set to topic.
 
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; //!< 2D image points publisher, for remote GUI visualization when headless mode is active
@@ -200,6 +209,7 @@ protected:
   vpCameraParameters m_rgb_cam; //!< The color camera parameters.
   std::string m_config_file; //!< If set, path to the configuration file that should be used to initialize the tracker.
   InitializationMethod m_init_method; //!< How the tracker should be initialized.
+  std::optional<geometry_msgs::msg::PoseStamped> m_opt_init_pose; //!< If the init method is set to topic, this attribute is updated through the init topic.
 
   // ----- Other attributes -----
   std::mutex m_mutex_quit; //!< Mutex to protect m_quit from concurrent access

@@ -525,6 +525,170 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
 #endif
 }
 
+bool MBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
+{
+  if (m_init_method == BaseTracker::CLICK) {
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+    RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
+    m_tracker->initClick(m_Ic, m_init_file_path, true);
+    m_tracker->getPose(cMo);
+    if (m_is_headless_mode) {
+      vpDisplay::close(m_Ic);
+      m_display.reset();
+      m_display_initialized = false;
+      display_frame = false;
+    }
+#else
+    throw(vpException(vpException::fatalError, "The tracker cannot be initialized by click if the module visp_gui is not available and/or if a GUI library is not installed. See https://visp-doc.inria.fr/doxygen/visp-daily/supported-third-parties.html"));
+#endif
+  }
+  else if (m_init_method == BaseTracker::TOPIC) {
+    if (!m_opt_init_pose) {
+      RCLCPP_DEBUG(this->get_logger(), "Initial pose has not been received yet...");
+      return false;
+    }
+    if ((m_opt_init_pose->header.frame_id != m_frame_id) && m_ref_cam.m_frame_name.empty()) {
+      RCLCPP_ERROR_STREAM(this->get_logger(), "Init pose is expressed in the '" << m_opt_init_pose->header.frame_id << "' frame while the tracker works in the '" << m_frame_id << "' frame.");
+      return false;
+    }
+    if (((m_opt_init_pose->header.frame_id == m_frame_id) && m_ref_cam.m_frame_name.empty()) || (m_opt_init_pose->header.frame_id == m_ref_cam.m_frame_name)) {
+      // The initial pose is expressed in the correct reference frame
+      std::string ref_cam_name = m_tracker->getReferenceCameraName();
+      if (ref_cam_name == m_color_trackers_name[0]) {
+        // If the reference tracker is the color one, we can just call initFromPose with the gray image and pose,
+        // and internally the MBT will compute the corresponding in the depth frame using the extrinsics
+        m_tracker->initFromPose(m_I, visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose));
+      }
+      else {
+        ///TODO: We need to compute the corresponding pose in the RGB frame
+        throw(vpException(vpException::notImplementedError, "For the moment, using the depth frame as reference frame is not handled."));
+      }
+    }
+    else {
+      if (m_ref_cam.m_frame_name.empty()) {
+        throw(vpException(vpException::notImplementedError, "For the moment, getting the extrinsics from the MBT is not handled."));
+      }
+      else {
+        geometry_msgs::msg::TransformStamped other_M_ref;
+        const std::string &fromFrame = m_other_cam.m_frame_name;
+        const std::string &toFrame = m_ref_cam.m_frame_name;
+        // Look up for the transformation between reference camera frame and the other camera frame
+        try {
+          other_M_ref = m_tf_buffer->lookupTransform(
+            fromFrame, toFrame,
+            tf2::TimePointZero);
+        }
+        catch (const tf2::TransformException &ex) {
+          RCLCPP_INFO(
+            this->get_logger(), "Could not get %s_M_ %s: %s",
+            fromFrame.c_str(), toFrame.c_str(), ex.what());
+          return false;
+        }
+      }
+    }
+  }
+  else {
+    throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click or by topic is handled."));
+  }
+  RCLCPP_DEBUG(this->get_logger(), "Done init");
+  return true;
+}
+
+bool MBTTracker::perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info)
+{
+  static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+  double reprojection_error = 0.;
+  double t_start = vpTime::measureTimeMs();
+  try {
+    if (m_depth_is_required) {
+      RCLCPP_DEBUG(this->get_logger(), "Tracking with depth ...");
+      for (auto name: m_color_trackers_name) {
+        m_map_img[name] = &m_I;
+      }
+
+      for (auto name: m_depth_trackers_name) {
+        m_map_pc[name] = &m_pointcloud;
+      }
+
+      m_tracker->track(m_map_img, m_map_pc, m_map_pcw, m_map_pch);
+      RCLCPP_DEBUG(this->get_logger(), "Done depth tracking");
+    }
+    else {
+      RCLCPP_DEBUG(this->get_logger(), "Tracking with RGB only");
+      m_tracker->track(m_I);
+      RCLCPP_DEBUG(this->get_logger(), "Done RGB tracking");
+    }
+    double t_end_tracking = vpTime::measureTimeMs();
+    std::string t_string = std::to_string(t_end_tracking - t_start);
+    std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+    RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
+    m_tracker->getPose(cMo);
+
+    // Fill info strings
+    vec_info.push_back(tracking_time);
+    if (m_must_detect_failure) {
+      if (m_tracker->getTrackerType() & vpMbGenericTracker::EDGE_TRACKER) {
+        reprojection_error = m_tracker->getProjectionError();
+      }
+      else {
+        reprojection_error = m_tracker->computeCurrentProjectionError(m_I, cMo, m_rgb_cam);
+      }
+      std::string reprojection_error_str = std::to_string(reprojection_error);
+      reprojection_error_str = reprojection_error_str.substr(0, reprojection_error_str.find(".") + nb_digits + 1);
+      reprojection_error_str = "Projection error: " + reprojection_error_str;
+      RCLCPP_DEBUG_STREAM(this->get_logger(), reprojection_error_str);
+      vec_info.push_back(reprojection_error_str);
+    }
+
+    {
+      std::stringstream ss;
+      ss << "Features: edges " << m_tracker->getNbFeaturesEdge();
+      vec_info.push_back(ss.str());
+    }
+    {
+      std::stringstream ss;
+      ss << "Features: klt " << m_tracker->getNbFeaturesKlt();
+      vec_info.push_back(ss.str());
+    }
+
+    if (m_depth_is_required) {
+      {
+        std::stringstream ss;
+        ss << "Features: depth dense " << m_tracker->getNbFeaturesDepthDense();
+        vec_info.push_back(ss.str());
+      }
+      {
+        std::stringstream ss;
+        ss << "Features: depth normal " << m_tracker->getNbFeaturesDepthNormal();
+        vec_info.push_back(ss.str());
+      }
+    }
+
+    // Check if the projection error is below the threshold, if the user activated this option
+    if (m_must_detect_failure && (reprojection_error > m_projection_error_thresh)) {
+      RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: projection error (%f) too high (thresh = %f)", reprojection_error, m_projection_error_thresh);
+      m_tracker_initialized = false;
+      return false;
+    }
+  }
+  catch (vpTrackingException &e) {
+    RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: %s", e.getMessage());
+    m_tracker_initialized = false;
+    std::string tracking_time = "Tracking failed";
+    vec_info.push_back(tracking_time);
+    if (m_must_detect_failure) {
+      vec_info.push_back("Projection error: N/A");
+    }
+    return false;
+  }
+  catch (vpException &e) {
+    RCLCPP_ERROR(this->get_logger(), "Got unexpected error: %s", e.getMessage());
+    throw;
+  }
+  RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
+  return true;
+}
+
 void MBTTracker::track()
 {
   bool quit = false;
@@ -574,10 +738,10 @@ void MBTTracker::track()
     m_extrinsics_set = true;
   }
 
-
+  bool display_frame = false;
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   // Check if frame has to be displayed
-  bool display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+  display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 
   if (display_frame) {
 
@@ -597,122 +761,15 @@ void MBTTracker::track()
 #endif
 
   vpHomogeneousMatrix cMo;
+  bool tracking_successful = false;
   if (m_has_to_track) {
     RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
     if (!m_tracker_initialized) {
-      if (m_init_method == BaseTracker::CLICK) {
-#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-        RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
-        m_tracker->initClick(m_Ic, m_init_file_path, true);
-        m_tracker->getPose(cMo);
-        m_tracker_initialized = true;
-        if (m_is_headless_mode) {
-          vpDisplay::close(m_Ic);
-          m_display.reset();
-          m_display_initialized = false;
-          display_frame = false;
-        }
-#else
-        throw(vpException(vpException::fatalError, "The tracker cannot be initialized by click if the module visp_gui is not available and/or if a GUI library is not installed. See https://visp-doc.inria.fr/doxygen/visp-daily/supported-third-parties.html"));
-#endif
-      }
-      else {
-        throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click is handled."));
-      }
-      RCLCPP_DEBUG(this->get_logger(), "Done init");
+      m_tracker_initialized = init_tracking(cMo, display_frame);
     }
 
     std::vector<std::string> vec_info; // Vector that contains info to display on screen
-    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
-    double reprojection_error = 0.;
-    double t_start = vpTime::measureTimeMs();
-    try {
-      if (m_depth_is_required) {
-        RCLCPP_DEBUG(this->get_logger(), "Tracking with depth ...");
-        for (auto name: m_color_trackers_name) {
-          m_map_img[name] = &m_I;
-        }
-
-        for (auto name: m_depth_trackers_name) {
-          m_map_pc[name] = &m_pointcloud;
-        }
-
-        m_tracker->track(m_map_img, m_map_pc, m_map_pcw, m_map_pch);
-        RCLCPP_DEBUG(this->get_logger(), "Done depth tracking");
-      }
-      else {
-        RCLCPP_DEBUG(this->get_logger(), "Tracking with RGB only");
-        m_tracker->track(m_I);
-        RCLCPP_DEBUG(this->get_logger(), "Done RGB tracking");
-      }
-      double t_end_tracking = vpTime::measureTimeMs();
-      std::string t_string = std::to_string(t_end_tracking - t_start);
-      std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
-      RCLCPP_DEBUG_STREAM(this->get_logger(), tracking_time);
-      m_tracker->getPose(cMo);
-
-      // Fill info strings
-      vec_info.push_back(tracking_time);
-      if (m_must_detect_failure) {
-        if (m_tracker->getTrackerType() & vpMbGenericTracker::EDGE_TRACKER) {
-          reprojection_error = m_tracker->getProjectionError();
-        }
-        else {
-          reprojection_error = m_tracker->computeCurrentProjectionError(m_I, cMo, m_rgb_cam);
-        }
-        std::string reprojection_error_str = std::to_string(reprojection_error);
-        reprojection_error_str = reprojection_error_str.substr(0, reprojection_error_str.find(".") + nb_digits + 1);
-        reprojection_error_str = "Projection error: " + reprojection_error_str;
-        RCLCPP_DEBUG_STREAM(this->get_logger(), reprojection_error_str);
-        vec_info.push_back(reprojection_error_str);
-      }
-
-      {
-        std::stringstream ss;
-        ss << "Features: edges " << m_tracker->getNbFeaturesEdge();
-        vec_info.push_back(ss.str());
-      }
-      {
-        std::stringstream ss;
-        ss << "Features: klt " << m_tracker->getNbFeaturesKlt();
-        vec_info.push_back(ss.str());
-      }
-
-      if (m_depth_is_required) {
-        {
-          std::stringstream ss;
-          ss << "Features: depth dense " << m_tracker->getNbFeaturesDepthDense();
-          vec_info.push_back(ss.str());
-        }
-        {
-          std::stringstream ss;
-          ss << "Features: depth normal " << m_tracker->getNbFeaturesDepthNormal();
-          vec_info.push_back(ss.str());
-        }
-      }
-
-      // Check if the projection error is below the threshold, if the user activated this option
-      if (m_must_detect_failure && (reprojection_error > m_projection_error_thresh)) {
-        RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: projection error (%f) too high (thresh = %f)", reprojection_error, m_projection_error_thresh);
-        m_tracker_initialized = false;
-      }
-      else {
-        RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
-      }
-    }
-    catch (vpTrackingException &e) {
-      RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: %s", e.getMessage());
-      m_tracker_initialized = false;
-      std::string tracking_time = "Tracking failed";
-      vec_info.push_back(tracking_time);
-      if (m_must_detect_failure) {
-        vec_info.push_back("Projection error: N/A");
-      }
-    }
-    catch (vpException &e) {
-      RCLCPP_ERROR(this->get_logger(), "Got unexpected error: %s", e.getMessage());
-      throw;
-    }
+    tracking_successful = perform_tracking(cMo, vec_info);
 
     // Manage info strings publication
     if (m_info_strings.info_strings.size() == m_info_nb_static) {
@@ -728,11 +785,11 @@ void MBTTracker::track()
     m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
     m_info_strings_pub->publish(m_info_strings);
 
-    if (m_tracker_initialized) {
+    if (tracking_successful) {
        // Publish the poses for display on a remote GUI if headless mode is active
       geometry_msgs::msg::PoseStamped pose_c_M_o;
       pose_c_M_o.pose = std::move(visp_common::pose::toGeometryMsgsPose(cMo));
-      pose_c_M_o.header.frame_id = m_frame_id;
+      pose_c_M_o.header.frame_id = (m_ref_cam.m_frame_name.empty() ? m_frame_id : m_ref_cam.m_frame_name);
       pose_c_M_o.header.stamp = this->get_clock()->now();
       m_poses_pub->publish(pose_c_M_o);
 
@@ -750,7 +807,7 @@ void MBTTracker::track()
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   if (display_frame) {
-    if (m_tracker_initialized && m_has_to_track) {
+    if (tracking_successful) {
       m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
       vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
     }

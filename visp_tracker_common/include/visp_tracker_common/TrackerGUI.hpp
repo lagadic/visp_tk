@@ -90,7 +90,7 @@ public:
 
 protected:
   /** @name  Callbacks */
-  //@{
+  ///@{
 
   /**
    * @brief Camera parameters callback that initialize the RGB camera parameters
@@ -119,10 +119,10 @@ protected:
    * @param msg
    */
   virtual void info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg);
-  //@}
+  ///@}
 
   /** @name  Services calls */
-  //@{
+  ///@{
   /**
    * @brief Ask the tracker(s) to turn ON/OFF tracking
    */
@@ -132,10 +132,10 @@ protected:
    * @brief Ask the tracker(s) to turn ON/OFF visualization debug.
    */
   virtual void switch_visualization();
-  //@}
+  ///@}
 
   /** @name  Enum and associated tools */
-  //@{
+  ///@{
   /**
    * @brief Enumeration permitting to choose the type of object to represent the 2D feature points
    * published by the client node.
@@ -173,7 +173,7 @@ protected:
    * @return std::string The list containing the different modes.
    */
   static std::string getAvailableFeaturesType(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
-  //@}
+  ///@}
 
   // ----- Services -----
   rclcpp::Node::SharedPtr m_service_node; //!< Node to wait until a service is completed.

@@ -83,10 +83,32 @@ protected:
    */
   virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) override;
 
+  /** @name  Tracking */
+  ///@{
   /**
    * @copydoc visp_tracker_common::BaseMultiModalTracker::track()
    */
   virtual void track() override;
+
+  /**
+   * @brief Initialize the tracker.
+   *
+   * @param[out] cMo The pose after initialization.
+   * @return true Initialization went well.
+   * @return false The tracker is still uninitialized.
+   */
+  virtual bool init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame);
+
+  /**
+   * @brief Perform the tracking.
+   *
+   * @param[out] cMo The pose resulting from the tracking.
+   * @param[out] vec_info Vector that contains info to display on screen
+   * @return true Tracking was successful.
+   * @return false Otherwise.
+   */
+  virtual bool perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+  ///@}
 
   /**
    * @brief Cast a vpMbGenericTracker model into a visp_tracker_common::msg::NamedFeature message.
