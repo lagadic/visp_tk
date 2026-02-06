@@ -173,6 +173,7 @@ void BaseMultiModalTracker::depth_camera_info_callback(const sensor_msgs::msg::C
 void BaseMultiModalTracker::rgb_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb)
 {
   RCLCPP_DEBUG_STREAM(this->get_logger(), "IN rgb_callback");
+  m_frame_id = rgb->header.frame_id;
   this->treat_rgb(rgb);
   this->track();
   RCLCPP_DEBUG_STREAM(this->get_logger(), "OUT rgb_callback");
