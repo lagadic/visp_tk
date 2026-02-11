@@ -22,8 +22,6 @@ find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-find_package(tf2 REQUIRED)
-find_package(tf2_ros REQUIRED)
 find_package(visp_tracker_common REQUIRED)
 find_package(VISP REQUIRED COMPONENTS visp_core visp_mbt OPTIONAL_COMPONENTS visp_gui)
 
@@ -46,8 +44,6 @@ ament_target_dependencies(${PROJECT_NAME}_main
   geometry_msgs
   message_filters
   sensor_msgs
-  tf2
-  tf2_ros
   visp_common
   visp_tracker_common
 )

@@ -1,10 +1,6 @@
 #ifndef MBT_TRACKER_HPP
 #define MBT_TRACKER_HPP
 
-#include <tf2/exceptions.hpp>
-#include <tf2_ros/transform_listener.h>
-#include <tf2_ros/buffer.h>
-
 #include <visp_common/image.hpp>
 #include <visp_common/pose.hpp>
 #include <visp_common/path_retriever.hpp>
@@ -169,8 +165,6 @@ protected:
   // ----- Services -----
 
   // ----- Subscribers -----
-  std::shared_ptr<tf2_ros::TransformListener> m_tf_listener { nullptr }; //!< Listener in case the user wants to set the extrinsics from `tf2_static` topic
-  std::unique_ptr<tf2_ros::Buffer> m_tf_buffer; //!< The buffer for the TF2
 
   // ----- Publisher -----
 
@@ -193,6 +187,7 @@ protected:
   std::vector<std::string> m_depth_trackers_name; //!< Name(s) of the tracker(s) based on depth information.
   ExtrinsicsHelper m_ref_cam; //!< The name of the reference camera frame and corresponding tracker name.
   ExtrinsicsHelper m_other_cam; //!< The name of the other camera frame and corresponding tracker name.
+  bool m_extrinsics_from_tf = false; //!< If true, the extrinsics will be loaded from a TF2 using the associated node params.
   bool m_extrinsics_set = false; //!< If initializing extrinsics from TF2 topic, set to true once the extrinsics have been received.
   bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.

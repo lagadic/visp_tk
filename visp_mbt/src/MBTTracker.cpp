@@ -115,6 +115,7 @@ bool MBTTracker::init()
     }
   }
 
+  // Checking if the extrinsics must be loaded from a TF2
   std::vector<std::string> ref_tracker = this->get_parameter("reference_tracker").as_string_array();
   std::vector<std::string> other_tracker = this->get_parameter("other_tracker").as_string_array();
   if (ref_tracker.size() != other_tracker.size()) {
@@ -126,15 +127,23 @@ bool MBTTracker::init()
     return false;
   }
   if (other_tracker.size() == 2) {
+    // Extrinsics must be loaded from a TF2
     RCLCPP_INFO(this->get_logger(), "Node will subscribe to TF2 topics to get the extrinsics parameters");
-    m_tf_buffer = std::make_unique<tf2_ros::Buffer>(this->get_clock());
-    m_tf_listener = std::make_shared<tf2_ros::TransformListener>(*m_tf_buffer);
+    if (!m_tf_listener) {
+      // Create a TF2 listener if not already done
+      m_tf_buffer = std::make_unique<tf2_ros::Buffer>(this->get_clock());
+      m_tf_listener = std::make_shared<tf2_ros::TransformListener>(*m_tf_buffer);
+    }
 
+    // Setting the reference camera name and associated TF2 frame
     m_ref_cam.m_tracker_name = ref_tracker[0];
     m_ref_cam.m_frame_name = ref_tracker[1];
 
+    // Setting the other camera name and associated TF2 frame
     m_other_cam.m_tracker_name = other_tracker[0];
     m_other_cam.m_frame_name = other_tracker[1];
+
+    m_extrinsics_from_tf = true;
   }
   else if (other_tracker.size() != 0) {
     RCLCPP_ERROR_STREAM(this->get_logger(), "'reference_tracker' and 'other_tracker' are expected to have a size of 2 (given " << other_tracker.size() << ") and be of the format [\"${TRACKER_NAME}\",\"${TRACKER_FRAME_NAME}\"]");
@@ -377,6 +386,7 @@ bool MBTTracker::init_from_json(const std::string &config_file_path)
 
   // if model(s) is/are not in the model sections, model attribute is mandatory
   if ((model_defined_in_json != nb_trackers) && (!global_model_defined_in_json)) {
+    RCLCPP_INFO_STREAM(this->get_logger(), "Object model(s) not set in the JSON, will be loaded from the node parameters.");
     m_load_models_from_params = true;
     auto rgb_model_file_param = rclcpp::Parameter();
     bool is_required = true;
@@ -551,30 +561,23 @@ bool MBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
       RCLCPP_ERROR_STREAM(this->get_logger(), "Init pose is expressed in the '" << m_opt_init_pose->header.frame_id << "' frame while the tracker works in the '" << m_frame_id << "' frame.");
       return false;
     }
+    vpHomogeneousMatrix ref_M_init;
     if (((m_opt_init_pose->header.frame_id == m_frame_id) && m_ref_cam.m_frame_name.empty()) || (m_opt_init_pose->header.frame_id == m_ref_cam.m_frame_name)) {
-      // The initial pose is expressed in the correct reference frame
-      std::string ref_cam_name = m_tracker->getReferenceCameraName();
-      if (ref_cam_name == m_color_trackers_name[0]) {
-        // If the reference tracker is the color one, we can just call initFromPose with the gray image and pose,
-        // and internally the MBT will compute the corresponding in the depth frame using the extrinsics
-        m_tracker->initFromPose(m_I, visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose));
-      }
-      else {
-        ///TODO: We need to compute the corresponding pose in the RGB frame
-        throw(vpException(vpException::notImplementedError, "For the moment, using the depth frame as reference frame is not handled."));
-      }
+      // Init pose is already expressed in the reference camera frame, nothing more to do yet
+      ref_M_init = visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose);
     }
     else {
+      // Init pose is expressed in the other camera frame, need to express it in the reference camera frame
       if (m_ref_cam.m_frame_name.empty()) {
         throw(vpException(vpException::notImplementedError, "For the moment, getting the extrinsics from the MBT is not handled."));
       }
       else {
-        geometry_msgs::msg::TransformStamped other_M_ref;
-        const std::string &fromFrame = m_other_cam.m_frame_name;
-        const std::string &toFrame = m_ref_cam.m_frame_name;
+        geometry_msgs::msg::TransformStamped ref_M_other;
+        const std::string &fromFrame = m_ref_cam.m_frame_name;
+        const std::string &toFrame = m_other_cam.m_frame_name;
         // Look up for the transformation between reference camera frame and the other camera frame
         try {
-          other_M_ref = m_tf_buffer->lookupTransform(
+          ref_M_other = m_tf_buffer->lookupTransform(
             fromFrame, toFrame,
             tf2::TimePointZero);
         }
@@ -584,7 +587,41 @@ bool MBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
             fromFrame.c_str(), toFrame.c_str(), ex.what());
           return false;
         }
+        vpHomogeneousMatrix ref_M_other_visp = visp_common::pose::toVispHomogeneousMatrix(ref_M_other.transform);
+        vpHomogeneousMatrix other_M_init = visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose);
+        vpHomogeneousMatrix ref_M_init = ref_M_other_visp * other_M_init;
       }
+    }
+
+    vpHomogeneousMatrix init_M_o; // Transformation between the initial pose and the object frame
+    {
+      geometry_msgs::msg::TransformStamped init_M_o_tf;
+      const std::string &fromFrame = "init";
+      const std::string &toFrame = "object";
+      // Getting get init_M_o, if any
+      try {
+        init_M_o_tf = m_tf_buffer->lookupTransform(
+          fromFrame, toFrame,
+          tf2::TimePointZero);
+        init_M_o = visp_common::pose::toVispHomogeneousMatrix(init_M_o_tf.transform);
+      }
+      catch (const tf2::TransformException &ex) {
+        RCLCPP_INFO(
+          this->get_logger(), "Could not get %s_M_ %s, assuming identity. TF2 log: %s",
+          fromFrame.c_str(), toFrame.c_str(), ex.what());
+      }
+    }
+    vpHomogeneousMatrix ref_M_o = ref_M_init * init_M_o;
+    // Checking which camera frame is the reference frame reference frame
+    std::string ref_cam_name = m_tracker->getReferenceCameraName();
+    if (ref_cam_name == m_color_trackers_name[0]) {
+      // If the reference tracker is the color one, we can just call initFromPose with the gray image and pose,
+      // and internally the MBT will compute the corresponding in the depth frame using the extrinsics
+      m_tracker->initFromPose(m_I, ref_M_o);
+    }
+    else {
+      ///TODO: We need to compute the corresponding pose in the RGB frame
+      throw(vpException(vpException::notImplementedError, "For the moment, using the depth frame as reference frame is not handled."));
     }
   }
   else {
@@ -714,7 +751,7 @@ void MBTTracker::track()
     m_tracker_cams_set = true;
   }
 
-  if (m_tf_listener && !m_extrinsics_set) {
+  if (m_tf_listener && (!m_extrinsics_set) && m_extrinsics_from_tf) {
     geometry_msgs::msg::TransformStamped other_M_ref;
     const std::string &fromFrame = m_other_cam.m_frame_name;
     const std::string &toFrame = m_ref_cam.m_frame_name;
@@ -782,7 +819,7 @@ void MBTTracker::track()
         m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
       }
     }
-    m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
+    m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), BaseTracker::s_default_hor_offset);
     m_info_strings_pub->publish(m_info_strings);
 
     if (tracking_successful) {
@@ -814,7 +851,7 @@ void MBTTracker::track()
     unsigned int nb_infos = m_info_strings.info_strings.size();
     const unsigned int v_offset = 20;
     for (unsigned int r = 0; r < nb_infos; ++r) {
-      vpDisplay::displayText(m_I, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
+      vpDisplay::displayText(m_Ic, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
     }
     vpDisplay::flush(m_Ic);
     vpDisplay::flush(m_I_depth_display);

@@ -162,6 +162,12 @@ bool BaseTracker::init()
     return false;
   }
 
+  if ((!m_tf_listener) && (m_init_method == TOPIC)) {
+    RCLCPP_INFO(this->get_logger(), "Node will subscribe to TF2 topics to get the transforms between the init frame and the object frame, if any.");
+    m_tf_buffer = std::make_unique<tf2_ros::Buffer>(this->get_clock());
+    m_tf_listener = std::make_shared<tf2_ros::TransformListener>(*m_tf_buffer);
+  }
+
   bool status = this->init_tracker();
   if (!status) {
     return false;

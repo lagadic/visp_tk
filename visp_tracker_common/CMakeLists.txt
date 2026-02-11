@@ -19,6 +19,8 @@ find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 find_package(vision_msgs REQUIRED)
 
 # Find ViSP libraries and packages
@@ -57,6 +59,8 @@ ament_target_dependencies(${PROJECT_NAME}_library
     rclcpp
     sensor_msgs
     std_srvs
+    tf2
+    tf2_ros
     visp_common
     VISP
   )
@@ -103,6 +107,8 @@ ament_export_dependencies(
   rosidl_default_runtime
   sensor_msgs
   std_srvs
+  tf2
+  tf2_ros
   visualization_msgs
   visp_common
   VISP

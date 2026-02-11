@@ -7,6 +7,10 @@
 #include <sensor_msgs/msg/image.hpp>
 #include <std_srvs/srv/trigger.hpp>
 
+#include <tf2/exceptions.hpp>
+#include <tf2_ros/transform_listener.h>
+#include <tf2_ros/buffer.h>
+
 #include <visp_common/camera.hpp>
 #include <visp_common/path_retriever.hpp>
 #include <visp_tracker_common/names.hpp>
@@ -188,6 +192,8 @@ protected:
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; //!< RGB camera parameters subscriber
   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr m_init_sub; //!< Subscriber to the init topic, if the init method is set to topic.
+  std::shared_ptr<tf2_ros::TransformListener> m_tf_listener { nullptr }; //!< Listener in case the user wants to set the extrinsics from `tf2_static` topic
+  std::unique_ptr<tf2_ros::Buffer> m_tf_buffer { nullptr }; //!< The buffer for the TF2
 
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; //!< 2D image points publisher, for remote GUI visualization when headless mode is active
