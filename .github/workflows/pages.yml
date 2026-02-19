@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["humble"]
+    branches: ["rosdoc2"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,19 +24,47 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    name: "${{ matrix.docker_image }} (${{ matrix.ros_distribution }})"
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        include:
+          - docker_image: ubuntu:24.04
+            ros_distribution: jazzy
+            ros_version: 2
+
+    container:
+      image: ${{ matrix.docker_image }}
+
     steps:
-      - name: Checkout 🛎️
+      - name: Setup ROS environment
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: ${{ matrix.ros_distribution }}
+
+      - name: Install documentation tool
+        run: |
+          sudo apt install -y python3-rosdoc2 rsync
+
+      - name: Checkout
         uses: actions/checkout@v6
         with:
           ref: 'humble'
 
-      - name: Install and Build 🔧 # This example project is built using Doxygen and outputs the result to the 'doc/html' folder.
+      - name: Build documentation # This example project is built using rosdoc2 and outputs the result to the 'docs_output' folder.
         run: |
-          sudo apt install doxygen
-          doxygen Doxyfile
+          LIST_PACKAGES=`ls . | grep visp`
+          for PACKAGE in $LIST_PACKAGES; do rosdoc2 build --package-path $PACKAGE; done
 
-      - name: Deploy 🚀
+      - name: Check repo
+        run: |
+          echo $PWD
+          ls
+          ls docs_output/visp_apriltag/
+          touch docs_output/visp_apriltag/.nojekyll
+
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: doc/html # The folder the action should deploy.
+          folder: docs_output/visp_apriltag # The folder the action should deploy.
