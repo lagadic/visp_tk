@@ -7,6 +7,9 @@
   <maintainer email="fabien.spindler@inria.fr">Fabien Spindler</maintainer>
   <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
   <license>GPLv2</license>
+  <url type="website">https://docs.ros.org/en/humble/p/visp_apriltag</url>
+  <url type="repository">https://github.com/lagadic/visp_tk</url>
+  <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>

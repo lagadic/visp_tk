@@ -10,7 +10,7 @@
   <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
   <license>GPLv2</license>
   <url type="website">https://docs.ros.org/en/humble/p/visp_tk</url>
-  <url type="repository">https://github.com/lagadic/visp_tk/tree/ros2</url>
+  <url type="repository">https://github.com/lagadic/visp_tk</url>
   <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
