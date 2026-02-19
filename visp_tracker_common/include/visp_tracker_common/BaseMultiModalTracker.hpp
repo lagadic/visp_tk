@@ -96,10 +96,10 @@ protected:
 
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_depth_cam_info_sub; //!< Depth camera parameters subscriber
-  message_filters::Subscriber<sensor_msgs::msg::Image> m_rgb_stream_sub;
-  message_filters::Subscriber<sensor_msgs::msg::Image> m_depth_stream_sub;
+  message_filters::Subscriber<sensor_msgs::msg::Image> m_rgb_stream_sub; //!< RGB stream subscriber when depth is used
+  message_filters::Subscriber<sensor_msgs::msg::Image> m_depth_stream_sub; //!< Depth stream subscriber when depth is used
   std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<
-    sensor_msgs::msg::Image, sensor_msgs::msg::Image>>> m_streams_sync;
+    sensor_msgs::msg::Image, sensor_msgs::msg::Image>>> m_streams_sync; //!< Subscriber to synchronized RGB and depth streams when depth is used
   rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_rgb_only_stream_sub; //!< RGB stream subscriber when depth is not used
 
   // ----- Publisher -----

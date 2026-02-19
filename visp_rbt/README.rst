@@ -1,5 +1,5 @@
-``visp_apriltag`` documentation
-===============================
+``visp_rbt`` documentation
+==============================
 
 BLABLA
 
