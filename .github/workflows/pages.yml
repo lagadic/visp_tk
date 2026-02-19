@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["rosdoc2"]
+    branches: ["humble"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -57,14 +57,12 @@ jobs:
           LIST_PACKAGES=`ls . | grep visp`
           for PACKAGE in $LIST_PACKAGES; do rosdoc2 build --package-path $PACKAGE; done
 
-      - name: Check repo
+      - name: Preparing landing page of GitHub pages
         run: |
-          echo $PWD
-          ls
-          ls docs_output/visp_apriltag/
-          touch docs_output/visp_apriltag/.nojekyll
+          cp doc/index.html docs_output/index.html
+          touch docs_output/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs_output/visp_apriltag # The folder the action should deploy.
+          folder: docs_output # The folder the action should deploy.
