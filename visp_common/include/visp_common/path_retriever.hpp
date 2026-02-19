@@ -44,7 +44,7 @@ namespace visp_common
 namespace path
 {
 /*!
-  \brief Converts a ROS packages:// file:// and native filepath
+  \brief Converts a ROS `package://` and native filepath
   \param[in] path ROS filepath format
   \return native filepath format OR "" if could no parse filepath
 */
