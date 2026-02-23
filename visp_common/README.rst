@@ -30,14 +30,17 @@ This package can be compiled like any other ros2 package using ``colcon``. Choos
 Prerequisities
 --------------
 
+Installing ViSP
++++++++++++++++
+
 Install ViSP from ros2 package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-First you need to install ViSP as a system dependency. This can be achived using ``ros-${ROS-DISTRO}-visp`` package available for Ubuntu. Just run:
+First you need to install ViSP as a system dependency. This can be achived using ``ros-${ROS_DISTRO}-visp`` package available for Ubuntu. Just run:
 
 .. code-block:: shell
 
-	$ sudo apt-get install ros-${ROS-DISTRO}-visp
+	$ sudo apt-get install ros-${ROS_DISTRO}-visp
 
 
 Install ViSP from source
@@ -59,6 +62,29 @@ Then to use this version you have to setup ``VISP_DIR`` environment variable to 
 .. code-block:: shell
 
 	$ export VISP_DIR=$VISP_WS/visp-build
+
+Installing other dependencies
++++++++++++++++++++++++++++++
+
+You can install the other ROS2 dependencies using system installation.
+
+.. code-block:: shell
+
+	$ sudo apt-get install ros-${ROS_DISTRO}-ament-index-cpp \
+                         ros-${ROS_DISTRO}-camera-calibration-parsers \
+                         ros-${ROS_DISTRO}-geometry-msgs \
+                         ros-${ROS_DISTRO}-sensor-msgs
+
+Alternatively, you can use the ``rosdep`` utilitary, but be sure to uninstall the
+``ros-${ROS_DISTRO}-visp`` package that will be installed if you want to use
+ViSP compiled from source.
+
+.. code-block:: shell
+
+  $ sudo rosdep init
+  $ rosdep update
+  $ rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y
+  $ if [ -z ${VISP_DIR+x} ]; then echo "VISP_DIR is unset, keeping ViSP system package"; else echo "VISP_DIR is set, removing system install" && sudo apt remove ros-${ROS_DISTRO}-visp; fi
 
 How to get and build visp_common
 --------------------------------

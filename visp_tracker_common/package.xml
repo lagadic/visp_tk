@@ -23,7 +23,7 @@
   <depend> tf2 </depend>
   <depend> tf2_ros </depend>
   <depend>vision_msgs</depend>
-
+  <depend version_gt="3.7.0">visp</depend>
   <depend>visp_common</depend>
 
   <exec_depend>rosidl_default_runtime</exec_depend>

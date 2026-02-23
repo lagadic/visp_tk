@@ -22,9 +22,10 @@
   <buildtool_depend>ament_cmake_ros</buildtool_depend>
 
   <depend>ament_index_cpp</depend>
+  <depend>camera_calibration_parsers</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
-  <depend>camera_calibration_parsers</depend>
+  <depend version_gt="3.7.0">visp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
