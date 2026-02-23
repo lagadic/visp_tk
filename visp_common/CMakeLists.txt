@@ -15,7 +15,7 @@ find_package(ament_index_cpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(camera_calibration_parsers REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core)
+find_package(VISP 3.7 REQUIRED COMPONENTS visp_core)
 
 # add library
 add_library(${PROJECT_NAME} src/pose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp)

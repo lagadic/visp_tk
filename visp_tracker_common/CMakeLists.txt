@@ -24,7 +24,7 @@ find_package(tf2_ros REQUIRED)
 find_package(vision_msgs REQUIRED)
 
 # Find ViSP libraries and packages
-find_package(VISP REQUIRED COMPONENTS visp_core OPTIONAL_COMPONENTS visp_gui)
+find_package(VISP 3.7 REQUIRED COMPONENTS visp_core OPTIONAL_COMPONENTS visp_gui)
 find_package(visp_common REQUIRED)
 
 # ############## #
