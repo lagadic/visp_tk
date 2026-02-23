@@ -16,7 +16,7 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   this->declare_parameter<std::string>("color_topic", "");
   this->declare_parameter("color_qos_queue_depth", 1);
   this->declare_parameter("color_qos_durability", "volatile");
-  this->declare_parameter("color_qos_reliability", "reliable");
+  this->declare_parameter("color_qos_reliability", "best_effort");
   this->declare_parameter("apriltag_topics", std::vector<std::string>());
   this->declare_parameter("features_topics", std::vector<std::string>());
   this->declare_parameter("poses_topics", std::vector<std::string>());
@@ -25,7 +25,7 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   this->declare_parameter<std::string>("depth_image_transport", "compressedDepth");
   this->declare_parameter("depth_qos_queue_depth", 1);
   this->declare_parameter("depth_qos_durability", "volatile");
-  this->declare_parameter("depth_qos_reliability", "reliable");
+  this->declare_parameter("depth_qos_reliability", "best_effort");
   m_client_nodes_name = this->declare_parameter<std::vector<std::string>>("client_nodes", std::vector<std::string>());
 
   // // ---- Other parameters ----
