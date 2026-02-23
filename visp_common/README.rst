@@ -77,7 +77,8 @@ You can install the other ROS2 dependencies using system installation.
 
 Alternatively, you can use the ``rosdep`` utilitary, but be sure to uninstall the
 ``ros-${ROS_DISTRO}-visp`` package that will be installed if you want to use
-ViSP compiled from source.
+ViSP compiled from source. Assuming that the ``visp_tk`` repository has been
+cloned in the ``src`` directory (see `How to get and build visp_common`_), run the following commands:
 
 .. code-block:: shell
 
