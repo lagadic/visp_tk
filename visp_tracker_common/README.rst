@@ -20,24 +20,56 @@ This section will present the different parameters of the ``visp_tracker_common:
 Related to subscription / publication
 -------------------------------------
 
-* ``name``: info
+* **REQUIRED** ``rgb_camera_topic_name``: name of the color camera topic.
+* **REQUIRED** ``rgb_stream_topic_name``: name of the color image topic.
+
+Related to the tracking
+-----------------------
+
+* *OPTIONAL* ``config_file``: path to the configuration file to initialize the tracker. package:// will be replaced by the path to the share folder of the corresponding package.
+* *OPTIONAL* ``init_method``: initialization method to initialize the tracker. Default method is initialization by click.
+* *OPTIONAL* ``init_topic``: if the ``init_method`` is set to topic, this parameter becomes **REQUIRED** and must be set to the topic of type ``geometry_msgs:msg::PoseStamped`` the tracker must use to get the init pose.
+
+Related to the display
+----------------------
+
+* *OPTIONAL* ``headless_mode``: if set to true, the node will not display anything. A TrackerGUI node will be needed in
+  addition to the tracker node.
+* *OPTIONAL* ``display_nb_frames_skipped``: if ``headless_mode`` is set to false,
 
 BaseMultiModalTracker node
 ==========================
 
 This section will present the different parameters of the ``visp_tracker_common::BaseMultiModalTracker`` class.
+The node will determine if it requires depth or not depending on the tracker configuration. If the node
+requires depth, the ``depth_camera_topic_name`` and ``depth_stream_topic_name`` becomes **REQUIRED**.
+If the tracker requires depth, a `message_filters::Synchronizer <https://github.com/ros2/message_filters/blob/rolling/doc/index.rst>`__
+is used to temporally synchronize the depth stream and the color stream. **NB**: using the ``TrackerGUI`` class
+on the same computer than a class inheriting from ``visp_tracker_common::BaseMultiModalTracker`` and using depth
+leads to the freezing of the tracker, due to a desynchronization of the color and depth streams.
 
 Related to subscription / publication
 -------------------------------------
 
-* ``name``: info
+* *OPTIONAL* ``depth_camera_topic_name``: name of the depth camera topic.
+* *OPTIONAL* ``depth_stream_topic_name``: name of the depth stream topic.
+* *OPTIONAL* ``stream_qos_durability``: the durability of both the RGB and depth image streams (they need to be the same) if depth is required.
+* *OPTIONAL* ``stream_qos_reliability``: the reliability of both the RGB and depth image streams (they need to be the same) if depth is required.
+* *OPTIONAL* ``stream_qos_depth``: the depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.
+
+Related to the tracking
+-----------------------
+
+* *OPTIONAL* ``z_factor``: factor to convert the depth image expressed as uint16_t into meters. For instance, if a value
+  of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.
 
 TrackerGUI node
 ===============
 
 This section will present the different parameters of the ``visp_tracker_common::TrackerGUI`` node. This node permits to
-have a GUI on a remote computer, i.e. on another computer than the one that is running the tracker node(s). It is not
-useful when you can run the tracker on a computer that has actual display capabilities.
+have a GUI on a remote computer, i.e. on another computer than the one that is running the tracker node(s). It should not
+be used when you can run the tracker on a computer that has actual display capabilities, especialy with mulimodal trackers,
+because it makes out of synchronization the RGB and depth streams, freezing the tracker.
 
 Related to subscription / publication
 -------------------------------------
@@ -45,7 +77,7 @@ Related to subscription / publication
 RGB-stream-related
 ^^^^^^^^^^^^^^^^^^
 
-* *OPTIONAL* ``image_transport``: the type of image transport compression algorithm used. See `image_transport_plugins <https://github.com/ros-perception/image_transport_plugins>`__ for more information.
+* *OPTIONAL* ``image_transport``: the type of image transport compression algorithm used. Default is ``compressed``. See `image_transport_plugins <https://github.com/ros-perception/image_transport_plugins>`__ for more information.
 * **REQUIRED** ``camera_topic``: the name of the camera information topic of the RGB stream.
 * **REQUIRED** ``color_topic``: the name of the raw RGB stream (e.g. ``/camera/color/image_raw``). The ``image_transport`` parameter will then be used to determine the sub topic that will be used.
 * *OPTIONAL* ``color_qos_queue_depth``: the depth of the queue of the RGB topic.
@@ -56,6 +88,7 @@ Depth-stream-related
 ^^^^^^^^^^^^^^^^^^^^
 
 * *OPTIONAL* ``use_depth``: if true, the ``TrackerGUI`` will subscribe to the depth topic.
+* *OPTIONAL* ``depth_image_transport``: the type of image transport compression algorithm used for the depth stream. Default is ``compressedDepth``. See `image_transport_plugins <https://github.com/ros-perception/image_transport_plugins>`__ for more information.
 * *OPTIONAL* ``depth_topic``: the name of the raw depth stream (e.g. ``/camera/depth/image_raw``). The ``image_transport`` subscriber will then subscribe to the ``compressedDepth`` sub-topic.
 * *OPTIONAL* ``depth_qos_queue_depth``: the depth of the queue of the depth topic.
 * *OPTIONAL* ``depth_qos_durability``: the durability of the messages of the depth topic.
