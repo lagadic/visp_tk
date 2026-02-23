@@ -16,13 +16,11 @@ ament_auto_find_build_dependencies()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(message_filters REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core visp_detection OPTIONAL_COMPONENTS visp_gui)
+find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_detection OPTIONAL_COMPONENTS visp_gui)
 
 add_executable(${PROJECT_NAME}_main
   src/april_tag_tracker.cpp
@@ -40,8 +38,6 @@ target_link_libraries(${PROJECT_NAME}_main
 
 ament_target_dependencies(${PROJECT_NAME}_main
   rclcpp
-  geometry_msgs
-  message_filters
   sensor_msgs
   visp_common
   visp_tracker_common
