@@ -32,15 +32,12 @@ target_include_directories(${PROJECT_NAME}_node PUBLIC
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
 )
 
-target_link_libraries(${PROJECT_NAME}_node
+target_link_libraries(${PROJECT_NAME}_node PUBLIC
+  ${rclcpp_TARGETS}
+  ${sensor_msgs_TARGETS}
+  ${visp_common_TARGETS}
+  ${visp_tracker_common_TARGETS}
   ${VISP_LIBRARIES}
-)
-
-ament_target_dependencies(${PROJECT_NAME}_node
-  rclcpp
-  sensor_msgs
-  visp_common
-  visp_tracker_common
 )
 
 install(
