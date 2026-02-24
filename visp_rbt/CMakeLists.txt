@@ -23,7 +23,7 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP REQUIRED COMPONENTS visp_core visp_ar visp_rbt OPTIONAL_COMPONENTS visp_gui)
+find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_ar visp_rbt OPTIONAL_COMPONENTS visp_gui)
 
 add_executable(${PROJECT_NAME}_node
   src/rbt.cpp

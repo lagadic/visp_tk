@@ -421,7 +421,29 @@ bool RBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
       RCLCPP_ERROR_STREAM(this->get_logger(), "Init pose is expressed in the '" << m_opt_init_pose->header.frame_id << "' frame while the tracker works in the '" << m_frame_id << "' frame.");
       return false;
     }
-    m_tracker.setPose(visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose));
+    vpHomogeneousMatrix ref_M_init;
+    // Init pose is already expressed in the reference camera frame, nothing more to do yet
+    ref_M_init = visp_common::pose::toVispHomogeneousMatrix(m_opt_init_pose->pose);
+    vpHomogeneousMatrix init_M_o; // Transformation between the initial pose and the object frame
+    {
+      geometry_msgs::msg::TransformStamped init_M_o_tf;
+      const std::string &fromFrame = "init";
+      const std::string &toFrame = "object";
+      // Getting get init_M_o, if any
+      try {
+        init_M_o_tf = m_tf_buffer->lookupTransform(
+          fromFrame, toFrame,
+          tf2::TimePointZero);
+        init_M_o = visp_common::pose::toVispHomogeneousMatrix(init_M_o_tf.transform);
+      }
+      catch (const tf2::TransformException &ex) {
+        RCLCPP_INFO(
+          this->get_logger(), "Could not get %s_M_ %s, assuming identity. TF2 log: %s",
+          fromFrame.c_str(), toFrame.c_str(), ex.what());
+      }
+    }
+    vpHomogeneousMatrix ref_M_o = ref_M_init * init_M_o;
+    m_tracker.setPose(ref_M_o);
   }
   else {
     throw(vpException(vpException::functionNotImplementedError, "Currently, only initialization by click or by topic is handled."));
