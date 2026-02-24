@@ -14,7 +14,7 @@ The tracker must be configured using a configuration file (see `BaseTracker docu
 XML and JSON configuration files are handled, as long as the correct dependencies are installed. See `ViSP documentation <https://visp-doc.inria.fr/doxygen/visp-daily/classvpMbGenericTracker.html>`__
 for more information.
 
-When the tracker uses depth information, when the ``tracker_gui`` node was run on the same computer that the ``visp_mbt_node``,
+**IMPORTANT**: When the tracker uses depth information, when the ``tracker_gui`` node was run on the same computer that the ``visp_mbt_node``,
 the tracker node has been seen freezing. It is probably due to the fact that the ``tracker_gui`` made the RGB and depth
 streams out of synchronization. The ``visp_mbt_node`` having display capabilities, if you want a visual feedback on the
 same computer than the one you are running the ``visp_mbt_node``, please run it activating the display. (Please refer to
@@ -110,7 +110,9 @@ See `visp_tracker_common`_ documentation.
 Related to configuration files
 ------------------------------
 
-- **REQUIRED** ``init_file``: path towards the file that contains the init points. ``package://`` will be replaced by
+- *OPIONAL* ``init_file``: if the initialization method is set to initialization by click, this parameter becomes **REQUIRED**.
+  See `the documentation of BaseTracker <../visp_tracker_common/index.html#basetracker-node>`__ for more information.
+  Path towards the file that contains the init points. ``package://`` will be replaced by
   the path to the share folder of the corresponding package.
 - *OPTIONAL* ``rgb_model_file``: when using an XML file or not configuring the model for all trackers using a JSON file,
   this parameter becomes **REQUIRED** and must be set to the path towards the model file for the RGB tracker.
@@ -143,3 +145,8 @@ Related to automatic failure detection
 
 - *OPTIONAL* ``detect_failure``: permits to activate the detection of tracking failure based on the projection error.
 - *OPTIONAL* ``projection_error_threshold`` maximum tolerated projection error, if ``detect_failure`` is set to true.
+
+Related to display
+------------------
+
+- *OPTIONAL* ``max_z_display``: the maximum depth we want to display.
