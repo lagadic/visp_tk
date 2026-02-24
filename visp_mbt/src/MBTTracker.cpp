@@ -29,7 +29,7 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
   this->declare_parameter("rgb_model_file", "", rgb_model_param_desc);
 
   auto depth_model_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
-  depth_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the depth tracker, if there is one and if it does not use the same model than the RGB tracker.";
+  depth_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the depth tracker, if there is one.";
   this->declare_parameter("depth_model_file", "", depth_model_param_desc);
 
   auto types_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
