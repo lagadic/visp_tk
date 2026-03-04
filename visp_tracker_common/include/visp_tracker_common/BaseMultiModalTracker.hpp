@@ -11,6 +11,9 @@
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/named_feature.hpp>
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
 
 namespace visp_tracker_common
 {

@@ -40,6 +40,10 @@
 #include <omp.h>
 #endif
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_tracker_common
 {
 class TrackerGUI : public rclcpp::Node

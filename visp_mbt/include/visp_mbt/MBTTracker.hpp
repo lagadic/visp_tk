@@ -20,6 +20,10 @@
 #include VISP_NLOHMANN_JSON(json.hpp)
 #endif
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_mbt
 {
 class MBTTracker : public visp_tracker_common::BaseMultiModalTracker

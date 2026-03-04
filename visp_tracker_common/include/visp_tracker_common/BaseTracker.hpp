@@ -21,6 +21,10 @@
 
 #include <optional>
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_tracker_common
 {
 class BaseTracker : public rclcpp::Node

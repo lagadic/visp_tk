@@ -13,6 +13,10 @@
 #endif
 #include <visp3/detection/vpDetectorAprilTag.h>
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_apriltag
 {
 class AprilTagTracker : public visp_tracker_common::BaseTracker

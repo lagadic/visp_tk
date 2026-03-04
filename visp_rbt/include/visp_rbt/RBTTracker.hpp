@@ -27,6 +27,10 @@
 #include <omp.h>
 #endif
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_rbt
 {
 class RBTTracker : public visp_tracker_common::BaseMultiModalTracker

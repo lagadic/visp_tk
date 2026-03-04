@@ -39,6 +39,10 @@
 #ifndef VISP_COMMON__PATH_RETRIEVER_H_
 #define VISP_COMMON__PATH_RETRIEVER_H_
 
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 namespace visp_common
 {
 namespace path
