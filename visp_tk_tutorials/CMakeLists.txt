@@ -4,10 +4,10 @@ project(visp_tk_tutorials)
 
 find_package(ament_cmake REQUIRED)
 
-install(
-  DIRECTORY config launch
-  DESTINATION share/${PROJECT_NAME}
-)
+#install(
+#  DIRECTORY config launch
+#  DESTINATION share/${PROJECT_NAME}
+#)
 
 # ############
 # Bag files #
