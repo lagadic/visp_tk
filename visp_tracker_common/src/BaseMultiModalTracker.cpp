@@ -1,3 +1,5 @@
+#include <rclcpp/version.h>
+
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
 
 namespace visp_tracker_common
@@ -105,12 +107,38 @@ bool BaseMultiModalTracker::init()
       RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic %s", m_depth_stream_name.c_str());
     }
 
+#if RCLCPP_VERSION_MAJOR >= 28
+    // This is the version for ros2 kilted or more recent
+    std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
+    std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
+    int depth = this->get_parameter("stream_qos_depth").as_int();
+
+    rclcpp::DurabilityPolicy durability;
+    if (durability_name == "transient_local") {
+      durability = rclcpp::DurabilityPolicy::TransientLocal;
+    } else {
+      durability = rclcpp::DurabilityPolicy::Volatile;
+    }
+
+    rclcpp::ReliabilityPolicy reliability;
+    if (reliability_name == "reliable") {
+      reliability = rclcpp::ReliabilityPolicy::Reliable;
+    } else {
+      reliability = rclcpp::ReliabilityPolicy::BestEffort;
+    }
+
+    rclcpp::QoS streams_qos(depth);
+    streams_qos.durability(durability);
+    streams_qos.reliability(reliability);
+#else
+    // This is the version for ros2 humble
     rmw_qos_profile_t streams_qos = rmw_qos_profile_default;
     std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
     streams_qos.durability = rmw_qos_durability_policy_from_str(durability_name.c_str());
     std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
     streams_qos.reliability = rmw_qos_reliability_policy_from_str(reliability_name.c_str());
     streams_qos.depth = this->get_parameter("stream_qos_depth").as_int();
+#endif
 
     m_rgb_stream_sub.subscribe(this, m_rgb_stream_name, streams_qos);
     m_depth_stream_sub.subscribe(this, m_depth_stream_name, streams_qos);
