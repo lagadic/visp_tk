@@ -23,35 +23,37 @@ find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(visp_tracker_common REQUIRED)
-find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_ar visp_rbt OPTIONAL_COMPONENTS visp_gui)
+find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_ar OPTIONAL_COMPONENTS visp_rbt visp_gui)
 
-add_executable(${PROJECT_NAME}_node
-  src/rbt.cpp
-  src/RBTTracker.cpp
-)
+if(VISP_RBT_FOUND)
+  add_executable(${PROJECT_NAME}_node
+    src/rbt.cpp
+    src/RBTTracker.cpp
+  )
 
-target_include_directories(${PROJECT_NAME}_node PUBLIC
-  "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
-)
+  target_include_directories(${PROJECT_NAME}_node PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
+  )
 
-target_link_libraries(${PROJECT_NAME}_node
-  ${VISP_LIBRARIES}
-)
+  target_link_libraries(${PROJECT_NAME}_node
+    ${VISP_LIBRARIES}
+  )
 
-ament_target_dependencies(${PROJECT_NAME}_node
-  geometry_msgs
-  message_filters
-  rclcpp
-  sensor_msgs
-  visp_common
-  visp_tracker_common
-)
+  ament_target_dependencies(${PROJECT_NAME}_node
+    geometry_msgs
+    message_filters
+    rclcpp
+    sensor_msgs
+    visp_common
+    visp_tracker_common
+  )
 
-install(
-  TARGETS
-  ${PROJECT_NAME}_node
-  DESTINATION lib/${PROJECT_NAME}
-)
+  install(
+    TARGETS
+    ${PROJECT_NAME}_node
+    DESTINATION lib/${PROJECT_NAME}
+  )
 
-ament_package()
+  ament_package()
+endif()
