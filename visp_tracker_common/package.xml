@@ -6,7 +6,7 @@
   <description>Package that contains the base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results. </description>
   <maintainer email="Fabien.Spindler@inria.fr">Fabien Spindler</maintainer>
   <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
-  <license>GPLv2</license>
+  <license>GPL-2.0-or-later</license>
   <url type="website">https://docs.ros.org/en/humble/p/visp_tracker_common</url>
   <url type="repository">https://github.com/lagadic/visp_tk</url>
   <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>
@@ -20,8 +20,8 @@
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
   <depend>std_srvs</depend>
-  <depend> tf2 </depend>
-  <depend> tf2_ros </depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
   <depend>vision_msgs</depend>
   <depend version_gt="3.7.0">visp</depend>
   <depend>visp_common</depend>
