@@ -26,20 +26,34 @@ Please refer to the official installation guide from [ViSP installation tutorial
 
 ## 3. Build visp_tk
 
-Fetch the latest code and build
+- Fetch the latest code and build
 
-```
-$ cd <YOUR_ROS2_WORKSPACE>/src
-$ git clone https://github.com/lagadic/visp_tk.git -b humble
-$ cd ..
-$ colcon build --symlink-install --packages-up-to visp_tk
-```
+    ```
+    $ cd <YOUR_ROS2_WORKSPACE>/src
+    $ git clone https://github.com/lagadic/visp_tk.git -b humble
+    $ cd ..
+    $ colcon build --symlink-install --packages-up-to visp_tk
+    ```
 
-If ViSP is not found, use `VISP_DIR` to point to `$VISP_WS/visp-build` folder like:
+- Install required ros dependencies
 
-```
-$ colcon build --symlink-install --cmake-args -DVISP_DIR=$VISP_WS/visp-build --packages-up-to visp_tk
-```
+    ```
+    $ cd <YOUR_ROS2_WORKSPACE>
+    $ rosdep install --from-paths src --ignore-src
+    ```
+
+- Build `visp_tk`
+
+    ```
+    $ cd <YOUR_ROS2_WORKSPACE>
+    $ colcon build --symlink-install --packages-up-to visp_tk
+    ```
+
+  If ViSP is not found, use `VISP_DIR` to point to `$VISP_WS/visp-build` folder like:
+
+    ```
+    $ colcon build --symlink-install --packages-up-to visp_tk --cmake-args -DVISP_DIR=$VISP_WS/visp-build
+    ```
 
 ## 4. Usage
 
