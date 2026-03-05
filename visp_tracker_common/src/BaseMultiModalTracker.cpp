@@ -131,7 +131,7 @@ bool BaseMultiModalTracker::init()
       RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic %s", m_depth_stream_name.c_str());
     }
 
-#if RCLCPP_VERSION_MAJOR >= 28
+#if RCLCPP_VERSION_MAJOR > 28
     // This is the version for ros2 kilted or more recent
     std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
     std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
@@ -140,14 +140,16 @@ bool BaseMultiModalTracker::init()
     rclcpp::DurabilityPolicy durability;
     if (durability_name == "transient_local") {
       durability = rclcpp::DurabilityPolicy::TransientLocal;
-    } else {
+    }
+    else {
       durability = rclcpp::DurabilityPolicy::Volatile;
     }
 
     rclcpp::ReliabilityPolicy reliability;
     if (reliability_name == "reliable") {
       reliability = rclcpp::ReliabilityPolicy::Reliable;
-    } else {
+    }
+    else {
       reliability = rclcpp::ReliabilityPolicy::BestEffort;
     }
 
