@@ -6,7 +6,7 @@
   <description>Package that permits to use the Render-Based Tracker of ViSP.</description>
   <maintainer email="fabien.spindler@inria.fr">Fabien Spindler</maintainer>
   <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
-  <license>GPLv2</license>
+  <license>GPL-2.0-or-later</license>
   <url type="website">https://docs.ros.org/en/humble/p/visp_rbt</url>
   <url type="repository">https://github.com/lagadic/visp_tk</url>
   <url type="bugtracker">https://github.com/lagadic/visp_tk/issues</url>

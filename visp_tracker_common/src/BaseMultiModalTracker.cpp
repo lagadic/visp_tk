@@ -1,3 +1,29 @@
+/*
+ * Copyright (C) 2026 by Inria. All rights reserved.
+ *
+ * This software is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * See the file LICENSE.txt at the root directory of this source
+ * distribution for additional information about the GNU GPL.
+ *
+ * For using this software that can not be combined with the GNU
+ * GPL, or if you have questions regarding the use of this file,
+ * please contact Inria at visp@inria.fr
+ *
+ * This software was developed at:
+ * Inria centre at Rennes University
+ * Campus Universitaire de Beaulieu
+ * 35042 Rennes Cedex
+ * France
+ *
+ * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+ * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+#include <rclcpp/version.h>
+
 #include <visp_tracker_common/BaseMultiModalTracker.hpp>
 
 namespace visp_tracker_common
@@ -105,12 +131,40 @@ bool BaseMultiModalTracker::init()
       RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic %s", m_depth_stream_name.c_str());
     }
 
+#if RCLCPP_VERSION_MAJOR > 28
+    // This is the version for ros2 kilted or more recent
+    std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
+    std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
+    int depth = this->get_parameter("stream_qos_depth").as_int();
+
+    rclcpp::DurabilityPolicy durability;
+    if (durability_name == "transient_local") {
+      durability = rclcpp::DurabilityPolicy::TransientLocal;
+    }
+    else {
+      durability = rclcpp::DurabilityPolicy::Volatile;
+    }
+
+    rclcpp::ReliabilityPolicy reliability;
+    if (reliability_name == "reliable") {
+      reliability = rclcpp::ReliabilityPolicy::Reliable;
+    }
+    else {
+      reliability = rclcpp::ReliabilityPolicy::BestEffort;
+    }
+
+    rclcpp::QoS streams_qos(depth);
+    streams_qos.durability(durability);
+    streams_qos.reliability(reliability);
+#else
+    // This is the version for ros2 humble
     rmw_qos_profile_t streams_qos = rmw_qos_profile_default;
     std::string durability_name = this->get_parameter("stream_qos_durability").as_string();
     streams_qos.durability = rmw_qos_durability_policy_from_str(durability_name.c_str());
     std::string reliability_name = this->get_parameter("stream_qos_reliability").as_string();
     streams_qos.reliability = rmw_qos_reliability_policy_from_str(reliability_name.c_str());
     streams_qos.depth = this->get_parameter("stream_qos_depth").as_int();
+#endif
 
     m_rgb_stream_sub.subscribe(this, m_rgb_stream_name, streams_qos);
     m_depth_stream_sub.subscribe(this, m_depth_stream_name, streams_qos);
