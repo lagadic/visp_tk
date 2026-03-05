@@ -78,28 +78,25 @@ ament_export_dependencies(rosidl_default_runtime)
 add_library(${PROJECT_NAME}_library src/names.cpp src/BaseTracker.cpp src/BaseMultiModalTracker.cpp)
 add_library(${PROJECT_NAME}::${PROJECT_NAME}_library ALIAS ${PROJECT_NAME}_library)
 
-ament_target_dependencies(${PROJECT_NAME}_library
-    ament_index_cpp
-    geometry_msgs
-    message_filters
-    rclcpp
-    sensor_msgs
-    std_srvs
-    tf2
-    tf2_ros
-    visp_common
-    VISP
+target_include_directories(${PROJECT_NAME}_library PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
+    ${VISP_INCLUDE_DIRS}
   )
 
-target_include_directories(${PROJECT_NAME}_library
-  PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
-
-target_link_libraries(${PROJECT_NAME}_library
-  ${VISP_LIBRARIES}
-  "${cpp_typesupport_target}"
-)
+target_link_libraries(${PROJECT_NAME}_library PUBLIC
+    ${ament_index_cpp_TARGETS}
+    ${geometry_msgs_TARGETS}
+    ${message_filters_TARGETS}
+    ${rclcpp_TARGETS}
+    ${sensor_msgs_TARGETS}
+    ${std_srvs_TARGETS}
+    ${tf2_TARGETS}
+    ${tf2_ros_TARGETS}
+    ${visp_common_TARGETS}
+    ${VISP_LIBRARIES}
+    "${cpp_typesupport_target}"
+  )
 
 install(
   DIRECTORY include/
@@ -150,22 +147,20 @@ if(VISP_GUI_FOUND)
   set_property(TARGET tracker_gui PROPERTY CXX_STANDARD_REQUIRED ON)
   set_property(TARGET tracker_gui PROPERTY CXX_STANDARD 17)
 
-  ament_target_dependencies(tracker_gui
-      ament_index_cpp
-      geometry_msgs
-      image_transport
-      rclcpp
-      sensor_msgs
-      std_srvs
-      visp_common
-      VISP
+  target_include_directories(tracker_gui PUBLIC include)
+  target_include_directories(tracker_gui PUBLIC SYSTEM ${VISP_INCLUDE_DIRS})
+  target_link_libraries(tracker_gui PUBLIC
+      ${ament_index_cpp_TARGETS}
+      ${geometry_msgs_TARGETS}
+      ${image_transport_TARGETS}
+      ${rclcpp_TARGETS}
+      ${sensor_msgs_TARGETS}
+      ${std_srvs_TARGETS}
+      ${visp_common_TARGETS}
+      ${VISP_LIBRARIES}
+      ${PROJECT_NAME}_library
+      "${cpp_typesupport_target}"
     )
-
-  target_link_libraries(tracker_gui
-    ${VISP_LIBRARIES}
-    ${PROJECT_NAME}_library
-    "${cpp_typesupport_target}"
-  )
 
   install(
     TARGETS

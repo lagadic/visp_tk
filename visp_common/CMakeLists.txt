@@ -46,22 +46,22 @@ find_package(VISP 3.7 REQUIRED COMPONENTS visp_core)
 # add library
 add_library(${PROJECT_NAME} src/pose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp)
 
-ament_target_dependencies(${PROJECT_NAME}
-  ament_index_cpp
-  geometry_msgs
-  rclcpp
-  sensor_msgs
-  VISP
-)
-
-include(GenerateExportHeader)
-generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_NAME}/${PROJECT_NAME}_export.h)
-
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
   ${VISP_INCLUDE_DIRS})
+
+target_link_libraries(${PROJECT_NAME} PUBLIC
+  ${ament_index_cpp_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${rclcpp_TARGETS}
+  ${sensor_msgs_TARGETS}
+  ${VISP_LIBRARIES}
+)
+
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${PROJECT_NAME}/${PROJECT_NAME}_export.h)
 
 install(TARGETS ${PROJECT_NAME} EXPORT export_${PROJECT_NAME}
   ARCHIVE DESTINATION lib
