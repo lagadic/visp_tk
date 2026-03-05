@@ -27,7 +27,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 
-#if RCLCPP_VERSION_MAJOR >= 28
+#if __has_include(<message_filters/subscriber.hpp>)
 #include <message_filters/subscriber.hpp>
 #include <message_filters/synchronizer.hpp>
 #include <message_filters/sync_policies/approximate_time.hpp>
