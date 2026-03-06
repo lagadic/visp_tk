@@ -10,13 +10,69 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
-import sys, os
+from pathlib import Path
+import sys, os, shutil
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.append(os.path.abspath('.'))
+# sys.path.append(os.path.abspath('.'))
+
+# Adds examples directories to include snippets
+# PACKAGE_ROOT = Path(__file__).resolve().parents[1]
+# DOC_ROOT = Path(__file__).parent
+
+# SNIPPET_ROOT = DOC_ROOT / "_code"
+
+# SOURCE_DIRS = ["config", "launch"]
+
+# def setup(app):
+#     SNIPPET_ROOT.mkdir(exist_ok=True)
+
+#     for d in SOURCE_DIRS:
+#         src = PACKAGE_ROOT / d
+#         dst = SNIPPET_ROOT / d
+#         print("src = " + str(src))
+#         print("dst = " + str(dst))
+#         if src.exists():
+#             if dst.exists():
+#                 shutil.rmtree(dst)
+#             shutil.copytree(src, dst)
+from pathlib import Path
+from docutils.parsers.rst.directives.misc import Include
+from sphinx.directives.code import LiteralInclude
+
+
+def find_package_root(pkg_name: str):
+    """Find the real package directory inside ROS_PACKAGE_PATH."""
+    ros_paths = os.environ.get("ROS_PACKAGE_PATH", "").split(":")
+    print("ros_paths = " + str (ros_paths))
+    for p in ros_paths:
+        candidate = Path(p) / pkg_name
+        print("candidate = " + str (candidate))
+        if (candidate / "package.xml").exists():
+            return candidate
+    raise RuntimeError(f"Could not locate package {pkg_name}")
+
+
+DOC_ROOT = Path(__file__).parent
+PACKAGE_NAME = os.environ.get("ROS_PACKAGE_NAME", "visp_tk_tutorials")
+PACKAGE_ROOT = find_package_root(PACKAGE_NAME)
+
+SNIPPET_ROOT = DOC_ROOT / "_code"
+SOURCE_DIRS = ["config", "launch"]
+
+def setup(app):
+    SNIPPET_ROOT.mkdir(exist_ok=True)
+
+    for d in SOURCE_DIRS:
+        src = PACKAGE_ROOT / d
+        dst = SNIPPET_ROOT / d
+
+        if src.exists():
+            if dst.exists():
+                shutil.rmtree(dst)
+            shutil.copytree(src, dst)
 
 # -- General configuration -----------------------------------------------------
 
@@ -35,7 +91,7 @@ extensions = [
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = ['.rst', '.md']
+source_suffix = ['.rst', '.md', '.py']
 
 # The encoding of source files.
 #source_encoding = 'utf-8'

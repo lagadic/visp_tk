@@ -55,7 +55,7 @@ jobs:
       - name: Build documentation # This example project is built using rosdoc2 and outputs the result to the 'docs_output' folder.
         run: |
           LIST_PACKAGES=`ls . | grep visp`
-          for PACKAGE in $LIST_PACKAGES; do rosdoc2 build --package-path $PACKAGE; done
+          for PACKAGE in $LIST_PACKAGES; do export ROS_PACKAGE_PATH="${PWD}" && rosdoc2 build --package-path $PACKAGE; done
 
       - name: Preparing landing page of GitHub pages
         run: |
