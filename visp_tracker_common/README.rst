@@ -118,7 +118,7 @@ Related to the display
 
 * *OPTIONAL* ``headless_mode``: if set to true, the node will not display anything. A TrackerGUI node will be needed in
   addition to the tracker node.
-* *OPTIONAL* ``display_nb_frames_skipped``: if ``headless_mode`` is set to false,
+* *OPTIONAL* ``display_nb_frames_skipped``: if ``headless_mode`` is set to false, this parameter indicates the number of frames skipped during display.
 
 BaseMultiModalTracker node
 ==========================

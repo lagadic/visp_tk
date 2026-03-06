@@ -144,7 +144,7 @@ Related to automatic failure detection
 --------------------------------------
 
 - *OPTIONAL* ``detect_failure``: permits to activate the detection of tracking failure based on the projection error.
-- *OPTIONAL* ``projection_error_threshold`` maximum tolerated projection error, if ``detect_failure`` is set to true.
+- *OPTIONAL* ``projection_error_threshold``: maximum tolerated projection error, if ``detect_failure`` is set to true.
 
 Related to display
 ------------------
