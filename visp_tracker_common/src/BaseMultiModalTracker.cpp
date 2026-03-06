@@ -221,7 +221,7 @@ void BaseMultiModalTracker::depth_camera_info_callback(const sensor_msgs::msg::C
   m_depth_cam_info_received = true;
   m_depth_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
-  RCLCPP_INFO(this->get_logger(), "Depth camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
+  RCLCPP_INFO_STREAM(this->get_logger(), "Depth camera intrinsics received:\n" << m_depth_cam);
 }
 
 void BaseMultiModalTracker::rgb_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb)

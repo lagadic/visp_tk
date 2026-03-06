@@ -288,7 +288,7 @@ void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo:
   m_rgb_cam_info_received = true;
   m_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
-  RCLCPP_INFO(this->get_logger(), "RGB camera intrinsics received: fx=%.2f fy=%.2f cx=%.2f cy=%.2f", msg->k[0], msg->k[4], msg->k[2], msg->k[5]);
+  RCLCPP_INFO_STREAM(this->get_logger(), "RGB camera parameters:\n" << m_rgb_cam);
 }
 
 //////////////////////////////////////////////////////////////////////
