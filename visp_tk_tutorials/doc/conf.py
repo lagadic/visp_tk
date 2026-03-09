@@ -10,55 +10,48 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
+import shutil, os
+import xml.etree.ElementTree as ET
 from pathlib import Path
-import sys, os, shutil
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.append(os.path.abspath('.'))
+def find_package_root() -> Path:
+    """
+    Derive package root from rosdoc2's predictable temp path structure:
+    <output>/<pkg>/<pkg>/wrapped_sphinx_directory/conf.py
+    """
+    here = Path(__file__).resolve()
 
-# Adds examples directories to include snippets
-# PACKAGE_ROOT = Path(__file__).resolve().parents[1]
-# DOC_ROOT = Path(__file__).parent
+    # Extract package name from the temp path structure
+    # path: .../wrapped_sphinx_directory/conf.py
+    # go up: wrapped_sphinx_directory -> <pkg> -> <pkg> -> output_dir -> workspace
+    parts = here.parts
+    try:
+        idx = parts.index("wrapped_sphinx_directory")
+        # The package name is the directory just before wrapped_sphinx_directory
+        pkg_name = parts[idx - 1]
+        # The workspace root is 3 levels above wrapped_sphinx_directory
+        # (wrapped_sphinx_directory -> <pkg> -> <pkg> -> output_dir -> workspace)
+        output_dir = Path(*parts[: idx - 2])
+        workspace = output_dir.parent
+    except (ValueError, IndexError):
+        raise RuntimeError(f"Unexpected rosdoc2 path structure: {here}")
 
-# SNIPPET_ROOT = DOC_ROOT / "_code"
+    # os.walk with followlinks=True handles symlinked package directories
+    for dirpath, dirnames, filenames in os.walk(workspace, followlinks=True):
+        # Don't descend into the rosdoc2 output directory
+        dirnames[:] = [d for d in dirnames if d != output_dir.name]
+        if ("doc" in dirnames) and ("package.xml" in filenames):
+            candidate = Path(dirpath) / "package.xml"
+            if ET.parse(candidate).getroot().findtext("name") == pkg_name:
+                return Path(dirpath)
 
-# SOURCE_DIRS = ["config", "launch"]
+    raise RuntimeError(
+        f"Could not find package '{pkg_name}' under workspace '{workspace}'"
+    )
 
-# def setup(app):
-#     SNIPPET_ROOT.mkdir(exist_ok=True)
-
-#     for d in SOURCE_DIRS:
-#         src = PACKAGE_ROOT / d
-#         dst = SNIPPET_ROOT / d
-#         print("src = " + str(src))
-#         print("dst = " + str(dst))
-#         if src.exists():
-#             if dst.exists():
-#                 shutil.rmtree(dst)
-#             shutil.copytree(src, dst)
-from pathlib import Path
-from docutils.parsers.rst.directives.misc import Include
-from sphinx.directives.code import LiteralInclude
-
-
-def find_package_root(pkg_name: str):
-    """Find the real package directory inside ROS_PACKAGE_PATH."""
-    ros_paths = os.environ.get("ROS_PACKAGE_PATH", "").split(":")
-    print("ros_paths = " + str (ros_paths))
-    for p in ros_paths:
-        candidate = Path(p) / pkg_name
-        print("candidate = " + str (candidate))
-        if (candidate / "package.xml").exists():
-            return candidate
-    raise RuntimeError(f"Could not locate package {pkg_name}")
-
-
-DOC_ROOT = Path(__file__).parent
-PACKAGE_NAME = os.environ.get("ROS_PACKAGE_NAME", "visp_tk_tutorials")
-PACKAGE_ROOT = find_package_root(PACKAGE_NAME)
-
+PACKAGE_ROOT = find_package_root()
+PACKAGE_NAME = ET.parse(PACKAGE_ROOT / "package.xml").getroot().findtext("name")
+DOC_ROOT = PACKAGE_ROOT / "doc"
 SNIPPET_ROOT = DOC_ROOT / "_code"
 SOURCE_DIRS = ["config", "launch"]
 
