@@ -40,7 +40,7 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
   //////////////////////////////////////////////////////////////////////
   auto tag_size_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   tag_size_param_desc.description = "This parameter indicates the size of the tag, expressed in meters. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
-  this->declare_parameter<double>("tag_size", tag_size_param_desc);
+  this->declare_parameter<double>("tag_size", -1.0, tag_size_param_desc);
 
   auto id_pub_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   id_pub_param_desc.description = "If set, the ID of the tag whose pose must be published on the pose topic.";
@@ -48,11 +48,11 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
 
   auto tag_family_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   tag_family_param_desc.description = "This parameter indicates the family of the tag. Available families are " + vpDetectorAprilTag::getAvailableTagFamily();
-  this->declare_parameter<std::string>("tag_family", tag_family_param_desc);
+  this->declare_parameter<std::string>("tag_family", "", tag_family_param_desc);
 
   auto pose_method_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   pose_method_param_desc.description = "This parameter indicates the pose estimation to use when a tag is detected. Available methods are " + vpDetectorAprilTag::getAvailablePoseMethod();
-  this->declare_parameter<std::string>("pose_method", pose_method_param_desc);
+  this->declare_parameter<std::string>("pose_method", "", pose_method_param_desc);
 
   auto detection_margin_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   detection_margin_param_desc.description = "This parameter indicates the detection margin threshold. Setting -1 deactivate the feature. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
@@ -98,26 +98,22 @@ bool AprilTagTracker::init_tracker()
     RCLCPP_INFO(this->get_logger(), "The pose of the tag ID %d will be published on the topic %s.", *m_opt_id, m_poses_pub->get_topic_name());
   }
 
-  if (m_config_file.empty()) {
-    auto tag_size_param = rclcpp::Parameter();
-    bool isSet = this->get_parameter("tag_size", tag_size_param);
-    if (isSet) {
-      m_tag_size = static_cast<float>(tag_size_param.as_double());
-      RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
-    }
-    else {
-      RCLCPP_ERROR(this->get_logger(), "%s parameter is not set", tag_size_param.get_name().c_str());
-      return false;
-    }
+  m_tag_size = static_cast<float>(this->get_parameter("tag_size").as_double());
+  if (m_tag_size > 0.f) {
+    RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
+  }
+  else {
+    RCLCPP_ERROR(this->get_logger(), "'tag_size' parameter is not set");
+    return false;
+  }
 
-    auto tag_family_param = rclcpp::Parameter();
-    isSet = this->get_parameter("tag_family", tag_family_param);
-    if (isSet) {
-      m_family_name = tag_family_param.as_string();
+  if (m_config_file.empty()) {
+    m_family_name = this->get_parameter("tag_family").as_string();
+    if (!m_family_name.empty()) {
       RCLCPP_INFO(this->get_logger(), "Tag family is set to %s\n", m_family_name.c_str());
     }
     else {
-      RCLCPP_ERROR(this->get_logger(), "%s parameter is not set", tag_family_param.get_name().c_str());
+      RCLCPP_ERROR(this->get_logger(), "'tag_family' parameter is not set");
       return false;
     }
 
@@ -126,20 +122,22 @@ bool AprilTagTracker::init_tracker()
       m_tag_detector.setAprilTagFamily(tag_family);
     }
     catch (const vpException &e) {
-      RCLCPP_ERROR(this->get_logger(), "%s parameter value '%s' cannot be converted to a known family. Allowed values are: %s", tag_family_param.get_name().c_str(), m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
+      RCLCPP_ERROR(this->get_logger(), "'tag_family' parameter value '%s' cannot be converted to a known family. Allowed values are: %s", m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
       return false;
     }
 
-    auto pose_method_param = rclcpp::Parameter();
-    this->get_parameter("pose_method", pose_method_param);
-    auto pose_method_name = pose_method_param.as_string();
+    auto pose_method_name = this->get_parameter("pose_method").as_string();
+    if (pose_method_name.empty()) {
+      RCLCPP_ERROR(this->get_logger(), "'pose_method' parameter is not set");
+      return false;
+    }
     try {
       vpDetectorAprilTag::vpPoseEstimationMethod pose_method = vpDetectorAprilTag::poseMethodFromString(pose_method_name);
       m_tag_detector.setAprilTagPoseEstimationMethod(pose_method);
       RCLCPP_INFO(this->get_logger(), "Pose estimation method is set to %s\n", pose_method_name.c_str());
     }
     catch (const vpException &e) {
-      RCLCPP_ERROR(this->get_logger(), "%s parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_param.get_name().c_str(), pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
+      RCLCPP_ERROR(this->get_logger(), "'pose_method' parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
       return false;
     }
 
@@ -163,7 +161,9 @@ bool AprilTagTracker::init_tracker()
   }
   else {
     try {
+      RCLCPP_INFO(this->get_logger(), "Reading configuration file %s\n", m_config_file.c_str());
       m_tag_detector.loadConfigFile(m_config_file);
+      m_family_name = vpDetectorAprilTag::tagFamilyToString(m_tag_detector.getAprilTagFamily());
     }
     catch (const vpException &e) {
       RCLCPP_ERROR(this->get_logger(), e.what());
