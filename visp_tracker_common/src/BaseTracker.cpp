@@ -56,6 +56,13 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("visualization_debug", vis_debug_param);
   m_visualization_debug = vis_debug_param.as_bool();
 
+  auto initial_tracking_status_param = rclcpp::Parameter();
+  auto initial_tracking_status_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  initial_tracking_status_param_desc.description = "When this parameter is set to true, the node will start with the tracking active.";
+  this->declare_parameter("initial_tracking_status", false, initial_tracking_status_param_desc);
+  this->get_parameter("initial_tracking_status", initial_tracking_status_param);
+  m_has_to_track = initial_tracking_status_param.as_bool();
+
   auto config_file_param = rclcpp::Parameter();
   auto config_file_desc = rcl_interfaces::msg::ParameterDescriptor {};
   config_file_desc.description = "If set, path to the configuration file to initialize the tracker. package:// will be replaced by the path to the share folder of the corresponding package.";
