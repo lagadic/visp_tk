@@ -203,7 +203,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       std::scoped_lock lock(m_mutex_tracking);
       has_to_track = m_has_to_track;
     }
-    if (quit || (!m_rgb_cam_info_received) || (!has_to_track)) {
+    if (quit || (!m_rgb_cam_info_received) || ((!has_to_track) && m_is_headless_mode)) {
       return;
     }
 
@@ -233,103 +233,104 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     }
 #endif
 
-    std::vector<vpHomogeneousMatrix> c_M_o_vec;
-    double t_start = vpTime::measureTimeMs();
-    bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
-    double t_end_tracking = vpTime::measureTimeMs();
-    std::vector<std::string> vec_info; // Vector that contains info to display on screen
-    static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
-    std::string t_string = std::to_string(t_end_tracking - t_start);
-    std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
-    vec_info.push_back(tracking_time);
+    if (has_to_track) {
+      std::vector<vpHomogeneousMatrix> c_M_o_vec;
+      double t_start = vpTime::measureTimeMs();
+      bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
+      double t_end_tracking = vpTime::measureTimeMs();
+      std::vector<std::string> vec_info; // Vector that contains info to display on screen
+      static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+      std::string t_string = std::to_string(t_end_tracking - t_start);
+      std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
+      vec_info.push_back(tracking_time);
 
-    vpColVector v_ee(6, 0);
-    if (found) {
-      RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", c_M_o_vec.size());
-      auto decision_margins = m_tag_detector.getTagsDecisionMargin();
-      auto tags_IDs = m_tag_detector.getTagsId();
-      auto tags_corners = m_tag_detector.getTagsCorners();
-      visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
-      detectionArray.header = msg->header;
+      if (found) {
+        RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", c_M_o_vec.size());
+        auto decision_margins = m_tag_detector.getTagsDecisionMargin();
+        auto tags_IDs = m_tag_detector.getTagsId();
+        auto tags_corners = m_tag_detector.getTagsCorners();
+        visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
+        detectionArray.header = msg->header;
 
-      for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
-        RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
-        {
-          std::stringstream ss;
-          ss << "Tag " << i << ": margin = " << decision_margins[i];
-          vec_info.push_back(ss.str());
-        }
+        for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
+          RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
+          {
+            std::stringstream ss;
+            ss << "Tag " << i << ": margin = " << decision_margins[i];
+            vec_info.push_back(ss.str());
+          }
 
-        vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
-        auto tag_corners = tags_corners[i];
+          vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
+          auto tag_corners = tags_corners[i];
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-        if (m_display_initialized && display_frame) {
-          vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
-        }
+          if (m_display_initialized && display_frame) {
+            vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
+          }
 #endif
 
-        geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
-        geometry_msgs::msg::PoseStamped stamped_pose;
-        stamped_pose.pose = pose_c_M_o;
-        stamped_pose.header.frame_id = msg->header.frame_id;
-        stamped_pose.header.stamp = this->get_clock()->now();
+          geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
+          geometry_msgs::msg::PoseStamped stamped_pose;
+          stamped_pose.pose = pose_c_M_o;
+          stamped_pose.header.frame_id = msg->header.frame_id;
+          stamped_pose.header.stamp = this->get_clock()->now();
 
-        visp_tracker_common::msg::AprilTagDetection detectionMsg;
-        detectionMsg.family = m_family_name;
-        detectionMsg.id = tags_IDs[i];
-        detectionMsg.size = m_tag_size;
-        detectionMsg.pose = stamped_pose;
-        vpImagePoint cog = m_tag_detector.getCog(i);
-        fromImagePoint(cog, detectionMsg.center);
-        fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
-        fromImagePoint(tag_corners[1], detectionMsg.corners[1]);
-        fromImagePoint(tag_corners[2], detectionMsg.corners[2]);
-        fromImagePoint(tag_corners[3], detectionMsg.corners[3]);
-        detectionArray.detections.push_back(detectionMsg);
+          visp_tracker_common::msg::AprilTagDetection detectionMsg;
+          detectionMsg.family = m_family_name;
+          detectionMsg.id = tags_IDs[i];
+          detectionMsg.size = m_tag_size;
+          detectionMsg.pose = stamped_pose;
+          vpImagePoint cog = m_tag_detector.getCog(i);
+          fromImagePoint(cog, detectionMsg.center);
+          fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
+          fromImagePoint(tag_corners[1], detectionMsg.corners[1]);
+          fromImagePoint(tag_corners[2], detectionMsg.corners[2]);
+          fromImagePoint(tag_corners[3], detectionMsg.corners[3]);
+          detectionArray.detections.push_back(detectionMsg);
 
-        if (m_opt_id) {
-          if (tags_IDs[i] == *m_opt_id) {
-            m_poses_pub->publish(stamped_pose);
+          if (m_opt_id) {
+            if (tags_IDs[i] == *m_opt_id) {
+              m_poses_pub->publish(stamped_pose);
+            }
           }
-        }
 
-        if (m_is_headless_mode && m_visualization_debug) {
-          // Publish the tag corners
-          visp_tracker_common::msg::NamedFeature feature2D;
-          feature2D.name = "Tag_" + std::to_string(tags_IDs[i]);
-          for (unsigned int i = 0; i < 3; ++i) {
+          if (m_is_headless_mode && m_visualization_debug) {
+            // Publish the tag corners
+            visp_tracker_common::msg::NamedFeature feature2D;
+            feature2D.name = "Tag_" + std::to_string(tags_IDs[i]);
+            for (unsigned int i = 0; i < 3; ++i) {
+              vision_msgs::msg::Point2D start, end;
+              fromImagePoint(tag_corners[i], start);
+              fromImagePoint(tag_corners[i+1], end);
+              feature2D.lines.push_back(visp_tracker_common::msg::Point2DTuple().set__start(start).set__end(end));
+            }
             vision_msgs::msg::Point2D start, end;
-            fromImagePoint(tag_corners[i], start);
-            fromImagePoint(tag_corners[i+1], end);
+            fromImagePoint(tag_corners[3], start);
+            fromImagePoint(tag_corners[0], end);
             feature2D.lines.push_back(visp_tracker_common::msg::Point2DTuple().set__start(start).set__end(end));
+            visp_tracker_common::msg::NamedFeatureArray namedFeaturesMsg;
+            namedFeaturesMsg.features.push_back(feature2D);
+            m_features_pub->publish(namedFeaturesMsg);
           }
-          vision_msgs::msg::Point2D start, end;
-          fromImagePoint(tag_corners[3], start);
-          fromImagePoint(tag_corners[0], end);
-          feature2D.lines.push_back(visp_tracker_common::msg::Point2DTuple().set__start(start).set__end(end));
-          visp_tracker_common::msg::NamedFeatureArray namedFeaturesMsg;
-          namedFeaturesMsg.features.push_back(feature2D);
-          m_features_pub->publish(namedFeaturesMsg);
+        }
+        // m_poses_pub->publish(stamped_pose);
+        m_tags_info_pub->publish(detectionArray);
+      }
+
+      // Manage info strings publication
+      if (m_info_strings.info_strings.size() == m_info_nb_static) {
+        m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
+      }
+      else {
+        unsigned int nb_infos = vec_info.size();
+        m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
+        for (unsigned int i = 0; i < nb_infos; ++i) {
+          m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
         }
       }
-      // m_poses_pub->publish(stamped_pose);
-      m_tags_info_pub->publish(detectionArray);
+      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
+      m_info_strings_pub->publish(m_info_strings);
     }
-
-    // Manage info strings publication
-    if (m_info_strings.info_strings.size() == m_info_nb_static) {
-      m_info_strings.info_strings.insert(m_info_strings.info_strings.end(), vec_info.begin(), vec_info.end());
-    }
-    else {
-      unsigned int nb_infos = vec_info.size();
-      m_info_strings.info_strings.resize(m_info_nb_static + nb_infos);
-      for (unsigned int i = 0; i < nb_infos; ++i) {
-        m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
-      }
-    }
-    m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
-    m_info_strings_pub->publish(m_info_strings);
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if (m_display_initialized && display_frame) {
