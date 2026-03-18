@@ -226,7 +226,7 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
   std::vector<std::string> poses_topics_names = this->get_parameter("poses_topics").as_string_array();
   m_pose_name_array = this->get_parameter("poses_names").as_string_array();
   if (poses_topics_names.size() != m_pose_name_array.size()) {
-    RCLCPP_ERROR(this->get_logger(), "'poses_names' and 'poses_topics' do not contain the same number of items");
+    RCLCPP_ERROR_STREAM(this->get_logger(), "'poses_names' and 'poses_topics' do not contain the same number of items (" << poses_topics_names.size() << " vs " << m_pose_name_array.size() << ")");
     return false;
   }
   if (!poses_topics_names.empty()) {
