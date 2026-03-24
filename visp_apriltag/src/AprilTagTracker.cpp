@@ -38,9 +38,13 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
   //////////////////////////////////////////////////////////////////////
-  auto tag_size_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
-  tag_size_param_desc.description = "This parameter indicates the size of the tag, expressed in meters. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
-  this->declare_parameter<double>("tag_size", -1.0, tag_size_param_desc);
+  auto tag_size_value_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  tag_size_value_param_desc.description = "This parameter indicates the size of the tag, expressed in meters. See https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html for more information";
+  this->declare_parameter<std::vector<double>>("tag_size_values", std::vector<double>(), tag_size_value_param_desc);
+
+  auto tag_size_key_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  tag_size_key_param_desc.description = "This parameter indicates the ID associated to the size of the tag. ID -1 is a special case that means 'any ID that is not explicitly listed in the map'";
+  this->declare_parameter<std::vector<int64_t>>("tag_size_keys", std::vector<int64_t>(), tag_size_key_param_desc);
 
   auto id_pub_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   id_pub_param_desc.description = "If set, the ID of the tag whose pose must be published on the pose topic.";
@@ -98,12 +102,35 @@ bool AprilTagTracker::init_tracker()
     RCLCPP_INFO(this->get_logger(), "The pose of the tag ID %d will be published on the topic %s.", *m_opt_id, m_poses_pub->get_topic_name());
   }
 
-  m_tag_size = static_cast<float>(this->get_parameter("tag_size").as_double());
-  if (m_tag_size > 0.f) {
-    RCLCPP_INFO(this->get_logger(), "Tag size is set to %f\n", m_tag_size);
+  std::vector<double> tag_size_values = this->get_parameter("tag_size_values").as_double_array();
+  if (tag_size_values.size() == 0) {
+    RCLCPP_ERROR(this->get_logger(), "'tag_size_values' parameter is not set");
+    return false;
+  }
+
+  std::vector<int64_t> tag_size_keys = this->get_parameter("tag_size_keys").as_integer_array();
+  if (tag_size_keys.size() == 0) {
+    RCLCPP_ERROR(this->get_logger(), "'tag_size_keys' parameter is not set");
+    return false;
+  }
+
+  if (tag_size_keys.size() != tag_size_values.size()) {
+    RCLCPP_ERROR_STREAM(this->get_logger(), "'tag_size_keys' size(" << tag_size_keys.size()<< ") differs from 'tag_size_values' size (" << tag_size_values.size() << ")");
+    return false;
+  }
+
+  size_t nb_keys = tag_size_keys.size();
+  for (size_t i = 0; i < nb_keys; ++i) {
+    int64_t key = tag_size_keys[i];
+    float val = static_cast<float>(tag_size_values[i]);
+    m_tag_size_map[key] = static_cast<float>(val);
+  }
+  auto idx_tag_size = m_tag_size_map.find(-1);
+  if (idx_tag_size != m_tag_size_map.end()) {
+    m_default_tag_size = idx_tag_size->second;
   }
   else {
-    RCLCPP_ERROR(this->get_logger(), "'tag_size' parameter is not set");
+    RCLCPP_ERROR_STREAM(this->get_logger(), "'tag_size_keys' does not contain an entry for the wildcard value '-1'");
     return false;
   }
 
@@ -176,7 +203,7 @@ bool AprilTagTracker::init_tracker()
 void AprilTagTracker::init_info_strings()
 {
   const unsigned int nb_digits = 3;
-  m_info_strings.info_strings.push_back(std::string("Tag Size.........: ") + std::to_string(m_tag_size).substr(0, std::to_string(m_tag_size).find(".") + nb_digits + 1));
+  m_info_strings.info_strings.push_back(std::string("Default Tag Size.: ") + std::to_string(m_default_tag_size).substr(0, std::to_string(m_default_tag_size).find(".") + nb_digits + 1));
   m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
   m_info_strings.info_strings.push_back(std::string("Tag family.......: ") + m_family_name);
   m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
@@ -234,9 +261,8 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #endif
 
     if (has_to_track) {
-      std::vector<vpHomogeneousMatrix> c_M_o_vec;
       double t_start = vpTime::measureTimeMs();
-      bool found = m_tag_detector.detect(m_I, m_tag_size, m_rgb_cam, c_M_o_vec);
+      bool found = m_tag_detector.detect(m_I);
       double t_end_tracking = vpTime::measureTimeMs();
       std::vector<std::string> vec_info; // Vector that contains info to display on screen
       static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
@@ -245,22 +271,36 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       vec_info.push_back(tracking_time);
 
       if (found) {
-        RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", c_M_o_vec.size());
+        size_t nb_objects = m_tag_detector.getNbObjects();
+        RCLCPP_DEBUG(this->get_logger(), "Detected %ld AprilTag(s)", nb_objects);
         auto decision_margins = m_tag_detector.getTagsDecisionMargin();
         auto tags_IDs = m_tag_detector.getTagsId();
         auto tags_corners = m_tag_detector.getTagsCorners();
         visp_tracker_common::msg::AprilTagDetectionArray detectionArray;
         detectionArray.header = msg->header;
 
-        for (size_t i = 0; i < c_M_o_vec.size(); ++i) {
-          RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << m_tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o_vec[i]);
+        for (size_t i = 0; i < nb_objects; ++i) {
           {
             std::stringstream ss;
             ss << "Tag " << i << ": margin = " << decision_margins[i];
             vec_info.push_back(ss.str());
           }
 
-          vpHomogeneousMatrix c_M_o = c_M_o_vec[i];
+          int tag_ID = tags_IDs[i];
+          float tag_size;
+          auto idx_tag_size = m_tag_size_map.find(tag_ID);
+          if (idx_tag_size != m_tag_size_map.end()) {
+            tag_size = idx_tag_size->second;
+          }
+          else {
+            tag_size = m_default_tag_size;
+          }
+
+          vpHomogeneousMatrix c_M_o;
+          m_tag_detector.getPose(i, tag_size, m_rgb_cam, c_M_o);
+
+          RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o);
+
           auto tag_corners = tags_corners[i];
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
@@ -278,7 +318,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
           visp_tracker_common::msg::AprilTagDetection detectionMsg;
           detectionMsg.family = m_family_name;
           detectionMsg.id = tags_IDs[i];
-          detectionMsg.size = m_tag_size;
+          detectionMsg.size = tag_size;
           detectionMsg.pose = stamped_pose;
           vpImagePoint cog = m_tag_detector.getCog(i);
           fromImagePoint(cog, detectionMsg.center);

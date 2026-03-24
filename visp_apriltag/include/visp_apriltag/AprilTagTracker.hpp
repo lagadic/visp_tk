@@ -37,6 +37,8 @@
 #endif
 #include <visp3/detection/vpDetectorAprilTag.h>
 
+#include <map>
+
 #ifdef ENABLE_VISP_NAMESPACE
 using namespace VISP_NAMESPACE_NAME;
 #endif
@@ -98,7 +100,8 @@ protected:
   // ----- Tracking-related attributes -----
   vpDetectorAprilTag m_tag_detector; //!< The detector.
   std::string m_family_name; //!< Name of the tag family.
-  float m_tag_size; //!< Size of the tag, in meters.
+  std::map<int64_t, float> m_tag_size_map; //!< ID and associated size of the tag, in meters. ID -1 is a special case that means "any ID that is not explicitly listed in the map".
+  float m_default_tag_size; //!< Tag size for any tag ID that is not list in m_tag_size_map.
   vpImage<unsigned char> m_I; //!< Color image on which the detection is performed.
   std::optional<int> m_opt_id = std::nullopt; //!< If set, the ID of the tag whose pose must be published
 };
