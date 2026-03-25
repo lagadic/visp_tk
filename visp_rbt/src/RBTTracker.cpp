@@ -215,11 +215,8 @@ void RBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
   if (once) {
     m_I_depth.init(I_depth_raw.getHeight(), I_depth_raw.getWidth());
     if (!m_is_headless_mode) {
-      // Initialize depth display
-#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-      m_I_depth_display.resize(m_I_depth.getHeight(), m_I_depth.getWidth());
-      m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display);
-#endif
+      // Initialize depth display image
+      m_I_depth_display.init(m_I_depth.getHeight(), m_I_depth.getWidth());
     }
     once = false;
   }
@@ -304,7 +301,7 @@ void RBTTracker::track()
     if (!m_display_initialized) {
       m_display_uchar = vpDisplayFactory::createDisplay(m_I);
       m_display = vpDisplayFactory::createDisplay(m_Ic);
-      if (!m_is_headless_mode) {
+      if ((!m_is_headless_mode) && m_depth_is_required) {
         // The depth display is not used for the initialization, only for display when not using the remote GUI
         m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display);
       }
