@@ -8,9 +8,9 @@
 Introduction
 ============
 
-``visp_common`` is a small interface between the ViSP library and ROS. For instance it converts between the different data types used by each library.
+``visp_common`` is a small interface between the ViSP library and ROS2. For instance it converts between the different data types used by each library.
 
-To date, the supported functionnality sums up to:
+To date, the supported functionality sums up to:
 
   * `ViSP vpImage <https://visp-doc.inria.fr/doxygen/visp-daily/classvpImage.html>`__ / `ROS sensor_msgs::Image <https://docs.ros.org/en/api/sensor_msgs/html/msg/Image.html>`__ conversion
 
