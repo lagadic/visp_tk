@@ -84,7 +84,7 @@ cloned in the ``src`` directory (see `How to get and build visp_tracker_common`_
 
 
 How to get and build visp_tracker_common
---------------------------------
+----------------------------------------
 
 Supposed you have a ros2 work space just run:
 
