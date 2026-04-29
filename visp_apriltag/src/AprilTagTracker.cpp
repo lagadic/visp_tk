@@ -305,15 +305,15 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
           if (m_display_initialized && display_frame) {
-            vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1);
+            unsigned int thickness = 2;
+            vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1, vpColor::none, thickness);
           }
 #endif
 
           geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
           geometry_msgs::msg::PoseStamped stamped_pose;
           stamped_pose.pose = pose_c_M_o;
-          stamped_pose.header.frame_id = msg->header.frame_id;
-          stamped_pose.header.stamp = this->get_clock()->now();
+          stamped_pose.header = msg->header;
 
           visp_tracker_common::msg::AprilTagDetection detectionMsg;
           detectionMsg.family = m_family_name;
