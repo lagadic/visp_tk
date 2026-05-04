@@ -407,7 +407,7 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
         if (opt_apriltag_detection) {
           for (const auto &detection: opt_apriltag_detection->detections) {
             if (m_opt_rgb_cam) {
-              vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(detection.pose.pose);
+              vpHomogeneousMatrix H = visp_common::pose::toVispHomogeneousMatrix(detection.pose);
               vpDisplay::displayFrame(m_I, H, m_opt_rgb_cam.value(), detection.size / 2.f, vpColor::none, 2, vpImagePoint(0, 0), "ID: " + std::to_string(detection.id), vpColor::red);
             }
             for (unsigned int i = 0; i < detection.corners.size() - 1; ++i) {
