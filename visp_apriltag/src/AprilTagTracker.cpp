@@ -310,26 +310,44 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #endif
 
           geometry_msgs::msg::Pose pose_c_M_o = visp_common::pose::toGeometryMsgsPose(c_M_o);
-          geometry_msgs::msg::PoseStamped stamped_pose;
-          stamped_pose.pose = pose_c_M_o;
-          stamped_pose.header.frame_id = msg->header.frame_id;
-          stamped_pose.header.stamp = this->get_clock()->now();
 
           visp_tracker_common::msg::AprilTagDetection detectionMsg;
+          detectionMsg.header = msg->header;
           detectionMsg.family = m_family_name;
           detectionMsg.id = tags_IDs[i];
           detectionMsg.size = tag_size;
-          detectionMsg.pose = stamped_pose;
+          detectionMsg.pose = pose_c_M_o;
           vpImagePoint cog = m_tag_detector.getCog(i);
           fromImagePoint(cog, detectionMsg.center);
           fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
           fromImagePoint(tag_corners[1], detectionMsg.corners[1]);
           fromImagePoint(tag_corners[2], detectionMsg.corners[2]);
           fromImagePoint(tag_corners[3], detectionMsg.corners[3]);
+          // TODO find a way to get the alignment parameter with vpDetectorAprilTag::isZAlignedWithCameraAxis()
+          detectionMsg.z_axis_aligned_with_camera_axis = m_tag_detector.isZAlignedWithCameraAxis();
+          static const unsigned int nb_tag_corners = 4;
+          std::vector<double> tag_corners_X(nb_tag_corners);
+          std::vector<double> tag_corners_Y(nb_tag_corners);
+          std::vector<double> tag_corners_Z(nb_tag_corners, 0.);
+          if (detectionMsg.z_axis_aligned_with_camera_axis) {
+            tag_corners_X = { -detectionMsg.size / 2., +detectionMsg.size / 2., +detectionMsg.size / 2., -detectionMsg.size / 2. };
+            tag_corners_Y = { +detectionMsg.size / 2., +detectionMsg.size / 2., -detectionMsg.size / 2., -detectionMsg.size / 2. };
+          }
+          else {
+            // Case where tag z-axis is NOT aligned with camera z-axis
+            tag_corners_X = { -detectionMsg.size / 2., +detectionMsg.size / 2., +detectionMsg.size / 2., -detectionMsg.size / 2. };
+            tag_corners_Y = { -detectionMsg.size / 2., -detectionMsg.size / 2., +detectionMsg.size / 2., +detectionMsg.size / 2. };
+          }
+          for (unsigned int i = 0; i < nb_tag_corners; ++i) {
+            detectionMsg.corners_3d.at(i) = geometry_msgs::msg::Point().set__x(tag_corners_X[i]).set__y(tag_corners_Y[i]).set__z(tag_corners_Z[i]);
+          }
           detectionArray.detections.push_back(detectionMsg);
 
           if (m_opt_id) {
             if (tags_IDs[i] == *m_opt_id) {
+              geometry_msgs::msg::PoseStamped stamped_pose;
+              stamped_pose.header = msg->header;
+              stamped_pose.pose = pose_c_M_o;
               m_poses_pub->publish(stamped_pose);
             }
           }
