@@ -203,12 +203,17 @@ bool AprilTagTracker::init_tracker()
 void AprilTagTracker::init_info_strings()
 {
   const unsigned int nb_digits = 3;
+  const int nb_info = m_info_strings.hor_offset_right_border.size();
+  // Correct the horizontal offset to match the one required for the
+  for (int idx = 0; idx < nb_info; ++idx) {
+    m_info_strings.hor_offset_right_border[idx] = s_hor_offset_from_left_border;
+  }
   m_info_strings.info_strings.push_back(std::string("Default Tag Size.: ") + std::to_string(m_default_tag_size).substr(0, std::to_string(m_default_tag_size).find(".") + nb_digits + 1));
-  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
+  m_info_strings.hor_offset_right_border.push_back(s_hor_offset_from_left_border);
   m_info_strings.info_strings.push_back(std::string("Tag family.......: ") + m_family_name);
-  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
+  m_info_strings.hor_offset_right_border.push_back(s_hor_offset_from_left_border);
   m_info_strings.info_strings.push_back(std::string("Margin threshold.: ") + (m_tag_detector.getAprilTagDecisionMarginThreshold() < 0 ? std::string("deactivated") : std::to_string(m_tag_detector.getAprilTagDecisionMarginThreshold())));
-  m_info_strings.hor_offset_right_border.push_back(1.5 * s_default_hor_offset);
+  m_info_strings.hor_offset_right_border.push_back(s_hor_offset_from_left_border);
   m_info_nb_static = m_info_strings.info_strings.size();
 }
 
@@ -247,15 +252,9 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       m_display = vpDisplayFactory::createDisplay(m_I);
       m_display_initialized = true;
     }
-
     if (m_display_initialized) {
       if (display_frame) {
         vpDisplay::display(m_I);
-        static const int vert_offset = 20;
-        const int nb_info = m_info_strings.info_strings.size();
-        for (int idx = 0; idx < nb_info; ++idx) {
-          vpDisplay::displayText(m_I, vert_offset * (idx + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[idx], m_info_strings.info_strings[idx], vpColor::red);
-        }
       }
     }
 #endif
@@ -265,7 +264,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       bool found = m_tag_detector.detect(m_I);
       double t_end_tracking = vpTime::measureTimeMs();
       std::vector<std::string> vec_info; // Vector that contains info to display on screen
-      static const unsigned int nb_digits = 2; // Number of digits to display doubles on screen
+      static const unsigned int nb_digits = 1; // Number of digits to display doubles on screen
       std::string t_string = std::to_string(t_end_tracking - t_start);
       std::string tracking_time = "Tracking time: " + t_string.substr(0, t_string.find(".") + nb_digits + 1) + "ms";
       vec_info.push_back(tracking_time);
@@ -282,7 +281,8 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         for (size_t i = 0; i < nb_objects; ++i) {
           {
             std::stringstream ss;
-            ss << "Tag " << i << ": margin = " << decision_margins[i];
+            std::string margin_as_str = std::to_string(decision_margins[i]);
+            ss << "Tag " << i << ": margin = " << margin_as_str.substr(0, margin_as_str.find(".") + nb_digits + 1);
             vec_info.push_back(ss.str());
           }
 
@@ -368,7 +368,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
           m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
         }
       }
-      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
+      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), BaseTracker::s_hor_offset_from_left_border);
       m_info_strings_pub->publish(m_info_strings);
     }
 
@@ -377,8 +377,15 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       unsigned int nb_infos = m_info_strings.info_strings.size();
       const unsigned int v_offset = 20;
       for (unsigned int r = 0; r < nb_infos; ++r) {
-        vpDisplay::displayText(m_I, v_offset * (r + 1), m_I.getWidth() - m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
+        vpDisplay::displayText(m_I, v_offset * (r + 1), m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
       }
+
+      unsigned int r = 1;
+      std::string left_click_text = std::string("Click left to turn ") + (m_has_to_track ? std::string("OFF") : std::string("ON")) + std::string(" the tracking.");
+      std::string right_click_text("Click right to kill the node.");
+      vpDisplay::displayText(m_I, m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border, left_click_text, vpColor::red);
+      ++r;
+      vpDisplay::displayText(m_I, m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border, right_click_text, vpColor::red);
       vpDisplay::flush(m_I);
     }
 

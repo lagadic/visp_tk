@@ -254,6 +254,7 @@ protected:
 
   static const std::string s_dumb_topic_name; //!< Dumb name to avoid error when a topic name has not been given. The error will be handled in the init() method.
   static const unsigned int s_default_hor_offset; //!< Default horizontal offset to display the m_info_strings information
+  static const unsigned int s_hor_offset_from_left_border; //!< Default horizontal offset from the left border to display the m_info_strings information
 };
 }
 #endif
