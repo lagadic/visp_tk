@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/user/ros_ws_simu/install/demo_pbvs_using_pinocchio/include/**",
+        "/home/user/ros_ws_simu/install/visp_tracker_common/include/**",
+        "/home/user/ros_ws_simu/install/visp_common/include/**",
+        "/home/user/ros_ws_simu/install/tsid_controllers/include/**",
+        "/home/user/ros_ws_simu/install/demo_pbvs_apriltag/include/**",
+        "/home/user/ros_ws_simu/install/tsid_controller_msgs/include/**",
+        "/home/user/ros_ws_simu/install/demo_utils/include/**",
+        "/home/user/ros_ws_simu/install/demo_interfaces/include/**",
+        "/opt/pal/alum/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/user/ros_ws_simu/src/demo-pbvs-apriltag/include/**",
+        "/home/user/ros_ws_simu/src/demo-pbvs-pinocchio/include/**",
+        "/home/user/ros_ws_simu/src/demo-utils/include/**",
+        "/home/user/ros_ws_simu/src/tsid_ros2/tsid_controllers/include/**",
+        "/home/user/ros_ws_simu/src/visp_tk/visp_apriltag/include/**",
+        "/home/user/ros_ws_simu/src/visp_tk/visp_common/include/**",
+        "/home/user/ros_ws_simu/src/visp_tk/visp_mbt/include/**",
+        "/home/user/ros_ws_simu/src/visp_tk/visp_rbt/include/**",
+        "/home/user/ros_ws_simu/src/visp_tk/visp_tracker_common/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
