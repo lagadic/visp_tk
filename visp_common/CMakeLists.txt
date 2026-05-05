@@ -40,11 +40,12 @@ find_package(ament_cmake_ros REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(vision_msgs REQUIRED)
 find_package(camera_calibration_parsers REQUIRED)
 find_package(VISP 3.7 REQUIRED COMPONENTS visp_core)
 
 # add library
-add_library(${PROJECT_NAME} src/pose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp)
+add_library(${PROJECT_NAME} src/pose.cpp src/camera.cpp src/image.cpp src/path_retriever.cpp src/vision.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -57,6 +58,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   ${geometry_msgs_TARGETS}
   ${rclcpp_TARGETS}
   ${sensor_msgs_TARGETS}
+  ${vision_msgs_TARGETS}
   ${VISP_LIBRARIES}
 )
 
