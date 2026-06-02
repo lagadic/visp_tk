@@ -26,7 +26,8 @@
 
 
 #if VISP_VERSION_INT <= VP_VERSION_INT(3, 7, 0)
-namespace {
+namespace
+{
 vpDetectorAprilTag::vpAprilTagFamily tagFamilyFromString(const std::string &name)
 {
   if (vpIoTools::toLowerCase(name) == "36h10") {
@@ -346,8 +347,8 @@ bool AprilTagTracker::init_tracker()
     }
     return true;
 #else
-  throw(vpException(vpException::badValue, "Could not initialize apriltag tracker from config file."
-    "Feature supported only since ViSP 3.7.1"));
+    throw(vpException(vpException::badValue, "Could not initialize apriltag tracker from config file."
+                      "Feature supported only since ViSP 3.7.1"));
 #endif
   }
 }
@@ -411,6 +412,16 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     }
     if (m_display_initialized) {
       if (display_frame) {
+        const unsigned int v_offset = 30;
+        unsigned int r = 1;
+        std::string left_click_text = std::string("Click left to turn ") + (m_has_to_track ? std::string("OFF") : std::string("ON")) + std::string(" the tracking.");
+        std::string right_click_text("Click right to kill the node.");
+        vpImagePoint ip_left_click(m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border);
+        ++r;
+        vpImagePoint ip_right_click(m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border);
+        vpFont font(20, vpFont::GENERIC_MONOSPACE);
+        font.drawText(m_I, left_click_text, ip_left_click, 0, 255);
+        font.drawText(m_I, right_click_text, ip_right_click, 0, 255);
         vpDisplay::display(m_I);
       }
     }
@@ -555,13 +566,6 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       for (unsigned int r = 0; r < nb_infos; ++r) {
         vpDisplay::displayText(m_I, v_offset * (r + 1), m_info_strings.hor_offset_right_border[r], m_info_strings.info_strings[r], vpColor::red);
       }
-
-      unsigned int r = 1;
-      std::string left_click_text = std::string("Click left to turn ") + (m_has_to_track ? std::string("OFF") : std::string("ON")) + std::string(" the tracking.");
-      std::string right_click_text("Click right to kill the node.");
-      vpDisplay::displayText(m_I, m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border, left_click_text, vpColor::red);
-      ++r;
-      vpDisplay::displayText(m_I, m_I.getHeight() - v_offset * r, s_hor_offset_from_left_border, right_click_text, vpColor::red);
       vpDisplay::flush(m_I);
     }
 

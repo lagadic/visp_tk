@@ -33,6 +33,7 @@
 
 #include <visp3/core/vpIoTools.h>
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+#include <visp3/core/vpFont.h>
 #include <visp3/gui/vpDisplayFactory.h>
 #endif
 #include <visp3/detection/vpDetectorAprilTag.h>
