@@ -24,6 +24,125 @@
 
 #include <visp_apriltag/AprilTagTracker.hpp>
 
+
+#if VISP_VERSION_INT <= VP_VERSION_INT(3, 7, 0)
+namespace {
+vpDetectorAprilTag::vpAprilTagFamily tagFamilyFromString(const std::string &name)
+{
+  if (vpIoTools::toLowerCase(name) == "36h10") {
+    return vpDetectorAprilTag::TAG_36h10;
+  }
+  else if (vpIoTools::toLowerCase(name) == "36h11") {
+    return vpDetectorAprilTag::TAG_36h11;
+  }
+  else if (vpIoTools::toLowerCase(name) == "25h9") {
+    return vpDetectorAprilTag::TAG_25h9;
+  }
+  else if (vpIoTools::toLowerCase(name) == "25h7") {
+    return vpDetectorAprilTag::TAG_25h7;
+  }
+  else if (vpIoTools::toLowerCase(name) == "16h5") {
+    return vpDetectorAprilTag::TAG_16h5;
+  }
+  else if (vpIoTools::toLowerCase(name) == "circle21h7") {
+    return vpDetectorAprilTag::TAG_CIRCLE21h7;
+  }
+  else if (vpIoTools::toLowerCase(name) == "circle49h12") {
+    return vpDetectorAprilTag::TAG_CIRCLE49h12;
+  }
+  else if (vpIoTools::toLowerCase(name) == "custom48h12") {
+    return vpDetectorAprilTag::TAG_CUSTOM48h12;
+  }
+  else if (vpIoTools::toLowerCase(name) == "standard41h12") {
+    return vpDetectorAprilTag::TAG_STANDARD41h12;
+  }
+  else if (vpIoTools::toLowerCase(name) == "standard41h12") {
+    return vpDetectorAprilTag::TAG_STANDARD52h13;
+  }
+#if defined(VISP_HAVE_APRILTAG_ARUCO)
+  else if (vpIoTools::toLowerCase(name) == "aruco_4x4_50") {
+    return vpDetectorAprilTag::TAG_ARUCO_4x4_50;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_4x4_100") {
+    return vpDetectorAprilTag::TAG_ARUCO_4x4_100;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_4x4_250") {
+    return vpDetectorAprilTag::TAG_ARUCO_4x4_250;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_4x4_1000") {
+    return vpDetectorAprilTag::TAG_ARUCO_4x4_1000;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_5x5_50") {
+    return vpDetectorAprilTag::TAG_ARUCO_5x5_50;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_5x5_100") {
+    return vpDetectorAprilTag::TAG_ARUCO_5x5_100;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_5x5_250") {
+    return vpDetectorAprilTag::TAG_ARUCO_5x5_250;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_5x5_1000") {
+    return vpDetectorAprilTag::TAG_ARUCO_5x5_1000;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_6x6_50") {
+    return vpDetectorAprilTag::TAG_ARUCO_6x6_50;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_6x6_100") {
+    return vpDetectorAprilTag::TAG_ARUCO_6x6_100;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_6x6_250") {
+    return vpDetectorAprilTag::TAG_ARUCO_6x6_250;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_6x6_1000") {
+    return vpDetectorAprilTag::TAG_ARUCO_6x6_1000;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_7x7_50") {
+    return vpDetectorAprilTag::TAG_ARUCO_7x7_50;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_7x7_100") {
+    return vpDetectorAprilTag::TAG_ARUCO_7x7_100;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_7x7_250") {
+    return vpDetectorAprilTag::TAG_ARUCO_7x7_250;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_7x7_1000") {
+    return vpDetectorAprilTag::TAG_ARUCO_7x7_1000;
+  }
+  else if (vpIoTools::toLowerCase(name) == "aruco_mip_36h12") {
+    return vpDetectorAprilTag::TAG_ARUCO_MIP_36h12;
+  }
+#endif
+  throw(vpException(vpException::badValue, "Could not find a tag family that corresponds to the name '%s'", name.c_str()));
+}
+
+vpDetectorAprilTag::vpPoseEstimationMethod poseMethodFromString(const std::string &name)
+{
+  if (vpIoTools::toLowerCase(name) == "dementhon_virtual_vs") {
+    return vpDetectorAprilTag::DEMENTHON_VIRTUAL_VS;
+  }
+  else if (vpIoTools::toLowerCase(name) == "lagrange_virtual_vs") {
+    return vpDetectorAprilTag::LAGRANGE_VIRTUAL_VS;
+  }
+  else if (vpIoTools::toLowerCase(name) == "best_residual_virtual_vs") {
+    return vpDetectorAprilTag::BEST_RESIDUAL_VIRTUAL_VS;
+  }
+#if defined(VISP_HAVE_APRILTAG_POSE_FCT)
+  else if (vpIoTools::toLowerCase(name) == "homography") {
+    return vpDetectorAprilTag::HOMOGRAPHY;
+  }
+  else if (vpIoTools::toLowerCase(name) == "homography_virtual_vs") {
+    return vpDetectorAprilTag::HOMOGRAPHY_VIRTUAL_VS;
+  }
+  else if (vpIoTools::toLowerCase(name) == "homography_orthogonal_iteration") {
+    return vpDetectorAprilTag::HOMOGRAPHY_ORTHOGONAL_ITERATION;
+  }
+#endif
+  throw(vpException(vpException::badValue, "Could not find a pose method that corresponds to the name '%s'", name.c_str()));
+}
+
+}
+#endif
+
 namespace visp_apriltag
 {
 void fromImagePoint(const vpImagePoint &ip, vision_msgs::msg::Point2D &out)
@@ -51,11 +170,19 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
   this->declare_parameter<int>("id_published", -1, id_pub_param_desc);
 
   auto tag_family_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
   tag_family_param_desc.description = "This parameter indicates the family of the tag. Available families are " + vpDetectorAprilTag::getAvailableTagFamily();
+#else
+  tag_family_param_desc.description = "This parameter indicates the family of the tag.";
+#endif
   this->declare_parameter<std::string>("tag_family", "", tag_family_param_desc);
 
   auto pose_method_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
   pose_method_param_desc.description = "This parameter indicates the pose estimation to use when a tag is detected. Available methods are " + vpDetectorAprilTag::getAvailablePoseMethod();
+#else
+  pose_method_param_desc.description = "This parameter indicates the pose estimation to use when a tag is detected.";
+#endif
   this->declare_parameter<std::string>("pose_method", "", pose_method_param_desc);
 
   auto detection_margin_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -145,11 +272,19 @@ bool AprilTagTracker::init_tracker()
     }
 
     try {
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
       vpDetectorAprilTag::vpAprilTagFamily tag_family = vpDetectorAprilTag::tagFamilyFromString(m_family_name);
+#else
+      vpDetectorAprilTag::vpAprilTagFamily tag_family = tagFamilyFromString(m_family_name);
+#endif
       m_tag_detector.setAprilTagFamily(tag_family);
     }
     catch (const vpException &e) {
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
       RCLCPP_ERROR(this->get_logger(), "'tag_family' parameter value '%s' cannot be converted to a known family. Allowed values are: %s", m_family_name.c_str(), vpDetectorAprilTag::getAvailableTagFamily().c_str());
+#else
+      RCLCPP_ERROR(this->get_logger(), "'tag_family' parameter value '%s' cannot be converted to a known family.", m_family_name.c_str());
+#endif
       return false;
     }
 
@@ -159,12 +294,20 @@ bool AprilTagTracker::init_tracker()
       return false;
     }
     try {
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
       vpDetectorAprilTag::vpPoseEstimationMethod pose_method = vpDetectorAprilTag::poseMethodFromString(pose_method_name);
+#else
+      vpDetectorAprilTag::vpPoseEstimationMethod pose_method = poseMethodFromString(pose_method_name);
+#endif
       m_tag_detector.setAprilTagPoseEstimationMethod(pose_method);
       RCLCPP_INFO(this->get_logger(), "Pose estimation method is set to %s\n", pose_method_name.c_str());
     }
     catch (const vpException &e) {
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
       RCLCPP_ERROR(this->get_logger(), "'pose_method' parameter value '%s' cannot be converted to a known family. Allowed values are: %s", pose_method_name.c_str(), vpDetectorAprilTag::getAvailablePoseMethod().c_str());
+#else
+      RCLCPP_ERROR(this->get_logger(), "'pose_method' parameter value '%s' cannot be converted to a known family.", pose_method_name.c_str());
+#endif
       return false;
     }
 
@@ -182,11 +325,16 @@ bool AprilTagTracker::init_tracker()
     this->get_parameter("align_z", align_z_param);
     auto align_z = align_z_param.as_bool();
     m_tag_detector.setZAlignedWithCameraAxis(align_z);
+    RCLCPP_INFO(this->get_logger(), "Tracker settings:");
+    RCLCPP_INFO_STREAM(this->get_logger(), "  Tag family: " << m_family_name);
+    RCLCPP_INFO_STREAM(this->get_logger(), "  Z aligned: " << (align_z ? "yes" : "no"));
+    RCLCPP_INFO_STREAM(this->get_logger(), "  Display: " << (display_tag ? "yes" : "no"));
 
-    RCLCPP_INFO(this->get_logger(), "Done !");
+    RCLCPP_INFO(this->get_logger(), "Tracker initialization Done !");
     return true;
   }
   else {
+#if VISP_VERSION_INT > VP_VERSION_INT(3, 7, 0)
     try {
       RCLCPP_INFO(this->get_logger(), "Reading configuration file %s\n", m_config_file.c_str());
       m_tag_detector.loadConfigFile(m_config_file);
@@ -197,8 +345,14 @@ bool AprilTagTracker::init_tracker()
       return false;
     }
     return true;
+#else
+  throw(vpException(vpException::badValue, "Could not initialize apriltag tracker from config file."
+    "Feature supported only since ViSP 3.7.1"));
+#endif
   }
 }
+
+
 
 void AprilTagTracker::init_info_strings()
 {
@@ -223,7 +377,7 @@ void AprilTagTracker::init_info_strings()
 
 void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg)
 {
-  RCLCPP_DEBUG(this->get_logger(), "Receive image");
+  RCLCPP_INFO(this->get_logger(), "Receive image");
   try {
     bool quit = false;
     {
@@ -236,6 +390,9 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       has_to_track = m_has_to_track;
     }
     if (quit || (!m_rgb_cam_info_received) || ((!has_to_track) && m_is_headless_mode)) {
+      if (!m_rgb_cam_info_received) {
+        RCLCPP_INFO(this->get_logger(), "Waiting for camera info...");
+      }
       return;
     }
 
@@ -244,7 +401,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
     bool display_frame = (!m_is_headless_mode) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
 #endif
 
-// Convert ROS image to ViSP image
+    // Convert ROS image to ViSP image
     m_I = std::move(visp_common::image::toVispImageChar(*msg));
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
