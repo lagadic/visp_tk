@@ -32,8 +32,8 @@
 #include <std_srvs/srv/trigger.hpp>
 
 #include <tf2/exceptions.hpp>
-#include <tf2_ros/transform_listener.h>
-#include <tf2_ros/buffer.h>
+#include <tf2_ros/transform_listener.hpp>
+#include <tf2_ros/buffer.hpp>
 
 #include <visp_common/camera.hpp>
 #include <visp_common/path_retriever.hpp>
