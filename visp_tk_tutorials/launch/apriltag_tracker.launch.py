@@ -1,5 +1,9 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler, EmitEvent, LogInfo
+from launch.events import Shutdown
+from launch.event_handlers import (
+    OnProcessExit
+)
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
@@ -112,4 +116,15 @@ def generate_launch_description():
         output="screen",
     )
 
-    return LaunchDescription(declared_args + [v4l2_camera_node, apriltag_tracker_node])
+    shutdown_handler = RegisterEventHandler(
+            OnProcessExit(
+                target_action=apriltag_tracker_node,
+                on_exit=[
+                    LogInfo(msg=("The tracking node was closed, turning off the launch file")),
+                    EmitEvent(event=Shutdown(
+                        reason="tracking node closed"))
+                ]
+            )
+        )
+
+    return LaunchDescription(declared_args + [v4l2_camera_node, apriltag_tracker_node, shutdown_handler])
