@@ -48,10 +48,13 @@ int main(int argc, char *argv[])
   tracker = std::make_shared<visp_mbt::MBTTracker>("tracker_mbt");
   bool status = tracker->init();
   if (status) {
+    rclcpp::executors::SingleThreadedExecutor executor;
+    executor.add_node(tracker);
     while (!tracker->has_to_quit()) {
-      rclcpp::spin_some(tracker);
+      executor.spin_some();
     }
   }
+
   rclcpp::shutdown();
   return (status ? EXIT_SUCCESS : EXIT_FAILURE);
 }

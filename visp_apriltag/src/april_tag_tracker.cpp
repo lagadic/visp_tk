@@ -47,8 +47,10 @@ int main(int argc, char *argv[])
   tracker = std::make_shared<visp_apriltag::AprilTagTracker>("tracker_apriltag");
   bool success = tracker->init();
   if (success) {
+    rclcpp::executors::SingleThreadedExecutor executor;
+    executor.add_node(tracker);
     while (!tracker->has_to_quit()) {
-      rclcpp::spin_some(tracker);
+      executor.spin_some();
     }
   }
   return (success ? EXIT_SUCCESS : EXIT_FAILURE);
