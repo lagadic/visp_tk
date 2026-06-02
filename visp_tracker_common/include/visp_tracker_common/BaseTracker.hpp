@@ -238,7 +238,7 @@ protected:
 
   // ----- Tracking-related attributes -----
   bool m_rgb_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.
-  std::string m_rgb_camera_topic_name; //!< The name of the color camera topic.
+  std::string m_rgb_camera_info_topic_name; //!< The name of the color camera topic.
   std::string m_rgb_stream_name; //!< The name of the color image topic.
   vpCameraParameters m_rgb_cam; //!< The color camera parameters.
   std::string m_config_file; //!< If set, path to the configuration file that should be used to initialize the tracker.

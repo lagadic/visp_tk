@@ -103,8 +103,8 @@ This section will present the different parameters of the ``visp_tracker_common:
 Related to subscription / publication
 -------------------------------------
 
-* **REQUIRED** ``rgb_camera_topic_name``: name of the color camera topic.
-* **REQUIRED** ``rgb_stream_topic_name``: name of the color image topic.
+* **REQUIRED** ``rgb_camera_info_topic_name``: name of the color camera topic.
+* **REQUIRED** ``rgb_image_topic_name``: name of the color image topic.
 
 Related to the tracking
 -----------------------

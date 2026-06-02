@@ -23,9 +23,9 @@ def prepare_parameters(context):
     init_method = LaunchConfiguration("init_method")
     init_topic  = LaunchConfiguration("init_topic")
     projection_error_threshold = LaunchConfiguration("projection_error_threshold")
-    rgb_camera_topic_name = LaunchConfiguration("rgb_camera_topic_name")
+    rgb_camera_info_topic_name = LaunchConfiguration("rgb_camera_info_topic_name")
     rgb_model_file = LaunchConfiguration("rgb_model_file")
-    rgb_stream_topic_name = LaunchConfiguration("rgb_stream_topic_name")
+    rgb_image_topic_name = LaunchConfiguration("rgb_image_topic_name")
     stream_qos_depth = LaunchConfiguration("stream_qos_depth")
     stream_qos_durability = LaunchConfiguration("stream_qos_durability")
     stream_qos_reliability = LaunchConfiguration("stream_qos_reliability")
@@ -46,9 +46,9 @@ def prepare_parameters(context):
                 {'init_method': init_method},
                 {'init_topic': init_topic},
                 {'projection_error_threshold': projection_error_threshold},
-                {'rgb_camera_topic_name': rgb_camera_topic_name},
+                {'rgb_camera_info_topic_name': rgb_camera_info_topic_name},
                 {'rgb_model_file': rgb_model_file},
-                {'rgb_stream_topic_name': rgb_stream_topic_name},
+                {'rgb_image_topic_name': rgb_image_topic_name},
                 {'stream_qos_depth': stream_qos_depth},
                 {'stream_qos_durability': stream_qos_durability},
                 {'stream_qos_reliability': stream_qos_reliability},
@@ -221,7 +221,7 @@ def generate_launch_description():
             default_value="[]"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
-            "rgb_camera_topic_name",
+            "rgb_camera_info_topic_name",
             description="Name of the color camera topic.",
             default_value="/wide_left/camera/camera_info"
         ),
@@ -231,7 +231,7 @@ def generate_launch_description():
             default_value=""
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
-            "rgb_stream_topic_name",
+            "rgb_image_topic_name",
             description="Name of the color image topic.",
             default_value="/wide_left/camera/image_rect"
         ),
