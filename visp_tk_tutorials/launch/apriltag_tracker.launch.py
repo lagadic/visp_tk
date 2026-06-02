@@ -53,7 +53,7 @@ def generate_launch_description():
             description="Pose estimation method",
         ),
         DeclareLaunchArgument(
-            "rgb_camera_topic_name",
+            "rgb_camera_info_topic_name",
             default_value="/camera/image_raw",
             description="Topic name for the input image",
         ),
@@ -90,17 +90,17 @@ def generate_launch_description():
     #  AprilTag tracker node                                               #
     # ------------------------------------------------------------------ #
     # Le BaseTracker de visp utilise ses propres paramètres de topic
-    # rgb_camera_topic_name  → topic image
-    # rgb_stream_topic_name  → topic camera_info
+    # rgb_camera_info_topic_name  → topic camera_info
+    # rgb_image_topic_name  → topic image
     apriltag_tracker_node = Node(
         package="visp_apriltag",
         executable="visp_apriltag_node",
         name="tracker_apriltag",
         parameters=[
             {
-                #"rgb_camera_topic_name": LaunchConfiguration("rgb_camera_topic_name"),
-                "rgb_stream_topic_name": "/camera/image_raw", 
-                "rgb_camera_topic_name": "/camera/camera_info",
+                #"rgb_camera_info_topic_name": LaunchConfiguration("rgb_camera_info_topic_name"),
+                "rgb_image_topic_name": "/camera/image_raw",
+                "rgb_camera_info_topic_name": "/camera/camera_info",
                 "tag_family": LaunchConfiguration("tag_family"),
                 "tag_size_keys": LaunchConfiguration("tag_size_keys"),
                 "tag_size_values": LaunchConfiguration("tag_size_values"),
