@@ -31,7 +31,7 @@
 #include <string>
 
 #include <ament_index_cpp/get_package_prefix.hpp>
-#include <ament_index_cpp/get_package_share_directory.hpp>
+#include <ament_index_cpp/get_package_share_path.hpp>
 
 #include <visp_common/path_retriever.hpp>
 
@@ -61,7 +61,7 @@ std::string path_retriever(const std::string path)
     mod_url.erase(0, pos);
     std::string package_path;
     try {
-      package_path = ament_index_cpp::get_package_share_directory(package);
+      package_path = ament_index_cpp::get_package_share_path(package);
     }
     catch (const ament_index_cpp::PackageNotFoundError &) {
       return "";
