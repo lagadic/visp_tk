@@ -42,7 +42,7 @@ include(ExternalProject)
 ExternalProject_Add(
   external_bag
   PREFIX "externals"
-  URL https://github.com/rolalaro/visp_tk/releases/download/v0.1.0/tutorial-static-box-humble.tar.gz
+  URL https://visp-doc.inria.fr/download/visp_tk/tutorial-static-box-humble.tar.gz
   DOWNLOAD_NO_EXTRACT true
   CONFIGURE_COMMAND ""
   PATCH_COMMAND ""
