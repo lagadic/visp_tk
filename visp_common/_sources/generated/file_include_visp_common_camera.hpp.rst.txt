@@ -59,7 +59,7 @@ Functions
 
 - :ref:`exhale_function_camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521`
 
-- :ref:`exhale_function_camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc`
-
 - :ref:`exhale_function_camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91`
+
+- :ref:`exhale_function_camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc`
 
