@@ -50,9 +50,11 @@ int main(int argc, char *argv[])
   auto it_node = std::make_shared<rclcpp::Node>("it_node");
   bool status = gui->init(it_node);
   if (status) {
+    rclcpp::executors::SingleThreadedExecutor executor;
+    executor.add_node(it_node);
+    executor.add_node(gui);
     while (gui->has_to_run()) {
-      rclcpp::spin_some(it_node);
-      rclcpp::spin_some(gui);
+      executor.spin_some();
     }
   }
 
