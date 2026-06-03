@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_8ac014b6030d3805ea944e68e4335a80" kind="dir">
+    <compoundname>include/visp_common</compoundname>
+    <innerfile refid="camera_8hpp">camera.hpp</innerfile>
+    <innerfile refid="image_8hpp">image.hpp</innerfile>
+    <innerfile refid="path__retriever_8hpp">path_retriever.hpp</innerfile>
+    <innerfile refid="pose_8hpp">pose.hpp</innerfile>
+    <innerfile refid="vision_8hpp">vision.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/"/>
+  </compounddef>
+</doxygen>

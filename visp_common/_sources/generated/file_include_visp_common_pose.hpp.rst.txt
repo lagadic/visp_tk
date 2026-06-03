@@ -1,0 +1,73 @@
+
+.. _file_include_visp_common_pose.hpp:
+
+File pose.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_common>` (``include/visp_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Conversions between ROS and ViSP structures representing a 3D pose. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_common/pose.hpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_common_pose.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``geometry_msgs/msg/pose.hpp``
+
+- ``geometry_msgs/msg/transform.hpp``
+
+- ``visp3/core/vpHomogeneousMatrix.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_common`
+
+- :ref:`namespace_visp_common__pose`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_pose_8hpp_1a67762dad984684272b65ef88a335c2c7`
+
+- :ref:`exhale_function_pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c`
+
+- :ref:`exhale_function_pose_8hpp_1addc5dd3ce873589705bc58fd7602b8fb`
+
+- :ref:`exhale_function_pose_8hpp_1ad2526456b4a67d38cab86de9206129f9`
+
+- :ref:`exhale_function_pose_8hpp_1a9433407f20d765314aa9128633b5b7ca`
+
+- :ref:`exhale_function_pose_8hpp_1adc41c634f27039965dd0a2537f40fa6f`
+

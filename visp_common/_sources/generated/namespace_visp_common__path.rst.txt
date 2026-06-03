@@ -1,0 +1,20 @@
+
+.. _namespace_visp_common__path:
+
+Namespace visp_common::path
+===========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f`

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper" kind="struct" language="C++" prot="protected">
+    <compoundname>visp_mbt::MBTTracker::ExtrinsicsHelper</compoundname>
+    <includes refid="MBTTracker_8hpp" local="no">MBTTracker.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper_1a21288c3a68e3a95b64153700ba506ce7" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_mbt::MBTTracker::ExtrinsicsHelper::m_frame_name</definition>
+        <argsstring></argsstring>
+        <name>m_frame_name</name>
+        <qualifiedname>visp_mbt::MBTTracker::ExtrinsicsHelper::m_frame_name</qualifiedname>
+        <briefdescription>
+<para>The name of the TF2 frame. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="189" column="17" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper_1a8a6ecaff7ca5dfb6b6e1ab07e2ae54e7" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_mbt::MBTTracker::ExtrinsicsHelper::m_tracker_name</definition>
+        <argsstring></argsstring>
+        <name>m_tracker_name</name>
+        <qualifiedname>visp_mbt::MBTTracker::ExtrinsicsHelper::m_tracker_name</qualifiedname>
+        <briefdescription>
+<para>The name of the corresponding tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="190" column="17" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="190" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure to help the initialization of the extrinsics parameters from a TF2 topic. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_mbt/MBTTracker.hpp" line="187" column="3" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="188" bodyend="191"/>
+    <listofallmembers>
+      <member refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper_1a21288c3a68e3a95b64153700ba506ce7" prot="public" virt="non-virtual"><scope>visp_mbt::MBTTracker::ExtrinsicsHelper</scope><name>m_frame_name</name></member>
+      <member refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper_1a8a6ecaff7ca5dfb6b6e1ab07e2ae54e7" prot="public" virt="non-virtual"><scope>visp_mbt::MBTTracker::ExtrinsicsHelper</scope><name>m_tracker_name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

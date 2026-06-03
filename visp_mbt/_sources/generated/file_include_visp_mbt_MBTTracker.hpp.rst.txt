@@ -1,0 +1,70 @@
+
+.. _file_include_visp_mbt_MBTTracker.hpp:
+
+File MBTTracker.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_mbt>` (``include/visp_mbt``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_mbt/MBTTracker.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_mbt_MBTTracker.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``visp3/core/vpConfig.h``
+
+- ``visp3/core/vpImageConvert.h``
+
+- ``visp3/core/vpIoTools.h``
+
+- ``visp3/core/vpTrackingException.h``
+
+- ``visp3/mbt/vpMbGenericTracker.h``
+
+- ``visp_common/image.hpp``
+
+- ``visp_common/path_retriever.hpp``
+
+- ``visp_common/pose.hpp``
+
+- ``visp_tracker_common/BaseMultiModalTracker.hpp``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_mbt`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper`
+
+- :ref:`exhale_class_classvisp__mbt_1_1MBTTracker`
+

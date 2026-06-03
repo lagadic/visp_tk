@@ -1,0 +1,20 @@
+
+.. _namespace_visp_apriltag:
+
+Namespace visp_apriltag
+=======================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__apriltag_1_1AprilTagTracker`

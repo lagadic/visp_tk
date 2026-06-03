@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class TrackerGUI &mdash; visp_tracker_common 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variable visp_tracker_common::features2D_topic_name" href="variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html" />
+    <link rel="prev" title="Class BaseTracker" href="classvisp__tracker__common_1_1BaseTracker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            visp_tracker_common
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html">Class BaseMultiModalTracker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseTracker.html">Class BaseTracker</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html">Variable visp_tracker_common::features2D_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_visp_tracker_common.html">Directory visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../interfaces/message_definitions.html">Message Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/AprilTagDetection.html">AprilTagDetection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/AprilTagDetectionArray.html">AprilTagDetectionArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Ellipse2D.html">Ellipse2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/InfoStrings.html">InfoStrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/NamedFeature.html">NamedFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/NamedFeatureArray.html">NamedFeatureArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Point2DTuple.html">Point2DTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Polygon2D.html">Polygon2D</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-display">Related to the display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basemultimodaltracker-node">BaseMultiModalTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id1">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id2">Related to the tracking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#tracker-gui-node"><code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id3">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-services">Related to services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visp_tracker_common</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Class TrackerGUI</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classvisp__tracker__common_1_1TrackerGUI.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-trackergui">
+<span id="exhale-class-classvisp-tracker-common-1-1trackergui"></span><h1>Class TrackerGUI<a class="headerlink" href="#class-trackergui" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_visp_tracker_common_TrackerGUI.hpp.html#file-include-visp-tracker-common-trackergui-hpp"><span class="std std-ref">File TrackerGUI.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rclcpp::Node</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUIE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUIE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUIE"></span><span id="visp_tracker_common::TrackerGUI"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TrackerGUI</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUIE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enum-and-associated-tools">Enum and associated tools</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI12FeaturesTypeE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI12FeaturesTypeE"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FeaturesType</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Enumeration permitting to choose the type of object to represent the 2D feature points published by the client node. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType5POINTE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI12FeaturesType5POINTE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI12FeaturesType5POINTE"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98aefbfa9f1075046370c42dd4de721496a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">POINT</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType5POINTE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use points to represent the 2D features published by the client node. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType5CROSSE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI12FeaturesType5CROSSE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI12FeaturesType5CROSSE"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98a1608db77b8b911a3aa3aefc77df1af49"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CROSS</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType5CROSSE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use crosses to represent the 2D features published by the client node. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType10TYPE_COUNTE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI12FeaturesType10TYPE_COUNTE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI12FeaturesType10TYPE_COUNTE"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98abd63aa165f7118e797b4c68bbed4883e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TYPE_COUNT</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType10TYPE_COUNTE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ad0867af25c3381e1fdaa22127ec79ce2"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUIE" title="visp_tracker_common::TrackerGUI"><span class="n"><span class="pre">TrackerGUI</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="visp_tracker_common::TrackerGUI::FeaturesType"><span class="n"><span class="pre">FeaturesType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FeaturesType</span></span></span><br /></dt>
+<dd><p>Enumeration permitting to choose the type of object to represent the 2D feature points published by the client node. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI20featuresTypeToStringERK12FeaturesType">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI20featuresTypeToStringERK12FeaturesType"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI20featuresTypeToStringERK12FeaturesType"></span><span id="visp_tracker_common::TrackerGUI::featuresTypeToString__FeaturesTypeCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1afd35c3bc37b70d66c9a980a1c3564357"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">featuresTypeToString</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="visp_tracker_common::TrackerGUI::FeaturesType"><span class="n"><span class="pre">FeaturesType</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI20featuresTypeToStringERK12FeaturesType" title="Link to this definition"></a><br /></dt>
+<dd><p>Cast a <strong>FeaturesType</strong> enum value into a <strong>std::stirng</strong>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> – The type of 2D features we want to cast into a string. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::string The name of the <strong>FeaturesType</strong> enum value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI22featuresTypeFromStringERKNSt6stringE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI22featuresTypeFromStringERKNSt6stringE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI22featuresTypeFromStringERKNSt6stringE"></span><span id="visp_tracker_common::TrackerGUI::featuresTypeFromString__ssCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a117cfa1fd8dd7c0a2ee60218b20eb0c3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="visp_tracker_common::TrackerGUI::FeaturesType"><span class="n"><span class="pre">FeaturesType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">featuresTypeFromString</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI22featuresTypeFromStringERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Cast a string into a <strong>FeaturesType</strong> enum value. If <strong>name</strong> is not found, return <strong>FeaturesType::TYPE_COUNT</strong> . </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – The name of the display mode. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>DisplayMode The corresponding <strong>FeaturesType</strong> enum value, or <strong>FeaturesType::TYPE_COUNT</strong> if not found. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI24getAvailableFeaturesTypeERKNSt6stringERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI24getAvailableFeaturesTypeERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI24getAvailableFeaturesTypeERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="visp_tracker_common::TrackerGUI::getAvailableFeaturesType__ssCR.ssCR.ssCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ad9dc956b7e20066004b71813deef71b8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAvailableFeaturesType</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">prefix</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&lt;</span> <span class="pre">&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sep</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;</span> <span class="pre">,</span> <span class="pre">&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">suffix</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;</span> <span class="pre">&gt;&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI24getAvailableFeaturesTypeERKNSt6stringERKNSt6stringERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a string that lists the different <strong>FeaturesType</strong> available. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prefix</strong> – The string that must prefix the list of modes. </p></li>
+<li><p><strong>sep</strong> – The separator between the different modes. </p></li>
+<li><p><strong>suffix</strong> – The string that must suffix the list of modes. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::string The list containing the different modes. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-callbacks">Callbacks</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI20camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI20camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI20camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE"></span><span id="visp_tracker_common::TrackerGUI::camera_info_callback__sensor_msgs::msg::CameraInfo::SharedPtrC"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a61830266b6cb5a3ad562aa46fe7da752"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">camera_info_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CameraInfo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI20camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Camera parameters callback that initialize the RGB camera parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – Camera parameters message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::TrackerGUI::image_callback__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1af233bb3925d57e00a06dd95ef3a20b27"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">image_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color image callback, that manages the display of both images. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – The color image </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14depth_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14depth_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14depth_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::TrackerGUI::depth_callback__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a196ba4e2c609d93c0c11863a9f17560e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14depth_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback for the depth image, if used. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13info_callbackEKN19visp_tracker_common3msg11InfoStrings14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13info_callbackEKN19visp_tracker_common3msg11InfoStrings14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13info_callbackEKN19visp_tracker_common3msg11InfoStrings14ConstSharedPtrE"></span><span id="visp_tracker_common::TrackerGUI::info_callback__visp_tracker_common::msg::InfoStrings::ConstSharedPtrC"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aefd684f4a3021fe4a376a68baa3ba0fa"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">info_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">InfoStrings</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13info_callbackEKN19visp_tracker_common3msg11InfoStrings14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback for the informational strings to display. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-services-calls">Services calls</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15switch_trackingEv">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15switch_trackingEv"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15switch_trackingEv"></span><span id="visp_tracker_common::TrackerGUI::switch_tracking"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0f0726865c764a021f8cd3ed7e9e067d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">switch_tracking</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15switch_trackingEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ask the tracker(s) to turn ON/OFF tracking. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI20switch_visualizationEv">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI20switch_visualizationEv"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI20switch_visualizationEv"></span><span id="visp_tracker_common::TrackerGUI::switch_visualization"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a677f3dc6d8c70c7968f6cbbd4bf9768d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">switch_visualization</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI20switch_visualizationEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Ask the tracker(s) to turn ON/OFF visualization debug. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI10TrackerGUIERKNSt6stringE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI10TrackerGUIERKNSt6stringE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI10TrackerGUIERKNSt6stringE"></span><span id="visp_tracker_common::TrackerGUI::TrackerGUI__ssCR"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a4d6f845522e8eb6556c616ece060029b"></span><span class="sig-name descname"><span class="n"><span class="pre">TrackerGUI</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI10TrackerGUIERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUID0Ev">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUID0Ev"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUID0Ev"></span><span id="visp_tracker_common::TrackerGUI::~TrackerGUI"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a3dfa4f92bd1ce334976960ecfc05df16"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~TrackerGUI</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUID0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI4initENSt10shared_ptrIN6rclcpp4NodeEEE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI4initENSt10shared_ptrIN6rclcpp4NodeEEE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI4initENSt10shared_ptrIN6rclcpp4NodeEEE"></span><span id="visp_tracker_common::TrackerGUI::init__std::shared_ptr:rclcpp::Node:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a83378a186a567c87868bf19647fce2a1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">self</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI4initENSt10shared_ptrIN6rclcpp4NodeEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Self is required to initialize the m_it attribute. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – A std::shared_ptr towards the current object. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true Initialization went well. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false A problem occured. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK19visp_tracker_common10TrackerGUI10has_to_runEv">
+<span id="_CPPv3NK19visp_tracker_common10TrackerGUI10has_to_runEv"></span><span id="_CPPv2NK19visp_tracker_common10TrackerGUI10has_to_runEv"></span><span id="visp_tracker_common::TrackerGUI::has_to_runC"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a349e51ebb1c0505101698e419c9f8880"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">has_to_run</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK19visp_tracker_common10TrackerGUI10has_to_runEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Indicates if the node must still run or should be stopped. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true The node should continue to run. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>false The node should stop. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI4quitEv">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI4quitEv"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI4quitEv"></span><span id="visp_tracker_common::TrackerGUI::quit"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a65d1bfbcc6eb50ef85057677918eee32"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI4quitEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Method to properly stop the node. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14m_service_nodeE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14m_service_nodeE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14m_service_nodeE"></span><span id="visp_tracker_common::TrackerGUI::m_service_node__rclcpp::Node::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aac0f0c719b449ec3cf90c0a57b049d3b"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_service_node</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14m_service_nodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Node to wait until a service is completed. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14m_quit_requestE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14m_quit_requestE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14m_quit_requestE"></span><span id="visp_tracker_common::TrackerGUI::m_quit_request__std_srvs::srv::Trigger::Request::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a165b306617bd28efe21711ec08d2e961"></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_quit_request</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14m_quit_requestE" title="Link to this definition"></a><br /></dt>
+<dd><p>Request for the quit service. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14m_clients_quitE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14m_clients_quitE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14m_clients_quitE"></span><span id="visp_tracker_common::TrackerGUI::m_clients_quit__std::vector:std::shared_ptr:rclcpp::Client:std_srvs::srv::Trigger:::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ac455b89006efa8d0583755821d242e74"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Client</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_clients_quit</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14m_clients_quitE" title="Link to this definition"></a><br /></dt>
+<dd><p>Client to the quit service. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI16m_switch_requestE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI16m_switch_requestE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI16m_switch_requestE"></span><span id="visp_tracker_common::TrackerGUI::m_switch_request__std_srvs::srv::Trigger::Request::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a06f5b93c17ecc09ac8d006064479e09c"></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_switch_request</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI16m_switch_requestE" title="Link to this definition"></a><br /></dt>
+<dd><p>Request for any switch service. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI25m_clients_switch_trackingE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI25m_clients_switch_trackingE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI25m_clients_switch_trackingE"></span><span id="visp_tracker_common::TrackerGUI::m_clients_switch_tracking__std::vector:std::shared_ptr:rclcpp::Client:std_srvs::srv::Trigger:::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0f1114ad3c64503e5e890c4ccad9ca95"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Client</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_clients_switch_tracking</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI25m_clients_switch_trackingE" title="Link to this definition"></a><br /></dt>
+<dd><p>Client to turn ON/OFF the tracking. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI30m_clients_switch_visualizationE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI30m_clients_switch_visualizationE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI30m_clients_switch_visualizationE"></span><span id="visp_tracker_common::TrackerGUI::m_clients_switch_visualization__std::vector:std::shared_ptr:rclcpp::Client:std_srvs::srv::Trigger:::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a5dc47902ef35d3f13844092f9cfc9244"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Client</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_clients_switch_visualization</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI30m_clients_switch_visualizationE" title="Link to this definition"></a><br /></dt>
+<dd><p>Client to turn ON/OFF the visualization of 2D features. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI9m_it_nodeE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI9m_it_nodeE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI9m_it_nodeE"></span><span id="visp_tracker_common::TrackerGUI::m_it_node__rclcpp::Node::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a90671ee532e990610fc04d30102a802c"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_it_node</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI9m_it_nodeE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI4m_itE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI4m_itE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI4m_itE"></span><span id="visp_tracker_common::TrackerGUI::m_it__std::shared_ptr:image_transport::ImageTransport:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aa4312c69f7ce06f07bbc0f417187ddc2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">image_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ImageTransport</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_it</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI4m_itE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI7m_hintsE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI7m_hintsE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI7m_hintsE"></span><span id="visp_tracker_common::TrackerGUI::m_hints__std::shared_ptr:image_transport::TransportHints:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ac063ea1ea84991b5a7d731d0b22663b0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">image_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransportHints</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_hints</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI7m_hintsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_sub_colorE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_sub_colorE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_sub_colorE"></span><span id="visp_tracker_common::TrackerGUI::m_sub_color__image_transport::Subscriber"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0ceb2bbd4660036800f092967b636cf7"></span><span class="n"><span class="pre">image_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_sub_color</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_sub_colorE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13m_hints_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13m_hints_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13m_hints_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_hints_depth__std::shared_ptr:image_transport::TransportHints:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ae855e8776c06bc6c5be002a8d3d5280c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">image_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransportHints</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_hints_depth</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13m_hints_depthE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_sub_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_sub_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_sub_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_sub_depth__image_transport::Subscriber"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a47fd123f2b4d7e52f136901fcb329e3d"></span><span class="n"><span class="pre">image_transport</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_sub_depth</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_sub_depthE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13m_rgb_cam_subE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13m_rgb_cam_subE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13m_rgb_cam_subE"></span><span id="visp_tracker_common::TrackerGUI::m_rgb_cam_sub__rclcpp::Subscription:sensor_msgs::msg::CameraInfo:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a81b6608ca9699203d1803a3eb750f0d8"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CameraInfo</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_rgb_cam_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13m_rgb_cam_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscriber to the RGB camera topic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13m_feat_2D_subE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13m_feat_2D_subE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13m_feat_2D_subE"></span><span id="visp_tracker_common::TrackerGUI::m_feat_2D_sub__std::vector:rclcpp::Subscription:visp_tracker_common::msg::NamedFeatureArray:::SharedPtr:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0f6a4337a657bce7473b6b2691ba095b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NamedFeatureArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_feat_2D_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13m_feat_2D_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscriber to the 2D features topic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI18m_info_strings_subE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI18m_info_strings_subE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI18m_info_strings_subE"></span><span id="visp_tracker_common::TrackerGUI::m_info_strings_sub__rclcpp::Subscription:visp_tracker_common::msg::InfoStrings:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a7ca6e4f759e369628ce9484eb474e174"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">InfoStrings</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_info_strings_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI18m_info_strings_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscriber to the info strings topic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_poses_subE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_poses_subE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_poses_subE"></span><span id="visp_tracker_common::TrackerGUI::m_poses_sub__std::vector:rclcpp::Subscription:geometry_msgs::msg::PoseStamped:::SharedPtr:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a61468f56e9c0f46a8539a8044f3099a8"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_poses_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_poses_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscribers to the pose topics. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI17m_feature_opt_vecE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI17m_feature_opt_vecE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI17m_feature_opt_vecE"></span><span id="visp_tracker_common::TrackerGUI::m_feature_opt_vec__std::vector:std::optional:visp_tracker_common::msg::NamedFeatureArray::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0c0a79bdfb63c75db1a52d03d9354eb0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NamedFeatureArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_feature_opt_vec</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI17m_feature_opt_vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>The 2D features published by the tracker that must be displayed. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI16m_mutex_featuresE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI16m_mutex_featuresE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI16m_mutex_featuresE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_features__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a1122cd6bc99539c611bdac59404a26e5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_features</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI16m_mutex_featuresE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects the 2D features array. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14m_pose_opt_vecE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14m_pose_opt_vecE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14m_pose_opt_vecE"></span><span id="visp_tracker_common::TrackerGUI::m_pose_opt_vec__std::vector:std::optional:geometry_msgs::msg::PoseStamped::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a671c127d794f7f13dc7d0104ea094d2f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_pose_opt_vec</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14m_pose_opt_vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>The pose(s) published by the tracker(s). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI17m_pose_name_arrayE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI17m_pose_name_arrayE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI17m_pose_name_arrayE"></span><span id="visp_tracker_common::TrackerGUI::m_pose_name_array__std::vector:ss:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a03452266e3fad1802828a79138a8aeb8"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_pose_name_array</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI17m_pose_name_arrayE" title="Link to this definition"></a><br /></dt>
+<dd><p>The name(s) of the pose(s) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13m_mutex_posesE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13m_mutex_posesE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13m_mutex_posesE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_poses__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a983e0ca80f9d9b8f5ae6ffc75314ef55"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_poses</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13m_mutex_posesE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects the poses. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI10m_vec_infoE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI10m_vec_infoE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI10m_vec_infoE"></span><span id="visp_tracker_common::TrackerGUI::m_vec_info__visp_tracker_common::msg::InfoStrings"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a39a1ac95bcd143ad99ab5098a515ecd6"></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">InfoStrings</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_vec_info</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI10m_vec_infoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Strings to display on screen to give info to the user. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI12m_mutex_infoE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI12m_mutex_infoE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI12m_mutex_infoE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_info__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a562e23ddc5744c9778ca19d1d515c6fe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_info</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI12m_mutex_infoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects the info. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI14m_apriltag_subE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI14m_apriltag_subE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI14m_apriltag_subE"></span><span id="visp_tracker_common::TrackerGUI::m_apriltag_sub__std::vector:rclcpp::Subscription:visp_tracker_common::msg::AprilTagDetectionArray:::SharedPtr:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a6a506b7ef2386513433a8d8d5fe2d29b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AprilTagDetectionArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_apriltag_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI14m_apriltag_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscribers to the AprilTag detection topics. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI18m_apriltag_opt_vecE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI18m_apriltag_opt_vecE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI18m_apriltag_opt_vecE"></span><span id="visp_tracker_common::TrackerGUI::m_apriltag_opt_vec__std::vector:std::optional:visp_tracker_common::msg::AprilTagDetectionArray::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ad6f27ae43d1cfe029e0c3eb5ffce1f83"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AprilTagDetectionArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_apriltag_opt_vec</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI18m_apriltag_opt_vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>The result of AprilTag detection. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI16m_mutex_apriltagE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI16m_mutex_apriltagE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI16m_mutex_apriltagE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_apriltag__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ac9c06d796acf3ddede3584877211e010"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_apriltag</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI16m_mutex_apriltagE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects the AprilTag detection. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_use_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_use_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_use_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_use_depth__b"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1ac0d8e683bc2260025d5cf37407bda656"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_use_depth</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_use_depthE" title="Link to this definition"></a><br /></dt>
+<dd><p>If true, the depth image will be displayed using a color encoding. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15m_display_colorE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15m_display_colorE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15m_display_colorE"></span><span id="visp_tracker_common::TrackerGUI::m_display_color__std::shared_ptr:vpDisplay:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aaa06d4546be3c8669b7e178059d02317"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpDisplay</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_display_color</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15m_display_colorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Display for the RGB image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15m_display_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15m_display_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15m_display_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_display_depth__std::shared_ptr:vpDisplay:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a095d0d2e5b0d347c52a4b4b00dd90d62"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpDisplay</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_display_depth</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15m_display_depthE" title="Link to this definition"></a><br /></dt>
+<dd><p>Display for the depth image, if m_use_depth is true. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI3m_IE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI3m_IE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI3m_IE"></span><span id="visp_tracker_common::TrackerGUI::m_I__vpImage:vpRGBa:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a6d5b8a16910b0f37ee80a4eb6b4767e6"></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpRGBa</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI3m_IE" title="Link to this definition"></a><br /></dt>
+<dd><p>RGB image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI10m_mutex_IdE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI10m_mutex_IdE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI10m_mutex_IdE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_Id__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aeae742498acdcaceae4f9b011d186fd5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_Id</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI10m_mutex_IdE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects depth image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI8m_opt_IdE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI8m_opt_IdE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI8m_opt_IdE"></span><span id="visp_tracker_common::TrackerGUI::m_opt_Id__std::optional:vpImage:vpRGBa::"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1af460bb5cc2f849262b07d9c02bb4aa22"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpRGBa</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_opt_Id</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI8m_opt_IdE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color-encoded depth image for rendering purpous, if m_use_depth is true. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_min_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15m_opt_min_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15m_opt_min_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_opt_min_depth__std::optional:uint16_t:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a34129c2b34975a16ff949a4f37ee7677"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint16_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_opt_min_depth</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_min_depthE" title="Link to this definition"></a><br /></dt>
+<dd><p>Min depth to render. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_max_depthE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15m_opt_max_depthE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15m_opt_max_depthE"></span><span id="visp_tracker_common::TrackerGUI::m_opt_max_depth__std::optional:uint16_t:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1af0f25abb4f027353c6fe950b58ee73b2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint16_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_opt_max_depth</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_max_depthE" title="Link to this definition"></a><br /></dt>
+<dd><p>Max depth to render. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI27m_display_nb_frames_skippedE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI27m_display_nb_frames_skippedE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI27m_display_nb_frames_skippedE"></span><span id="visp_tracker_common::TrackerGUI::m_display_nb_frames_skipped__i"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a820e0a8fbd29dca0e1a7409968018e0a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_display_nb_frames_skipped</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI27m_display_nb_frames_skippedE" title="Link to this definition"></a><br /></dt>
+<dd><p>-1 to display all the frames, either will display 1 frame every N frames. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_frame_cntE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_frame_cntE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_frame_cntE"></span><span id="visp_tracker_common::TrackerGUI::m_frame_cnt__i"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a50adefa6f01edddb230f4150e26a48fd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_frame_cnt</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_frame_cntE" title="Link to this definition"></a><br /></dt>
+<dd><p>Counter if not all the frames must be displayed. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI20m_features_thicknessE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI20m_features_thicknessE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI20m_features_thicknessE"></span><span id="visp_tracker_common::TrackerGUI::m_features_thickness__unsigned-i"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a80f8584ccbe46c30de415dbce184b417"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_features_thickness</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI20m_features_thicknessE" title="Link to this definition"></a><br /></dt>
+<dd><p>Thickness of the 2D features. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI15m_features_typeE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI15m_features_typeE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI15m_features_typeE"></span><span id="visp_tracker_common::TrackerGUI::m_features_type__FeaturesType"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a86314a6022493e53123271b820402437"></span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="visp_tracker_common::TrackerGUI::FeaturesType"><span class="n"><span class="pre">FeaturesType</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_features_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesTypeE" title="visp_tracker_common::TrackerGUI::FeaturesType"><span class="n"><span class="pre">FeaturesType</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N19visp_tracker_common10TrackerGUI12FeaturesType5POINTE" title="visp_tracker_common::TrackerGUI::FeaturesType::POINT"><span class="n"><span class="pre">POINT</span></span></a><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI15m_features_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>How to render 2D points on screen. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI13m_opt_rgb_camE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI13m_opt_rgb_camE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI13m_opt_rgb_camE"></span><span id="visp_tracker_common::TrackerGUI::m_opt_rgb_cam__std::optional:vpCameraParameters:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a0bac0b516cc519bcdee6c16db4c5851b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpCameraParameters</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_opt_rgb_cam</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI13m_opt_rgb_camE" title="Link to this definition"></a><br /></dt>
+<dd><p>To display the poses. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI5m_runE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI5m_runE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI5m_runE"></span><span id="visp_tracker_common::TrackerGUI::m_run__b"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a6d6cade64b8882f4ba2c0286f43eac61"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_run</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI5m_runE" title="Link to this definition"></a><br /></dt>
+<dd><p>When set to false, the <a class="reference internal" href="#classvisp__tracker__common_1_1TrackerGUI"><span class="std std-ref">TrackerGUI</span></a> will shutdown. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI11m_mutex_runE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI11m_mutex_runE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI11m_mutex_runE"></span><span id="visp_tracker_common::TrackerGUI::m_mutex_run__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1a3cb736cb69978a8014437f71a906eda0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_run</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI11m_mutex_runE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex that protects m_run. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common10TrackerGUI19m_client_nodes_nameE">
+<span id="_CPPv3N19visp_tracker_common10TrackerGUI19m_client_nodes_nameE"></span><span id="_CPPv2N19visp_tracker_common10TrackerGUI19m_client_nodes_nameE"></span><span id="visp_tracker_common::TrackerGUI::m_client_nodes_name__std::vector:ss:"></span><span class="target" id="classvisp__tracker__common_1_1TrackerGUI_1aa3a2c96302ac2d289dd537ea68a26ae3"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_client_nodes_name</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common10TrackerGUI19m_client_nodes_nameE" title="Link to this definition"></a><br /></dt>
+<dd><p>Name of the tracker(s) node(s), that prepends the different topics. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classvisp__tracker__common_1_1BaseTracker.html" class="btn btn-neutral float-left" title="Class BaseTracker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html" class="btn btn-neutral float-right" title="Variable visp_tracker_common::features2D_topic_name" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_tracker_common&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

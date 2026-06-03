@@ -1,0 +1,7 @@
+<map id="include/visp_common/vision.hpp" name="include/visp_common/vision.hpp">
+<area shape="rect" id="Node000001" title="Conversions between ROS and ViSP structures representing vision messages." alt="" coords="119,5,283,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,185,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,48,131,87,127,83,176,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="210,101,405,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="226,44,284,90,280,94,223,48"/>
+</map>

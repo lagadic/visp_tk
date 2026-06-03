@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__tracker__common" kind="namespace" language="C++">
+    <compoundname>visp_tracker_common</compoundname>
+    <innerclass refid="classvisp__tracker__common_1_1BaseMultiModalTracker" prot="public">visp_tracker_common::BaseMultiModalTracker</innerclass>
+    <innerclass refid="classvisp__tracker__common_1_1BaseTracker" prot="public">visp_tracker_common::BaseTracker</innerclass>
+    <innerclass refid="classvisp__tracker__common_1_1TrackerGUI" prot="public">visp_tracker_common::TrackerGUI</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="names_8hpp_1af593683b0e5630a089de735702ccbaf6" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::quit_srv_name</definition>
+        <argsstring></argsstring>
+        <name>quit_srv_name</name>
+        <qualifiedname>visp_tracker_common::quit_srv_name</qualifiedname>
+        <briefdescription>
+<para>Name of the service to quit the demos. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="32" column="26" declfile="include/visp_tracker_common/names.hpp" declline="32" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::switch_tracking_srv_name</definition>
+        <argsstring></argsstring>
+        <name>switch_tracking_srv_name</name>
+        <qualifiedname>visp_tracker_common::switch_tracking_srv_name</qualifiedname>
+        <briefdescription>
+<para>Name of the service to activate / deactivate the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="33" column="26" declfile="include/visp_tracker_common/names.hpp" declline="33" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="names_8hpp_1aa50c71eacc07000e4c332016ed0a5592" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::switch_vismode_srv_name</definition>
+        <argsstring></argsstring>
+        <name>switch_vismode_srv_name</name>
+        <qualifiedname>visp_tracker_common::switch_vismode_srv_name</qualifiedname>
+        <briefdescription>
+<para>Name of the service to activate / deactivate the visualization debug. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="34" column="26" declfile="include/visp_tracker_common/names.hpp" declline="34" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="names_8hpp_1a342371e6ff9a218d49041debd62fdfa8" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::features2D_topic_name</definition>
+        <argsstring></argsstring>
+        <name>features2D_topic_name</name>
+        <qualifiedname>visp_tracker_common::features2D_topic_name</qualifiedname>
+        <briefdescription>
+<para>Name of the topic on which are published 2D features to display in the remote GUI. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="36" column="26" declfile="include/visp_tracker_common/names.hpp" declline="36" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::info_strings_topic_name</definition>
+        <argsstring></argsstring>
+        <name>info_strings_topic_name</name>
+        <qualifiedname>visp_tracker_common::info_strings_topic_name</qualifiedname>
+        <briefdescription>
+<para>Name of the topic on which is published some messages to display on screen. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="37" column="26" declfile="include/visp_tracker_common/names.hpp" declline="37" declcolumn="26"/>
+      </memberdef>
+      <memberdef kind="variable" id="names_8hpp_1abb0887289741a0f482993bf29becaf47" prot="public" static="no" extern="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::pose_topic_name</definition>
+        <argsstring></argsstring>
+        <name>pose_topic_name</name>
+        <qualifiedname>visp_tracker_common::pose_topic_name</qualifiedname>
+        <briefdescription>
+<para>Name of the topic on which are published the pose. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/names.hpp" line="38" column="26" declfile="include/visp_tracker_common/names.hpp" declline="38" declcolumn="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="48" column="1"/>
+  </compounddef>
+</doxygen>

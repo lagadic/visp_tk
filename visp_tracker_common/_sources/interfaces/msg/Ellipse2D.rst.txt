@@ -1,0 +1,8 @@
+Ellipse2D
+=========
+This is a ROS message definition.
+
+**Source**
+
+.. literalinclude:: ../../../../../../visp_tracker_common/msg/Ellipse2D.msg
+

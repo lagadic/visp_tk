@@ -1,0 +1,53 @@
+
+.. _file_include_visp_common_path_retriever.hpp:
+
+File path_retriever.hpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_common>` (``include/visp_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Conversions between ROS packages:// file:// and native filepath. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_common/path_retriever.hpp``)
+-------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_common_path_retriever.hpp.rst
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_common`
+
+- :ref:`namespace_visp_common__path`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f`
+

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="camera_8hpp" kind="file" language="C++">
+    <compoundname>camera.hpp</compoundname>
+    <includes local="no">sensor_msgs/msg/camera_info.hpp</includes>
+    <includes local="no">visp3/core/vpCameraParameters.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>include/visp_common/camera.hpp</label>
+        <link refid="camera_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sensor_msgs/msg/camera_info.hpp</label>
+      </node>
+      <node id="3">
+        <label>visp3/core/vpCameraParameters.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacevisp__common">visp_common</innernamespace>
+    <innernamespace refid="namespacevisp__common_1_1camera">visp_common::camera</innernamespace>
+    <briefdescription>
+<para>Conversions between ROS and ViSP structures representing camera parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2026<sp/>by<sp/>Inria.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>file<sp/>LICENSE.txt<sp/>at<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>source</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>distribution<sp/>for<sp/>additional<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>GPL.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>For<sp/>using<sp/>this<sp/>software<sp/>that<sp/>can<sp/>not<sp/>be<sp/>combined<sp/>with<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>GPL,<sp/>or<sp/>if<sp/>you<sp/>have<sp/>questions<sp/>regarding<sp/>the<sp/>use<sp/>of<sp/>this<sp/>file,</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>please<sp/>contact<sp/>Inria<sp/>at<sp/>visp@inria.fr</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>was<sp/>developed<sp/>at:</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Inria<sp/>centre<sp/>at<sp/>Rennes<sp/>University</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Campus<sp/>Universitaire<sp/>de<sp/>Beaulieu</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>35042<sp/>Rennes<sp/>Cedex</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>France</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>provided<sp/>AS<sp/>IS<sp/>with<sp/>NO<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>INCLUDING<sp/>THE</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>WARRANTY<sp/>OF<sp/>DESIGN,<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VISP_COMMON__CAMERA_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VISP_COMMON__CAMERA_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/camera_info.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpCameraParameters.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENABLE_VISP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_common</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">camera</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50" refid="camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91" refkind="member"><highlight class="normal">vpCameraParameters<sp/><ref refid="camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91" kindref="member">toVispCameraParameters</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::CameraInfo<sp/>&amp;cam_info);</highlight></codeline>
+<codeline lineno="56" refid="camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc" refkind="member"><highlight class="normal">vpCameraParameters<sp/><ref refid="camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91" kindref="member">toVispCameraParameters</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::CameraInfo::ConstSharedPtr<sp/>&amp;cam_info);</highlight></codeline>
+<codeline lineno="64" refid="camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521" refkind="member"><highlight class="normal">sensor_msgs::msg::CameraInfo<sp/><ref refid="camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521" kindref="member">toSensorMsgsCameraInfo</ref>(vpCameraParameters<sp/>&amp;cam_info,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cam_image_width,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cam_image_height);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>camera</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>visp_common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>VISP_COMMON__CAMERA_H_</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/visp_common/camera.hpp"/>
+  </compounddef>
+</doxygen>

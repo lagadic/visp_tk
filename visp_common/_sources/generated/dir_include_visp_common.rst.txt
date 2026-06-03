@@ -1,0 +1,25 @@
+.. _dir_include_visp_common:
+
+
+Directory visp_common
+=====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include>` (``include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``include/visp_common``
+
+
+Files
+-----
+
+- :ref:`file_include_visp_common_camera.hpp`
+- :ref:`file_include_visp_common_image.hpp`
+- :ref:`file_include_visp_common_path_retriever.hpp`
+- :ref:`file_include_visp_common_pose.hpp`
+- :ref:`file_include_visp_common_vision.hpp`
+
+

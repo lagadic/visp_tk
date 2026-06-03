@@ -1,0 +1,7 @@
+<map id="visp_mbt::MBTTracker" name="visp_mbt::MBTTracker">
+<area shape="rect" id="Node000001" title=" " alt="" coords="112,123,277,148"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,54,186,120,182,124,120,57"/>
+<area shape="rect" id="Node000003" href="$structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper.html" title="Structure to help the initialization of the extrinsics parameters from a TF2 topic." alt="" coords="211,5,376,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,57,208,124,204,120,265,54"/>
+</map>

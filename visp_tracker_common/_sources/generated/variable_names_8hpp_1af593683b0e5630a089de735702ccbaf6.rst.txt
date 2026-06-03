@@ -1,0 +1,14 @@
+.. _exhale_variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6:
+
+Variable visp_tracker_common::quit_srv_name
+===========================================
+
+- Defined in :ref:`file_include_visp_tracker_common_names.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: visp_tracker_common::quit_srv_name
+   :project: visp_tracker_common Doxygen Project

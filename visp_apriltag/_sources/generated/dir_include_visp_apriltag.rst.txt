@@ -1,0 +1,21 @@
+.. _dir_include_visp_apriltag:
+
+
+Directory visp_apriltag
+=======================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include>` (``include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``include/visp_apriltag``
+
+
+Files
+-----
+
+- :ref:`file_include_visp_apriltag_AprilTagTracker.hpp`
+
+

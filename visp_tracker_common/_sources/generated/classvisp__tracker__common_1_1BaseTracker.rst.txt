@@ -1,0 +1,32 @@
+.. _exhale_class_classvisp__tracker__common_1_1BaseTracker:
+
+Class BaseTracker
+=================
+
+- Defined in :ref:`file_include_visp_tracker_common_BaseTracker.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public rclcpp::Node``
+
+
+Derived Type
+************
+
+- ``public visp_tracker_common::BaseMultiModalTracker`` (:ref:`exhale_class_classvisp__tracker__common_1_1BaseMultiModalTracker`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: visp_tracker_common::BaseTracker
+   :project: visp_tracker_common Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

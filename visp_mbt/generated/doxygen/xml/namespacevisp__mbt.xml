@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__mbt" kind="namespace" language="C++">
+    <compoundname>visp_mbt</compoundname>
+    <innerclass refid="classvisp__mbt_1_1MBTTracker" prot="public">visp_mbt::MBTTracker</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_mbt/MBTTracker.hpp" line="51" column="1"/>
+  </compounddef>
+</doxygen>

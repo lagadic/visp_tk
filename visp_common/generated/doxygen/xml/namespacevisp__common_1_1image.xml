@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__common_1_1image" kind="namespace" language="C++">
+    <compoundname>visp_common::image</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="image_8hpp_1a49c42eed79a389be93775ea21aec89b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sensor_msgs::msg::Image</type>
+        <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
+        <argsstring>(const vpImage&lt; unsigned char &gt; &amp;src)</argsstring>
+        <name>toSensorMsgsImage</name>
+        <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
+        <param>
+          <type>const vpImage&lt; unsigned char &gt; &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP image (vpImage) to a sensor_msgs::Image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image in ROS/sensor_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="51" column="25" declfile="include/visp_common/image.hpp" declline="51" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="image_8hpp_1a6a5fe425855683d79b371988d7d5439b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sensor_msgs::msg::Image</type>
+        <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
+        <argsstring>(const vpImage&lt; uint16_t &gt; &amp;src)</argsstring>
+        <name>toSensorMsgsImage</name>
+        <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
+        <param>
+          <type>const vpImage&lt; uint16_t &gt; &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP image (vpImage) to a sensor_msgs::Image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image in ROS/sensor_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="57" column="25" declfile="include/visp_common/image.hpp" declline="57" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="image_8hpp_1a9747b8ed5f82e4247bacf4f055e0fa26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>sensor_msgs::msg::Image</type>
+        <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
+        <argsstring>(const vpImage&lt; vpRGBa &gt; &amp;src)</argsstring>
+        <name>toSensorMsgsImage</name>
+        <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
+        <param>
+          <type>const vpImage&lt; vpRGBa &gt; &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP image (vpImage) to a sensor_msgs::Image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image in ROS/sensor_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="63" column="25" declfile="include/visp_common/image.hpp" declline="63" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="image_8hpp_1af59c1f87a9a1b0de8601afac51fbf46e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpImage&lt; unsigned char &gt;</type>
+        <definition>vpImage&lt; unsigned char &gt; visp_common::image::toVispImageChar</definition>
+        <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
+        <name>toVispImageChar</name>
+        <qualifiedname>visp_common::image::toVispImageChar</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Image &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a sensor_msgs::Image to a ViSP image (vpImage). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ROS/sensor_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="70" column="9" declfile="include/visp_common/image.hpp" declline="70" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="image_8hpp_1ab4d8caaa006e64e830573f71ab65c5a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpImage&lt; uint16_t &gt;</type>
+        <definition>vpImage&lt; uint16_t &gt; visp_common::image::toVispImageUint16</definition>
+        <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
+        <name>toVispImageUint16</name>
+        <qualifiedname>visp_common::image::toVispImageUint16</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Image &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a sensor_msgs::Image to a ViSP image (vpImage). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ROS/sensor_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vpImage&lt;uint16_t&gt; The ViSP image, encoded using uint16_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="77" column="9" declfile="include/visp_common/image.hpp" declline="77" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="image_8hpp_1a1b7352fb085eeb0df06d567e88377d6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpImage&lt; vpRGBa &gt;</type>
+        <definition>vpImage&lt; vpRGBa &gt; visp_common::image::toVispImageRGBa</definition>
+        <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
+        <name>toVispImageRGBa</name>
+        <qualifiedname>visp_common::image::toVispImageRGBa</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Image &amp;</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+<para>Converts a sensor_msgs::Image to a ViSP image (vpImage). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">src</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in ROS/sensor_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vpImage&lt;vpRGBa&gt; The ViSP color image. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/image.hpp" line="84" column="9" declfile="include/visp_common/image.hpp" declline="84" declcolumn="9"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/image.hpp" line="44" column="1"/>
+  </compounddef>
+</doxygen>

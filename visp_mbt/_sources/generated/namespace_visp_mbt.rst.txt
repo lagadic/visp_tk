@@ -1,0 +1,22 @@
+
+.. _namespace_visp_mbt:
+
+Namespace visp_mbt
+==================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper`
+
+- :ref:`exhale_class_classvisp__mbt_1_1MBTTracker`

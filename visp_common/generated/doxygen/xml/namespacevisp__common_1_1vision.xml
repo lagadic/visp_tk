@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__common_1_1vision" kind="namespace" language="C++">
+    <compoundname>visp_common::vision</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vision_8hpp_1a90dadaecf240bc9e574400f5a224add6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vision_msgs::msg::Point2D</type>
+        <definition>vision_msgs::msg::Point2D visp_common::vision::toVisionMsgsPoint2D</definition>
+        <argsstring>(const vpImagePoint &amp;ip)</argsstring>
+        <name>toVisionMsgsPoint2D</name>
+        <qualifiedname>visp_common::vision::toVisionMsgsPoint2D</qualifiedname>
+        <param>
+          <type>const vpImagePoint &amp;</type>
+          <declname>ip</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP image point to a vision_msgs::Point2D. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">ip</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image point in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image point in ROS/vision_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/vision.hpp" line="50" column="27" declfile="include/visp_common/vision.hpp" declline="50" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpImagePoint</type>
+        <definition>vpImagePoint visp_common::vision::toVispImagePoint</definition>
+        <argsstring>(const vision_msgs::msg::Point2D &amp;point_2d)</argsstring>
+        <name>toVispImagePoint</name>
+        <qualifiedname>visp_common::vision::toVispImagePoint</qualifiedname>
+        <param>
+          <type>const vision_msgs::msg::Point2D &amp;</type>
+          <declname>point_2d</declname>
+        </param>
+        <briefdescription>
+<para>Converts a vision_msgs::Point2D to a ViSP image point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">point_2d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image point in vision_msgs::Point2D format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image point in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/vision.hpp" line="58" column="14" declfile="include/visp_common/vision.hpp" declline="58" declcolumn="14"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/vision.hpp" line="43" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,175 @@
+
+.. _program_listing_file_include_visp_tracker_common_BaseTracker.hpp:
+
+Program Listing for File BaseTracker.hpp
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_visp_tracker_common_BaseTracker.hpp>` (``include/visp_tracker_common/BaseTracker.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /*
+    * Copyright (C) 2026 by Inria. All rights reserved.
+    *
+    * This software is free software; you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation; either version 2 of the License, or
+    * (at your option) any later version.
+    * See the file LICENSE.txt at the root directory of this source
+    * distribution for additional information about the GNU GPL.
+    *
+    * For using this software that can not be combined with the GNU
+    * GPL, or if you have questions regarding the use of this file,
+    * please contact Inria at visp@inria.fr
+    *
+    * This software was developed at:
+    * Inria centre at Rennes University
+    * Campus Universitaire de Beaulieu
+    * 35042 Rennes Cedex
+    * France
+    *
+    * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+    * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+    */
+   
+   #ifndef BASE_TRACKER_HPP
+   #define BASE_TRACKER_HPP
+   
+   #include <rclcpp/rclcpp.hpp>
+   #include <geometry_msgs/msg/pose_stamped.hpp>
+   #include <sensor_msgs/msg/camera_info.hpp>
+   #include <sensor_msgs/msg/image.hpp>
+   #include <std_srvs/srv/trigger.hpp>
+   
+   #include <tf2/exceptions.hpp>
+   #include <tf2_ros/transform_listener.h>
+   #include <tf2_ros/buffer.h>
+   
+   #include <visp_common/camera.hpp>
+   #include <visp_common/path_retriever.hpp>
+   #include <visp_tracker_common/names.hpp>
+   #include <visp_tracker_common/msg/info_strings.hpp>
+   #include <visp_tracker_common/msg/named_feature_array.hpp>
+   
+   #include <visp3/core/vpCameraParameters.h>
+   
+   #include <optional>
+   
+   #ifdef ENABLE_VISP_NAMESPACE
+   using namespace VISP_NAMESPACE_NAME;
+   #endif
+   
+   namespace visp_tracker_common
+   {
+   class BaseTracker : public rclcpp::Node
+   {
+   public:
+     BaseTracker(const std::string &node_name, const bool &does_publish_features);
+   
+     virtual ~BaseTracker() = default;
+   
+     virtual bool init();
+   
+     inline bool has_to_quit() const
+     {
+       return m_quit;
+     }
+   
+     virtual void stop_and_quit();
+   
+   protected:
+   
+     virtual bool init_tracker() = 0;
+   
+     virtual void init_info_strings() = 0;
+   
+     bool init_initialization_method(const rclcpp::Parameter &p);
+   
+   
+   
+   
+     // ----- Subscriptions -----
+   
+     void color_camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
+   
+     void init_pose_callback(const geometry_msgs::msg::PoseStamped::SharedPtr msg);
+   
+     // ----- Services -----
+   
+     void quit_callback(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                                std::shared_ptr<std_srvs::srv::Trigger::Response> response);
+   
+     void switch_tracking_status_callback(const  std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                                std::shared_ptr<std_srvs::srv::Trigger::Response> response);
+   
+     void switch_visual_status_callback(const  std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                                std::shared_ptr<std_srvs::srv::Trigger::Response> response);
+   
+   
+     typedef enum InitializationMethod
+     {
+       CLICK = 0, 
+       TOPIC = 1, 
+       FILE = 2, 
+       INITIALIZATION_METHOD_COUNT = 3 
+     } InitializationMethod;
+   
+     static std::string initializationMethodToString(const InitializationMethod &method);
+   
+     static InitializationMethod initializationMethodFromString(const std::string &name);
+   
+     static std::string getAvailableInitializationMethod(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
+   
+     // ----- Parameters changes handling -----
+     std::shared_ptr<rclcpp::ParameterEventHandler> param_subscriber_; 
+     std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_; 
+     std::shared_ptr<rclcpp::ParameterCallbackHandle> cb_handle_init_; 
+   
+     // ----- Services -----
+     rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_quit_srv; 
+     rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_switch_tracking_status_srv; 
+     rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_switch_visual_srv; 
+   
+     // ----- Subscribers -----
+     rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; 
+     rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr m_init_sub; 
+     std::shared_ptr<tf2_ros::TransformListener> m_tf_listener { nullptr }; 
+     std::unique_ptr<tf2_ros::Buffer> m_tf_buffer { nullptr }; 
+   
+     // ----- Publisher -----
+     rclcpp::Publisher<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr m_features_pub; 
+     rclcpp::Publisher<visp_tracker_common::msg::InfoStrings>::SharedPtr m_info_strings_pub; 
+     rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr m_poses_pub; 
+   
+     // ----- Display-related attributes -----
+     bool m_is_headless_mode = false; 
+     int m_display_nb_frames_skipped = -1; 
+     unsigned int m_frame_cnt = 0; 
+     visp_tracker_common::msg::InfoStrings m_info_strings; 
+     unsigned int m_info_nb_static; 
+     bool m_visualization_debug = false; 
+   
+     // ----- Tracking-related attributes -----
+     bool m_rgb_cam_info_received = false; 
+     std::string m_rgb_camera_info_topic_name; 
+     std::string m_rgb_stream_name; 
+     vpCameraParameters m_rgb_cam; 
+     std::string m_config_file; 
+     InitializationMethod m_init_method; 
+     std::optional<geometry_msgs::msg::PoseStamped> m_opt_init_pose; 
+   
+     // ----- Other attributes -----
+     std::mutex m_mutex_quit; 
+     bool m_quit = false; 
+     std::mutex m_mutex_tracking; 
+     bool m_has_to_track = false; 
+     std::mutex m_mutex_visualization; 
+   
+     static const std::string s_dumb_topic_name; 
+     static const unsigned int s_default_hor_offset; 
+     static const unsigned int s_hor_offset_from_left_border; 
+   };
+   }
+   #endif

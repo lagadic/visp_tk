@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class AprilTagTracker &mdash; visp_apriltag 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Directory include" href="dir_include.html" />
+    <link rel="prev" title="Namespace visp_tracker_common" href="namespace_visp_tracker_common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            visp_apriltag
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_apriltag.html">Namespace visp_apriltag</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class AprilTagTracker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_visp_apriltag.html">Directory visp_apriltag</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_apriltag_AprilTagTracker.hpp.html">File AprilTagTracker.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-apriltag-documentation"><code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-apriltag">How to get and build visp_apriltag</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#node-parameters">Node parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tag-detection">Related to the tag detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-pose-computation">Related to the pose computation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visp_apriltag</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Class AprilTagTracker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classvisp__apriltag_1_1AprilTagTracker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-apriltagtracker">
+<span id="exhale-class-classvisp-apriltag-1-1apriltagtracker"></span><h1>Class AprilTagTracker<a class="headerlink" href="#class-apriltagtracker" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_visp_apriltag_AprilTagTracker.hpp.html#file-include-visp-apriltag-apriltagtracker-hpp"><span class="std std-ref">File AprilTagTracker.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">visp_tracker_common::BaseTracker</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTrackerE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTrackerE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTrackerE"></span><span id="visp_apriltag::AprilTagTracker"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AprilTagTracker</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">BaseTracker</span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTrackerE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-initialization">Initialization</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker12init_trackerEv">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker12init_trackerEv"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker12init_trackerEv"></span><span id="visp_apriltag::AprilTagTracker::init_tracker"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ae16a962bf0c75758160546c9caa1bf6d"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_tracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker12init_trackerEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker17init_info_stringsEv">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker17init_info_stringsEv"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker17init_info_stringsEv"></span><span id="visp_apriltag::AprilTagTracker::init_info_strings"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1afab88e049d1a6abfe14b5df599bc94c0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_info_strings</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker17init_info_stringsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-callbacks">Callbacks</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_apriltag::AprilTagTracker::image_callback__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab66b0683d7e484ac5e6e1ee74fa8c32a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">image_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker14image_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color image callback. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – The color image. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE"></span><span id="visp_apriltag::AprilTagTracker::AprilTagTracker__ssCR"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d"></span><span class="sig-name descname"><span class="n"><span class="pre">AprilTagTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTrackerD0Ev">
+<span id="_CPPv3N13visp_apriltag15AprilTagTrackerD0Ev"></span><span id="_CPPv2N13visp_apriltag15AprilTagTrackerD0Ev"></span><span id="visp_apriltag::AprilTagTracker::~AprilTagTracker"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab66da88108141af4ccec02d0af7f4c73"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~AprilTagTracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTrackerD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker16m_rgb_stream_subE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker16m_rgb_stream_subE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker16m_rgb_stream_subE"></span><span id="visp_apriltag::AprilTagTracker::m_rgb_stream_sub__rclcpp::Subscription:sensor_msgs::msg::Image:::SharedPtr"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a43f00297c3a03afc74dfa67120bbd1d6"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_rgb_stream_sub</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker16m_rgb_stream_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>RGB stream subscriber. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15m_tags_info_pubE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker15m_tags_info_pubE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15m_tags_info_pubE"></span><span id="visp_apriltag::AprilTagTracker::m_tags_info_pub__rclcpp::Publisher:visp_tracker_common::msg::AprilTagDetectionArray:::SharedPtr"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AprilTagDetectionArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tags_info_pub</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15m_tags_info_pubE" title="Link to this definition"></a><br /></dt>
+<dd><p>Publisher of the tag IDs, centers and so on. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker14m_tag_detectorE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker14m_tag_detectorE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker14m_tag_detectorE"></span><span id="visp_apriltag::AprilTagTracker::m_tag_detector__vpDetectorAprilTag"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1aba96561e4e37f74b1149872dd76b506d"></span><span class="n"><span class="pre">vpDetectorAprilTag</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tag_detector</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker14m_tag_detectorE" title="Link to this definition"></a><br /></dt>
+<dd><p>The detector. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker13m_family_nameE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker13m_family_nameE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker13m_family_nameE"></span><span id="visp_apriltag::AprilTagTracker::m_family_name__ss"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_family_name</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker13m_family_nameE" title="Link to this definition"></a><br /></dt>
+<dd><p>Name of the tag family. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker14m_tag_size_mapE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker14m_tag_size_mapE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker14m_tag_size_mapE"></span><span id="visp_apriltag::AprilTagTracker::m_tag_size_map__std::map:int64_t.float:"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tag_size_map</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker14m_tag_size_mapE" title="Link to this definition"></a><br /></dt>
+<dd><p>ID and associated size of the tag, in meters. ID -1 is a special case that means “any ID that is not explicitly listed in the map”. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker18m_default_tag_sizeE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker18m_default_tag_sizeE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker18m_default_tag_sizeE"></span><span id="visp_apriltag::AprilTagTracker::m_default_tag_size__float"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_default_tag_size</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker18m_default_tag_sizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Tag size for any tag ID that is not list in m_tag_size_map. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker3m_IE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker3m_IE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker3m_IE"></span><span id="visp_apriltag::AprilTagTracker::m_I__vpImage:unsigned-c:"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a870657e5053ec5a2c627f383e28b7233"></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker3m_IE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color image on which the detection is performed. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker8m_opt_idE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker8m_opt_idE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker8m_opt_idE"></span><span id="visp_apriltag::AprilTagTracker::m_opt_id__std::optional:i:"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_opt_id</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker8m_opt_idE" title="Link to this definition"></a><br /></dt>
+<dd><p>If set, the ID of the tag whose pose must be published. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="namespace_visp_tracker_common.html" class="btn btn-neutral float-left" title="Namespace visp_tracker_common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dir_include.html" class="btn btn-neutral float-right" title="Directory include" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_apriltag&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

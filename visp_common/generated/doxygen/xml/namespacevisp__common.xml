@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__common" kind="namespace" language="C++">
+    <compoundname>visp_common</compoundname>
+    <innernamespace refid="namespacevisp__common_1_1camera">visp_common::camera</innernamespace>
+    <innernamespace refid="namespacevisp__common_1_1image">visp_common::image</innernamespace>
+    <innernamespace refid="namespacevisp__common_1_1path">visp_common::path</innernamespace>
+    <innernamespace refid="namespacevisp__common_1_1pose">visp_common::pose</innernamespace>
+    <innernamespace refid="namespacevisp__common_1_1vision">visp_common::vision</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/camera.hpp" line="41" column="1"/>
+  </compounddef>
+</doxygen>

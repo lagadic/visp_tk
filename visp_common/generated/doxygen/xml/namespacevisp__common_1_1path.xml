@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__common_1_1path" kind="namespace" language="C++">
+    <compoundname>visp_common::path</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string visp_common::path::path_retriever</definition>
+        <argsstring>(const std::string path)</argsstring>
+        <name>path_retriever</name>
+        <qualifiedname>visp_common::path::path_retriever</qualifiedname>
+        <param>
+          <type>const std::string</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ROS <computeroutput>package://</computeroutput> and native filepath. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ROS filepath format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>native filepath format OR &quot;&quot; if could no parse filepath </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/path_retriever.hpp" line="46" column="13" declfile="include/visp_common/path_retriever.hpp" declline="46" declcolumn="13"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/path_retriever.hpp" line="39" column="1"/>
+  </compounddef>
+</doxygen>

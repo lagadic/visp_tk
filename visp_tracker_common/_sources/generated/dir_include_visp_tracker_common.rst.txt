@@ -1,0 +1,24 @@
+.. _dir_include_visp_tracker_common:
+
+
+Directory visp_tracker_common
+=============================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include>` (``include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``include/visp_tracker_common``
+
+
+Files
+-----
+
+- :ref:`file_include_visp_tracker_common_BaseMultiModalTracker.hpp`
+- :ref:`file_include_visp_tracker_common_BaseTracker.hpp`
+- :ref:`file_include_visp_tracker_common_names.hpp`
+- :ref:`file_include_visp_tracker_common_TrackerGUI.hpp`
+
+

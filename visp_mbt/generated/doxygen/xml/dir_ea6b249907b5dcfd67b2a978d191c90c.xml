@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_ea6b249907b5dcfd67b2a978d191c90c" kind="dir">
+    <compoundname>include/visp_mbt</compoundname>
+    <innerfile refid="MBTTracker_8hpp">MBTTracker.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_mbt/"/>
+  </compounddef>
+</doxygen>

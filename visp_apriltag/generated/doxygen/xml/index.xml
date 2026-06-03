@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="classvisp__apriltag_1_1AprilTagTracker" kind="class"><name>visp_apriltag::AprilTagTracker</name>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ae16a962bf0c75758160546c9caa1bf6d" kind="function"><name>init_tracker</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1afab88e049d1a6abfe14b5df599bc94c0" kind="function"><name>init_info_strings</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66b0683d7e484ac5e6e1ee74fa8c32a" kind="function"><name>image_callback</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a43f00297c3a03afc74dfa67120bbd1d6" kind="variable"><name>m_rgb_stream_sub</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197" kind="variable"><name>m_tags_info_pub</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1aba96561e4e37f74b1149872dd76b506d" kind="variable"><name>m_tag_detector</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" kind="variable"><name>m_family_name</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" kind="variable"><name>m_tag_size_map</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace" kind="variable"><name>m_default_tag_size</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a870657e5053ec5a2c627f383e28b7233" kind="variable"><name>m_I</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" kind="variable"><name>m_opt_id</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d" kind="function"><name>AprilTagTracker</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66da88108141af4ccec02d0af7f4c73" kind="function"><name>~AprilTagTracker</name></member>
+  </compound>
+  <compound refid="namespacevisp__apriltag" kind="namespace"><name>visp_apriltag</name>
+  </compound>
+  <compound refid="namespacevisp__tracker__common" kind="namespace"><name>visp_tracker_common</name>
+  </compound>
+  <compound refid="AprilTagTracker_8hpp" kind="file"><name>AprilTagTracker.hpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_3e22598157095cb215f5bff0a47d77ab" kind="dir"><name>include/visp_apriltag</name>
+  </compound>
+</doxygenindex>

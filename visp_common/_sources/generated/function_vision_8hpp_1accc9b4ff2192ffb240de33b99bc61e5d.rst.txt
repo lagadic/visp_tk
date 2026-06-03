@@ -1,0 +1,14 @@
+.. _exhale_function_vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d:
+
+Function visp_common::vision::toVispImagePoint
+==============================================
+
+- Defined in :ref:`file_include_visp_common_vision.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: visp_common::vision::toVispImagePoint(const vision_msgs::msg::Point2D&)
+   :project: visp_common Doxygen Project

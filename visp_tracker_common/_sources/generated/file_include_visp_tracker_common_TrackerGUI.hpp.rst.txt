@@ -1,0 +1,104 @@
+
+.. _file_include_visp_tracker_common_TrackerGUI.hpp:
+
+File TrackerGUI.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_tracker_common>` (``include/visp_tracker_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_tracker_common/TrackerGUI.hpp``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_tracker_common_TrackerGUI.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``geometry_msgs/msg/pose_stamped.hpp``
+
+- ``image_transport/image_transport.hpp``
+
+- ``memory``
+
+- ``mutex``
+
+- ``optional``
+
+- ``rclcpp/rclcpp.hpp``
+
+- ``sensor_msgs/msg/image.hpp``
+
+- ``std_srvs/srv/trigger.hpp``
+
+- ``visp3/core/vpCameraParameters.h``
+
+- ``visp3/core/vpConfig.h``
+
+- ``visp3/core/vpHomogeneousMatrix.h``
+
+- ``visp3/core/vpImage.h``
+
+- ``visp3/core/vpImageConvert.h``
+
+- ``visp3/core/vpIoTools.h``
+
+- ``visp3/core/vpQuaternionVector.h``
+
+- ``visp3/core/vpRotationMatrix.h``
+
+- ``visp3/core/vpTime.h``
+
+- ``visp3/core/vpTranslationVector.h``
+
+- ``visp3/core/vpVelocityTwistMatrix.h``
+
+- ``visp3/gui/vpDisplayFactory.h``
+
+- ``visp_common/camera.hpp``
+
+- ``visp_common/image.hpp``
+
+- ``visp_common/pose.hpp``
+
+- ``visp_tracker_common/msg/april_tag_detection_array.hpp``
+
+- ``visp_tracker_common/msg/info_strings.hpp``
+
+- ``visp_tracker_common/msg/named_feature_array.hpp``
+
+- ``visp_tracker_common/names.hpp`` (:ref:`file_include_visp_tracker_common_names.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_tracker_common`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__tracker__common_1_1TrackerGUI`
+

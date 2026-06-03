@@ -1,0 +1,26 @@
+.. _exhale_class_classvisp__rbt_1_1RBTTracker:
+
+Class RBTTracker
+================
+
+- Defined in :ref:`file_include_visp_rbt_RBTTracker.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public visp_tracker_common::BaseMultiModalTracker``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: visp_rbt::RBTTracker
+   :project: visp_rbt Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

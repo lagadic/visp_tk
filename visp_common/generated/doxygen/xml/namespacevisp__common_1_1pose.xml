@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__common_1_1pose" kind="namespace" language="C++">
+    <compoundname>visp_common::pose</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpHomogeneousMatrix</type>
+        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+        <argsstring>(const geometry_msgs::msg::Transform &amp;trans)</argsstring>
+        <name>toVispHomogeneousMatrix</name>
+        <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::Transform &amp;</type>
+          <declname>trans</declname>
+        </param>
+        <briefdescription>
+<para>Converts a geometry_msgs::msg::Transform to a ViSP homogeneous matrix (vpHomogeneousMatrix). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">trans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ROS/geometry_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding transformation in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="51" column="21" declfile="include/visp_common/pose.hpp" declline="51" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="pose_8hpp_1adc41c634f27039965dd0a2537f40fa6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpHomogeneousMatrix</type>
+        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+        <argsstring>(const geometry_msgs::msg::Transform::ConstSharedPtr &amp;trans)</argsstring>
+        <name>toVispHomogeneousMatrix</name>
+        <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::Transform::ConstSharedPtr &amp;</type>
+          <declname>trans</declname>
+        </param>
+        <briefdescription>
+<para>Converts a geometry_msgs::msg::Transform to a ViSP homogeneous matrix (vpHomogeneousMatrix). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">trans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ROS/geometry_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding transformation in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="57" column="21" declfile="include/visp_common/pose.hpp" declline="57" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="pose_8hpp_1addc5dd3ce873589705bc58fd7602b8fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpHomogeneousMatrix</type>
+        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+        <argsstring>(const geometry_msgs::msg::Pose &amp;pose)</argsstring>
+        <name>toVispHomogeneousMatrix</name>
+        <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::Pose &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+<para>Converts a geometry_msgs::msg::Pose to a ViSP homogeneous matrix (vpHomogeneousMatrix). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ROS/geometry_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding transformation in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="64" column="21" declfile="include/visp_common/pose.hpp" declline="64" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="pose_8hpp_1ad2526456b4a67d38cab86de9206129f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpHomogeneousMatrix</type>
+        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+        <argsstring>(const geometry_msgs::msg::Pose::ConstSharedPtr &amp;pose)</argsstring>
+        <name>toVispHomogeneousMatrix</name>
+        <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::Pose::ConstSharedPtr &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <briefdescription>
+<para>Converts a geometry_msgs::msg::Pose to a ViSP homogeneous matrix (vpHomogeneousMatrix). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">pose</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ROS/geometry_msgs format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Corresponding transformation in ViSP format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="71" column="21" declfile="include/visp_common/pose.hpp" declline="71" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>geometry_msgs::msg::Transform</type>
+        <definition>geometry_msgs::msg::Transform visp_common::pose::toGeometryMsgsTransform</definition>
+        <argsstring>(const vpHomogeneousMatrix &amp;mat)</argsstring>
+        <name>toGeometryMsgsTransform</name>
+        <qualifiedname>visp_common::pose::toGeometryMsgsTransform</qualifiedname>
+        <param>
+          <type>const vpHomogeneousMatrix &amp;</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP homogeneous matrix (vpHomogeneousMatrix) to a geometry_msgs::msg::Transform. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">mat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>: transformation in ROS/geometry_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="78" column="31" declfile="include/visp_common/pose.hpp" declline="78" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="pose_8hpp_1a67762dad984684272b65ef88a335c2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>geometry_msgs::msg::Pose</type>
+        <definition>geometry_msgs::msg::Pose visp_common::pose::toGeometryMsgsPose</definition>
+        <argsstring>(const vpHomogeneousMatrix &amp;mat)</argsstring>
+        <name>toGeometryMsgsPose</name>
+        <qualifiedname>visp_common::pose::toGeometryMsgsPose</qualifiedname>
+        <param>
+          <type>const vpHomogeneousMatrix &amp;</type>
+          <declname>mat</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ViSP homogeneous matrix (vpHomogeneousMatrix) to a geometry_msgs::msg::Pose. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">mat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Homogeneous transformation in ViSP format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>: transformation in ROS/geometry_msgs format. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_common/pose.hpp" line="85" column="26" declfile="include/visp_common/pose.hpp" declline="85" declcolumn="26"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_common/pose.hpp" line="44" column="1"/>
+  </compounddef>
+</doxygen>

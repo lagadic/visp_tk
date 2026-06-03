@@ -1,0 +1,7 @@
+<map id="include/visp_common/camera.hpp" name="include/visp_common/camera.hpp">
+<area shape="rect" id="Node000001" title="Conversions between ROS and ViSP structures representing camera parameters." alt="" coords="141,5,305,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,197,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,48,141,88,138,83,194,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="222,101,469,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,43,319,91,316,95,248,48"/>
+</map>

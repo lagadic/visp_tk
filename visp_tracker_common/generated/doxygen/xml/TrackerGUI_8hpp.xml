@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="TrackerGUI_8hpp" kind="file" language="C++">
+    <compoundname>TrackerGUI.hpp</compoundname>
+    <includes local="no">rclcpp/rclcpp.hpp</includes>
+    <includes local="no">image_transport/image_transport.hpp</includes>
+    <includes local="no">geometry_msgs/msg/pose_stamped.hpp</includes>
+    <includes local="no">sensor_msgs/msg/image.hpp</includes>
+    <includes local="no">std_srvs/srv/trigger.hpp</includes>
+    <includes local="no">visp_common/pose.hpp</includes>
+    <includes local="no">visp_common/camera.hpp</includes>
+    <includes local="no">visp_common/image.hpp</includes>
+    <includes refid="names_8hpp" local="no">visp_tracker_common/names.hpp</includes>
+    <includes local="no">visp_tracker_common/msg/april_tag_detection_array.hpp</includes>
+    <includes local="no">visp_tracker_common/msg/info_strings.hpp</includes>
+    <includes local="no">visp_tracker_common/msg/named_feature_array.hpp</includes>
+    <includes local="no">visp3/core/vpConfig.h</includes>
+    <includes local="no">visp3/core/vpCameraParameters.h</includes>
+    <includes local="no">visp3/core/vpHomogeneousMatrix.h</includes>
+    <includes local="no">visp3/core/vpImageConvert.h</includes>
+    <includes local="no">visp3/core/vpImage.h</includes>
+    <includes local="no">visp3/core/vpIoTools.h</includes>
+    <includes local="no">visp3/core/vpQuaternionVector.h</includes>
+    <includes local="no">visp3/core/vpRotationMatrix.h</includes>
+    <includes local="no">visp3/core/vpTime.h</includes>
+    <includes local="no">visp3/core/vpTranslationVector.h</includes>
+    <includes local="no">visp3/core/vpVelocityTwistMatrix.h</includes>
+    <includes local="no">visp3/gui/vpDisplayFactory.h</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">optional</includes>
+    <incdepgraph>
+      <node id="8">
+        <label>visp_common/camera.hpp</label>
+        <link refid="camera_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="9">
+        <label>visp_common/image.hpp</label>
+        <link refid="image_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="7">
+        <label>visp_common/pose.hpp</label>
+        <link refid="pose_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="1">
+        <label>include/visp_tracker_common/TrackerGUI.hpp</label>
+        <link refid="TrackerGUI_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>visp_tracker_common/names.hpp</label>
+        <link refid="names_8hpp_source"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>geometry_msgs/msg/pose_stamped.hpp</label>
+      </node>
+      <node id="3">
+        <label>image_transport/image_transport.hpp</label>
+      </node>
+      <node id="27">
+        <label>memory</label>
+      </node>
+      <node id="28">
+        <label>mutex</label>
+      </node>
+      <node id="29">
+        <label>optional</label>
+      </node>
+      <node id="2">
+        <label>rclcpp/rclcpp.hpp</label>
+      </node>
+      <node id="5">
+        <label>sensor_msgs/msg/image.hpp</label>
+      </node>
+      <node id="6">
+        <label>std_srvs/srv/trigger.hpp</label>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="16">
+        <label>visp3/core/vpCameraParameters.h</label>
+      </node>
+      <node id="15">
+        <label>visp3/core/vpConfig.h</label>
+      </node>
+      <node id="17">
+        <label>visp3/core/vpHomogeneousMatrix.h</label>
+      </node>
+      <node id="19">
+        <label>visp3/core/vpImage.h</label>
+      </node>
+      <node id="18">
+        <label>visp3/core/vpImageConvert.h</label>
+      </node>
+      <node id="20">
+        <label>visp3/core/vpIoTools.h</label>
+      </node>
+      <node id="21">
+        <label>visp3/core/vpQuaternionVector.h</label>
+      </node>
+      <node id="22">
+        <label>visp3/core/vpRotationMatrix.h</label>
+      </node>
+      <node id="23">
+        <label>visp3/core/vpTime.h</label>
+      </node>
+      <node id="24">
+        <label>visp3/core/vpTranslationVector.h</label>
+      </node>
+      <node id="25">
+        <label>visp3/core/vpVelocityTwistMatrix.h</label>
+      </node>
+      <node id="26">
+        <label>visp3/gui/vpDisplayFactory.h</label>
+      </node>
+      <node id="12">
+        <label>visp_tracker_common/msg/april_tag_detection_array.hpp</label>
+      </node>
+      <node id="13">
+        <label>visp_tracker_common/msg/info_strings.hpp</label>
+      </node>
+      <node id="14">
+        <label>visp_tracker_common/msg/named_feature_array.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classvisp__tracker__common_1_1TrackerGUI" prot="public">visp_tracker_common::TrackerGUI</innerclass>
+    <innernamespace refid="namespacevisp__tracker__common">visp_tracker_common</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2026<sp/>by<sp/>Inria.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>file<sp/>LICENSE.txt<sp/>at<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>source</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>distribution<sp/>for<sp/>additional<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>GPL.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>For<sp/>using<sp/>this<sp/>software<sp/>that<sp/>can<sp/>not<sp/>be<sp/>combined<sp/>with<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>GPL,<sp/>or<sp/>if<sp/>you<sp/>have<sp/>questions<sp/>regarding<sp/>the<sp/>use<sp/>of<sp/>this<sp/>file,</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>please<sp/>contact<sp/>Inria<sp/>at<sp/>visp@inria.fr</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>was<sp/>developed<sp/>at:</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Inria<sp/>centre<sp/>at<sp/>Rennes<sp/>University</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Campus<sp/>Universitaire<sp/>de<sp/>Beaulieu</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>35042<sp/>Rennes<sp/>Cedex</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>France</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>provided<sp/>AS<sp/>IS<sp/>with<sp/>NO<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>INCLUDING<sp/>THE</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>WARRANTY<sp/>OF<sp/>DESIGN,<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TRACKER_GUI_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRACKER_GUI_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>Base<sp/>ROS<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/rclcpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>ROS<sp/>Images<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;image_transport/image_transport.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>ROS<sp/>Messages<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/msg/pose_stamped.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/image.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>ROS<sp/>Services<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_srvs/srv/trigger.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>ViSP<sp/>ROS<sp/>packages<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="pose_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/pose.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="camera_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/camera.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="image_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/image.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/names.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/msg/april_tag_detection_array.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/msg/info_strings.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/msg/named_feature_array.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>ViSP<sp/>includes<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpConfig.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpCameraParameters.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpHomogeneousMatrix.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpImageConvert.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpImage.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpIoTools.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpQuaternionVector.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpRotationMatrix.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpTime.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpTranslationVector.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpVelocityTwistMatrix.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/gui/vpDisplayFactory.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>----<sp/>System<sp/>includes<sp/>----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>VISP_HAVE_OPENMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;omp.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENABLE_VISP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_tracker_common</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73" refid="classvisp__tracker__common_1_1TrackerGUI" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classvisp__tracker__common_1_1TrackerGUI" kindref="compound">TrackerGUI</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>rclcpp::Node</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI" kindref="compound">TrackerGUI</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;node_name);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI" kindref="compound">~TrackerGUI</ref>()</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m_hints)<sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_hints.reset();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m_hints_depth)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_hints_depth.reset();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m_it)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_it.reset();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(m_it_node)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>m_it_node.reset();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classvisp__tracker__common_1_1TrackerGUI_1a83378a186a567c87868bf19647fce2a1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a83378a186a567c87868bf19647fce2a1" kindref="member">init</ref>(std::shared_ptr&lt;rclcpp::Node&gt;<sp/>self);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="classvisp__tracker__common_1_1TrackerGUI_1a349e51ebb1c0505101698e419c9f8880" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a349e51ebb1c0505101698e419c9f8880" kindref="member">has_to_run</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a6d6cade64b8882f4ba2c0286f43eac61" kindref="member">m_run</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="classvisp__tracker__common_1_1TrackerGUI_1a65d1bfbcc6eb50ef85057677918eee32" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a65d1bfbcc6eb50ef85057677918eee32" kindref="member">quit</ref>();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="122"></codeline>
+<codeline lineno="128" refid="classvisp__tracker__common_1_1TrackerGUI_1a61830266b6cb5a3ad562aa46fe7da752" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a61830266b6cb5a3ad562aa46fe7da752" kindref="member">camera_info_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::CameraInfo::SharedPtr<sp/>msg);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classvisp__tracker__common_1_1TrackerGUI_1af233bb3925d57e00a06dd95ef3a20b27" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1af233bb3925d57e00a06dd95ef3a20b27" kindref="member">image_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classvisp__tracker__common_1_1TrackerGUI_1a196ba4e2c609d93c0c11863a9f17560e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a196ba4e2c609d93c0c11863a9f17560e" kindref="member">depth_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;msg);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="classvisp__tracker__common_1_1TrackerGUI_1aefd684f4a3021fe4a376a68baa3ba0fa" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1aefd684f4a3021fe4a376a68baa3ba0fa" kindref="member">info_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>visp_tracker_common::msg::InfoStrings::ConstSharedPtr<sp/>msg);</highlight></codeline>
+<codeline lineno="151"></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="classvisp__tracker__common_1_1TrackerGUI_1a0f0726865c764a021f8cd3ed7e9e067d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a0f0726865c764a021f8cd3ed7e9e067d" kindref="member">switch_tracking</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="classvisp__tracker__common_1_1TrackerGUI_1a677f3dc6d8c70c7968f6cbbd4bf9768d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a677f3dc6d8c70c7968f6cbbd4bf9768d" kindref="member">switch_visualization</ref>();</highlight></codeline>
+<codeline lineno="164"></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" kindref="member">FeaturesType</ref></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="173" refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98aefbfa9f1075046370c42dd4de721496a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98aefbfa9f1075046370c42dd4de721496a" kindref="member">POINT</ref><sp/>=<sp/>0,<sp/></highlight></codeline>
+<codeline lineno="174" refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98a1608db77b8b911a3aa3aefc77df1af49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98a1608db77b8b911a3aa3aefc77df1af49" kindref="member">CROSS</ref><sp/>=<sp/>1,<sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>TYPE_COUNT<sp/>=<sp/>2</highlight></codeline>
+<codeline lineno="176" refid="classvisp__tracker__common_1_1TrackerGUI_1ad0867af25c3381e1fdaa22127ec79ce2" refkind="member"><highlight class="normal"><sp/><sp/>}<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" kindref="member">FeaturesType</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184" refid="classvisp__tracker__common_1_1TrackerGUI_1afd35c3bc37b70d66c9a980a1c3564357" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1afd35c3bc37b70d66c9a980a1c3564357" kindref="member">featuresTypeToString</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" kindref="member">FeaturesType</ref><sp/>&amp;mode);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="classvisp__tracker__common_1_1TrackerGUI_1a117cfa1fd8dd7c0a2ee60218b20eb0c3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" kindref="member">FeaturesType</ref><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a117cfa1fd8dd7c0a2ee60218b20eb0c3" kindref="member">featuresTypeFromString</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;name);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="classvisp__tracker__common_1_1TrackerGUI_1ad9dc956b7e20066004b71813deef71b8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1ad9dc956b7e20066004b71813deef71b8" kindref="member">getAvailableFeaturesType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;prefix<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&lt;<sp/>&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;sep<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;<sp/>,<sp/>&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;suffix<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&gt;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Services<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207" refid="classvisp__tracker__common_1_1TrackerGUI_1aac0f0c719b449ec3cf90c0a57b049d3b" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Node::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1aac0f0c719b449ec3cf90c0a57b049d3b" kindref="member">m_service_node</ref>;<sp/></highlight></codeline>
+<codeline lineno="208" refid="classvisp__tracker__common_1_1TrackerGUI_1a165b306617bd28efe21711ec08d2e961" refkind="member"><highlight class="normal"><sp/><sp/>std_srvs::srv::Trigger::Request::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a165b306617bd28efe21711ec08d2e961" kindref="member">m_quit_request</ref>;<sp/></highlight></codeline>
+<codeline lineno="209" refid="classvisp__tracker__common_1_1TrackerGUI_1ac455b89006efa8d0583755821d242e74" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::shared_ptr&lt;rclcpp::Client&lt;std_srvs::srv::Trigger&gt;&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1ac455b89006efa8d0583755821d242e74" kindref="member">m_clients_quit</ref>;<sp/></highlight></codeline>
+<codeline lineno="210" refid="classvisp__tracker__common_1_1TrackerGUI_1a06f5b93c17ecc09ac8d006064479e09c" refkind="member"><highlight class="normal"><sp/><sp/>std_srvs::srv::Trigger::Request::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a06f5b93c17ecc09ac8d006064479e09c" kindref="member">m_switch_request</ref>;<sp/></highlight></codeline>
+<codeline lineno="211" refid="classvisp__tracker__common_1_1TrackerGUI_1a0f1114ad3c64503e5e890c4ccad9ca95" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::shared_ptr&lt;rclcpp::Client&lt;std_srvs::srv::Trigger&gt;&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a0f1114ad3c64503e5e890c4ccad9ca95" kindref="member">m_clients_switch_tracking</ref>;<sp/></highlight></codeline>
+<codeline lineno="212" refid="classvisp__tracker__common_1_1TrackerGUI_1a5dc47902ef35d3f13844092f9cfc9244" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::shared_ptr&lt;rclcpp::Client&lt;std_srvs::srv::Trigger&gt;&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a5dc47902ef35d3f13844092f9cfc9244" kindref="member">m_clients_switch_visualization</ref>;<sp/></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Subscribers<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/>rclcpp::Node::SharedPtr<sp/>m_it_node;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;image_transport::ImageTransport&gt;<sp/>m_it;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;image_transport::TransportHints&gt;<sp/>m_hints;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/>image_transport::Subscriber<sp/>m_sub_color;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>image_transport::ImageTransport<sp/>m_it_depth;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;image_transport::TransportHints&gt;<sp/>m_hints_depth;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/>image_transport::Subscriber<sp/>m_sub_depth;</highlight></codeline>
+<codeline lineno="222" refid="classvisp__tracker__common_1_1TrackerGUI_1a81b6608ca9699203d1803a3eb750f0d8" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a81b6608ca9699203d1803a3eb750f0d8" kindref="member">m_rgb_cam_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="223" refid="classvisp__tracker__common_1_1TrackerGUI_1a0f6a4337a657bce7473b6b2691ba095b" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;rclcpp::Subscription&lt;visp_tracker_common::msg::NamedFeatureArray&gt;::SharedPtr&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a0f6a4337a657bce7473b6b2691ba095b" kindref="member">m_feat_2D_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="224" refid="classvisp__tracker__common_1_1TrackerGUI_1a7ca6e4f759e369628ce9484eb474e174" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;visp_tracker_common::msg::InfoStrings&gt;::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7ca6e4f759e369628ce9484eb474e174" kindref="member">m_info_strings_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="225" refid="classvisp__tracker__common_1_1TrackerGUI_1a61468f56e9c0f46a8539a8044f3099a8" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;rclcpp::Subscription&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a61468f56e9c0f46a8539a8044f3099a8" kindref="member">m_poses_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="226" refid="classvisp__tracker__common_1_1TrackerGUI_1a0c0a79bdfb63c75db1a52d03d9354eb0" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::optional&lt;visp_tracker_common::msg::NamedFeatureArray&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a0c0a79bdfb63c75db1a52d03d9354eb0" kindref="member">m_feature_opt_vec</ref>;<sp/></highlight></codeline>
+<codeline lineno="227" refid="classvisp__tracker__common_1_1TrackerGUI_1a1122cd6bc99539c611bdac59404a26e5" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a1122cd6bc99539c611bdac59404a26e5" kindref="member">m_mutex_features</ref>;<sp/></highlight></codeline>
+<codeline lineno="228" refid="classvisp__tracker__common_1_1TrackerGUI_1a671c127d794f7f13dc7d0104ea094d2f" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::optional&lt;geometry_msgs::msg::PoseStamped&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a671c127d794f7f13dc7d0104ea094d2f" kindref="member">m_pose_opt_vec</ref>;<sp/></highlight></codeline>
+<codeline lineno="229" refid="classvisp__tracker__common_1_1TrackerGUI_1a03452266e3fad1802828a79138a8aeb8" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a03452266e3fad1802828a79138a8aeb8" kindref="member">m_pose_name_array</ref>;<sp/></highlight></codeline>
+<codeline lineno="230" refid="classvisp__tracker__common_1_1TrackerGUI_1a983e0ca80f9d9b8f5ae6ffc75314ef55" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a983e0ca80f9d9b8f5ae6ffc75314ef55" kindref="member">m_mutex_poses</ref>;<sp/></highlight></codeline>
+<codeline lineno="231" refid="classvisp__tracker__common_1_1TrackerGUI_1a39a1ac95bcd143ad99ab5098a515ecd6" refkind="member"><highlight class="normal"><sp/><sp/>visp_tracker_common::msg::InfoStrings<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a39a1ac95bcd143ad99ab5098a515ecd6" kindref="member">m_vec_info</ref>;<sp/></highlight></codeline>
+<codeline lineno="232" refid="classvisp__tracker__common_1_1TrackerGUI_1a562e23ddc5744c9778ca19d1d515c6fe" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a562e23ddc5744c9778ca19d1d515c6fe" kindref="member">m_mutex_info</ref>;<sp/></highlight></codeline>
+<codeline lineno="233" refid="classvisp__tracker__common_1_1TrackerGUI_1a6a506b7ef2386513433a8d8d5fe2d29b" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;rclcpp::Subscription&lt;visp_tracker_common::msg::AprilTagDetectionArray&gt;::SharedPtr&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a6a506b7ef2386513433a8d8d5fe2d29b" kindref="member">m_apriltag_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="234" refid="classvisp__tracker__common_1_1TrackerGUI_1ad6f27ae43d1cfe029e0c3eb5ffce1f83" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::optional&lt;visp_tracker_common::msg::AprilTagDetectionArray&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1ad6f27ae43d1cfe029e0c3eb5ffce1f83" kindref="member">m_apriltag_opt_vec</ref>;<sp/></highlight></codeline>
+<codeline lineno="235" refid="classvisp__tracker__common_1_1TrackerGUI_1ac9c06d796acf3ddede3584877211e010" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1ac9c06d796acf3ddede3584877211e010" kindref="member">m_mutex_apriltag</ref>;<sp/></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Display-related<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="classvisp__tracker__common_1_1TrackerGUI_1ac0d8e683bc2260025d5cf37407bda656" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1ac0d8e683bc2260025d5cf37407bda656" kindref="member">m_use_depth</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="239" refid="classvisp__tracker__common_1_1TrackerGUI_1aaa06d4546be3c8669b7e178059d02317" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;vpDisplay&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1aaa06d4546be3c8669b7e178059d02317" kindref="member">m_display_color</ref>;<sp/></highlight></codeline>
+<codeline lineno="240" refid="classvisp__tracker__common_1_1TrackerGUI_1a095d0d2e5b0d347c52a4b4b00dd90d62" refkind="member"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;vpDisplay&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a095d0d2e5b0d347c52a4b4b00dd90d62" kindref="member">m_display_depth</ref>;<sp/></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="classvisp__tracker__common_1_1TrackerGUI_1a6d5b8a16910b0f37ee80a4eb6b4767e6" refkind="member"><highlight class="normal"><sp/><sp/>vpImage&lt;vpRGBa&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a6d5b8a16910b0f37ee80a4eb6b4767e6" kindref="member">m_I</ref>;<sp/></highlight></codeline>
+<codeline lineno="243" refid="classvisp__tracker__common_1_1TrackerGUI_1aeae742498acdcaceae4f9b011d186fd5" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1aeae742498acdcaceae4f9b011d186fd5" kindref="member">m_mutex_Id</ref>;<sp/></highlight></codeline>
+<codeline lineno="244" refid="classvisp__tracker__common_1_1TrackerGUI_1af460bb5cc2f849262b07d9c02bb4aa22" refkind="member"><highlight class="normal"><sp/><sp/>std::optional&lt;vpImage&lt;vpRGBa&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1af460bb5cc2f849262b07d9c02bb4aa22" kindref="member">m_opt_Id</ref><sp/>=<sp/>std::nullopt;<sp/></highlight></codeline>
+<codeline lineno="245" refid="classvisp__tracker__common_1_1TrackerGUI_1a34129c2b34975a16ff949a4f37ee7677" refkind="member"><highlight class="normal"><sp/><sp/>std::optional&lt;uint16_t&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a34129c2b34975a16ff949a4f37ee7677" kindref="member">m_opt_min_depth</ref><sp/>=<sp/>std::nullopt;<sp/></highlight></codeline>
+<codeline lineno="246" refid="classvisp__tracker__common_1_1TrackerGUI_1af0f25abb4f027353c6fe950b58ee73b2" refkind="member"><highlight class="normal"><sp/><sp/>std::optional&lt;uint16_t&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1af0f25abb4f027353c6fe950b58ee73b2" kindref="member">m_opt_max_depth</ref><sp/>=<sp/>std::nullopt;<sp/></highlight></codeline>
+<codeline lineno="247" refid="classvisp__tracker__common_1_1TrackerGUI_1a820e0a8fbd29dca0e1a7409968018e0a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a820e0a8fbd29dca0e1a7409968018e0a" kindref="member">m_display_nb_frames_skipped</ref><sp/>=<sp/>-1;<sp/></highlight></codeline>
+<codeline lineno="248" refid="classvisp__tracker__common_1_1TrackerGUI_1a50adefa6f01edddb230f4150e26a48fd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a50adefa6f01edddb230f4150e26a48fd" kindref="member">m_frame_cnt</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="249" refid="classvisp__tracker__common_1_1TrackerGUI_1a80f8584ccbe46c30de415dbce184b417" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a80f8584ccbe46c30de415dbce184b417" kindref="member">m_features_thickness</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="250" refid="classvisp__tracker__common_1_1TrackerGUI_1a86314a6022493e53123271b820402437" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a7c196dd620fac2496c38a1f84b6e8f98" kindref="member">FeaturesType</ref><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a86314a6022493e53123271b820402437" kindref="member">m_features_type</ref><sp/>=<sp/>FeaturesType::POINT;<sp/></highlight></codeline>
+<codeline lineno="251" refid="classvisp__tracker__common_1_1TrackerGUI_1a0bac0b516cc519bcdee6c16db4c5851b" refkind="member"><highlight class="normal"><sp/><sp/>std::optional&lt;vpCameraParameters&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a0bac0b516cc519bcdee6c16db4c5851b" kindref="member">m_opt_rgb_cam</ref><sp/>=<sp/>std::nullopt;<sp/></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Others<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254" refid="classvisp__tracker__common_1_1TrackerGUI_1a6d6cade64b8882f4ba2c0286f43eac61" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a6d6cade64b8882f4ba2c0286f43eac61" kindref="member">m_run</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="255" refid="classvisp__tracker__common_1_1TrackerGUI_1a3cb736cb69978a8014437f71a906eda0" refkind="member"><highlight class="normal"><sp/><sp/>std::mutex<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1a3cb736cb69978a8014437f71a906eda0" kindref="member">m_mutex_run</ref>;<sp/></highlight></codeline>
+<codeline lineno="256" refid="classvisp__tracker__common_1_1TrackerGUI_1aa3a2c96302ac2d289dd537ea68a26ae3" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::string&gt;<sp/><ref refid="classvisp__tracker__common_1_1TrackerGUI_1aa3a2c96302ac2d289dd537ea68a26ae3" kindref="member">m_client_nodes_name</ref>;<sp/></highlight></codeline>
+<codeline lineno="257"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="258"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="include/visp_tracker_common/TrackerGUI.hpp"/>
+  </compounddef>
+</doxygen>

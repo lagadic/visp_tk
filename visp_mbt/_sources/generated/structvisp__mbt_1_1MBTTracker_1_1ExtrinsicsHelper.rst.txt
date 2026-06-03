@@ -1,0 +1,23 @@
+.. _exhale_struct_structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper:
+
+Struct MBTTracker::ExtrinsicsHelper
+===================================
+
+- Defined in :ref:`file_include_visp_mbt_MBTTracker.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classvisp__mbt_1_1MBTTracker`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: visp_mbt::MBTTracker::ExtrinsicsHelper
+   :project: visp_mbt Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

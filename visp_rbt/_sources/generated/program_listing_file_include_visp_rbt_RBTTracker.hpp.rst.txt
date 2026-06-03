@@ -1,0 +1,132 @@
+
+.. _program_listing_file_include_visp_rbt_RBTTracker.hpp:
+
+Program Listing for File RBTTracker.hpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_visp_rbt_RBTTracker.hpp>` (``include/visp_rbt/RBTTracker.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /*
+    * Copyright (C) 2026 by Inria. All rights reserved.
+    *
+    * This software is free software; you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation; either version 2 of the License, or
+    * (at your option) any later version.
+    * See the file LICENSE.txt at the root directory of this source
+    * distribution for additional information about the GNU GPL.
+    *
+    * For using this software that can not be combined with the GNU
+    * GPL, or if you have questions regarding the use of this file,
+    * please contact Inria at visp@inria.fr
+    *
+    * This software was developed at:
+    * Inria centre at Rennes University
+    * Campus Universitaire de Beaulieu
+    * 35042 Rennes Cedex
+    * France
+    *
+    * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+    * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+    */
+   
+   #ifndef RBT_TRACKER_HPP
+   #define RBT_TRACKER_HPP
+   
+   #include <visp_common/image.hpp>
+   #include <visp_common/pose.hpp>
+   #include <visp_common/path_retriever.hpp>
+   
+   #include <visp3/core/vpConfig.h>
+   #include <visp3/ar/vpPanda3DFrameworkManager.h>
+   #include <visp3/core/vpImageConvert.h>
+   #include <visp3/core/vpIoTools.h>
+   #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+   #include <visp3/gui/vpDisplayFactory.h>
+   #endif
+   #include <visp3/rbt/vpRBTracker.h>
+   #include <visp3/rbt/vpRBDriftDetector.h>
+   
+   #include <visp_tracker_common/BaseMultiModalTracker.hpp>
+   
+   #ifdef VISP_HAVE_NLOHMANN_JSON
+   #include VISP_NLOHMANN_JSON(json.hpp)
+   #else
+   #error "ViSP must have been compiled with nlohmann-json library to use this package"
+   #endif
+   
+   #ifdef VISP_HAVE_OPENMP
+   #include <omp.h>
+   #endif
+   
+   #ifdef ENABLE_VISP_NAMESPACE
+   using namespace VISP_NAMESPACE_NAME;
+   #endif
+   
+   namespace visp_rbt
+   {
+   class RBTTracker : public visp_tracker_common::BaseMultiModalTracker
+   {
+   public:
+     RBTTracker(const std::string &name);
+   
+     virtual ~RBTTracker()
+     {
+       RCLCPP_INFO(this->get_logger(), "Destructor called, closing Panda3D instance");
+       vpPanda3DFrameworkManager::getInstance().exit();
+       RCLCPP_INFO(this->get_logger(), "Panda instance has been closed");
+     }
+   
+     // virtual bool init() override;
+   protected:
+   
+     virtual bool init_tracker() override;
+   
+     bool init_from_json(const std::string &config_file_path);
+   
+     virtual void init_info_strings() override;
+   
+     virtual void check_requires_depth() override;
+   
+     virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) override;
+   
+     virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) override;
+   
+     virtual void track() override;
+   
+     virtual bool init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame);
+   
+     virtual bool perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+   
+     // ----- Services -----
+   
+     // ----- Subscribers -----
+   
+     // ----- Publisher -----
+   
+     // ----- Display-related attributes -----
+   #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+     vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
+     double m_max_z_display; // Maximum depth we want to display
+     std::shared_ptr<vpDisplay> m_display; 
+     std::shared_ptr<vpDisplay> m_display_uchar; 
+     std::shared_ptr<vpDisplay> m_display_depth; 
+     bool m_display_initialized = false; 
+   #endif
+   
+     // ----- Tracking-related attributes -----
+     bool m_tracker_initialized = false; 
+     bool m_tracker_cams_set = false; 
+     std::string m_init_file_path; 
+     vpImage<unsigned char> m_I; 
+     vpImage<vpRGBa> m_Ic; 
+     vpImage <float> m_I_depth; 
+     vpRBTracker m_tracker;
+   };
+   }
+   
+   #endif

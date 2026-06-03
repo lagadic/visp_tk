@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>README &mdash; visp_tracker_common 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="_static/jquery.js?v=8dae8fb0"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            visp_tracker_common
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/index.html">C++ API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/index.html#full-c-api">Full C++ API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/namespace_rclcpp.html">Namespace rclcpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html">Class BaseMultiModalTracker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1BaseTracker.html">Class BaseTracker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html">Variable visp_tracker_common::features2D_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/dir_include_visp_tracker_common.html">Directory visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces/message_definitions.html">Message Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/AprilTagDetection.html">AprilTagDetection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/AprilTagDetectionArray.html">AprilTagDetectionArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/Ellipse2D.html">Ellipse2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/InfoStrings.html">InfoStrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/NamedFeature.html">NamedFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/NamedFeatureArray.html">NamedFeatureArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/Point2DTuple.html">Point2DTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces/msg/Polygon2D.html">Polygon2D</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-the-display">Related to the display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#basemultimodaltracker-node">BaseMultiModalTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#id1">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#id2">Related to the tracking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#tracker-gui-node"><code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#id3">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-services">Related to services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-display">Related to display</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">visp_tracker_common</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">README</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/__readme_include.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="readme">
+<h1><a class="toc-backref" href="#id4" role="doc-backlink">README</a><a class="headerlink" href="#readme" title="Link to this heading"></a></h1>
+</section>
+<section id="visp-tracker-common-documentation">
+<h1><a class="toc-backref" href="#id5" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a><a class="headerlink" href="#visp-tracker-common-documentation" title="Link to this heading"></a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#readme" id="id4">README</a></p></li>
+<li><p><a class="reference internal" href="#visp-tracker-common-documentation" id="id5"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></p></li>
+<li><p><a class="reference internal" href="#introduction" id="id6">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#installation-instructions" id="id7">Installation instructions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisities" id="id8">Prerequisities</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installing-visp" id="id9">Installing ViSP</a></p></li>
+<li><p><a class="reference internal" href="#installing-other-dependencies" id="id10">Installing other dependencies</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#how-to-get-and-build-visp-tracker-common" id="id11">How to get and build visp_tracker_common</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#basetracker-node" id="id12">BaseTracker node</a></p>
+<ul>
+<li><p><a class="reference internal" href="#related-to-subscription-publication" id="id13">Related to subscription / publication</a></p></li>
+<li><p><a class="reference internal" href="#related-to-the-tracking" id="id14">Related to the tracking</a></p></li>
+<li><p><a class="reference internal" href="#related-to-the-display" id="id15">Related to the display</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#basemultimodaltracker-node" id="id16">BaseMultiModalTracker node</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id17">Related to subscription / publication</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id18">Related to the tracking</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tracker-gui-node" id="id19"><code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id20">Related to subscription / publication</a></p></li>
+<li><p><a class="reference internal" href="#related-to-services" id="id21">Related to services</a></p></li>
+<li><p><a class="reference internal" href="#related-to-display" id="id22">Related to display</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+</section>
+<section id="introduction">
+<h1><a class="toc-backref" href="#id6" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> is a package that contains:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>base classes for the different ViSP’s tracker nodes, providing a common interface,</p></li>
+<li><p>messages used by these nodes,</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node, that permits to display the tracking results on a machine different from
+the one that runs the tracker.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="installation-instructions">
+<h1><a class="toc-backref" href="#id7" role="doc-backlink">Installation instructions</a><a class="headerlink" href="#installation-instructions" title="Link to this heading"></a></h1>
+<section id="prerequisities">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Prerequisities</a><a class="headerlink" href="#prerequisities" title="Link to this heading"></a></h2>
+<section id="installing-visp">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Installing ViSP</a><a class="headerlink" href="#installing-visp" title="Link to this heading"></a></h3>
+<section id="install-visp-from-ros2-package">
+<h4>Install ViSP from ros2 package<a class="headerlink" href="#install-visp-from-ros2-package" title="Link to this heading"></a></h4>
+<p>First you need to install ViSP as a system dependency. This can be achived using <code class="docutils literal notranslate"><span class="pre">ros-${ROS_DISTRO}-visp</span></code> package available for Ubuntu. Just run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-visp
+</pre></div>
+</div>
+</section>
+<section id="install-visp-from-source">
+<h4>Install ViSP from source<a class="headerlink" href="#install-visp-from-source" title="Link to this heading"></a></h4>
+<p>If the ros2 package is not available or if you want to use a more recent version of ViSP, you can also install ViSP from source following <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-install-ubuntu.html#install_ubuntu_quick">ViSP Quick Installation</a>. We recall here after the main steps:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$VISP_WS</span>
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/lagadic/visp.git
+$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$VISP_WS</span>/visp-build
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$VISP_WS</span>/visp-build
+$<span class="w"> </span>cmake<span class="w"> </span>../visp
+$<span class="w"> </span>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</pre></div>
+</div>
+<p>Then to use this version you have to setup <code class="docutils literal notranslate"><span class="pre">VISP_DIR</span></code> environment variable to the folder that contains the build. In our case it becomes:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">VISP_DIR</span><span class="o">=</span><span class="nv">$VISP_WS</span>/visp-build
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installing-other-dependencies">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Installing other dependencies</a><a class="headerlink" href="#installing-other-dependencies" title="Link to this heading"></a></h3>
+<p>You can install the other ROS2 dependencies using system installation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-geometry-msgs<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-image-transport-plugins<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-message-filters<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-rclcpp<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-sensor-msgs<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-std-srvs<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-tf2<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-tf2-ros<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-vision-msgs
+</pre></div>
+</div>
+<p>Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> utilitary, but be sure to uninstall the
+<code class="docutils literal notranslate"><span class="pre">ros-${ROS_DISTRO}-visp</span></code> package that will be installed if you want to use
+ViSP compiled from source. Assuming that the <code class="docutils literal notranslate"><span class="pre">visp_tk</span></code> repository has been
+cloned in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory (see <a class="reference internal" href="#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a>), run the following commands:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>rosdep<span class="w"> </span>init
+$<span class="w"> </span>rosdep<span class="w"> </span>update
+$<span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>-i<span class="w"> </span>--from-path<span class="w"> </span>src<span class="w"> </span>--rosdistro<span class="w"> </span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span><span class="w"> </span>-y
+$<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-z<span class="w"> </span><span class="si">${</span><span class="nv">VISP_DIR</span><span class="p">+x</span><span class="si">}</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;VISP_DIR is unset, keeping ViSP system package&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;VISP_DIR is set, removing system install&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>remove<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-visp<span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="how-to-get-and-build-visp-tracker-common">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">How to get and build visp_tracker_common</a><a class="headerlink" href="#how-to-get-and-build-visp-tracker-common" title="Link to this heading"></a></h2>
+<p>Supposed you have a ros2 work space just run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/colcon_ws/src
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>humble<span class="w"> </span>https://github.com/lagadic/visp_tk.git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+$<span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-up-to<span class="w"> </span>visp_tracker_common
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basetracker-node">
+<h1><a class="toc-backref" href="#id12" role="doc-backlink">BaseTracker node</a><a class="headerlink" href="#basetracker-node" title="Link to this heading"></a></h1>
+<p>This section will present the different parameters of the <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseTracker</span></code> class.</p>
+<section id="related-to-subscription-publication">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Related to subscription / publication</a><a class="headerlink" href="#related-to-subscription-publication" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>REQUIRED</strong> <code class="docutils literal notranslate"><span class="pre">rgb_camera_info_topic_name</span></code>: name of the color camera topic.</p></li>
+<li><p><strong>REQUIRED</strong> <code class="docutils literal notranslate"><span class="pre">rgb_image_topic_name</span></code>: name of the color image topic.</p></li>
+</ul>
+</section>
+<section id="related-to-the-tracking">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Related to the tracking</a><a class="headerlink" href="#related-to-the-tracking" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">config_file</span></code>: path to the configuration file to initialize the tracker. package:// will be replaced by the path to the share folder of the corresponding package.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">init_method</span></code>: initialization method to initialize the tracker. Default method is initialization by click.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">init_topic</span></code>: if the <code class="docutils literal notranslate"><span class="pre">init_method</span></code> is set to topic, this parameter becomes <strong>REQUIRED</strong> and must be set to the topic of type <code class="docutils literal notranslate"><span class="pre">geometry_msgs:msg::PoseStamped</span></code> the tracker must use to get the init pose.</p></li>
+</ul>
+</section>
+<section id="related-to-the-display">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Related to the display</a><a class="headerlink" href="#related-to-the-display" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">headless_mode</span></code>: if set to true, the node will not display anything. A TrackerGUI node will be needed in
+addition to the tracker node.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">display_nb_frames_skipped</span></code>: if <code class="docutils literal notranslate"><span class="pre">headless_mode</span></code> is set to false, this parameter indicates the number of frames skipped during display.</p></li>
+</ul>
+</section>
+</section>
+<section id="basemultimodaltracker-node">
+<h1><a class="toc-backref" href="#id16" role="doc-backlink">BaseMultiModalTracker node</a><a class="headerlink" href="#basemultimodaltracker-node" title="Link to this heading"></a></h1>
+<p>This section will present the different parameters of the <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code> class.
+The node will determine if it requires depth or not depending on the tracker configuration. If the node
+requires depth, the <code class="docutils literal notranslate"><span class="pre">depth_camera_topic_name</span></code> and <code class="docutils literal notranslate"><span class="pre">depth_stream_topic_name</span></code> becomes <strong>REQUIRED</strong>.
+If the tracker requires depth, a <a class="reference external" href="https://github.com/ros2/message_filters/blob/rolling/doc/index.rst">message_filters::Synchronizer</a>
+is used to temporally synchronize the depth stream and the color stream. <strong>NB</strong>: using the <code class="docutils literal notranslate"><span class="pre">TrackerGUI</span></code> class
+on the same computer than a class inheriting from <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code> and using depth
+leads to the freezing of the tracker, due to a desynchronization of the color and depth streams.</p>
+<section id="id1">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Related to subscription / publication</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_camera_topic_name</span></code>: name of the depth camera topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_stream_topic_name</span></code>: name of the depth stream topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_durability</span></code>: the durability of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_reliability</span></code>: the reliability of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_depth</span></code>: the depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Related to the tracking</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">z_factor</span></code>: factor to convert the depth image expressed as uint16_t into meters. For instance, if a value
+of <code class="docutils literal notranslate"><span class="pre">1000</span></code> in the raw depth image corresponds to <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">meter</span></code>, the <code class="docutils literal notranslate"><span class="pre">z_factor</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">0.001</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="tracker-gui-node">
+<h1><a class="toc-backref" href="#id19" role="doc-backlink"><code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node</a><a class="headerlink" href="#tracker-gui-node" title="Link to this heading"></a></h1>
+<p>This section will present the different parameters of the <code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node. This node permits to
+have a Graphical User Interface (GUI) on a remote computer, i.e. on another computer than the one that is running the tracker node(s). It should not
+be used when you can run the tracker on a computer that has actual display capabilities, especialy with mulimodal trackers,
+because it makes out of synchronization the RGB and depth streams, freezing the tracker.</p>
+<section id="id3">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Related to subscription / publication</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">image_transport</span></code>: the type of image transport compression algorithm used. Default is <code class="docutils literal notranslate"><span class="pre">compressed</span></code>. See <a class="reference external" href="https://github.com/ros-perception/image_transport_plugins">image_transport_plugins</a> for more information.</p></li>
+<li><p><strong>REQUIRED</strong> <code class="docutils literal notranslate"><span class="pre">camera_topic</span></code>: the name of the camera information topic of the RGB stream.</p></li>
+<li><p><strong>REQUIRED</strong> <code class="docutils literal notranslate"><span class="pre">color_topic</span></code>: the name of the raw RGB stream (e.g. <code class="docutils literal notranslate"><span class="pre">/camera/color/image_raw</span></code>). The <code class="docutils literal notranslate"><span class="pre">image_transport</span></code> parameter will then be used to determine the sub topic that will be used.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">color_qos_queue_depth</span></code>: the depth of the queue of the RGB topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">color_qos_durability</span></code>: the durability of the messages of the RGB topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">color_qos_reliability</span></code>: the reliability of the messages of the RGB topic.</p></li>
+</ul>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">use_depth</span></code>: if true, the <code class="docutils literal notranslate"><span class="pre">TrackerGUI</span></code> will subscribe to the depth topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_image_transport</span></code>: the type of image transport compression algorithm used for the depth stream. Default is <code class="docutils literal notranslate"><span class="pre">compressedDepth</span></code>. See <a class="reference external" href="https://github.com/ros-perception/image_transport_plugins">image_transport_plugins</a> for more information.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_topic</span></code>: the name of the raw depth stream (e.g. <code class="docutils literal notranslate"><span class="pre">/camera/depth/image_raw</span></code>). The <code class="docutils literal notranslate"><span class="pre">image_transport</span></code> subscriber will then subscribe to the <code class="docutils literal notranslate"><span class="pre">compressedDepth</span></code> sub-topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_qos_queue_depth</span></code>: the depth of the queue of the depth topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_qos_durability</span></code>: the durability of the messages of the depth topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_qos_reliability</span></code>: the reliability of the messages of the depth topic.</p></li>
+</ul>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">apriltag_topics</span></code>: a vector of strings. Each item corresponds to the name of a <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::msg::AprilTagDetectionArray</span></code> topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">features_topics</span></code>: a vector of strings. Each item corresponds to the name of a <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::msg::NamedFeatureArray</span></code> topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">poses_topics</span></code>: a vector of strings. Each item corresponds to the name of a <code class="docutils literal notranslate"><span class="pre">geometry_msgs::msg::PoseStamped</span></code> topic.</p></li>
+</ul>
+</section>
+<section id="related-to-services">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Related to services</a><a class="headerlink" href="#related-to-services" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>REQUIRED</strong> <code class="docutils literal notranslate"><span class="pre">client_nodes</span></code>: a vector of strings. Each item corresponds to the name of a node that inherits either from <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseTracker</span></code> or <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code>.
+This name will be used to compose the name of services that can be called upon.</p></li>
+</ul>
+</section>
+<section id="related-to-display">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Related to display</a><a class="headerlink" href="#related-to-display" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">poses_names</span></code>: a vector of strings. Each item corresponds to the name to display beside the message that comes from the topic listed <code class="docutils literal notranslate"><span class="pre">poses_topics</span></code> which has
+the same index than the item. <strong>Important</strong>: must have the same size than <code class="docutils literal notranslate"><span class="pre">poses_topics</span></code>.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_scale</span></code>: the scale to transform the raw depth image into a depth image expressed in meters. (e.g. if the raw depth image is encoded such as <code class="docutils literal notranslate"><span class="pre">1000</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">1m</span></code>, the parameter must be set to <code class="docutils literal notranslate"><span class="pre">0.001</span></code>).</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">min_depth</span></code>: the minimum depth to display, in meters.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>: the maximum depth to display, in meters.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">features_thickness</span></code>: the thickness of the features published in the <code class="docutils literal notranslate"><span class="pre">features_topics</span></code>, in pixels.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">features_type</span></code>: the type of feature to use to display 2D points, if any are present in the <code class="docutils literal notranslate"><span class="pre">features_topics</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_tracker_common&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

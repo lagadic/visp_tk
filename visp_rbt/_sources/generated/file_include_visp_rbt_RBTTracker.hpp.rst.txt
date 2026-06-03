@@ -1,0 +1,70 @@
+
+.. _file_include_visp_rbt_RBTTracker.hpp:
+
+File RBTTracker.hpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_rbt>` (``include/visp_rbt``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_rbt/RBTTracker.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_rbt_RBTTracker.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``visp3/ar/vpPanda3DFrameworkManager.h``
+
+- ``visp3/core/vpConfig.h``
+
+- ``visp3/core/vpImageConvert.h``
+
+- ``visp3/core/vpIoTools.h``
+
+- ``visp3/rbt/vpRBDriftDetector.h``
+
+- ``visp3/rbt/vpRBTracker.h``
+
+- ``visp_common/image.hpp``
+
+- ``visp_common/path_retriever.hpp``
+
+- ``visp_common/pose.hpp``
+
+- ``visp_tracker_common/BaseMultiModalTracker.hpp``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_rbt`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__rbt_1_1RBTTracker`
+

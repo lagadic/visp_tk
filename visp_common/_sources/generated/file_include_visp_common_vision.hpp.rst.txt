@@ -1,0 +1,63 @@
+
+.. _file_include_visp_common_vision.hpp:
+
+File vision.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_common>` (``include/visp_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Conversions between ROS and ViSP structures representing vision messages. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_common/vision.hpp``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_common_vision.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``vision_msgs/msg/point2_d.hpp``
+
+- ``visp3/core/vpImagePoint.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_common`
+
+- :ref:`namespace_visp_common__vision`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_vision_8hpp_1a90dadaecf240bc9e574400f5a224add6`
+
+- :ref:`exhale_function_vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d`
+

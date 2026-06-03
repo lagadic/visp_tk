@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class BaseMultiModalTracker &mdash; visp_tracker_common 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class BaseTracker" href="classvisp__tracker__common_1_1BaseTracker.html" />
+    <link rel="prev" title="Namespace visp_tracker_common" href="namespace_visp_tracker_common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            visp_tracker_common
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class BaseMultiModalTracker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseTracker.html">Class BaseTracker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html">Variable visp_tracker_common::features2D_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_visp_tracker_common.html">Directory visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../interfaces/message_definitions.html">Message Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/AprilTagDetection.html">AprilTagDetection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/AprilTagDetectionArray.html">AprilTagDetectionArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Ellipse2D.html">Ellipse2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/InfoStrings.html">InfoStrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/NamedFeature.html">NamedFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/NamedFeatureArray.html">NamedFeatureArray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Point2DTuple.html">Point2DTuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/msg/Polygon2D.html">Polygon2D</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-display">Related to the display</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basemultimodaltracker-node">BaseMultiModalTracker node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id1">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id2">Related to the tracking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#tracker-gui-node"><code class="docutils literal notranslate"><span class="pre">tracker_gui</span></code> node</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id3">Related to subscription / publication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-services">Related to services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visp_tracker_common</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Class BaseMultiModalTracker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classvisp__tracker__common_1_1BaseMultiModalTracker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-basemultimodaltracker">
+<span id="exhale-class-classvisp-tracker-common-1-1basemultimodaltracker"></span><h1>Class BaseMultiModalTracker<a class="headerlink" href="#class-basemultimodaltracker" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html#file-include-visp-tracker-common-basemultimodaltracker-hpp"><span class="std std-ref">File BaseMultiModalTracker.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">visp_tracker_common::BaseTracker</span></code> (<a class="reference internal" href="classvisp__tracker__common_1_1BaseTracker.html#exhale-class-classvisp-tracker-common-1-1basetracker"><span class="std std-ref">Class BaseTracker</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTrackerE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTrackerE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTrackerE"></span><span id="visp_tracker_common::BaseMultiModalTracker"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BaseMultiModalTracker</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTrackerE" title="visp_tracker_common::BaseTracker"><span class="n"><span class="pre">BaseTracker</span></span></a><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTrackerE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-initialization">Initialization</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker20check_requires_depthEv">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker20check_requires_depthEv"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker20check_requires_depthEv"></span><span id="visp_tracker_common::BaseMultiModalTracker::check_requires_depth"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aac59cab8d53f65b4929615c4e0852c72"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">check_requires_depth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker20check_requires_depthEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Check the tracker settings in order to know if the depth is actually required and set m_depth_is_required accordingly. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-callbacks">Callbacks</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker26depth_camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker26depth_camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker26depth_camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE"></span><span id="visp_tracker_common::BaseMultiModalTracker::depth_camera_info_callback__sensor_msgs::msg::CameraInfo::SharedPtrC"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3e38402fb061e3bcceb627552805f855"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">depth_camera_info_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CameraInfo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker26depth_camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color camera parameters callback that is called only once to initialize the node internal parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – Color camera parameters message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker12rgb_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker12rgb_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker12rgb_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::BaseMultiModalTracker::rgb_callback__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5b5ccfc9a08e015290bf21a19866780"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rgb_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker12rgb_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback called when the tracker only requires a RGB stream. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rgb</strong> – Message from the RGB stream. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker13sync_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker13sync_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker13sync_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::BaseMultiModalTracker::sync_callback__sensor_msgs::msg::Image::ConstSharedPtrCR.sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1abab8e48e76358f97455d49a4d32fd7cd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sync_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">depth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker13sync_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback called when the tracker requires both a RGB stream and a depth stream. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rgb</strong> – Message from the RGB stream. </p></li>
+<li><p><strong>depth</strong> – Message from the depth stream. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker21BaseMultiModalTrackerERKNSt6stringERKb">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker21BaseMultiModalTrackerERKNSt6stringERKb"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker21BaseMultiModalTrackerERKNSt6stringERKb"></span><span id="visp_tracker_common::BaseMultiModalTracker::BaseMultiModalTracker__ssCR.bCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab2e6376d9dba6101546324dc16d20e00"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseMultiModalTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">does_publish_features</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker21BaseMultiModalTrackerERKNSt6stringERKb" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTrackerD0Ev">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTrackerD0Ev"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTrackerD0Ev"></span><span id="visp_tracker_common::BaseMultiModalTracker::~BaseMultiModalTracker"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a766db9af3d0ce2fedd965ec4aebfb0a4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~BaseMultiModalTracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTrackerD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker4initEv">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker4initEv"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker4initEv"></span><span id="visp_tracker_common::BaseMultiModalTracker::init"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker4initEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Initializes the node.   </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>true The initialization went well. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>false Otherwise.   </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::BaseMultiModalTracker::treat_rgb__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab9f7cd8a51546266495bae8b1b2fe8d3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">treat_rgb</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Convert the RGB stream into usable data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rgb</strong> – The RGB stream message. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_tracker_common::BaseMultiModalTracker::treat_depth__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa704d104ecd009796bbefd5e6b410d94"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">treat_depth</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">depth</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd><p>Treat the depth stream into usable data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>depth</strong> – The depth stream message. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker5trackEv">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker5trackEv"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker5trackEv"></span><span id="visp_tracker_common::BaseMultiModalTracker::track"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a261bf71720f87f6c58db1320bc153f02"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">track</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker5trackEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Perform the tracking. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_sub__rclcpp::Subscription:sensor_msgs::msg::CameraInfo:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CameraInfo</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam_info_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Depth camera parameters subscriber. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker16m_rgb_stream_subE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker16m_rgb_stream_subE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker16m_rgb_stream_subE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_rgb_stream_sub__message_filters::Subscriber:sensor_msgs::msg::Image:"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a6291d4e633d2b522966a0a889661abd4"></span><span class="n"><span class="pre">message_filters</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_rgb_stream_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker16m_rgb_stream_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>RGB stream subscriber when depth is used. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker18m_depth_stream_subE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker18m_depth_stream_subE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker18m_depth_stream_subE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_stream_sub__message_filters::Subscriber:sensor_msgs::msg::Image:"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1accfb8de0a1a276595a4ff7205ca0b3e6"></span><span class="n"><span class="pre">message_filters</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscriber</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_stream_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker18m_depth_stream_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>Depth stream subscriber when depth is used. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker14m_streams_syncE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker14m_streams_syncE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker14m_streams_syncE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_streams_sync__std::shared_ptr:message_filters::Synchronizer:message_filters::sync_policies::ApproximateTime:sensor_msgs::msg::Image.sensor_msgs::msg::Image:::"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a97567812403d4049481260645b9a50a5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">message_filters</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Synchronizer</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">message_filters</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">sync_policies</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ApproximateTime</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_streams_sync</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker14m_streams_syncE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscriber to synchronized RGB and depth streams when depth is used. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_rgb_only_stream_subE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker21m_rgb_only_stream_subE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker21m_rgb_only_stream_subE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_rgb_only_stream_sub__rclcpp::Subscription:sensor_msgs::msg::Image:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2cb6c71048240591c604bb27881e20cf"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_rgb_only_stream_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_rgb_only_stream_subE" title="Link to this definition"></a><br /></dt>
+<dd><p>RGB stream subscriber when depth is not used. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_received__b"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam_info_received</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE" title="Link to this definition"></a><br /></dt>
+<dd><p>Set to true once the color camera parameters have been retrieved. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_camera_topic_nameE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker25m_depth_camera_topic_nameE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker25m_depth_camera_topic_nameE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_camera_topic_name__ss"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_camera_topic_name</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_camera_topic_nameE" title="Link to this definition"></a><br /></dt>
+<dd><p>The name of the depth camera topic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_depth_stream_nameE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker19m_depth_stream_nameE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker19m_depth_stream_nameE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_stream_name__ss"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_stream_name</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_depth_stream_nameE" title="Link to this definition"></a><br /></dt>
+<dd><p>The name of the depth image topic. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam__vpCameraParameters"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a019e442cbecca9d6592d1d5279351a27"></span><span class="n"><span class="pre">vpCameraParameters</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE" title="Link to this definition"></a><br /></dt>
+<dd><p>The depth camera parameters. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_depth_is_requiredE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker19m_depth_is_requiredE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker19m_depth_is_requiredE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_is_required__b"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_is_required</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_depth_is_requiredE" title="Link to this definition"></a><br /></dt>
+<dd><p>If true, it means that the tracker requires a depth stream to run. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_z_factorE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker10m_z_factorE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker10m_z_factorE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_z_factor__double"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2425af3b39bc3658b8f95ce106be437c"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_z_factor</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_z_factorE" title="Link to this definition"></a><br /></dt>
+<dd><p>Factor to translate uint16_t depth image into meters. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_frame_idE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker10m_frame_idE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker10m_frame_idE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_frame_id__ss"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0f3d32d7c030fcb708f8b7efd09caf8c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_frame_id</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_frame_idE" title="Link to this definition"></a><br /></dt>
+<dd><p>The frame ID of the RGB stream, in which will be expressed the tracking result. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="namespace_visp_tracker_common.html" class="btn btn-neutral float-left" title="Namespace visp_tracker_common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classvisp__tracker__common_1_1BaseTracker.html" class="btn btn-neutral float-right" title="Class BaseTracker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_tracker_common&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="BaseMultiModalTracker_8hpp" kind="file" language="C++">
+    <compoundname>BaseMultiModalTracker.hpp</compoundname>
+    <includes local="no">rclcpp/rclcpp.hpp</includes>
+    <includes local="no">message_filters/subscriber.h</includes>
+    <includes local="no">message_filters/synchronizer.h</includes>
+    <includes local="no">message_filters/sync_policies/approximate_time.h</includes>
+    <includes refid="BaseTracker_8hpp" local="no">visp_tracker_common/BaseTracker.hpp</includes>
+    <includes refid="names_8hpp" local="no">visp_tracker_common/names.hpp</includes>
+    <includes local="no">visp_tracker_common/msg/named_feature.hpp</includes>
+    <incdepgraph>
+      <node id="14">
+        <label>visp_common/camera.hpp</label>
+        <link refid="camera_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="15">
+        <label>visp_common/path_retriever.hpp</label>
+        <link refid="path__retriever_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="1">
+        <label>include/visp_tracker_common/BaseMultiModalTracker.hpp</label>
+        <link refid="BaseMultiModalTracker_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>visp_tracker_common/BaseTracker.hpp</label>
+        <link refid="BaseTracker_8hpp_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>visp_tracker_common/names.hpp</label>
+        <link refid="names_8hpp_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>geometry_msgs/msg/pose_stamped.hpp</label>
+      </node>
+      <node id="3">
+        <label>message_filters/subscriber.h</label>
+      </node>
+      <node id="5">
+        <label>message_filters/sync_policies/approximate_time.h</label>
+      </node>
+      <node id="4">
+        <label>message_filters/synchronizer.h</label>
+      </node>
+      <node id="21">
+        <label>optional</label>
+      </node>
+      <node id="2">
+        <label>rclcpp/rclcpp.hpp</label>
+      </node>
+      <node id="8">
+        <label>sensor_msgs/msg/camera_info.hpp</label>
+      </node>
+      <node id="9">
+        <label>sensor_msgs/msg/image.hpp</label>
+      </node>
+      <node id="10">
+        <label>std_srvs/srv/trigger.hpp</label>
+      </node>
+      <node id="17">
+        <label>string</label>
+      </node>
+      <node id="11">
+        <label>tf2/exceptions.hpp</label>
+      </node>
+      <node id="13">
+        <label>tf2_ros/buffer.h</label>
+      </node>
+      <node id="12">
+        <label>tf2_ros/transform_listener.h</label>
+      </node>
+      <node id="20">
+        <label>visp3/core/vpCameraParameters.h</label>
+      </node>
+      <node id="18">
+        <label>visp_tracker_common/msg/info_strings.hpp</label>
+      </node>
+      <node id="22">
+        <label>visp_tracker_common/msg/named_feature.hpp</label>
+      </node>
+      <node id="19">
+        <label>visp_tracker_common/msg/named_feature_array.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classvisp__tracker__common_1_1BaseMultiModalTracker" prot="public">visp_tracker_common::BaseMultiModalTracker</innerclass>
+    <innernamespace refid="namespacevisp__tracker__common">visp_tracker_common</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2026<sp/>by<sp/>Inria.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>file<sp/>LICENSE.txt<sp/>at<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>source</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>distribution<sp/>for<sp/>additional<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>GPL.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>For<sp/>using<sp/>this<sp/>software<sp/>that<sp/>can<sp/>not<sp/>be<sp/>combined<sp/>with<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>GPL,<sp/>or<sp/>if<sp/>you<sp/>have<sp/>questions<sp/>regarding<sp/>the<sp/>use<sp/>of<sp/>this<sp/>file,</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>please<sp/>contact<sp/>Inria<sp/>at<sp/>visp@inria.fr</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>was<sp/>developed<sp/>at:</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Inria<sp/>centre<sp/>at<sp/>Rennes<sp/>University</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Campus<sp/>Universitaire<sp/>de<sp/>Beaulieu</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>35042<sp/>Rennes<sp/>Cedex</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>France</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>provided<sp/>AS<sp/>IS<sp/>with<sp/>NO<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>INCLUDING<sp/>THE</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>WARRANTY<sp/>OF<sp/>DESIGN,<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>BASE_MM_TRACKER_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASE_MM_TRACKER_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/rclcpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__has_include(&lt;message_filters/subscriber.hpp&gt;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/subscriber.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/synchronizer.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/sync_policies/approximate_time.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/subscriber.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/synchronizer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;message_filters/sync_policies/approximate_time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/BaseTracker.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/names.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp_tracker_common/msg/named_feature.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENABLE_VISP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_tracker_common</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50" refid="classvisp__tracker__common_1_1BaseMultiModalTracker" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker" kindref="compound">BaseMultiModalTracker</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseTracker" kindref="compound">BaseTracker</ref></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker" kindref="compound">BaseMultiModalTracker</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;does_publish_features);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker" kindref="compound">~BaseMultiModalTracker</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1" kindref="member">init</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="64"></codeline>
+<codeline lineno="69" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aac59cab8d53f65b4929615c4e0852c72" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aac59cab8d53f65b4929615c4e0852c72" kindref="member">check_requires_depth</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Subscriptions<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3e38402fb061e3bcceb627552805f855" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3e38402fb061e3bcceb627552805f855" kindref="member">depth_camera_info_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::CameraInfo::SharedPtr<sp/>msg);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5b5ccfc9a08e015290bf21a19866780" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5b5ccfc9a08e015290bf21a19866780" kindref="member">rgb_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;rgb);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1abab8e48e76358f97455d49a4d32fd7cd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1abab8e48e76358f97455d49a4d32fd7cd" kindref="member">sync_callback</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;rgb,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;depth);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Services<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"></codeline>
+<codeline lineno="111" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab9f7cd8a51546266495bae8b1b2fe8d3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab9f7cd8a51546266495bae8b1b2fe8d3" kindref="member">treat_rgb</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;rgb)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa704d104ecd009796bbefd5e6b410d94" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa704d104ecd009796bbefd5e6b410d94" kindref="member">treat_depth</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sensor_msgs::msg::Image::ConstSharedPtr<sp/>&amp;depth)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a261bf71720f87f6c58db1320bc153f02" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a261bf71720f87f6c58db1320bc153f02" kindref="member">track</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Parameters<sp/>changes<sp/>handling<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Services<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Subscribers<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4" kindref="member">m_depth_cam_info_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="132" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a6291d4e633d2b522966a0a889661abd4" refkind="member"><highlight class="normal"><sp/><sp/>message_filters::Subscriber&lt;sensor_msgs::msg::Image&gt;<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a6291d4e633d2b522966a0a889661abd4" kindref="member">m_rgb_stream_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="133" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1accfb8de0a1a276595a4ff7205ca0b3e6" refkind="member"><highlight class="normal"><sp/><sp/>message_filters::Subscriber&lt;sensor_msgs::msg::Image&gt;<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1accfb8de0a1a276595a4ff7205ca0b3e6" kindref="member">m_depth_stream_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;message_filters::Synchronizer&lt;message_filters::sync_policies::ApproximateTime&lt;</highlight></codeline>
+<codeline lineno="135" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a97567812403d4049481260645b9a50a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::msg::Image,<sp/>sensor_msgs::msg::Image&gt;&gt;&gt;<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a97567812403d4049481260645b9a50a5" kindref="member">m_streams_sync</ref>;<sp/></highlight></codeline>
+<codeline lineno="136" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2cb6c71048240591c604bb27881e20cf" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;sensor_msgs::msg::Image&gt;::SharedPtr<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2cb6c71048240591c604bb27881e20cf" kindref="member">m_rgb_only_stream_sub</ref>;<sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Publisher<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Display-related<sp/>attributes<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Tracking-related<sp/>attributes<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" kindref="member">m_depth_cam_info_received</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="144" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" refkind="member"><highlight class="normal"><sp/><sp/>std::string<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" kindref="member">m_depth_camera_topic_name</ref>;<sp/></highlight></codeline>
+<codeline lineno="145" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a" refkind="member"><highlight class="normal"><sp/><sp/>std::string<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a" kindref="member">m_depth_stream_name</ref>;<sp/></highlight></codeline>
+<codeline lineno="146" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a019e442cbecca9d6592d1d5279351a27" refkind="member"><highlight class="normal"><sp/><sp/>vpCameraParameters<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a019e442cbecca9d6592d1d5279351a27" kindref="member">m_depth_cam</ref>;<sp/></highlight></codeline>
+<codeline lineno="147" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" kindref="member">m_depth_is_required</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="148" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2425af3b39bc3658b8f95ce106be437c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2425af3b39bc3658b8f95ce106be437c" kindref="member">m_z_factor</ref>;<sp/></highlight></codeline>
+<codeline lineno="149" refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0f3d32d7c030fcb708f8b7efd09caf8c" refkind="member"><highlight class="normal"><sp/><sp/>std::string<sp/><ref refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0f3d32d7c030fcb708f8b7efd09caf8c" kindref="member">m_frame_id</ref>;<sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Other<sp/>attributes<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp"/>
+  </compounddef>
+</doxygen>

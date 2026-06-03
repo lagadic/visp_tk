@@ -1,0 +1,198 @@
+
+.. _program_listing_file_include_visp_tracker_common_TrackerGUI.hpp:
+
+Program Listing for File TrackerGUI.hpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_visp_tracker_common_TrackerGUI.hpp>` (``include/visp_tracker_common/TrackerGUI.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /*
+    * Copyright (C) 2026 by Inria. All rights reserved.
+    *
+    * This software is free software; you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation; either version 2 of the License, or
+    * (at your option) any later version.
+    * See the file LICENSE.txt at the root directory of this source
+    * distribution for additional information about the GNU GPL.
+    *
+    * For using this software that can not be combined with the GNU
+    * GPL, or if you have questions regarding the use of this file,
+    * please contact Inria at visp@inria.fr
+    *
+    * This software was developed at:
+    * Inria centre at Rennes University
+    * Campus Universitaire de Beaulieu
+    * 35042 Rennes Cedex
+    * France
+    *
+    * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+    * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+    */
+   
+   #ifndef TRACKER_GUI_HPP
+   #define TRACKER_GUI_HPP
+   
+   // ---- Base ROS ----
+   #include <rclcpp/rclcpp.hpp>
+   // ---- ROS Images ----
+   #include <image_transport/image_transport.hpp>
+   // ---- ROS Messages ----
+   #include <geometry_msgs/msg/pose_stamped.hpp>
+   #include <sensor_msgs/msg/image.hpp>
+   // ---- ROS Services ----
+   #include <std_srvs/srv/trigger.hpp>
+   // ---- ViSP ROS packages ----
+   #include <visp_common/pose.hpp>
+   #include <visp_common/camera.hpp>
+   #include <visp_common/image.hpp>
+   #include <visp_tracker_common/names.hpp>
+   #include <visp_tracker_common/msg/april_tag_detection_array.hpp>
+   #include <visp_tracker_common/msg/info_strings.hpp>
+   #include <visp_tracker_common/msg/named_feature_array.hpp>
+   // ---- ViSP includes ----
+   #include <visp3/core/vpConfig.h>
+   #include <visp3/core/vpCameraParameters.h>
+   #include <visp3/core/vpHomogeneousMatrix.h>
+   #include <visp3/core/vpImageConvert.h>
+   #include <visp3/core/vpImage.h>
+   #include <visp3/core/vpIoTools.h>
+   #include <visp3/core/vpQuaternionVector.h>
+   #include <visp3/core/vpRotationMatrix.h>
+   #include <visp3/core/vpTime.h>
+   #include <visp3/core/vpTranslationVector.h>
+   #include <visp3/core/vpVelocityTwistMatrix.h>
+   #include <visp3/gui/vpDisplayFactory.h>
+   
+   // ---- System includes ----
+   #include <memory>
+   #include <mutex>
+   #include <optional>
+   #ifdef VISP_HAVE_OPENMP
+   #include <omp.h>
+   #endif
+   
+   #ifdef ENABLE_VISP_NAMESPACE
+   using namespace VISP_NAMESPACE_NAME;
+   #endif
+   
+   namespace visp_tracker_common
+   {
+   class TrackerGUI : public rclcpp::Node
+   {
+   public:
+     TrackerGUI(const std::string &node_name);
+   
+     virtual ~TrackerGUI()
+     {
+       if (m_hints) {
+         m_hints.reset();
+       }
+   
+       if (m_hints_depth) {
+         m_hints_depth.reset();
+       }
+   
+       if (m_it) {
+         m_it.reset();
+       }
+   
+       if (m_it_node) {
+         m_it_node.reset();
+       }
+     }
+   
+     virtual bool init(std::shared_ptr<rclcpp::Node> self);
+   
+     inline bool has_to_run() const { return m_run; }
+   
+     virtual void quit();
+   
+   protected:
+   
+     virtual void camera_info_callback(const sensor_msgs::msg::CameraInfo::SharedPtr msg);
+   
+     virtual void image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
+   
+     virtual void depth_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg);
+   
+     virtual void info_callback(const visp_tracker_common::msg::InfoStrings::ConstSharedPtr msg);
+   
+   
+     virtual void switch_tracking();
+   
+     virtual void switch_visualization();
+   
+   
+     typedef enum FeaturesType
+     {
+       POINT = 0, 
+       CROSS = 1, 
+       TYPE_COUNT = 2
+     } FeaturesType;
+   
+     static std::string featuresTypeToString(const FeaturesType &mode);
+   
+     static FeaturesType featuresTypeFromString(const std::string &name);
+   
+     static std::string getAvailableFeaturesType(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
+   
+     // ----- Services -----
+     rclcpp::Node::SharedPtr m_service_node; 
+     std_srvs::srv::Trigger::Request::SharedPtr m_quit_request; 
+     std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_quit; 
+     std_srvs::srv::Trigger::Request::SharedPtr m_switch_request; 
+     std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_switch_tracking; 
+     std::vector<std::shared_ptr<rclcpp::Client<std_srvs::srv::Trigger>>> m_clients_switch_visualization; 
+   
+     // ----- Subscribers -----
+     rclcpp::Node::SharedPtr m_it_node;
+     std::shared_ptr<image_transport::ImageTransport> m_it;
+     std::shared_ptr<image_transport::TransportHints> m_hints;
+     image_transport::Subscriber m_sub_color;
+     // image_transport::ImageTransport m_it_depth;
+     std::shared_ptr<image_transport::TransportHints> m_hints_depth;
+     image_transport::Subscriber m_sub_depth;
+     rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_sub; 
+     std::vector<rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr> m_feat_2D_sub; 
+     rclcpp::Subscription<visp_tracker_common::msg::InfoStrings>::SharedPtr m_info_strings_sub; 
+     std::vector<rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr> m_poses_sub; 
+     std::vector<std::optional<visp_tracker_common::msg::NamedFeatureArray>> m_feature_opt_vec; 
+     std::mutex m_mutex_features; 
+     std::vector<std::optional<geometry_msgs::msg::PoseStamped>> m_pose_opt_vec; 
+     std::vector<std::string> m_pose_name_array; 
+     std::mutex m_mutex_poses; 
+     visp_tracker_common::msg::InfoStrings m_vec_info; 
+     std::mutex m_mutex_info; 
+     std::vector<rclcpp::Subscription<visp_tracker_common::msg::AprilTagDetectionArray>::SharedPtr> m_apriltag_sub; 
+     std::vector<std::optional<visp_tracker_common::msg::AprilTagDetectionArray>> m_apriltag_opt_vec; 
+     std::mutex m_mutex_apriltag; 
+   
+     // ----- Display-related -----
+     bool m_use_depth = false; 
+     std::shared_ptr<vpDisplay> m_display_color; 
+     std::shared_ptr<vpDisplay> m_display_depth; 
+   
+     vpImage<vpRGBa> m_I; 
+     std::mutex m_mutex_Id; 
+     std::optional<vpImage<vpRGBa>> m_opt_Id = std::nullopt; 
+     std::optional<uint16_t> m_opt_min_depth = std::nullopt; 
+     std::optional<uint16_t> m_opt_max_depth = std::nullopt; 
+     int m_display_nb_frames_skipped = -1; 
+     int m_frame_cnt = 0; 
+     unsigned int m_features_thickness = 1; 
+     FeaturesType m_features_type = FeaturesType::POINT; 
+     std::optional<vpCameraParameters> m_opt_rgb_cam = std::nullopt; 
+   
+     // ----- Others -----
+     bool m_run = true; 
+     std::mutex m_mutex_run; 
+     std::vector<std::string> m_client_nodes_name; 
+   };
+   }
+   
+   #endif

@@ -1,0 +1,86 @@
+
+.. _file_include_visp_tracker_common_BaseTracker.hpp:
+
+File BaseTracker.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_tracker_common>` (``include/visp_tracker_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_tracker_common/BaseTracker.hpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_tracker_common_BaseTracker.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``geometry_msgs/msg/pose_stamped.hpp``
+
+- ``optional``
+
+- ``rclcpp/rclcpp.hpp``
+
+- ``sensor_msgs/msg/camera_info.hpp``
+
+- ``sensor_msgs/msg/image.hpp``
+
+- ``std_srvs/srv/trigger.hpp``
+
+- ``tf2/exceptions.hpp``
+
+- ``tf2_ros/buffer.h``
+
+- ``tf2_ros/transform_listener.h``
+
+- ``visp3/core/vpCameraParameters.h``
+
+- ``visp_common/camera.hpp``
+
+- ``visp_common/path_retriever.hpp``
+
+- ``visp_tracker_common/msg/info_strings.hpp``
+
+- ``visp_tracker_common/msg/named_feature_array.hpp``
+
+- ``visp_tracker_common/names.hpp`` (:ref:`file_include_visp_tracker_common_names.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_visp_tracker_common_BaseMultiModalTracker.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_tracker_common`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__tracker__common_1_1BaseTracker`
+

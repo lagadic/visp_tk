@@ -1,0 +1,152 @@
+
+.. _program_listing_file_include_visp_mbt_MBTTracker.hpp:
+
+Program Listing for File MBTTracker.hpp
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_visp_mbt_MBTTracker.hpp>` (``include/visp_mbt/MBTTracker.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   /*
+    * Copyright (C) 2026 by Inria. All rights reserved.
+    *
+    * This software is free software; you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation; either version 2 of the License, or
+    * (at your option) any later version.
+    * See the file LICENSE.txt at the root directory of this source
+    * distribution for additional information about the GNU GPL.
+    *
+    * For using this software that can not be combined with the GNU
+    * GPL, or if you have questions regarding the use of this file,
+    * please contact Inria at visp@inria.fr
+    *
+    * This software was developed at:
+    * Inria centre at Rennes University
+    * Campus Universitaire de Beaulieu
+    * 35042 Rennes Cedex
+    * France
+    *
+    * This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+    * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+    */
+   
+   #ifndef MBT_TRACKER_HPP
+   #define MBT_TRACKER_HPP
+   
+   #include <visp_common/image.hpp>
+   #include <visp_common/pose.hpp>
+   #include <visp_common/path_retriever.hpp>
+   
+   #include <visp3/core/vpConfig.h>
+   #include <visp3/core/vpImageConvert.h>
+   #include <visp3/core/vpIoTools.h>
+   #include <visp3/core/vpTrackingException.h>
+   #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+   #include <visp3/gui/vpDisplayFactory.h>
+   #endif
+   #include <visp3/mbt/vpMbGenericTracker.h>
+   
+   #include <visp_tracker_common/BaseMultiModalTracker.hpp>
+   
+   #ifdef VISP_HAVE_NLOHMANN_JSON
+   #include VISP_NLOHMANN_JSON(json.hpp)
+   #endif
+   
+   #ifdef ENABLE_VISP_NAMESPACE
+   using namespace VISP_NAMESPACE_NAME;
+   #endif
+   
+   namespace visp_mbt
+   {
+   class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
+   {
+   public:
+     MBTTracker(const std::string &name);
+     virtual ~MBTTracker() = default;
+   
+     virtual bool init() override;
+   protected:
+   
+     virtual bool init_tracker() override;
+   
+     bool init_from_xml(const std::string &config_file_path);
+   
+     bool init_from_json(const std::string &config_file_path);
+   
+     virtual void init_info_strings() override;
+   
+     virtual void check_requires_depth() override;
+   
+     virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) override;
+   
+     virtual void treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &depth) override;
+   
+   
+     virtual void track() override;
+   
+     virtual bool init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame);
+   
+     virtual bool perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+   
+     static visp_tracker_common::msg::NamedFeature mbt_model_to_msg(const std::vector<std::vector<double>> &model, const std::string &name, const rclcpp::Logger &logger);
+   
+     static bool check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, const bool &required, std::string &value);
+   
+     static std::string trackerTypeToStr(const vpMbGenericTracker::vpTrackerType &type);
+   
+     static vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
+   
+     static std::string getAvailableTrackerType(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
+   
+     struct ExtrinsicsHelper
+     {
+       std::string m_frame_name; 
+       std::string m_tracker_name; 
+     };
+   
+     // ----- Services -----
+   
+     // ----- Subscribers -----
+   
+     // ----- Publisher -----
+   
+     // ----- Display-related attributes -----
+   #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+     vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
+     double m_max_z_display; // Maximum depth we want to display
+     std::shared_ptr<vpDisplay> m_display; 
+     std::shared_ptr<vpDisplay> m_display_depth; 
+     bool m_display_initialized = false; 
+   #endif
+   
+     // ----- Tracking-related attributes -----
+     std::shared_ptr<vpMbGenericTracker> m_tracker;
+     std::string m_init_file_path; 
+     bool m_load_models_from_params = false; 
+     std::string m_rgb_model; 
+     std::string m_depth_model; 
+     std::vector<std::string> m_color_trackers_name; 
+     std::vector<std::string> m_depth_trackers_name; 
+     ExtrinsicsHelper m_ref_cam; 
+     ExtrinsicsHelper m_other_cam; 
+     bool m_extrinsics_from_tf = false; 
+     bool m_extrinsics_set = false; 
+     bool m_tracker_initialized = false; 
+     bool m_tracker_cams_set = false; 
+     bool m_must_detect_failure = false; 
+     double m_projection_error_thresh = 30.; 
+     vpImage<unsigned char> m_I; 
+     vpImage<vpRGBa> m_Ic; 
+     std::vector<vpColVector> m_pointcloud; 
+     std::map<std::string, const vpImage<unsigned char> *> m_map_img; 
+     std::map<std::string, const std::vector<vpColVector> *> m_map_pc; 
+     std::map<std::string, unsigned int> m_map_pcw; 
+     std::map<std::string, unsigned int> m_map_pch; 
+   };
+   }
+   
+   #endif

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class RBTTracker &mdash; visp_rbt 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Directory include" href="dir_include.html" />
+    <link rel="prev" title="Namespace visp_tracker_common" href="namespace_visp_tracker_common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            visp_rbt
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_rbt.html">Namespace visp_rbt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class RBTTracker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_visp_rbt.html">Directory visp_rbt</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_rbt_RBTTracker.hpp.html">File RBTTracker.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-rbt-documentation"><code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-rbt">How to get and build visp_rbt</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#node-parameters">Node parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-configuration-files">Related to configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visp_rbt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Class RBTTracker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classvisp__rbt_1_1RBTTracker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-rbttracker">
+<span id="exhale-class-classvisp-rbt-1-1rbttracker"></span><h1>Class RBTTracker<a class="headerlink" href="#class-rbttracker" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_visp_rbt_RBTTracker.hpp.html#file-include-visp-rbt-rbttracker-hpp"><span class="std std-ref">File RBTTracker.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Link to this heading"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTrackerE">
+<span id="_CPPv3N8visp_rbt10RBTTrackerE"></span><span id="_CPPv2N8visp_rbt10RBTTrackerE"></span><span id="visp_rbt::RBTTracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RBTTracker</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">BaseMultiModalTracker</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTrackerE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-initialization">Initialization</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker12init_trackerEv">
+<span id="_CPPv3N8visp_rbt10RBTTracker12init_trackerEv"></span><span id="_CPPv2N8visp_rbt10RBTTracker12init_trackerEv"></span><span id="visp_rbt::RBTTracker::init_tracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a335fc3bf13bcc480c1de68b25e3a67ac"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_tracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker12init_trackerEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker14init_from_jsonERKNSt6stringE">
+<span id="_CPPv3N8visp_rbt10RBTTracker14init_from_jsonERKNSt6stringE"></span><span id="_CPPv2N8visp_rbt10RBTTracker14init_from_jsonERKNSt6stringE"></span><span id="visp_rbt::RBTTracker::init_from_json__ssCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1ab886f318a270cdb805be85d2805e969d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_from_json</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">config_file_path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker14init_from_jsonERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Initilize the tracker using a JSON file and some node parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_file_path</strong> – Path towards the configuration file. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true The initialization went well. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false An error occured. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker17init_info_stringsEv">
+<span id="_CPPv3N8visp_rbt10RBTTracker17init_info_stringsEv"></span><span id="_CPPv2N8visp_rbt10RBTTracker17init_info_stringsEv"></span><span id="visp_rbt::RBTTracker::init_info_strings"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a8ee1b287d5ca2b183904ec57d44e8964"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_info_strings</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker17init_info_stringsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker20check_requires_depthEv">
+<span id="_CPPv3N8visp_rbt10RBTTracker20check_requires_depthEv"></span><span id="_CPPv2N8visp_rbt10RBTTracker20check_requires_depthEv"></span><span id="visp_rbt::RBTTracker::check_requires_depth"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a305370e14f4c5e271911b9dcfb31edbd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">check_requires_depth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker20check_requires_depthEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE">
+<span id="_CPPv3N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE"></span><span id="_CPPv2N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE"></span><span id="visp_rbt::RBTTracker::RBTTracker__ssCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a15eb38152a17650eee397c29a8146b78"></span><span class="sig-name descname"><span class="n"><span class="pre">RBTTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTrackerD0Ev">
+<span id="_CPPv3N8visp_rbt10RBTTrackerD0Ev"></span><span id="_CPPv2N8visp_rbt10RBTTrackerD0Ev"></span><span id="visp_rbt::RBTTracker::~RBTTracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a36ba7acfe6adb5f0d959242f6a463ffe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~RBTTracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTrackerD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N8visp_rbt10RBTTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N8visp_rbt10RBTTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_rbt::RBTTracker::treat_rgb__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1af20405d3ac422bf3b8b59f811fa47b9c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">treat_rgb</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker9treat_rgbERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE">
+<span id="_CPPv3N8visp_rbt10RBTTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="_CPPv2N8visp_rbt10RBTTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE"></span><span id="visp_rbt::RBTTracker::treat_depth__sensor_msgs::msg::Image::ConstSharedPtrCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a27ce6478d655a2ffaba9326f378a29dc"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">treat_depth</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Image</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ConstSharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">depth</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker11treat_depthERKN11sensor_msgs3msg5Image14ConstSharedPtrE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker5trackEv">
+<span id="_CPPv3N8visp_rbt10RBTTracker5trackEv"></span><span id="_CPPv2N8visp_rbt10RBTTracker5trackEv"></span><span id="visp_rbt::RBTTracker::track"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1afd0bb3fe54b57ca075ff699ca26331bd"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">track</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker5trackEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker13init_trackingER19vpHomogeneousMatrixRb">
+<span id="_CPPv3N8visp_rbt10RBTTracker13init_trackingER19vpHomogeneousMatrixRb"></span><span id="_CPPv2N8visp_rbt10RBTTracker13init_trackingER19vpHomogeneousMatrixRb"></span><span id="visp_rbt::RBTTracker::init_tracking__vpHomogeneousMatrixR.bR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a4aa7558637f7a328c52543a6d4a71fec"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_tracking</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">vpHomogeneousMatrix</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cMo</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">display_frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker13init_trackingER19vpHomogeneousMatrixRb" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize the tracker. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cMo</strong> – <strong>[out]</strong> The pose after initialization. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true Initialization went well. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false The tracker is still uninitialized. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker16perform_trackingER19vpHomogeneousMatrixRNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N8visp_rbt10RBTTracker16perform_trackingER19vpHomogeneousMatrixRNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N8visp_rbt10RBTTracker16perform_trackingER19vpHomogeneousMatrixRNSt6vectorINSt6stringEEE"></span><span id="visp_rbt::RBTTracker::perform_tracking__vpHomogeneousMatrixR.std::vector:ss:R"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a90ac5ade12d73d59c3449c48463ba77e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">perform_tracking</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">vpHomogeneousMatrix</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cMo</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vec_info</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker16perform_trackingER19vpHomogeneousMatrixRNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Perform the tracking. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cMo</strong> – <strong>[out]</strong> The pose resulting from the tracking. </p></li>
+<li><p><strong>vec_info</strong> – <strong>[out]</strong> Vector that contains info to display on screen </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>true Tracking was successful. </p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>false Otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker21m_tracker_initializedE">
+<span id="_CPPv3N8visp_rbt10RBTTracker21m_tracker_initializedE"></span><span id="_CPPv2N8visp_rbt10RBTTracker21m_tracker_initializedE"></span><span id="visp_rbt::RBTTracker::m_tracker_initialized__b"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1ae930c37bd0122022943a9a65c7195cf4"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker_initialized</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker21m_tracker_initializedE" title="Link to this definition"></a><br /></dt>
+<dd><p>True when the tracker is correctly initialized, false when the tracking was lost or never began. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker18m_tracker_cams_setE">
+<span id="_CPPv3N8visp_rbt10RBTTracker18m_tracker_cams_setE"></span><span id="_CPPv2N8visp_rbt10RBTTracker18m_tracker_cams_setE"></span><span id="visp_rbt::RBTTracker::m_tracker_cams_set__b"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker_cams_set</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker18m_tracker_cams_setE" title="Link to this definition"></a><br /></dt>
+<dd><p>True once the camera parameters of the tracker will be set. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker16m_init_file_pathE">
+<span id="_CPPv3N8visp_rbt10RBTTracker16m_init_file_pathE"></span><span id="_CPPv2N8visp_rbt10RBTTracker16m_init_file_pathE"></span><span id="visp_rbt::RBTTracker::m_init_file_path__ss"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_init_file_path</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker16m_init_file_pathE" title="Link to this definition"></a><br /></dt>
+<dd><p>Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker3m_IE">
+<span id="_CPPv3N8visp_rbt10RBTTracker3m_IE"></span><span id="_CPPv2N8visp_rbt10RBTTracker3m_IE"></span><span id="visp_rbt::RBTTracker::m_I__vpImage:unsigned-c:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a5031ff1e667ebdcc766840e6836c0e5b"></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker3m_IE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gray-scale image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker4m_IcE">
+<span id="_CPPv3N8visp_rbt10RBTTracker4m_IcE"></span><span id="_CPPv2N8visp_rbt10RBTTracker4m_IcE"></span><span id="visp_rbt::RBTTracker::m_Ic__vpImage:vpRGBa:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a3b9d5e8036421b39ba9e591161f12f54"></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">vpRGBa</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_Ic</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker4m_IcE" title="Link to this definition"></a><br /></dt>
+<dd><p>Color image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker9m_I_depthE">
+<span id="_CPPv3N8visp_rbt10RBTTracker9m_I_depthE"></span><span id="_CPPv2N8visp_rbt10RBTTracker9m_I_depthE"></span><span id="visp_rbt::RBTTracker::m_I_depth__vpImage:float:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a268367adcf98ce01e6f912fc6420664a"></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I_depth</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker9m_I_depthE" title="Link to this definition"></a><br /></dt>
+<dd><p>Depth image. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker9m_trackerE">
+<span id="_CPPv3N8visp_rbt10RBTTracker9m_trackerE"></span><span id="_CPPv2N8visp_rbt10RBTTracker9m_trackerE"></span><span id="visp_rbt::RBTTracker::m_tracker__vpRBTracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1aa675e0b56835aa1cf75fcdc3c123dd03"></span><span class="n"><span class="pre">vpRBTracker</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker9m_trackerE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="namespace_visp_tracker_common.html" class="btn btn-neutral float-left" title="Namespace visp_tracker_common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dir_include.html" class="btn btn-neutral float-right" title="Directory include" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_rbt&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

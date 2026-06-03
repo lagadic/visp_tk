@@ -1,0 +1,961 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classvisp__mbt_1_1MBTTracker" kind="class" language="C++" prot="public">
+    <compoundname>visp_mbt::MBTTracker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">visp_tracker_common::BaseMultiModalTracker</basecompoundref>
+    <innerclass refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper" prot="protected">visp_mbt::MBTTracker::ExtrinsicsHelper</innerclass>
+    <sectiondef kind="user-defined">
+      <header>Initialization</header>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a5cdd9e279c0636132180b694e8636f2e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_mbt::MBTTracker::init_tracker</definition>
+        <argsstring>() override</argsstring>
+        <name>init_tracker</name>
+        <qualifiedname>visp_mbt::MBTTracker::init_tracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="69" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a8543e1ffdf27f38c65470fae874f7747" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::init_from_xml</definition>
+        <argsstring>(const std::string &amp;config_file_path)</argsstring>
+        <name>init_from_xml</name>
+        <qualifiedname>visp_mbt::MBTTracker::init_from_xml</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>config_file_path</declname>
+        </param>
+        <briefdescription>
+<para>Initilize the tracker using an XML file and some node parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config_file_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path towards the configuration file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true The initialization went well. </para>
+</simplesect>
+<simplesect kind="return"><para>false An error occured. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="78" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a7fdd5a2d6f2d093f02763f0b07ceb733" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::init_from_json</definition>
+        <argsstring>(const std::string &amp;config_file_path)</argsstring>
+        <name>init_from_json</name>
+        <qualifiedname>visp_mbt::MBTTracker::init_from_json</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>config_file_path</declname>
+        </param>
+        <briefdescription>
+<para>Initilize the tracker using a JSON file and some node parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>config_file_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path towards the configuration file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true The initialization went well. </para>
+</simplesect>
+<simplesect kind="return"><para>false An error occured. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="87" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a5d8375a5158f64ade30e2aa2b13f531c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_mbt::MBTTracker::init_info_strings</definition>
+        <argsstring>() override</argsstring>
+        <name>init_info_strings</name>
+        <qualifiedname>visp_mbt::MBTTracker::init_info_strings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="92" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ae5fe804fd73b51c16a8265eed70ef8d4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_mbt::MBTTracker::check_requires_depth</definition>
+        <argsstring>() override</argsstring>
+        <name>check_requires_depth</name>
+        <qualifiedname>visp_mbt::MBTTracker::check_requires_depth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="97" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Tracking</header>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ab6f1f668e37682326825a192adad4e82" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_mbt::MBTTracker::track</definition>
+        <argsstring>() override</argsstring>
+        <name>track</name>
+        <qualifiedname>visp_mbt::MBTTracker::track</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="115" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ae8fef6434658e7e22549903983387655" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_mbt::MBTTracker::init_tracking</definition>
+        <argsstring>(vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</argsstring>
+        <name>init_tracking</name>
+        <qualifiedname>visp_mbt::MBTTracker::init_tracking</qualifiedname>
+        <param>
+          <type>vpHomogeneousMatrix &amp;</type>
+          <declname>cMo</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>display_frame</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">cMo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pose after initialization. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true Initialization went well. </para>
+</simplesect>
+<simplesect kind="return"><para>false The tracker is still uninitialized. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="124" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ac8ace2d002c0aeb9e9acf350c2c6e5f0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_mbt::MBTTracker::perform_tracking</definition>
+        <argsstring>(vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</argsstring>
+        <name>perform_tracking</name>
+        <qualifiedname>visp_mbt::MBTTracker::perform_tracking</qualifiedname>
+        <param>
+          <type>vpHomogeneousMatrix &amp;</type>
+          <declname>cMo</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>vec_info</declname>
+        </param>
+        <briefdescription>
+<para>Perform the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">cMo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pose resulting from the tracking. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">vec_info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector that contains info to display on screen </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true Tracking was successful. </para>
+</simplesect>
+<simplesect kind="return"><para>false Otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="134" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a74f6e42f80b0e6ae6527b6d158fae3c9" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; vpMbGenericTracker &gt;</type>
+        <definition>std::shared_ptr&lt;vpMbGenericTracker&gt; visp_mbt::MBTTracker::m_tracker</definition>
+        <argsstring></argsstring>
+        <name>m_tracker</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_tracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="209" column="19" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a64525948772c88a3556afea9d61641b2" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_mbt::MBTTracker::m_init_file_path</definition>
+        <argsstring></argsstring>
+        <name>m_init_file_path</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_init_file_path</qualifiedname>
+        <briefdescription>
+<para>Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="210" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a673aa3a68d822c1a6a2ff3a2cf4f09e0" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_load_models_from_params</definition>
+        <argsstring></argsstring>
+        <name>m_load_models_from_params</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_load_models_from_params</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>If true, the model files must be read from the node parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="211" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a91ed867f359dee726129b98b22998f2f" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_mbt::MBTTracker::m_rgb_model</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_model</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_rgb_model</qualifiedname>
+        <briefdescription>
+<para>If the models must be read from the node parameters, the path towards the model of the RGB tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="212" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a56c2c08ab1f23e402bbf186d484ef559" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_mbt::MBTTracker::m_depth_model</definition>
+        <argsstring></argsstring>
+        <name>m_depth_model</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_depth_model</qualifiedname>
+        <briefdescription>
+<para>If the models must be read from the node parameters, the path towards the model of the depth tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="213" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a3e9a66387e30c5d4e70bea4cbfc2cb37" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; visp_mbt::MBTTracker::m_color_trackers_name</definition>
+        <argsstring></argsstring>
+        <name>m_color_trackers_name</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_color_trackers_name</qualifiedname>
+        <briefdescription>
+<para>Name(s) of the tracker(s) based on color information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="214" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a38396a967b9324bfd2695ee798d72ace" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; visp_mbt::MBTTracker::m_depth_trackers_name</definition>
+        <argsstring></argsstring>
+        <name>m_depth_trackers_name</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_depth_trackers_name</qualifiedname>
+        <briefdescription>
+<para>Name(s) of the tracker(s) based on depth information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="215" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1afab27564a762d6f47189a9d26d69e3c3" prot="protected" static="no" mutable="no">
+        <type><ref refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper" kindref="compound">ExtrinsicsHelper</ref></type>
+        <definition>ExtrinsicsHelper visp_mbt::MBTTracker::m_ref_cam</definition>
+        <argsstring></argsstring>
+        <name>m_ref_cam</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_ref_cam</qualifiedname>
+        <briefdescription>
+<para>The name of the reference camera frame and corresponding tracker name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="216" column="20" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a44944fc67aa91a23474a8bb9196c31c7" prot="protected" static="no" mutable="no">
+        <type><ref refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper" kindref="compound">ExtrinsicsHelper</ref></type>
+        <definition>ExtrinsicsHelper visp_mbt::MBTTracker::m_other_cam</definition>
+        <argsstring></argsstring>
+        <name>m_other_cam</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_other_cam</qualifiedname>
+        <briefdescription>
+<para>The name of the other camera frame and corresponding tracker name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="217" column="20" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a67cf505f2a4a8b8abbe8d882a2a85115" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_extrinsics_from_tf</definition>
+        <argsstring></argsstring>
+        <name>m_extrinsics_from_tf</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_extrinsics_from_tf</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>If true, the extrinsics will be loaded from a TF2 using the associated node params. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="218" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a530e1ef054c0a01d755576b5e94f7ca2" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_extrinsics_set</definition>
+        <argsstring></argsstring>
+        <name>m_extrinsics_set</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_extrinsics_set</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>If initializing extrinsics from TF2 topic, set to true once the extrinsics have been received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="219" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a1f32e9e9ada61eebe135baaecddbd72b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_tracker_initialized</definition>
+        <argsstring></argsstring>
+        <name>m_tracker_initialized</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_tracker_initialized</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>True when the tracker is correctly initialized, false when the tracking was lost or never began. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="220" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1aea00d8ee88540d31ccf8502b1b056d09" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_tracker_cams_set</definition>
+        <argsstring></argsstring>
+        <name>m_tracker_cams_set</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_tracker_cams_set</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>True once the camera parameters of the tracker will be set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="221" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1ab4c5f17c979aecbf4c3689549759f8bd" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_mbt::MBTTracker::m_must_detect_failure</definition>
+        <argsstring></argsstring>
+        <name>m_must_detect_failure</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_must_detect_failure</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>If true, the tracker must monitor the projection error to invalidate the tracking if needed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="222" column="8" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a3969552d75edc42a435f1b1b70ed1fdb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double visp_mbt::MBTTracker::m_projection_error_thresh</definition>
+        <argsstring></argsstring>
+        <name>m_projection_error_thresh</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_projection_error_thresh</qualifiedname>
+        <initializer>= 30.</initializer>
+        <briefdescription>
+<para>If m_must_detect_failure , maximum tolerated projection error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="223" column="10" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a06f384558b302c9af5f8670f0c26ea37" prot="protected" static="no" mutable="no">
+        <type>vpImage&lt; unsigned char &gt;</type>
+        <definition>vpImage&lt;unsigned char&gt; visp_mbt::MBTTracker::m_I</definition>
+        <argsstring></argsstring>
+        <name>m_I</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_I</qualifiedname>
+        <briefdescription>
+<para>Gray-scale image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="224" column="11" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1afa49711986d8924d07cb0fd2492ce495" prot="protected" static="no" mutable="no">
+        <type>vpImage&lt; vpRGBa &gt;</type>
+        <definition>vpImage&lt;vpRGBa&gt; visp_mbt::MBTTracker::m_Ic</definition>
+        <argsstring></argsstring>
+        <name>m_Ic</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_Ic</qualifiedname>
+        <briefdescription>
+<para>RGB image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="225" column="11" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1ace6f1c1e4eaf4c1c6bca257b88b0570e" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; vpColVector &gt;</type>
+        <definition>std::vector&lt;vpColVector&gt; visp_mbt::MBTTracker::m_pointcloud</definition>
+        <argsstring></argsstring>
+        <name>m_pointcloud</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_pointcloud</qualifiedname>
+        <briefdescription>
+<para>Depth information for the vpMbGenericTracker if it requires depth information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="226" column="15" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a45474321fbe5ed9d99719e2c70251bd3" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, const vpImage&lt; unsigned char &gt; * &gt;</type>
+        <definition>std::map&lt;std::string, const vpImage&lt;unsigned char&gt; *&gt; visp_mbt::MBTTracker::m_map_img</definition>
+        <argsstring></argsstring>
+        <name>m_map_img</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_map_img</qualifiedname>
+        <briefdescription>
+<para>Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="227" column="12" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a3543390bb0f38bd1d077a515b9719003" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, const std::vector&lt; vpColVector &gt; * &gt;</type>
+        <definition>std::map&lt;std::string, const std::vector&lt;vpColVector&gt; *&gt; visp_mbt::MBTTracker::m_map_pc</definition>
+        <argsstring></argsstring>
+        <name>m_map_pc</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_map_pc</qualifiedname>
+        <briefdescription>
+<para>Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="228" column="12" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1aac6ce37f701c6737695311f8f0534ea4" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, unsigned int &gt;</type>
+        <definition>std::map&lt;std::string, unsigned int&gt; visp_mbt::MBTTracker::m_map_pcw</definition>
+        <argsstring></argsstring>
+        <name>m_map_pcw</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_map_pcw</qualifiedname>
+        <briefdescription>
+<para>Map that contains the width of the depth information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="229" column="12" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__mbt_1_1MBTTracker_1a8a069a2125b68b2ec363e39ef187a3b7" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, unsigned int &gt;</type>
+        <definition>std::map&lt;std::string, unsigned int&gt; visp_mbt::MBTTracker::m_map_pch</definition>
+        <argsstring></argsstring>
+        <name>m_map_pch</name>
+        <qualifiedname>visp_mbt::MBTTracker::m_map_pch</qualifiedname>
+        <briefdescription>
+<para>Map that contains the height of the depth information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="230" column="12" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="230" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a67e5f30b169dd70ab20929123f808c5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>visp_mbt::MBTTracker::MBTTracker</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>MBTTracker</name>
+        <qualifiedname>visp_mbt::MBTTracker::MBTTracker</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="56" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a530bf8f43ac945dc49826d5815f0036b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual visp_mbt::MBTTracker::~MBTTracker</definition>
+        <argsstring>()=default</argsstring>
+        <name>~MBTTracker</name>
+        <qualifiedname>visp_mbt::MBTTracker::~MBTTracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="57" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a83816df458f570939c42e7c71b50f29d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_mbt::MBTTracker::init</definition>
+        <argsstring>() override</argsstring>
+        <name>init</name>
+        <qualifiedname>visp_mbt::MBTTracker::init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="62" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a30abb8d8bb27c832d2954693331c03e8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_mbt::MBTTracker::treat_rgb</definition>
+        <argsstring>(const sensor_msgs::msg::Image::ConstSharedPtr &amp;rgb) override</argsstring>
+        <name>treat_rgb</name>
+        <qualifiedname>visp_mbt::MBTTracker::treat_rgb</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Image::ConstSharedPtr &amp;</type>
+          <declname>rgb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="103" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ae6f41e7105936394d4cf18dafbf1af06" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_mbt::MBTTracker::treat_depth</definition>
+        <argsstring>(const sensor_msgs::msg::Image::ConstSharedPtr &amp;depth) override</argsstring>
+        <name>treat_depth</name>
+        <qualifiedname>visp_mbt::MBTTracker::treat_depth</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::Image::ConstSharedPtr &amp;</type>
+          <declname>depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="108" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1ae83cbca322bbc6b3ba8f5811f5e23455" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>visp_tracker_common::msg::NamedFeature</type>
+        <definition>static visp_tracker_common::msg::NamedFeature visp_mbt::MBTTracker::mbt_model_to_msg</definition>
+        <argsstring>(const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;model, const std::string &amp;name, const rclcpp::Logger &amp;logger)</argsstring>
+        <name>mbt_model_to_msg</name>
+        <qualifiedname>visp_mbt::MBTTracker::mbt_model_to_msg</qualifiedname>
+        <param>
+          <type>const std::vector&lt; std::vector&lt; double &gt; &gt; &amp;</type>
+          <declname>model</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const rclcpp::Logger &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <briefdescription>
+<para>Cast a vpMbGenericTracker model into a visp_tracker_common::msg::NamedFeature message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>model</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Model of the tracker. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name to attach to the model. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>logger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rclcpp::Logger to display messages if needed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>visp_tracker_common::msg::NamedFeature Message containing the model. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="145" column="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a1667d95797371a21c316278a90757522" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool visp_mbt::MBTTracker::check_model_parameter</definition>
+        <argsstring>(const rclcpp::Parameter &amp;param, const rclcpp::Logger &amp;logger, const bool &amp;required, std::string &amp;value)</argsstring>
+        <name>check_model_parameter</name>
+        <qualifiedname>visp_mbt::MBTTracker::check_model_parameter</qualifiedname>
+        <param>
+          <type>const rclcpp::Parameter &amp;</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>const rclcpp::Logger &amp;</type>
+          <declname>logger</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>required</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Check if the model file parameter is correctly set, perform path substitution if needed and store the result in value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ROS2 parameter from which the value must be read. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>logger</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>rclcpp::Logger to display messages if needed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>required</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, the parameter cannot be empty. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The resulting path after substitution (if needed). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="156" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a941b94809ed8a07c96592b0ad3741d73" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string visp_mbt::MBTTracker::trackerTypeToStr</definition>
+        <argsstring>(const vpMbGenericTracker::vpTrackerType &amp;type)</argsstring>
+        <name>trackerTypeToStr</name>
+        <qualifiedname>visp_mbt::MBTTracker::trackerTypeToStr</qualifiedname>
+        <param>
+          <type>const vpMbGenericTracker::vpTrackerType &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Cast a vpMbGenericTracker::vpTrackerType into its corresponding name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vpMbGenericTracker::vpTrackerType we want to know the name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The corresponding name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="164" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a5990a91ba46347339730442d4bf4b2a3" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vpMbGenericTracker::vpTrackerType</type>
+        <definition>static vpMbGenericTracker::vpTrackerType visp_mbt::MBTTracker::trackerTypeFromStr</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>trackerTypeFromStr</name>
+        <qualifiedname>visp_mbt::MBTTracker::trackerTypeFromStr</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Cast a name into its corresponding vpMbGenericTracker::vpTrackerType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the tracker type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>vpMbGenericTracker::vpTrackerType The corresponding vpMbGenericTracker::vpTrackerType. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="172" column="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__mbt_1_1MBTTracker_1a3f43f3303192f6aa91791168f859ae12" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string visp_mbt::MBTTracker::getAvailableTrackerType</definition>
+        <argsstring>(const std::string &amp;prefix=&quot;&lt; &quot;, const std::string &amp;sep=&quot; , &quot;, const std::string &amp;suffix=&quot; &gt;&quot;)</argsstring>
+        <name>getAvailableTrackerType</name>
+        <qualifiedname>visp_mbt::MBTTracker::getAvailableTrackerType</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+          <defval>&quot;&lt; &quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>sep</declname>
+          <defval>&quot; , &quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>suffix</declname>
+          <defval>&quot; &gt;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Get the list of names of the available vpMbGenericTracker::vpTrackerType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prefix of the list. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The separator for the list. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>suffix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The suffix for the list. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The resulting list of names. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_mbt/MBTTracker.hpp" line="182" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>visp_mbt::MBTTracker</label>
+        <link refid="classvisp__mbt_1_1MBTTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>visp_tracker_common::BaseMultiModalTracker</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>visp_mbt::MBTTracker</label>
+        <link refid="classvisp__mbt_1_1MBTTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>m_other_cam</edgelabel>
+          <edgelabel>m_ref_cam</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>visp_mbt::MBTTracker::ExtrinsicsHelper</label>
+        <link refid="structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper"/>
+      </node>
+      <node id="2">
+        <label>visp_tracker_common::BaseMultiModalTracker</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/visp_mbt/MBTTracker.hpp" line="53" column="1" bodyfile="include/visp_mbt/MBTTracker.hpp" bodystart="54" bodyend="231"/>
+    <listofallmembers>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a1667d95797371a21c316278a90757522" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>check_model_parameter</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ae5fe804fd73b51c16a8265eed70ef8d4" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>check_requires_depth</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a3f43f3303192f6aa91791168f859ae12" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>getAvailableTrackerType</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a83816df458f570939c42e7c71b50f29d" prot="public" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>init</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a7fdd5a2d6f2d093f02763f0b07ceb733" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>init_from_json</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a8543e1ffdf27f38c65470fae874f7747" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>init_from_xml</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a5d8375a5158f64ade30e2aa2b13f531c" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>init_info_strings</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a5cdd9e279c0636132180b694e8636f2e" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>init_tracker</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ae8fef6434658e7e22549903983387655" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>init_tracking</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a3e9a66387e30c5d4e70bea4cbfc2cb37" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_color_trackers_name</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a56c2c08ab1f23e402bbf186d484ef559" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_depth_model</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a38396a967b9324bfd2695ee798d72ace" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_depth_trackers_name</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a67cf505f2a4a8b8abbe8d882a2a85115" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_extrinsics_from_tf</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a530e1ef054c0a01d755576b5e94f7ca2" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_extrinsics_set</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a06f384558b302c9af5f8670f0c26ea37" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_I</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1afa49711986d8924d07cb0fd2492ce495" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_Ic</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a64525948772c88a3556afea9d61641b2" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_init_file_path</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a673aa3a68d822c1a6a2ff3a2cf4f09e0" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_load_models_from_params</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a45474321fbe5ed9d99719e2c70251bd3" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_map_img</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a3543390bb0f38bd1d077a515b9719003" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_map_pc</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a8a069a2125b68b2ec363e39ef187a3b7" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_map_pch</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1aac6ce37f701c6737695311f8f0534ea4" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_map_pcw</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ab4c5f17c979aecbf4c3689549759f8bd" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_must_detect_failure</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a44944fc67aa91a23474a8bb9196c31c7" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_other_cam</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ace6f1c1e4eaf4c1c6bca257b88b0570e" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_pointcloud</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a3969552d75edc42a435f1b1b70ed1fdb" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_projection_error_thresh</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1afab27564a762d6f47189a9d26d69e3c3" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_ref_cam</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a91ed867f359dee726129b98b22998f2f" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_rgb_model</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a74f6e42f80b0e6ae6527b6d158fae3c9" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_tracker</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1aea00d8ee88540d31ccf8502b1b056d09" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_tracker_cams_set</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a1f32e9e9ada61eebe135baaecddbd72b" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>m_tracker_initialized</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ae83cbca322bbc6b3ba8f5811f5e23455" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>mbt_model_to_msg</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a67e5f30b169dd70ab20929123f808c5a" prot="public" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>MBTTracker</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ac8ace2d002c0aeb9e9acf350c2c6e5f0" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>perform_tracking</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ab6f1f668e37682326825a192adad4e82" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>track</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a5990a91ba46347339730442d4bf4b2a3" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>trackerTypeFromStr</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a941b94809ed8a07c96592b0ad3741d73" prot="protected" virt="non-virtual"><scope>visp_mbt::MBTTracker</scope><name>trackerTypeToStr</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1ae6f41e7105936394d4cf18dafbf1af06" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>treat_depth</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a30abb8d8bb27c832d2954693331c03e8" prot="protected" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>treat_rgb</name></member>
+      <member refid="classvisp__mbt_1_1MBTTracker_1a530bf8f43ac945dc49826d5815f0036b" prot="public" virt="virtual"><scope>visp_mbt::MBTTracker</scope><name>~MBTTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

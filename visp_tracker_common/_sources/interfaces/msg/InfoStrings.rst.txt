@@ -1,0 +1,8 @@
+InfoStrings
+===========
+This is a ROS message definition.
+
+**Source**
+
+.. literalinclude:: ../../../../../../visp_tracker_common/msg/InfoStrings.msg
+

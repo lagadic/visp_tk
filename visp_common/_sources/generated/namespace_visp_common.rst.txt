@@ -1,0 +1,28 @@
+
+.. _namespace_visp_common:
+
+Namespace visp_common
+=====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_common__camera`
+
+- :ref:`namespace_visp_common__image`
+
+- :ref:`namespace_visp_common__path`
+
+- :ref:`namespace_visp_common__pose`
+
+- :ref:`namespace_visp_common__vision`

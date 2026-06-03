@@ -1,0 +1,66 @@
+
+.. _file_include_visp_apriltag_AprilTagTracker.hpp:
+
+File AprilTagTracker.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_apriltag>` (``include/visp_apriltag``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_apriltag/AprilTagTracker.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_apriltag_AprilTagTracker.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``map``
+
+- ``sensor_msgs/msg/image.hpp``
+
+- ``visp3/core/vpIoTools.h``
+
+- ``visp3/detection/vpDetectorAprilTag.h``
+
+- ``visp_common/image.hpp``
+
+- ``visp_common/pose.hpp``
+
+- ``visp_tracker_common/BaseTracker.hpp``
+
+- ``visp_tracker_common/msg/april_tag_detection_array.hpp``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_apriltag`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__apriltag_1_1AprilTagTracker`
+

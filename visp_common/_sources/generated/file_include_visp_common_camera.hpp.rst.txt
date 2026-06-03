@@ -1,0 +1,65 @@
+
+.. _file_include_visp_common_camera.hpp:
+
+File camera.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_common>` (``include/visp_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+
+Conversions between ROS and ViSP structures representing camera parameters. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_common/camera.hpp``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_common_camera.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``sensor_msgs/msg/camera_info.hpp``
+
+- ``visp3/core/vpCameraParameters.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_common`
+
+- :ref:`namespace_visp_common__camera`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521`
+
+- :ref:`exhale_function_camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc`
+
+- :ref:`exhale_function_camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91`
+

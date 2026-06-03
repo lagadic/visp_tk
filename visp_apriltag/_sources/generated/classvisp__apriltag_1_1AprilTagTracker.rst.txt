@@ -1,0 +1,26 @@
+.. _exhale_class_classvisp__apriltag_1_1AprilTagTracker:
+
+Class AprilTagTracker
+=====================
+
+- Defined in :ref:`file_include_visp_apriltag_AprilTagTracker.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public visp_tracker_common::BaseTracker``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: visp_apriltag::AprilTagTracker
+   :project: visp_apriltag Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

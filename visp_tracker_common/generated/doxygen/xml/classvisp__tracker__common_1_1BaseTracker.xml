@@ -1,0 +1,1178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classvisp__tracker__common_1_1BaseTracker" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>visp_tracker_common::BaseTracker</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">rclcpp::Node</basecompoundref>
+    <derivedcompoundref refid="classvisp__tracker__common_1_1BaseMultiModalTracker" prot="public" virt="non-virtual">visp_tracker_common::BaseMultiModalTracker</derivedcompoundref>
+    <sectiondef kind="user-defined">
+      <header>Initialization</header>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a6a189d6a3aa47ac31c1142e00234f559" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_tracker_common::BaseTracker::init_tracker</definition>
+        <argsstring>()=0</argsstring>
+        <name>init_tracker</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::init_tracker</qualifiedname>
+        <briefdescription>
+<para>Initilize the tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true The initialization went well </para>
+</simplesect>
+<simplesect kind="return"><para>false A problem occured </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="102" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a3d628e39463fd27aa0c2612216fc323e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void visp_tracker_common::BaseTracker::init_info_strings</definition>
+        <argsstring>()=0</argsstring>
+        <name>init_info_strings</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::init_info_strings</qualifiedname>
+        <briefdescription>
+<para>Initialize the m_info_strings vector with constant strings to give the user some info. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="108" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1acf50c4c5fdef39ccf2f31895c4427e14" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::init_initialization_method</definition>
+        <argsstring>(const rclcpp::Parameter &amp;p)</argsstring>
+        <name>init_initialization_method</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::init_initialization_method</qualifiedname>
+        <param>
+          <type>const rclcpp::Parameter &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the m_init_attribute from the associated ROS2 parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The associated ROS2 parameter. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true The initialization was successful. </para>
+</simplesect>
+<simplesect kind="return"><para>false Otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="117" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="user-defined">
+      <header>Callbacks</header>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a8f799ececfb5b8009a3dcba2079601f1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tracker_common::BaseTracker::color_camera_info_callback</definition>
+        <argsstring>(const sensor_msgs::msg::CameraInfo::SharedPtr msg)</argsstring>
+        <name>color_camera_info_callback</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::color_camera_info_callback</qualifiedname>
+        <param>
+          <type>const sensor_msgs::msg::CameraInfo::SharedPtr</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Color camera parameters callback that is called only once to initialize the node internal parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Color camera parameters message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="133" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a92557dd9cd27b4427076489938ac1457" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tracker_common::BaseTracker::init_pose_callback</definition>
+        <argsstring>(const geometry_msgs::msg::PoseStamped::SharedPtr msg)</argsstring>
+        <name>init_pose_callback</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::init_pose_callback</qualifiedname>
+        <param>
+          <type>const geometry_msgs::msg::PoseStamped::SharedPtr</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Initial pose callback. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial pose message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="140" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a1b54bdd3fcd13b6276e0af06428b2f96" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tracker_common::BaseTracker::quit_callback</definition>
+        <argsstring>(const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</argsstring>
+        <name>quit_callback</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::quit_callback</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt;</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+<para>Callback that is called to terminate the node. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>request</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Trigger signal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>response</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Response containing the status and the message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="150" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a13e2682afb2e4d7017e5d54d912d6c15" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tracker_common::BaseTracker::switch_tracking_status_callback</definition>
+        <argsstring>(const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</argsstring>
+        <name>switch_tracking_status_callback</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::switch_tracking_status_callback</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt;</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+<para>Callback that is called to stop or start the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>request</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Trigger signal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>response</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Empty response. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="159" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1adc4a97b5b5fe71d3dd16768d59b44b1c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tracker_common::BaseTracker::switch_visual_status_callback</definition>
+        <argsstring>(const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</argsstring>
+        <name>switch_visual_status_callback</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::switch_visual_status_callback</qualifiedname>
+        <param>
+          <type>const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt;</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+<para>Callback that is called to stop or start the visual feedback. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>request</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Trigger signal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>response</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Empty response. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="168" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-type">
+      <memberdef kind="enum" id="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" prot="protected" static="no" strong="no">
+        <type></type>
+        <name>InitializationMethod</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::InitializationMethod</qualifiedname>
+        <enumvalue id="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fa0e860a3de06962192ec746b62353f1eb" prot="protected">
+          <name>CLICK</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>The initialization of the tracker is done through user-interaction by clicking on particular points in the image. Requires visp_gui. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fa8320390804abc09f78289395c828bde8" prot="protected">
+          <name>TOPIC</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>When the tracker is not initialized, it will listen on a dedicated topic to get the initial pose. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fad17d80e526ddc7f9248fe58769064ec8" prot="protected">
+          <name>FILE</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>When the tracker is not initialized, it will read the file that is given as node parameter. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fad9f53d49420e7116defdc9cf7b50c026" prot="protected">
+          <name>INITIALIZATION_METHOD_COUNT</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Number of initilialization method. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enumeration that list the different ways of initializing the trackers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="176" column="3" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="177" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classvisp__tracker__common_1_1BaseTracker_1a99e59cce2748aabcc9b9c9c0d7cdf240" prot="protected" static="no">
+        <type>enum <ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">visp_tracker_common::BaseTracker::InitializationMethod</ref></type>
+        <definition>typedef enum visp_tracker_common::BaseTracker::InitializationMethod visp_tracker_common::BaseTracker::InitializationMethod</definition>
+        <argsstring></argsstring>
+        <name>InitializationMethod</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::InitializationMethod</qualifiedname>
+        <briefdescription>
+<para>Enumeration that list the different ways of initializing the trackers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="182" column="24"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1aa7542ecc3bc6b7aa131fd37831edf871" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; rclcpp::ParameterEventHandler &gt;</type>
+        <definition>std::shared_ptr&lt;rclcpp::ParameterEventHandler&gt; visp_tracker_common::BaseTracker::param_subscriber_</definition>
+        <argsstring></argsstring>
+        <name>param_subscriber_</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::param_subscriber_</qualifiedname>
+        <briefdescription>
+<para>Suscriber to parameters changes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="211" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ace4bf1d81d7197558b3f67de67e04904" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; rclcpp::ParameterCallbackHandle &gt;</type>
+        <definition>std::shared_ptr&lt;rclcpp::ParameterCallbackHandle&gt; visp_tracker_common::BaseTracker::cb_handle_</definition>
+        <argsstring></argsstring>
+        <name>cb_handle_</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::cb_handle_</qualifiedname>
+        <briefdescription>
+<para>Callback handler for dynamic change of the number of frames to skip when not in headless mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="212" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a39d831fe8ab6cda72530b838fb2bc9a0" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; rclcpp::ParameterCallbackHandle &gt;</type>
+        <definition>std::shared_ptr&lt;rclcpp::ParameterCallbackHandle&gt; visp_tracker_common::BaseTracker::cb_handle_init_</definition>
+        <argsstring></argsstring>
+        <name>cb_handle_init_</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::cb_handle_init_</qualifiedname>
+        <briefdescription>
+<para>Callback handler for dynamic change of the initialization method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="213" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af9fb3fdc5759916cc193c18c3683ce3a" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
+        <definition>rclcpp::Service&lt;std_srvs::srv::Trigger&gt;::SharedPtr visp_tracker_common::BaseTracker::m_quit_srv</definition>
+        <argsstring></argsstring>
+        <name>m_quit_srv</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_quit_srv</qualifiedname>
+        <briefdescription>
+<para>Service to quit the node using ros2 service. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="216" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a7b83d9e457476228a556cdb9b5526258" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
+        <definition>rclcpp::Service&lt;std_srvs::srv::Trigger&gt;::SharedPtr visp_tracker_common::BaseTracker::m_switch_tracking_status_srv</definition>
+        <argsstring></argsstring>
+        <name>m_switch_tracking_status_srv</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_switch_tracking_status_srv</qualifiedname>
+        <briefdescription>
+<para>Service to switch ON/OFF the tracking. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="217" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a61170c6360c2a92dc53e4f637148636a" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
+        <definition>rclcpp::Service&lt;std_srvs::srv::Trigger&gt;::SharedPtr visp_tracker_common::BaseTracker::m_switch_visual_srv</definition>
+        <argsstring></argsstring>
+        <name>m_switch_visual_srv</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_switch_visual_srv</qualifiedname>
+        <briefdescription>
+<para>Service to switch ON/OFF the visual debbuging. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="218" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr visp_tracker_common::BaseTracker::m_rgb_cam_info_sub</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_cam_info_sub</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_cam_info_sub</qualifiedname>
+        <briefdescription>
+<para>RGB camera parameters subscriber. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="221" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a4cd69f9f9ca3469c64e7ca877e2cef87" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr visp_tracker_common::BaseTracker::m_init_sub</definition>
+        <argsstring></argsstring>
+        <name>m_init_sub</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_init_sub</qualifiedname>
+        <briefdescription>
+<para>Subscriber to the init topic, if the init method is set to topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="222" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af66e4c3693048c6c4cd370692fb5c550" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; tf2_ros::TransformListener &gt;</type>
+        <definition>std::shared_ptr&lt;tf2_ros::TransformListener&gt; visp_tracker_common::BaseTracker::m_tf_listener</definition>
+        <argsstring></argsstring>
+        <name>m_tf_listener</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_tf_listener</qualifiedname>
+        <initializer>{ nullptr }</initializer>
+        <briefdescription>
+<para>Listener in case the user wants to set the extrinsics from <computeroutput>tf2_static</computeroutput> topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="223" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="223" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a0da500e5d4abf70a7d759355117ea7a1" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; tf2_ros::Buffer &gt;</type>
+        <definition>std::unique_ptr&lt;tf2_ros::Buffer&gt; visp_tracker_common::BaseTracker::m_tf_buffer</definition>
+        <argsstring></argsstring>
+        <name>m_tf_buffer</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_tf_buffer</qualifiedname>
+        <initializer>{ nullptr }</initializer>
+        <briefdescription>
+<para>The buffer for the TF2. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="224" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="224" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ad0281bc3c4a051e593e7cea7e7baf1c6" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; visp_tracker_common::msg::NamedFeatureArray &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;visp_tracker_common::msg::NamedFeatureArray&gt;::SharedPtr visp_tracker_common::BaseTracker::m_features_pub</definition>
+        <argsstring></argsstring>
+        <name>m_features_pub</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_features_pub</qualifiedname>
+        <briefdescription>
+<para>2D image points publisher, for remote GUI visualization when headless mode is active </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="227" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ab28d6e771f71cbb1868fd2789605c6ed" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; visp_tracker_common::msg::InfoStrings &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;visp_tracker_common::msg::InfoStrings&gt;::SharedPtr visp_tracker_common::BaseTracker::m_info_strings_pub</definition>
+        <argsstring></argsstring>
+        <name>m_info_strings_pub</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_info_strings_pub</qualifiedname>
+        <briefdescription>
+<para>Publisher of the infos that are displayed on screen. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="228" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a991b68d7f04c76850c5720e09f338a23" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr visp_tracker_common::BaseTracker::m_poses_pub</definition>
+        <argsstring></argsstring>
+        <name>m_poses_pub</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_poses_pub</qualifiedname>
+        <briefdescription>
+<para>Poses publisher, for remote GUI visualization when headless mode is active. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="229" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a9fd3602793e36d481a3c944e7b546c02" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::m_is_headless_mode</definition>
+        <argsstring></argsstring>
+        <name>m_is_headless_mode</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_is_headless_mode</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>True if the GUI is managed by another node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="232" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ae561e01a5bc054a0ba1510ab61a6dd0f" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int visp_tracker_common::BaseTracker::m_display_nb_frames_skipped</definition>
+        <argsstring></argsstring>
+        <name>m_display_nb_frames_skipped</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_display_nb_frames_skipped</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+<para>If positive, the display will be updated only one every m_display_nb_frames_skipped frames, otherwise the display is always updated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="233" column="7" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a84633646ed112b6a10363c80d285d9f3" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tracker_common::BaseTracker::m_frame_cnt</definition>
+        <argsstring></argsstring>
+        <name>m_frame_cnt</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_frame_cnt</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Counter for the display frame skip. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="234" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac3b18a7739e1df1eff8fddf9434d0f29" prot="protected" static="no" mutable="no">
+        <type>visp_tracker_common::msg::InfoStrings</type>
+        <definition>visp_tracker_common::msg::InfoStrings visp_tracker_common::BaseTracker::m_info_strings</definition>
+        <argsstring></argsstring>
+        <name>m_info_strings</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_info_strings</qualifiedname>
+        <briefdescription>
+<para>Vector that contains strings to display on string to give the user some info. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="235" column="41" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a411a6a7c29929d0d1462ce74726beea6" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tracker_common::BaseTracker::m_info_nb_static</definition>
+        <argsstring></argsstring>
+        <name>m_info_nb_static</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_info_nb_static</qualifiedname>
+        <briefdescription>
+<para>Number of info strings that must be visible all the time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="236" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::m_visualization_debug</definition>
+        <argsstring></argsstring>
+        <name>m_visualization_debug</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_visualization_debug</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="237" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::m_rgb_cam_info_received</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_cam_info_received</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_cam_info_received</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Set to true once the color camera parameters have been retrieved. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="240" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_tracker_common::BaseTracker::m_rgb_camera_info_topic_name</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_camera_info_topic_name</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_camera_info_topic_name</qualifiedname>
+        <briefdescription>
+<para>The name of the color camera topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="241" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac191581077e0eb166da5d78e300bd70c" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_tracker_common::BaseTracker::m_rgb_stream_name</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_stream_name</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_stream_name</qualifiedname>
+        <briefdescription>
+<para>The name of the color image topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="242" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a422883521e958ad7bff3dfd57ae2ec8f" prot="protected" static="no" mutable="no">
+        <type>vpCameraParameters</type>
+        <definition>vpCameraParameters visp_tracker_common::BaseTracker::m_rgb_cam</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_cam</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_cam</qualifiedname>
+        <briefdescription>
+<para>The color camera parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="243" column="22" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a76560cf4b94a892db64eceb4f3879edd" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_tracker_common::BaseTracker::m_config_file</definition>
+        <argsstring></argsstring>
+        <name>m_config_file</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_config_file</qualifiedname>
+        <briefdescription>
+<para>If set, path to the configuration file that should be used to initialize the tracker. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="244" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1acb2fdfb133b94102106297c0a9e63f43" prot="protected" static="no" mutable="no">
+        <type><ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">InitializationMethod</ref></type>
+        <definition>InitializationMethod visp_tracker_common::BaseTracker::m_init_method</definition>
+        <argsstring></argsstring>
+        <name>m_init_method</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_init_method</qualifiedname>
+        <briefdescription>
+<para>How the tracker should be initialized. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="245" column="24" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a17c413422c4fa11e7e40d3c8233b3eb9" prot="protected" static="no" mutable="no">
+        <type>std::optional&lt; geometry_msgs::msg::PoseStamped &gt;</type>
+        <definition>std::optional&lt;geometry_msgs::msg::PoseStamped&gt; visp_tracker_common::BaseTracker::m_opt_init_pose</definition>
+        <argsstring></argsstring>
+        <name>m_opt_init_pose</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_opt_init_pose</qualifiedname>
+        <briefdescription>
+<para>If the init method is set to topic, this attribute is updated through the init topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="246" column="17" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a6bc4f006d01618011351fa877fd747d6" prot="protected" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex visp_tracker_common::BaseTracker::m_mutex_quit</definition>
+        <argsstring></argsstring>
+        <name>m_mutex_quit</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_mutex_quit</qualifiedname>
+        <briefdescription>
+<para>Mutex to protect m_quit from concurrent access. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="249" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a9324ac8364a7ef7c81327ca4942144da" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::m_quit</definition>
+        <argsstring></argsstring>
+        <name>m_quit</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_quit</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Set to true when a SIGINT is received or when the user clicks on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="250" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1abf53cddde9e1897bcbc888aa9fb957a9" prot="protected" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex visp_tracker_common::BaseTracker::m_mutex_tracking</definition>
+        <argsstring></argsstring>
+        <name>m_mutex_tracking</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_mutex_tracking</qualifiedname>
+        <briefdescription>
+<para>Mutex to protect m_quit from concurrent access. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="251" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1aa371c209a777603a62a45974d4b2b26e" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::m_has_to_track</definition>
+        <argsstring></argsstring>
+        <name>m_has_to_track</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_has_to_track</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Set to true when the tracker must run. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="252" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a70021e81905c550c4c9d66f52f33da40" prot="protected" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex visp_tracker_common::BaseTracker::m_mutex_visualization</definition>
+        <argsstring></argsstring>
+        <name>m_mutex_visualization</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::m_mutex_visualization</qualifiedname>
+        <briefdescription>
+<para>Mutex to protect m_visualization_debug from concurrent access. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="253" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="253" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a68eea5dbf94cf618d8d1b9c9850741b7" prot="protected" static="yes" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string visp_tracker_common::BaseTracker::s_dumb_topic_name</definition>
+        <argsstring></argsstring>
+        <name>s_dumb_topic_name</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::s_dumb_topic_name</qualifiedname>
+        <briefdescription>
+<para>Dumb name to avoid error when a topic name has not been given. The error will be handled in the <ref refid="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" kindref="member">init()</ref> method. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="255" column="28" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a59fb6fa95492234b32e368f8a3474e5e" prot="protected" static="yes" mutable="no">
+        <type>const unsigned int</type>
+        <definition>const unsigned int visp_tracker_common::BaseTracker::s_default_hor_offset</definition>
+        <argsstring></argsstring>
+        <name>s_default_hor_offset</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::s_default_hor_offset</qualifiedname>
+        <briefdescription>
+<para>Default horizontal offset to display the m_info_strings information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="256" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="256" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af5860fc828aeb53a8c81eb997c10579a" prot="protected" static="yes" mutable="no">
+        <type>const unsigned int</type>
+        <definition>const unsigned int visp_tracker_common::BaseTracker::s_hor_offset_from_left_border</definition>
+        <argsstring></argsstring>
+        <name>s_hor_offset_from_left_border</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::s_hor_offset_from_left_border</qualifiedname>
+        <briefdescription>
+<para>Default horizontal offset from the left border to display the m_info_strings information. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="257" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="257" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>visp_tracker_common::BaseTracker::BaseTracker</definition>
+        <argsstring>(const std::string &amp;node_name, const bool &amp;does_publish_features)</argsstring>
+        <name>BaseTracker</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::BaseTracker</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>does_publish_features</declname>
+        </param>
+        <briefdescription>
+<para>Constructor of the abstract base class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>does_publish_features</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If headless mode is active, set to true if the node must publish 2D points to have a feedback on the remote GUI. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="63" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1aebdd69964ded55d482f5d541ada3bac2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual visp_tracker_common::BaseTracker::~BaseTracker</definition>
+        <argsstring>()=default</argsstring>
+        <name>~BaseTracker</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::~BaseTracker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="65" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool visp_tracker_common::BaseTracker::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::init</qualifiedname>
+        <reimplementedby refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1">init</reimplementedby>
+        <briefdescription>
+<para>Initializes the node. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true The initialization went well. </para>
+</simplesect>
+<simplesect kind="return"><para>false Otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="73" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a6b825aa62b87d4fe03df83808a16849a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tracker_common::BaseTracker::has_to_quit</definition>
+        <argsstring>() const</argsstring>
+        <name>has_to_quit</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::has_to_quit</qualifiedname>
+        <briefdescription>
+<para>Check if the user asked to quit the node. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true The user wants to quit the node </para>
+</simplesect>
+<simplesect kind="return"><para>false Otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="81" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1abdf8048c41dd61112e2d5703ddca55fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void visp_tracker_common::BaseTracker::stop_and_quit</definition>
+        <argsstring>()</argsstring>
+        <name>stop_and_quit</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::stop_and_quit</qualifiedname>
+        <briefdescription>
+<para>Method to stop the robot and quit the node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="90" column="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1abe67f248b25a79394bbfae03039223e3" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string visp_tracker_common::BaseTracker::initializationMethodToString</definition>
+        <argsstring>(const InitializationMethod &amp;method)</argsstring>
+        <name>initializationMethodToString</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::initializationMethodToString</qualifiedname>
+        <param>
+          <type>const <ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">InitializationMethod</ref> &amp;</type>
+          <declname>method</declname>
+        </param>
+        <briefdescription>
+<para>Cast a <ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">BaseTracker::InitializationMethod</ref> into a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>method</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The method we want the name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The corresponding name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="190" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1ad2ef46ae0aab6b051023cbf9ab6368e7" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">InitializationMethod</ref></type>
+        <definition>static InitializationMethod visp_tracker_common::BaseTracker::initializationMethodFromString</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>initializationMethodFromString</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::initializationMethodFromString</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Cast a string into a <ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">BaseTracker::InitializationMethod</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the method. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>InitializationMethod The corresponding enum value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="198" column="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a7845c65b2ce5c0fc0d8f94e0b092e2c5" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string visp_tracker_common::BaseTracker::getAvailableInitializationMethod</definition>
+        <argsstring>(const std::string &amp;prefix=&quot;&lt; &quot;, const std::string &amp;sep=&quot; , &quot;, const std::string &amp;suffix=&quot; &gt;&quot;)</argsstring>
+        <name>getAvailableInitializationMethod</name>
+        <qualifiedname>visp_tracker_common::BaseTracker::getAvailableInitializationMethod</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>prefix</declname>
+          <defval>&quot;&lt; &quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>sep</declname>
+          <defval>&quot; , &quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>suffix</declname>
+          <defval>&quot; &gt;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Get the list of available InitializationMethod. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prefix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The prefix for the list. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The separator in the list. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>suffix</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The suffix of the list. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The list as a single string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="208" column="22"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="3">
+        <label>visp_tracker_common::BaseMultiModalTracker</label>
+        <link refid="classvisp__tracker__common_1_1BaseMultiModalTracker"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>visp_tracker_common::BaseTracker</label>
+        <link refid="classvisp__tracker__common_1_1BaseTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>visp_tracker_common::BaseTracker</label>
+        <link refid="classvisp__tracker__common_1_1BaseTracker"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/visp_tracker_common/BaseTracker.hpp" line="54" column="1" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="55" bodyend="258"/>
+    <listofallmembers>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e" prot="public" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>BaseTracker</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ace4bf1d81d7197558b3f67de67e04904" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>cb_handle_</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a39d831fe8ab6cda72530b838fb2bc9a0" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>cb_handle_init_</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fa0e860a3de06962192ec746b62353f1eb" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>CLICK</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a8f799ececfb5b8009a3dcba2079601f1" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>color_camera_info_callback</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fad17d80e526ddc7f9248fe58769064ec8" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>FILE</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a7845c65b2ce5c0fc0d8f94e0b092e2c5" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>getAvailableInitializationMethod</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6b825aa62b87d4fe03df83808a16849a" prot="public" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>has_to_quit</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" prot="public" virt="virtual"><scope>visp_tracker_common::BaseTracker</scope><name>init</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a3d628e39463fd27aa0c2612216fc323e" prot="protected" virt="pure-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>init_info_strings</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1acf50c4c5fdef39ccf2f31895c4427e14" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>init_initialization_method</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a92557dd9cd27b4427076489938ac1457" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>init_pose_callback</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6a189d6a3aa47ac31c1142e00234f559" prot="protected" virt="pure-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>init_tracker</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fad9f53d49420e7116defdc9cf7b50c026" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>INITIALIZATION_METHOD_COUNT</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>InitializationMethod</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a99e59cce2748aabcc9b9c9c0d7cdf240" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>InitializationMethod</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ad2ef46ae0aab6b051023cbf9ab6368e7" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>initializationMethodFromString</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1abe67f248b25a79394bbfae03039223e3" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>initializationMethodToString</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a76560cf4b94a892db64eceb4f3879edd" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_config_file</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ae561e01a5bc054a0ba1510ab61a6dd0f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_display_nb_frames_skipped</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ad0281bc3c4a051e593e7cea7e7baf1c6" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_features_pub</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a84633646ed112b6a10363c80d285d9f3" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_frame_cnt</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1aa371c209a777603a62a45974d4b2b26e" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_has_to_track</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a411a6a7c29929d0d1462ce74726beea6" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_info_nb_static</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ac3b18a7739e1df1eff8fddf9434d0f29" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_info_strings</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ab28d6e771f71cbb1868fd2789605c6ed" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_info_strings_pub</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1acb2fdfb133b94102106297c0a9e63f43" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_init_method</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a4cd69f9f9ca3469c64e7ca877e2cef87" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_init_sub</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a9fd3602793e36d481a3c944e7b546c02" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_is_headless_mode</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6bc4f006d01618011351fa877fd747d6" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_mutex_quit</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1abf53cddde9e1897bcbc888aa9fb957a9" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_mutex_tracking</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a70021e81905c550c4c9d66f52f33da40" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_mutex_visualization</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a17c413422c4fa11e7e40d3c8233b3eb9" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_opt_init_pose</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a991b68d7f04c76850c5720e09f338a23" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_poses_pub</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a9324ac8364a7ef7c81327ca4942144da" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_quit</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1af9fb3fdc5759916cc193c18c3683ce3a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_quit_srv</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a422883521e958ad7bff3dfd57ae2ec8f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam_info_received</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam_info_sub</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_camera_info_topic_name</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1ac191581077e0eb166da5d78e300bd70c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_stream_name</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a7b83d9e457476228a556cdb9b5526258" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_switch_tracking_status_srv</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a61170c6360c2a92dc53e4f637148636a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_switch_visual_srv</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a0da500e5d4abf70a7d759355117ea7a1" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_tf_buffer</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1af66e4c3693048c6c4cd370692fb5c550" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_tf_listener</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_visualization_debug</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1aa7542ecc3bc6b7aa131fd37831edf871" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>param_subscriber_</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a1b54bdd3fcd13b6276e0af06428b2f96" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>quit_callback</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a59fb6fa95492234b32e368f8a3474e5e" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>s_default_hor_offset</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a68eea5dbf94cf618d8d1b9c9850741b7" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>s_dumb_topic_name</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1af5860fc828aeb53a8c81eb997c10579a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>s_hor_offset_from_left_border</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1abdf8048c41dd61112e2d5703ddca55fc" prot="public" virt="virtual"><scope>visp_tracker_common::BaseTracker</scope><name>stop_and_quit</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a13e2682afb2e4d7017e5d54d912d6c15" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>switch_tracking_status_callback</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1adc4a97b5b5fe71d3dd16768d59b44b1c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>switch_visual_status_callback</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3fa8320390804abc09f78289395c828bde8" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>TOPIC</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1aebdd69964ded55d482f5d541ada3bac2" prot="public" virt="virtual"><scope>visp_tracker_common::BaseTracker</scope><name>~BaseTracker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_5ff17a4644fc515dbe18de3b13d35a75" kind="dir">
+    <compoundname>include/visp_tracker_common</compoundname>
+    <innerfile refid="BaseMultiModalTracker_8hpp">BaseMultiModalTracker.hpp</innerfile>
+    <innerfile refid="BaseTracker_8hpp">BaseTracker.hpp</innerfile>
+    <innerfile refid="names_8hpp">names.hpp</innerfile>
+    <innerfile refid="TrackerGUI_8hpp">TrackerGUI.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_tracker_common/"/>
+  </compounddef>
+</doxygen>

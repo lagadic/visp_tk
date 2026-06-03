@@ -1,0 +1,14 @@
+.. _exhale_variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4:
+
+Variable visp_tracker_common::info_strings_topic_name
+=====================================================
+
+- Defined in :ref:`file_include_visp_tracker_common_names.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: visp_tracker_common::info_strings_topic_name
+   :project: visp_tracker_common Doxygen Project

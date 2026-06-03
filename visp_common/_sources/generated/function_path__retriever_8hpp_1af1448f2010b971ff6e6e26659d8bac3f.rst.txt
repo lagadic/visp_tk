@@ -1,0 +1,14 @@
+.. _exhale_function_path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f:
+
+Function visp_common::path::path_retriever
+==========================================
+
+- Defined in :ref:`file_include_visp_common_path_retriever.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: visp_common::path::path_retriever(const std::string)
+   :project: visp_common Doxygen Project

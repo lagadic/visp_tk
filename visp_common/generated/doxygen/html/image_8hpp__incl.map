@@ -1,0 +1,9 @@
+<map id="include/visp_common/image.hpp" name="include/visp_common/image.hpp">
+<area shape="rect" id="Node000001" title="Defines conversions between ViSP and ROS image types." alt="" coords="241,5,405,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,217,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,48,156,91,155,86,272,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="242,93,405,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="326,46,326,79,321,79,321,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="429,93,586,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,43,469,85,467,90,366,48"/>
+</map>

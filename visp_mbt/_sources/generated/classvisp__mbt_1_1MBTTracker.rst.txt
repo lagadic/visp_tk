@@ -1,0 +1,36 @@
+.. _exhale_class_classvisp__mbt_1_1MBTTracker:
+
+Class MBTTracker
+================
+
+- Defined in :ref:`file_include_visp_mbt_MBTTracker.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structvisp__mbt_1_1MBTTracker_1_1ExtrinsicsHelper`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public visp_tracker_common::BaseMultiModalTracker``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: visp_mbt::MBTTracker
+   :project: visp_mbt Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

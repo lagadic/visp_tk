@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_3e22598157095cb215f5bff0a47d77ab" kind="dir">
+    <compoundname>include/visp_apriltag</compoundname>
+    <innerfile refid="AprilTagTracker_8hpp">AprilTagTracker.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_apriltag/"/>
+  </compounddef>
+</doxygen>

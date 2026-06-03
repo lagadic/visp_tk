@@ -1,0 +1,30 @@
+.. GENERATED_CONTENT by rosdoc2.verbs.build.builders.sphinx_builder.
+
+visp_tracker_common
+===================
+
+Package that contains the base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.
+
+* Links
+
+  * `Website <https://docs.ros.org/en/humble/p/visp_tracker_common>`_
+
+  * `Repository <https://github.com/lagadic/visp_tk>`_
+
+  * `Bugtracker <https://github.com/lagadic/visp_tk/issues>`_
+.. toctree::
+   :maxdepth: 2
+
+
+   C++ API <generated/index>
+   Message Definitions <interfaces/message_definitions>
+
+
+   Standard Documents <standards>
+
+.. include:: __readme_include.rst
+
+.. toctree::
+   :hidden:
+
+   genindex

@@ -1,0 +1,9 @@
+<map id="include/visp_common/pose.hpp" name="include/visp_common/pose.hpp">
+<area shape="rect" id="Node000001" title="Conversions between ROS and ViSP structures representing a 3D pose." alt="" coords="297,5,461,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,228,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="323,48,165,99,164,94,321,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="252,101,507,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="382,46,382,87,377,87,377,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="531,93,734,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="436,43,565,86,564,92,434,48"/>
+</map>

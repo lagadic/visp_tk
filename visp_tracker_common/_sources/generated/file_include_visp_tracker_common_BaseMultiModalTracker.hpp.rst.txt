@@ -1,0 +1,64 @@
+
+.. _file_include_visp_tracker_common_BaseMultiModalTracker.hpp:
+
+File BaseMultiModalTracker.hpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_tracker_common>` (``include/visp_tracker_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_tracker_common/BaseMultiModalTracker.hpp``)
+----------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_tracker_common_BaseMultiModalTracker.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``message_filters/subscriber.h``
+
+- ``message_filters/sync_policies/approximate_time.h``
+
+- ``message_filters/synchronizer.h``
+
+- ``rclcpp/rclcpp.hpp``
+
+- ``visp_tracker_common/BaseTracker.hpp`` (:ref:`file_include_visp_tracker_common_BaseTracker.hpp`)
+
+- ``visp_tracker_common/msg/named_feature.hpp``
+
+- ``visp_tracker_common/names.hpp`` (:ref:`file_include_visp_tracker_common_names.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_tracker_common`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classvisp__tracker__common_1_1BaseMultiModalTracker`
+
