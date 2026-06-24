@@ -12,9 +12,9 @@ from launch_ros.substitutions import FindPackageShare
 def prepare_parameters(context):
 
     config_file = LaunchConfiguration("config_file")
-    depth_camera_topic_name = LaunchConfiguration("depth_camera_topic_name")
+    depth_camera_info_topic_name = LaunchConfiguration("depth_camera_info_topic_name")
     depth_config_file = LaunchConfiguration("depth_config_file")
-    depth_stream_topic_name = LaunchConfiguration("depth_stream_topic_name")
+    depth_image_topic_name = LaunchConfiguration("depth_image_topic_name")
     depth_model_file = LaunchConfiguration("depth_model_file")
     detect_failure = LaunchConfiguration("detect_failure")
     display_nb_frames_skipped = LaunchConfiguration("display_nb_frames_skipped")
@@ -35,9 +35,9 @@ def prepare_parameters(context):
 
     parameters=[
                 {'config_file' : config_file},
-                {'depth_camera_topic_name': depth_camera_topic_name},
+                {'depth_camera_info_topic_name': depth_camera_info_topic_name},
                 {'depth_config_file': depth_config_file},
-                {'depth_stream_topic_name': depth_stream_topic_name},
+                {'depth_image_topic_name': depth_image_topic_name},
                 {'depth_model_file': depth_model_file},
                 {'detect_failure': detect_failure},
                 {'display_nb_frames_skipped' : display_nb_frames_skipped},
@@ -150,7 +150,7 @@ def generate_launch_description():
               ])
         ),
        DeclareLaunchArgument(
-            "depth_camera_topic_name",
+            "depth_camera_info_topic_name",
             description="Name of the depth camera topic.",
             default_value=""
         ),
@@ -160,7 +160,7 @@ def generate_launch_description():
             default_value=""
         ),
         DeclareLaunchArgument(
-            "depth_stream_topic_name",
+            "depth_image_topic_name",
             description="Name of the depth stream topic.",
             default_value=""
         ),
