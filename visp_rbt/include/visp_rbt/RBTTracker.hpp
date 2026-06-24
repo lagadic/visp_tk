@@ -51,10 +51,6 @@
 #include <omp.h>
 #endif
 
-#ifdef ENABLE_VISP_NAMESPACE
-using namespace VISP_NAMESPACE_NAME;
-#endif
-
 namespace visp_rbt
 {
 class RBTTracker : public visp_tracker_common::BaseMultiModalTracker
@@ -65,7 +61,7 @@ public:
   virtual ~RBTTracker()
   {
     RCLCPP_INFO(this->get_logger(), "Destructor called, closing Panda3D instance");
-    vpPanda3DFrameworkManager::getInstance().exit();
+    VISP_NAMESPACE_ADDRESSING vpPanda3DFrameworkManager::getInstance().exit();
     RCLCPP_INFO(this->get_logger(), "Panda instance has been closed");
   }
 
@@ -123,7 +119,7 @@ protected:
    * @return true Initialization went well.
    * @return false The tracker is still uninitialized.
    */
-  virtual bool init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame);
+  virtual bool init_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, bool &display_frame);
 
   /**
    * @brief Perform the tracking.
@@ -133,7 +129,7 @@ protected:
    * @return true Tracking was successful.
    * @return false Otherwise.
    */
-  virtual bool perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+  virtual bool perform_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
 
   // ----- Services -----
 
@@ -143,11 +139,11 @@ protected:
 
   // ----- Display-related attributes -----
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-  vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
+  VISP_NAMESPACE_ADDRESSING vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
   double m_max_z_display; // Maximum depth we want to display
-  std::shared_ptr<vpDisplay> m_display; //!< RGB image display
-  std::shared_ptr<vpDisplay> m_display_uchar; //!< Gray-scale image display
-  std::shared_ptr<vpDisplay> m_display_depth; //!< Depth display
+  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display; //!< RGB image display
+  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_uchar; //!< Gray-scale image display
+  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_depth; //!< Depth display
   bool m_display_initialized = false; //!< True when the RGB image display is up and running
 #endif
 
@@ -155,10 +151,10 @@ protected:
   bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
   std::string m_init_file_path; //!< Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker.
-  vpImage<unsigned char> m_I; //!< Gray-scale image
-  vpImage<vpRGBa> m_Ic; //!< Color image
-  vpImage <float> m_I_depth; //!< Depth image
-  vpRBTracker m_tracker;
+  VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> m_I; //!< Gray-scale image
+  VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> m_Ic; //!< Color image
+  VISP_NAMESPACE_ADDRESSING vpImage <float> m_I_depth; //!< Depth image
+  VISP_NAMESPACE_ADDRESSING vpRBTracker m_tracker;
 };
 }
 

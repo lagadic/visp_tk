@@ -45,10 +45,6 @@
 
 #include <optional>
 
-#ifdef ENABLE_VISP_NAMESPACE
-using namespace VISP_NAMESPACE_NAME;
-#endif
-
 namespace visp_tracker_common
 {
 class BaseTracker : public rclcpp::Node
@@ -240,7 +236,7 @@ protected:
   bool m_rgb_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.
   std::string m_rgb_camera_info_topic_name; //!< The name of the color camera topic.
   std::string m_rgb_stream_name; //!< The name of the color image topic.
-  vpCameraParameters m_rgb_cam; //!< The color camera parameters.
+  VISP_NAMESPACE_ADDRESSING vpCameraParameters m_rgb_cam; //!< The color camera parameters.
   std::string m_config_file; //!< If set, path to the configuration file that should be used to initialize the tracker.
   InitializationMethod m_init_method; //!< How the tracker should be initialized.
   std::optional<geometry_msgs::msg::PoseStamped> m_opt_init_pose; //!< If the init method is set to topic, this attribute is updated through the init topic.
