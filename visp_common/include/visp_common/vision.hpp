@@ -34,10 +34,6 @@
 
 #include <visp3/core/vpImagePoint.h>
 
-#ifdef ENABLE_VISP_NAMESPACE
-using namespace VISP_NAMESPACE_NAME;
-#endif
-
 namespace visp_common
 {
 namespace vision
@@ -47,7 +43,7 @@ namespace vision
  * \param[in] ip Image point in ViSP format.
  * \return Image point in ROS/vision_msgs format.
 */
-vision_msgs::msg::Point2D toVisionMsgsPoint2D(const vpImagePoint &ip);
+vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vpImagePoint &ip);
 
 
 /**
@@ -55,7 +51,7 @@ vision_msgs::msg::Point2D toVisionMsgsPoint2D(const vpImagePoint &ip);
  * \param[in] point_2d Image point in vision_msgs::Point2D format
  * \return Image point in ViSP format.
 */
-vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
+VISP_NAMESPACE_ADDRESSING vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
 }
 }
 

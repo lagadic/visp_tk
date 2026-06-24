@@ -39,6 +39,10 @@ namespace visp_common
 {
 namespace pose
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose)
 {
   vpHomogeneousMatrix mat;
