@@ -125,7 +125,7 @@ BaseMultiModalTracker node
 
 This section will present the different parameters of the ``visp_tracker_common::BaseMultiModalTracker`` class.
 The node will determine if it requires depth or not depending on the tracker configuration. If the node
-requires depth, the ``depth_camera_topic_name`` and ``depth_stream_topic_name`` becomes **REQUIRED**.
+requires depth, the ``depth_camera_info_topic_name`` and ``depth_image_topic_name`` becomes **REQUIRED**.
 If the tracker requires depth, a `message_filters::Synchronizer <https://github.com/ros2/message_filters/blob/rolling/doc/index.rst>`__
 is used to temporally synchronize the depth stream and the color stream. **NB**: using the ``TrackerGUI`` class
 on the same computer than a class inheriting from ``visp_tracker_common::BaseMultiModalTracker`` and using depth
@@ -134,8 +134,8 @@ leads to the freezing of the tracker, due to a desynchronization of the color an
 Related to subscription / publication
 -------------------------------------
 
-* *OPTIONAL* ``depth_camera_topic_name``: name of the depth camera topic.
-* *OPTIONAL* ``depth_stream_topic_name``: name of the depth stream topic.
+* *OPTIONAL* ``depth_camera_info_topic_name``: name of the depth camera topic.
+* *OPTIONAL* ``depth_image_topic_name``: name of the depth stream topic.
 * *OPTIONAL* ``stream_qos_durability``: the durability of both the RGB and depth image streams (they need to be the same) if depth is required.
 * *OPTIONAL* ``stream_qos_reliability``: the reliability of both the RGB and depth image streams (they need to be the same) if depth is required.
 * *OPTIONAL* ``stream_qos_depth``: the depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.
