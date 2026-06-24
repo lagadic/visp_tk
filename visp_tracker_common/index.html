@@ -353,7 +353,7 @@ addition to the tracker node.</p></li>
 <h1><a class="toc-backref" href="#id17" role="doc-backlink">BaseMultiModalTracker node</a><a class="headerlink" href="#basemultimodaltracker-node" title="Link to this heading"></a></h1>
 <p>This section will present the different parameters of the <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code> class.
 The node will determine if it requires depth or not depending on the tracker configuration. If the node
-requires depth, the <code class="docutils literal notranslate"><span class="pre">depth_camera_topic_name</span></code> and <code class="docutils literal notranslate"><span class="pre">depth_stream_topic_name</span></code> becomes <strong>REQUIRED</strong>.
+requires depth, the <code class="docutils literal notranslate"><span class="pre">depth_camera_info_topic_name</span></code> and <code class="docutils literal notranslate"><span class="pre">depth_image_topic_name</span></code> becomes <strong>REQUIRED</strong>.
 If the tracker requires depth, a <a class="reference external" href="https://github.com/ros2/message_filters/blob/rolling/doc/index.rst">message_filters::Synchronizer</a>
 is used to temporally synchronize the depth stream and the color stream. <strong>NB</strong>: using the <code class="docutils literal notranslate"><span class="pre">TrackerGUI</span></code> class
 on the same computer than a class inheriting from <code class="docutils literal notranslate"><span class="pre">visp_tracker_common::BaseMultiModalTracker</span></code> and using depth
@@ -361,8 +361,8 @@ leads to the freezing of the tracker, due to a desynchronization of the color an
 <section id="id1">
 <h2><a class="toc-backref" href="#id18" role="doc-backlink">Related to subscription / publication</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_camera_topic_name</span></code>: name of the depth camera topic.</p></li>
-<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_stream_topic_name</span></code>: name of the depth stream topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_camera_info_topic_name</span></code>: name of the depth camera topic.</p></li>
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">depth_image_topic_name</span></code>: name of the depth stream topic.</p></li>
 <li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_durability</span></code>: the durability of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>
 <li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_reliability</span></code>: the reliability of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>
 <li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">stream_qos_depth</span></code>: the depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.</p></li>

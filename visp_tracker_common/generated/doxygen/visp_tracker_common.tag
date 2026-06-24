@@ -104,9 +104,9 @@
     </member>
     <member kind="variable" protection="protected">
       <type>std::string</type>
-      <name>m_depth_camera_topic_name</name>
+      <name>m_depth_camera_info_topic_name</name>
       <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
-      <anchor>a3a2ebf537190befc385939c57fba9e4b</anchor>
+      <anchor>a1c187377dbdfc8fa4641ffdf86afbd03</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">

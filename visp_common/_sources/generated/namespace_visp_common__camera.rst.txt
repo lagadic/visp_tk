@@ -19,6 +19,6 @@ Functions
 
 - :ref:`exhale_function_camera_8hpp_1a7b18b440c1dc99810d50eab14ea64518`
 
-- :ref:`exhale_function_camera_8hpp_1ae99fd2a005c42a91daefc08369bee32e`
-
 - :ref:`exhale_function_camera_8hpp_1ad2b913c8f4e74b3a949bc7c11c55f729`
+
+- :ref:`exhale_function_camera_8hpp_1ae99fd2a005c42a91daefc08369bee32e`

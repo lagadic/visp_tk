@@ -63,11 +63,11 @@ Functions
 
 - :ref:`exhale_function_pose_8hpp_1a99cf162605318a244dcbc3ffad42db49`
 
+- :ref:`exhale_function_pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990`
+
 - :ref:`exhale_function_pose_8hpp_1a401a0b7557921c932783ba1d22b5a9c9`
 
 - :ref:`exhale_function_pose_8hpp_1a47a46cb62c1ba58f0061088758f62358`
 
 - :ref:`exhale_function_pose_8hpp_1afbee63530aae5ba7572eaca47c7c5bab`
-
-- :ref:`exhale_function_pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990`
 

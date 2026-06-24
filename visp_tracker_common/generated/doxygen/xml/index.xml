@@ -11,7 +11,7 @@
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a97567812403d4049481260645b9a50a5" kind="variable"><name>m_streams_sync</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2cb6c71048240591c604bb27881e20cf" kind="variable"><name>m_rgb_only_stream_sub</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" kind="variable"><name>m_depth_cam_info_received</name></member>
-    <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" kind="variable"><name>m_depth_camera_topic_name</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a1c187377dbdfc8fa4641ffdf86afbd03" kind="variable"><name>m_depth_camera_info_topic_name</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a" kind="variable"><name>m_depth_stream_name</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0c8d31ba49ce116fa8ea94ea1c1bf853" kind="variable"><name>m_depth_cam</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" kind="variable"><name>m_depth_is_required</name></member>

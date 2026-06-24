@@ -215,12 +215,12 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="139" column="8" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" prot="protected" static="no" mutable="no">
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a1c187377dbdfc8fa4641ffdf86afbd03" prot="protected" static="no" mutable="no">
         <type>std::string</type>
-        <definition>std::string visp_tracker_common::BaseMultiModalTracker::m_depth_camera_topic_name</definition>
+        <definition>std::string visp_tracker_common::BaseMultiModalTracker::m_depth_camera_info_topic_name</definition>
         <argsstring></argsstring>
-        <name>m_depth_camera_topic_name</name>
-        <qualifiedname>visp_tracker_common::BaseMultiModalTracker::m_depth_camera_topic_name</qualifiedname>
+        <name>m_depth_camera_info_topic_name</name>
+        <qualifiedname>visp_tracker_common::BaseMultiModalTracker::m_depth_camera_info_topic_name</qualifiedname>
         <briefdescription>
 <para>The name of the depth camera topic. </para>
         </briefdescription>
@@ -506,7 +506,7 @@
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0c8d31ba49ce116fa8ea94ea1c1bf853" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam_info_received</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam_info_sub</name></member>
-      <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_camera_topic_name</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a1c187377dbdfc8fa4641ffdf86afbd03" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_camera_info_topic_name</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_is_required</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_stream_name</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1accfb8de0a1a276595a4ff7205ca0b3e6" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_stream_sub</name></member>

@@ -105,7 +105,7 @@ Program Listing for File BaseMultiModalTracker.hpp
    
      // ----- Tracking-related attributes -----
      bool m_depth_cam_info_received = false; 
-     std::string m_depth_camera_topic_name; 
+     std::string m_depth_camera_info_topic_name; 
      std::string m_depth_stream_name; 
      VISP_NAMESPACE_ADDRESSING vpCameraParameters m_depth_cam; 
      bool m_depth_is_required = false; 
