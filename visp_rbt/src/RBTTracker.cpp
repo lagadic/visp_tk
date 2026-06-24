@@ -26,6 +26,10 @@
 
 namespace visp_rbt
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 RBTTracker::RBTTracker(const std::string &name) : visp_tracker_common::BaseMultiModalTracker(name, true)
 {
   //////////////////////////////////////////////////////////////////////

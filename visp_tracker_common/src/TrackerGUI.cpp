@@ -26,6 +26,10 @@
 
 namespace visp_tracker_common
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 TrackerGUI::TrackerGUI(const std::string &node_name)
   : rclcpp::Node(node_name)
 {

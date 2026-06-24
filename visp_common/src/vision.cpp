@@ -33,6 +33,10 @@ namespace visp_common
 {
 namespace vision
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 vision_msgs::msg::Point2D toVisionMsgsPoint2D(const vpImagePoint &ip)
 {
   return (vision_msgs::msg::Point2D().set__x(ip.get_u()).set__y(ip.get_v()));
