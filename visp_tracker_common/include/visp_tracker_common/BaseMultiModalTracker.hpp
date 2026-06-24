@@ -137,7 +137,7 @@ protected:
 
   // ----- Tracking-related attributes -----
   bool m_depth_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.
-  std::string m_depth_camera_topic_name; //!< The name of the depth camera topic.
+  std::string m_depth_camera_info_topic_name; //!< The name of the depth camera topic.
   std::string m_depth_stream_name; //!< The name of the depth image topic.
   VISP_NAMESPACE_ADDRESSING vpCameraParameters m_depth_cam; //!< The depth camera parameters.
   bool m_depth_is_required = false; //!< If true, it means that the tracker requires a depth stream to run.

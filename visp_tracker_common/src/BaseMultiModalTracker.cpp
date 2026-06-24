@@ -37,25 +37,25 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   // // ---- Parameters related to the services ----
 
   // // ---- Parameters related to the publishers / subscribers ----
-  auto depth_camera_topic_name_param = rclcpp::Parameter();
-  auto depth_camera_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
-  depth_camera_topic_name_desc.description = "Name of the depth camera topic.";
-  this->declare_parameter("depth_camera_topic_name", "", depth_camera_topic_name_desc);
-  this->get_parameter("depth_camera_topic_name", depth_camera_topic_name_param);
-  m_depth_camera_topic_name = depth_camera_topic_name_param.as_string();
-  if (m_depth_camera_topic_name.empty()) {
-    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_camera_topic_name_param.get_name().c_str());
-    m_depth_camera_topic_name = BaseTracker::s_dumb_topic_name;
+  auto depth_camera_info_topic_name_param = rclcpp::Parameter();
+  auto depth_camera_info_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  depth_camera_info_topic_name_desc.description = "Name of the depth camera topic.";
+  this->declare_parameter("depth_camera_info_topic_name", "", depth_camera_info_topic_name_desc);
+  this->get_parameter("depth_camera_info_topic_name", depth_camera_info_topic_name_param);
+  m_depth_camera_info_topic_name = depth_camera_info_topic_name_param.as_string();
+  if (m_depth_camera_info_topic_name.empty()) {
+    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_camera_info_topic_name_param.get_name().c_str());
+    m_depth_camera_info_topic_name = BaseTracker::s_dumb_topic_name;
   }
 
-  auto depth_stream_topic_name_param = rclcpp::Parameter();
-  auto depth_stream_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
-  depth_stream_topic_name_desc.description = "Name of the depth image topic.";
-  this->declare_parameter("depth_stream_topic_name", "", depth_stream_topic_name_desc);
-  this->get_parameter("depth_stream_topic_name", depth_stream_topic_name_param);
-  m_depth_stream_name = depth_stream_topic_name_param.as_string();
+  auto depth_image_topic_name_param = rclcpp::Parameter();
+  auto depth_image_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  depth_image_topic_name_desc.description = "Name of the depth image topic.";
+  this->declare_parameter("depth_image_topic_name", "", depth_image_topic_name_desc);
+  this->get_parameter("depth_image_topic_name", depth_image_topic_name_param);
+  m_depth_stream_name = depth_image_topic_name_param.as_string();
   if (m_depth_stream_name.empty()) {
-    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_stream_topic_name_param.get_name().c_str());
+    RCLCPP_WARN(this->get_logger(), "'%s' has not been set ! Setting a dumb value.", depth_image_topic_name_param.get_name().c_str());
     m_depth_stream_name = BaseTracker::s_dumb_topic_name;
   }
 
@@ -111,20 +111,20 @@ bool BaseMultiModalTracker::init()
   check_requires_depth();
 
   if (m_depth_is_required) {
-    if (m_depth_camera_topic_name == BaseTracker::s_dumb_topic_name) {
-      RCLCPP_ERROR(this->get_logger(), "'depth_camera_topic_name' parameter was not set, so the depth camera subscriber is ill-initialized.");
+    if (m_depth_camera_info_topic_name == BaseTracker::s_dumb_topic_name) {
+      RCLCPP_ERROR(this->get_logger(), "'depth_camera_info_topic_name' parameter was not set, so the depth camera subscriber is ill-initialized.");
       return false;
     }
     auto n = 10;
     auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
 
     m_depth_cam_info_sub = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-      m_depth_camera_topic_name, qos,
+      m_depth_camera_info_topic_name, qos,
       std::bind(&BaseMultiModalTracker::depth_camera_info_callback, this, std::placeholders::_1));
-    RCLCPP_INFO(this->get_logger(), "Subscribed to depth camera topic %s", m_depth_camera_topic_name.c_str());
+    RCLCPP_INFO(this->get_logger(), "Subscribed to depth camera topic %s", m_depth_camera_info_topic_name.c_str());
 
     if (m_depth_stream_name == BaseTracker::s_dumb_topic_name) {
-      RCLCPP_ERROR(this->get_logger(), "'depth_stream_topic_name' parameter was not set, so the depth stream subscriber is ill-initialized.");
+      RCLCPP_ERROR(this->get_logger(), "'depth_image_topic_name' parameter was not set, so the depth stream subscriber is ill-initialized.");
       return false;
     }
     else {
