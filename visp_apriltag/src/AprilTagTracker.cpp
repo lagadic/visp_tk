@@ -24,7 +24,6 @@
 
 #include <visp_apriltag/AprilTagTracker.hpp>
 
-
 #if VISP_VERSION_INT <= VP_VERSION_INT(3, 7, 0)
 namespace
 {
@@ -146,6 +145,11 @@ vpDetectorAprilTag::vpPoseEstimationMethod poseMethodFromString(const std::strin
 
 namespace visp_apriltag
 {
+
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 void fromImagePoint(const vpImagePoint &ip, vision_msgs::msg::Point2D &out)
 {
   out.x = ip.get_u();

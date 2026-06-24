@@ -64,10 +64,6 @@
 #include <omp.h>
 #endif
 
-#ifdef ENABLE_VISP_NAMESPACE
-using namespace VISP_NAMESPACE_NAME;
-#endif
-
 namespace visp_tracker_common
 {
 class TrackerGUI : public rclcpp::Node
@@ -236,19 +232,19 @@ protected:
 
   // ----- Display-related -----
   bool m_use_depth = false; //!< If true, the depth image will be displayed using a color encoding.
-  std::shared_ptr<vpDisplay> m_display_color; //!< Display for the RGB image.
-  std::shared_ptr<vpDisplay> m_display_depth; //!< Display for the depth image, if m_use_depth is true.
+  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_color; //!< Display for the RGB image.
+  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_depth; //!< Display for the depth image, if m_use_depth is true.
 
-  vpImage<vpRGBa> m_I; //!< RGB image.
+  VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> m_I; //!< RGB image.
   std::mutex m_mutex_Id; //!< Mutex that protects depth image.
-  std::optional<vpImage<vpRGBa>> m_opt_Id = std::nullopt; //!< Color-encoded depth image for rendering purpous, if m_use_depth is true.
+  std::optional<VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa>> m_opt_Id = std::nullopt; //!< Color-encoded depth image for rendering purpous, if m_use_depth is true.
   std::optional<uint16_t> m_opt_min_depth = std::nullopt; //!< Min depth to render.
   std::optional<uint16_t> m_opt_max_depth = std::nullopt; //!< Max depth to render.
   int m_display_nb_frames_skipped = -1; //!< -1 to display all the frames, either will display 1 frame every N frames.
   int m_frame_cnt = 0; //!< Counter if not all the frames must be displayed.
   unsigned int m_features_thickness = 1; //!< Thickness of the 2D features.
   FeaturesType m_features_type = FeaturesType::POINT; //!< How to render 2D points on screen.
-  std::optional<vpCameraParameters> m_opt_rgb_cam = std::nullopt; //!< To display the poses.
+  std::optional<VISP_NAMESPACE_ADDRESSING vpCameraParameters> m_opt_rgb_cam = std::nullopt; //!< To display the poses.
 
   // ----- Others -----
   bool m_run = true; //!< When set to false, the TrackerGUI will shutdown.

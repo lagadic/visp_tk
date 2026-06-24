@@ -44,6 +44,10 @@ namespace visp_common
 {
 namespace image
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<unsigned char> &src)
 {
   sensor_msgs::msg::Image dst;
