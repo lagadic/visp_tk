@@ -3,14 +3,14 @@
   <compounddef id="namespacevisp__common_1_1image" kind="namespace" language="C++">
     <compoundname>visp_common::image</compoundname>
     <sectiondef kind="func">
-      <memberdef kind="function" id="image_8hpp_1a49c42eed79a389be93775ea21aec89b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="image_8hpp_1a3178f5e3391eb20a6ad66d43f8ac9780" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sensor_msgs::msg::Image</type>
         <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
-        <argsstring>(const vpImage&lt; unsigned char &gt; &amp;src)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt; &amp;src)</argsstring>
         <name>toSensorMsgsImage</name>
         <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
         <param>
-          <type>const vpImage&lt; unsigned char &gt; &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt; &amp;</type>
           <declname>src</declname>
         </param>
         <briefdescription>
@@ -32,16 +32,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="51" column="25" declfile="include/visp_common/image.hpp" declline="51" declcolumn="25"/>
+        <location file="include/visp_common/image.hpp" line="47" column="25" declfile="include/visp_common/image.hpp" declline="47" declcolumn="25"/>
       </memberdef>
-      <memberdef kind="function" id="image_8hpp_1a6a5fe425855683d79b371988d7d5439b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="image_8hpp_1abd2bce1963138ba257f78ece3037ce5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sensor_msgs::msg::Image</type>
         <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
-        <argsstring>(const vpImage&lt; uint16_t &gt; &amp;src)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; uint16_t &gt; &amp;src)</argsstring>
         <name>toSensorMsgsImage</name>
         <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
         <param>
-          <type>const vpImage&lt; uint16_t &gt; &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpImage&lt; uint16_t &gt; &amp;</type>
           <declname>src</declname>
         </param>
         <briefdescription>
@@ -63,16 +63,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="57" column="25" declfile="include/visp_common/image.hpp" declline="57" declcolumn="25"/>
+        <location file="include/visp_common/image.hpp" line="53" column="25" declfile="include/visp_common/image.hpp" declline="53" declcolumn="25"/>
       </memberdef>
-      <memberdef kind="function" id="image_8hpp_1a9747b8ed5f82e4247bacf4f055e0fa26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="image_8hpp_1a4b86075928ea2125e933e7b079d4be84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sensor_msgs::msg::Image</type>
         <definition>sensor_msgs::msg::Image visp_common::image::toSensorMsgsImage</definition>
-        <argsstring>(const vpImage&lt; vpRGBa &gt; &amp;src)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt; &amp;src)</argsstring>
         <name>toSensorMsgsImage</name>
         <qualifiedname>visp_common::image::toSensorMsgsImage</qualifiedname>
         <param>
-          <type>const vpImage&lt; vpRGBa &gt; &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt; &amp;</type>
           <declname>src</declname>
         </param>
         <briefdescription>
@@ -94,11 +94,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="63" column="25" declfile="include/visp_common/image.hpp" declline="63" declcolumn="25"/>
+        <location file="include/visp_common/image.hpp" line="59" column="25" declfile="include/visp_common/image.hpp" declline="59" declcolumn="25"/>
       </memberdef>
-      <memberdef kind="function" id="image_8hpp_1af59c1f87a9a1b0de8601afac51fbf46e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpImage&lt; unsigned char &gt;</type>
-        <definition>vpImage&lt; unsigned char &gt; visp_common::image::toVispImageChar</definition>
+      <memberdef kind="function" id="image_8hpp_1a36bfe50ba5d79ff25fa216d917878af0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt; visp_common::image::toVispImageChar</definition>
         <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
         <name>toVispImageChar</name>
         <qualifiedname>visp_common::image::toVispImageChar</qualifiedname>
@@ -125,11 +125,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="70" column="9" declfile="include/visp_common/image.hpp" declline="70" declcolumn="9"/>
+        <location file="include/visp_common/image.hpp" line="66" column="35" declfile="include/visp_common/image.hpp" declline="66" declcolumn="35"/>
       </memberdef>
-      <memberdef kind="function" id="image_8hpp_1ab4d8caaa006e64e830573f71ab65c5a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpImage&lt; uint16_t &gt;</type>
-        <definition>vpImage&lt; uint16_t &gt; visp_common::image::toVispImageUint16</definition>
+      <memberdef kind="function" id="image_8hpp_1a82e0790bcc7cc76c7da54e33224abee5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; uint16_t &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt; uint16_t &gt; visp_common::image::toVispImageUint16</definition>
         <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
         <name>toVispImageUint16</name>
         <qualifiedname>visp_common::image::toVispImageUint16</qualifiedname>
@@ -156,11 +156,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="77" column="9" declfile="include/visp_common/image.hpp" declline="77" declcolumn="9"/>
+        <location file="include/visp_common/image.hpp" line="73" column="35" declfile="include/visp_common/image.hpp" declline="73" declcolumn="35"/>
       </memberdef>
-      <memberdef kind="function" id="image_8hpp_1a1b7352fb085eeb0df06d567e88377d6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpImage&lt; vpRGBa &gt;</type>
-        <definition>vpImage&lt; vpRGBa &gt; visp_common::image::toVispImageRGBa</definition>
+      <memberdef kind="function" id="image_8hpp_1adc67511fe2822c33d85de79f9c1edf4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt; visp_common::image::toVispImageRGBa</definition>
         <argsstring>(const sensor_msgs::msg::Image &amp;src)</argsstring>
         <name>toVispImageRGBa</name>
         <qualifiedname>visp_common::image::toVispImageRGBa</qualifiedname>
@@ -187,13 +187,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/image.hpp" line="84" column="9" declfile="include/visp_common/image.hpp" declline="84" declcolumn="9"/>
+        <location file="include/visp_common/image.hpp" line="80" column="35" declfile="include/visp_common/image.hpp" declline="80" declcolumn="35"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_common/image.hpp" line="44" column="1"/>
+    <location file="include/visp_common/image.hpp" line="40" column="1"/>
   </compounddef>
 </doxygen>

@@ -66,28 +66,24 @@
 <codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VISP_COMMON__3DPOSE_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VISP_COMMON__3DPOSE_H_</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENABLE_VISP_NAMESPACE</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_common</highlight></codeline>
-<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pose</highlight></codeline>
-<codeline lineno="45"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="51" refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" refkind="member"><highlight class="normal">vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Transform<sp/>&amp;trans);</highlight></codeline>
-<codeline lineno="57" refid="pose_8hpp_1adc41c634f27039965dd0a2537f40fa6f" refkind="member"><highlight class="normal">vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Transform::ConstSharedPtr<sp/>&amp;trans);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="pose_8hpp_1addc5dd3ce873589705bc58fd7602b8fb" refkind="member"><highlight class="normal">vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Pose<sp/>&amp;pose);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="pose_8hpp_1ad2526456b4a67d38cab86de9206129f9" refkind="member"><highlight class="normal">vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Pose::ConstSharedPtr<sp/>&amp;pose);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="78" refid="pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c" refkind="member"><highlight class="normal">geometry_msgs::msg::Transform<sp/><ref refid="pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c" kindref="member">toGeometryMsgsTransform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vpHomogeneousMatrix<sp/>&amp;mat);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85" refid="pose_8hpp_1a67762dad984684272b65ef88a335c2c7" refkind="member"><highlight class="normal">geometry_msgs::msg::Pose<sp/><ref refid="pose_8hpp_1a67762dad984684272b65ef88a335c2c7" kindref="member">toGeometryMsgsPose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vpHomogeneousMatrix<sp/>&amp;mat);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>pose</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>visp_common</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>VISP_COMMON__3DPOSE_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_common</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">pose</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47" refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" refkind="member"><highlight class="normal">VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Transform<sp/>&amp;trans);</highlight></codeline>
+<codeline lineno="53" refid="pose_8hpp_1afbee63530aae5ba7572eaca47c7c5bab" refkind="member"><highlight class="normal">VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Transform::ConstSharedPtr<sp/>&amp;trans);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990" refkind="member"><highlight class="normal">VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Pose<sp/>&amp;pose);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="pose_8hpp_1a401a0b7557921c932783ba1d22b5a9c9" refkind="member"><highlight class="normal">VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/><ref refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" kindref="member">toVispHomogeneousMatrix</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>geometry_msgs::msg::Pose::ConstSharedPtr<sp/>&amp;pose);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="pose_8hpp_1a99cf162605318a244dcbc3ffad42db49" refkind="member"><highlight class="normal">geometry_msgs::msg::Transform<sp/><ref refid="pose_8hpp_1a99cf162605318a244dcbc3ffad42db49" kindref="member">toGeometryMsgsTransform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/>&amp;mat);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="pose_8hpp_1aeff6e9a49446a013ed16a8d7fa49d6ad" refkind="member"><highlight class="normal">geometry_msgs::msg::Pose<sp/><ref refid="pose_8hpp_1aeff6e9a49446a013ed16a8d7fa49d6ad" kindref="member">toGeometryMsgsPose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VISP_NAMESPACE_ADDRESSING<sp/>vpHomogeneousMatrix<sp/>&amp;mat);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>pose</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>visp_common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>VISP_COMMON__3DPOSE_H_</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="include/visp_common/pose.hpp"/>
   </compounddef>

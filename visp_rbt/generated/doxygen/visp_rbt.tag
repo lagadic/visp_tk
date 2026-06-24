@@ -28,15 +28,15 @@
       <type>virtual bool</type>
       <name>init_tracking</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
-      <anchor>a4aa7558637f7a328c52543a6d4a71fec</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
+      <anchor>a6b8726e1d0fc835aeff41cc911daedac</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
       <name>perform_tracking</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
-      <anchor>a90ac5ade12d73d59c3449c48463ba77e</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
+      <anchor>a297020573b1490bd3657210b17c3c87f</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
@@ -88,24 +88,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; unsigned char &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
       <name>m_I</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
-      <anchor>a5031ff1e667ebdcc766840e6836c0e5b</anchor>
+      <anchor>aae3e038b9ac87e4b96b863f36e60cc6f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; vpRGBa &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
       <name>m_Ic</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
-      <anchor>a3b9d5e8036421b39ba9e591161f12f54</anchor>
+      <anchor>a992c592a9265d3a2b316a638547cd0a9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; float &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; float &gt;</type>
       <name>m_I_depth</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
-      <anchor>a268367adcf98ce01e6f912fc6420664a</anchor>
+      <anchor>a75ed11e41ee7f8f7a498dcede4a31628</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">

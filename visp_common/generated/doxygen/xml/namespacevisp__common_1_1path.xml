@@ -32,13 +32,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/path_retriever.hpp" line="46" column="13" declfile="include/visp_common/path_retriever.hpp" declline="46" declcolumn="13"/>
+        <location file="include/visp_common/path_retriever.hpp" line="42" column="13" declfile="include/visp_common/path_retriever.hpp" declline="42" declcolumn="13"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_common/path_retriever.hpp" line="39" column="1"/>
+    <location file="include/visp_common/path_retriever.hpp" line="35" column="1"/>
   </compounddef>
 </doxygen>

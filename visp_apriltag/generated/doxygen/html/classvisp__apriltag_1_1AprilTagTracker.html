@@ -130,10 +130,10 @@ rclcpp::Subscription&lt; sensor_msgs::msg::Image &gt;::SharedPtr&#160;</td><td c
 rclcpp::Publisher&lt; visp_tracker_common::msg::AprilTagDetectionArray &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_tags_info_pub</b></td></tr>
 <tr class="memdesc:ab452a9d56c4f5d9ac05174186cd45197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publisher of the tag IDs, centers and so on. <br /></td></tr>
 <tr class="separator:ab452a9d56c4f5d9ac05174186cd45197"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba96561e4e37f74b1149872dd76b506d" id="r_aba96561e4e37f74b1149872dd76b506d"><td class="memItemLeft" align="right" valign="top"><a id="aba96561e4e37f74b1149872dd76b506d" name="aba96561e4e37f74b1149872dd76b506d"></a>
-vpDetectorAprilTag&#160;</td><td class="memItemRight" valign="bottom"><b>m_tag_detector</b></td></tr>
-<tr class="memdesc:aba96561e4e37f74b1149872dd76b506d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The detector. <br /></td></tr>
-<tr class="separator:aba96561e4e37f74b1149872dd76b506d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf32f4d09500765e2a48a51d8f109344" id="r_acf32f4d09500765e2a48a51d8f109344"><td class="memItemLeft" align="right" valign="top"><a id="acf32f4d09500765e2a48a51d8f109344" name="acf32f4d09500765e2a48a51d8f109344"></a>
+VISP_NAMESPACE_ADDRESSING vpDetectorAprilTag&#160;</td><td class="memItemRight" valign="bottom"><b>m_tag_detector</b></td></tr>
+<tr class="memdesc:acf32f4d09500765e2a48a51d8f109344"><td class="mdescLeft">&#160;</td><td class="mdescRight">The detector. <br /></td></tr>
+<tr class="separator:acf32f4d09500765e2a48a51d8f109344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e72d4492a29b2f2cec117afa8655572" id="r_a8e72d4492a29b2f2cec117afa8655572"><td class="memItemLeft" align="right" valign="top"><a id="a8e72d4492a29b2f2cec117afa8655572" name="a8e72d4492a29b2f2cec117afa8655572"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_family_name</b></td></tr>
 <tr class="memdesc:a8e72d4492a29b2f2cec117afa8655572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name of the tag family. <br /></td></tr>
@@ -146,10 +146,10 @@ std::map&lt; int64_t, float &gt;&#160;</td><td class="memItemRight" valign="bott
 float&#160;</td><td class="memItemRight" valign="bottom"><b>m_default_tag_size</b></td></tr>
 <tr class="memdesc:a73b9fc76114737b5cf55a0e0e4098ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tag size for any tag ID that is not list in m_tag_size_map. <br /></td></tr>
 <tr class="separator:a73b9fc76114737b5cf55a0e0e4098ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a870657e5053ec5a2c627f383e28b7233" id="r_a870657e5053ec5a2c627f383e28b7233"><td class="memItemLeft" align="right" valign="top"><a id="a870657e5053ec5a2c627f383e28b7233" name="a870657e5053ec5a2c627f383e28b7233"></a>
-vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
-<tr class="memdesc:a870657e5053ec5a2c627f383e28b7233"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color image on which the detection is performed. <br /></td></tr>
-<tr class="separator:a870657e5053ec5a2c627f383e28b7233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2dcf4c89bb248617ca81a9197de518e" id="r_ab2dcf4c89bb248617ca81a9197de518e"><td class="memItemLeft" align="right" valign="top"><a id="ab2dcf4c89bb248617ca81a9197de518e" name="ab2dcf4c89bb248617ca81a9197de518e"></a>
+VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
+<tr class="memdesc:ab2dcf4c89bb248617ca81a9197de518e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color image on which the detection is performed. <br /></td></tr>
+<tr class="separator:ab2dcf4c89bb248617ca81a9197de518e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a128cb923526072c874e2afc27ad47e35" id="r_a128cb923526072c874e2afc27ad47e35"><td class="memItemLeft" align="right" valign="top"><a id="a128cb923526072c874e2afc27ad47e35" name="a128cb923526072c874e2afc27ad47e35"></a>
 std::optional&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_opt_id</b> = std::nullopt</td></tr>
 <tr class="memdesc:a128cb923526072c874e2afc27ad47e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, the ID of the tag whose pose must be published. <br /></td></tr>

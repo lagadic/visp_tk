@@ -24,7 +24,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="102" column="16"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="98" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a3d628e39463fd27aa0c2612216fc323e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -39,7 +39,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="108" column="16"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="104" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1acf50c4c5fdef39ccf2f31895c4427e14" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="117" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="113" column="8"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="user-defined">
@@ -104,7 +104,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="133" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="129" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a92557dd9cd27b4427076489938ac1457" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -133,7 +133,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="140" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="136" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a1b54bdd3fcd13b6276e0af06428b2f96" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="150" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="146" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a13e2682afb2e4d7017e5d54d912d6c15" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -215,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="159" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="155" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1adc4a97b5b5fe71d3dd16768d59b44b1c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="168" column="8"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="164" column="8"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-type">
@@ -307,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="176" column="3" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="177" bodyend="182"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="172" column="3" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="173" bodyend="178"/>
       </memberdef>
       <memberdef kind="typedef" id="classvisp__tracker__common_1_1BaseTracker_1a99e59cce2748aabcc9b9c9c0d7cdf240" prot="protected" static="no">
         <type>enum <ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">visp_tracker_common::BaseTracker::InitializationMethod</ref></type>
@@ -322,7 +322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="182" column="24"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="178" column="24"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -339,7 +339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="211" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="211" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="207" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="207" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ace4bf1d81d7197558b3f67de67e04904" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; rclcpp::ParameterCallbackHandle &gt;</type>
@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="212" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="212" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="208" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="208" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a39d831fe8ab6cda72530b838fb2bc9a0" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; rclcpp::ParameterCallbackHandle &gt;</type>
@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="213" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="213" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="209" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="209" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af9fb3fdc5759916cc193c18c3683ce3a" prot="protected" static="no" mutable="no">
         <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
@@ -384,7 +384,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="216" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="216" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="212" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="212" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a7b83d9e457476228a556cdb9b5526258" prot="protected" static="no" mutable="no">
         <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
@@ -399,7 +399,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="217" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="217" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="213" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="213" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a61170c6360c2a92dc53e4f637148636a" prot="protected" static="no" mutable="no">
         <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
@@ -414,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="218" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="218" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="214" column="31" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="214" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" prot="protected" static="no" mutable="no">
         <type>rclcpp::Subscription&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr</type>
@@ -429,7 +429,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="221" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="221" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="217" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="217" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a4cd69f9f9ca3469c64e7ca877e2cef87" prot="protected" static="no" mutable="no">
         <type>rclcpp::Subscription&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr</type>
@@ -444,7 +444,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="222" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="222" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="218" column="36" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="218" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af66e4c3693048c6c4cd370692fb5c550" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; tf2_ros::TransformListener &gt;</type>
@@ -460,7 +460,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="223" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="223" bodyend="223"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="219" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="219" bodyend="219"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a0da500e5d4abf70a7d759355117ea7a1" prot="protected" static="no" mutable="no">
         <type>std::unique_ptr&lt; tf2_ros::Buffer &gt;</type>
@@ -476,7 +476,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="224" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="224" bodyend="224"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="220" column="19" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="220" bodyend="220"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ad0281bc3c4a051e593e7cea7e7baf1c6" prot="protected" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; visp_tracker_common::msg::NamedFeatureArray &gt;::SharedPtr</type>
@@ -491,7 +491,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="227" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="227" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="223" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="223" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ab28d6e771f71cbb1868fd2789605c6ed" prot="protected" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; visp_tracker_common::msg::InfoStrings &gt;::SharedPtr</type>
@@ -506,7 +506,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="228" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="228" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="224" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="224" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a991b68d7f04c76850c5720e09f338a23" prot="protected" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr</type>
@@ -521,7 +521,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="229" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="229" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="225" column="33" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="225" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a9fd3602793e36d481a3c944e7b546c02" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -537,7 +537,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="232" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="232" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="228" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="228" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ae561e01a5bc054a0ba1510ab61a6dd0f" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -553,7 +553,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="233" column="7" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="233" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="229" column="7" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="229" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a84633646ed112b6a10363c80d285d9f3" prot="protected" static="no" mutable="no">
         <type>unsigned int</type>
@@ -569,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="234" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="234" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="230" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="230" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac3b18a7739e1df1eff8fddf9434d0f29" prot="protected" static="no" mutable="no">
         <type>visp_tracker_common::msg::InfoStrings</type>
@@ -584,7 +584,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="235" column="41" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="235" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="231" column="41" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="231" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a411a6a7c29929d0d1462ce74726beea6" prot="protected" static="no" mutable="no">
         <type>unsigned int</type>
@@ -599,7 +599,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="236" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="236" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="232" column="16" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="232" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -615,7 +615,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="237" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="237" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="233" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="233" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -631,7 +631,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="240" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="240" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="236" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="236" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -646,7 +646,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="241" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="241" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="237" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="237" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1ac191581077e0eb166da5d78e300bd70c" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -661,11 +661,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="242" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="242" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="238" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="238" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a422883521e958ad7bff3dfd57ae2ec8f" prot="protected" static="no" mutable="no">
-        <type>vpCameraParameters</type>
-        <definition>vpCameraParameters visp_tracker_common::BaseTracker::m_rgb_cam</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a0f27d9d04c4597e5a5d750b50a5fc93c" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpCameraParameters visp_tracker_common::BaseTracker::m_rgb_cam</definition>
         <argsstring></argsstring>
         <name>m_rgb_cam</name>
         <qualifiedname>visp_tracker_common::BaseTracker::m_rgb_cam</qualifiedname>
@@ -676,7 +676,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="243" column="22" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="243" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="239" column="48" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="239" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a76560cf4b94a892db64eceb4f3879edd" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -691,7 +691,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="244" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="244" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="240" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="240" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1acb2fdfb133b94102106297c0a9e63f43" prot="protected" static="no" mutable="no">
         <type><ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">InitializationMethod</ref></type>
@@ -706,7 +706,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="245" column="24" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="245" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="241" column="24" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="241" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a17c413422c4fa11e7e40d3c8233b3eb9" prot="protected" static="no" mutable="no">
         <type>std::optional&lt; geometry_msgs::msg::PoseStamped &gt;</type>
@@ -721,7 +721,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="246" column="17" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="246" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="242" column="17" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="242" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a6bc4f006d01618011351fa877fd747d6" prot="protected" static="no" mutable="no">
         <type>std::mutex</type>
@@ -736,7 +736,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="249" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="249" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="245" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="245" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a9324ac8364a7ef7c81327ca4942144da" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -752,7 +752,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="250" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="250" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="246" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="246" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1abf53cddde9e1897bcbc888aa9fb957a9" prot="protected" static="no" mutable="no">
         <type>std::mutex</type>
@@ -767,7 +767,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="251" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="251" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="247" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="247" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1aa371c209a777603a62a45974d4b2b26e" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -783,7 +783,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="252" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="252" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="248" column="8" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="248" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a70021e81905c550c4c9d66f52f33da40" prot="protected" static="no" mutable="no">
         <type>std::mutex</type>
@@ -798,7 +798,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="253" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="253" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="249" column="14" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="249" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-static-attrib">
@@ -815,7 +815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="255" column="28" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="255" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="251" column="28" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="251" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1a59fb6fa95492234b32e368f8a3474e5e" prot="protected" static="yes" mutable="no">
         <type>const unsigned int</type>
@@ -830,7 +830,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="256" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="256" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="252" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="252" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseTracker_1af5860fc828aeb53a8c81eb997c10579a" prot="protected" static="yes" mutable="no">
         <type>const unsigned int</type>
@@ -845,7 +845,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="257" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="257" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="253" column="29" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="253" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -888,7 +888,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="63" column="3"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="59" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1aebdd69964ded55d482f5d541ada3bac2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -902,7 +902,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="65" column="11"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="61" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -923,7 +923,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="73" column="16"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="69" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a6b825aa62b87d4fe03df83808a16849a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -943,7 +943,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="81" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="81" bodyend="84"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="77" column="15" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="77" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1abdf8048c41dd61112e2d5703ddca55fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -958,7 +958,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="90" column="16"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="86" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-static-func">
@@ -991,7 +991,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="190" column="22"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="186" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1ad2ef46ae0aab6b051023cbf9ab6368e7" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classvisp__tracker__common_1_1BaseTracker_1a6ea659bd327687a484e630f8f70eef3f" kindref="member">InitializationMethod</ref></type>
@@ -1022,7 +1022,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="198" column="31"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="194" column="31"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseTracker_1a7845c65b2ce5c0fc0d8f94e0b092e2c5" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -1080,7 +1080,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseTracker.hpp" line="208" column="22"/>
+        <location file="include/visp_tracker_common/BaseTracker.hpp" line="204" column="22"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1115,7 +1115,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/visp_tracker_common/BaseTracker.hpp" line="54" column="1" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="55" bodyend="258"/>
+    <location file="include/visp_tracker_common/BaseTracker.hpp" line="50" column="1" bodyfile="include/visp_tracker_common/BaseTracker.hpp" bodystart="51" bodyend="254"/>
     <listofallmembers>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e" prot="public" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>BaseTracker</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ace4bf1d81d7197558b3f67de67e04904" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>cb_handle_</name></member>
@@ -1153,7 +1153,7 @@
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a991b68d7f04c76850c5720e09f338a23" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_poses_pub</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a9324ac8364a7ef7c81327ca4942144da" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_quit</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1af9fb3fdc5759916cc193c18c3683ce3a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_quit_srv</name></member>
-      <member refid="classvisp__tracker__common_1_1BaseTracker_1a422883521e958ad7bff3dfd57ae2ec8f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a0f27d9d04c4597e5a5d750b50a5fc93c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam_info_received</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_cam_info_sub</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseTracker</scope><name>m_rgb_camera_info_topic_name</name></member>

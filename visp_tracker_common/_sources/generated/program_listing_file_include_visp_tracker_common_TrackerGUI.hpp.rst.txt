@@ -76,10 +76,6 @@ Program Listing for File TrackerGUI.hpp
    #include <omp.h>
    #endif
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_tracker_common
    {
    class TrackerGUI : public rclcpp::Node
@@ -174,19 +170,19 @@ Program Listing for File TrackerGUI.hpp
    
      // ----- Display-related -----
      bool m_use_depth = false; 
-     std::shared_ptr<vpDisplay> m_display_color; 
-     std::shared_ptr<vpDisplay> m_display_depth; 
+     std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_color; 
+     std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_depth; 
    
-     vpImage<vpRGBa> m_I; 
+     VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> m_I; 
      std::mutex m_mutex_Id; 
-     std::optional<vpImage<vpRGBa>> m_opt_Id = std::nullopt; 
+     std::optional<VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa>> m_opt_Id = std::nullopt; 
      std::optional<uint16_t> m_opt_min_depth = std::nullopt; 
      std::optional<uint16_t> m_opt_max_depth = std::nullopt; 
      int m_display_nb_frames_skipped = -1; 
      int m_frame_cnt = 0; 
      unsigned int m_features_thickness = 1; 
      FeaturesType m_features_type = FeaturesType::POINT; 
-     std::optional<vpCameraParameters> m_opt_rgb_cam = std::nullopt; 
+     std::optional<VISP_NAMESPACE_ADDRESSING vpCameraParameters> m_opt_rgb_cam = std::nullopt; 
    
      // ----- Others -----
      bool m_run = true; 

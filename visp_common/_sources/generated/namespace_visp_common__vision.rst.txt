@@ -17,6 +17,6 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_vision_8hpp_1a90dadaecf240bc9e574400f5a224add6`
+- :ref:`exhale_function_vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036`
 
-- :ref:`exhale_function_vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d`
+- :ref:`exhale_function_vision_8hpp_1a761b5cc98e1ef476a5324941d345a518`

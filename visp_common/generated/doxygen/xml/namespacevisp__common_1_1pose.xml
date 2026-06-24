@@ -3,9 +3,9 @@
   <compounddef id="namespacevisp__common_1_1pose" kind="namespace" language="C++">
     <compoundname>visp_common::pose</compoundname>
     <sectiondef kind="func">
-      <memberdef kind="function" id="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpHomogeneousMatrix</type>
-        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+      <memberdef kind="function" id="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
         <argsstring>(const geometry_msgs::msg::Transform &amp;trans)</argsstring>
         <name>toVispHomogeneousMatrix</name>
         <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
@@ -32,11 +32,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="51" column="21" declfile="include/visp_common/pose.hpp" declline="51" declcolumn="21"/>
+        <location file="include/visp_common/pose.hpp" line="47" column="47" declfile="include/visp_common/pose.hpp" declline="47" declcolumn="47"/>
       </memberdef>
-      <memberdef kind="function" id="pose_8hpp_1adc41c634f27039965dd0a2537f40fa6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpHomogeneousMatrix</type>
-        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+      <memberdef kind="function" id="pose_8hpp_1afbee63530aae5ba7572eaca47c7c5bab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
         <argsstring>(const geometry_msgs::msg::Transform::ConstSharedPtr &amp;trans)</argsstring>
         <name>toVispHomogeneousMatrix</name>
         <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
@@ -63,11 +63,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="57" column="21" declfile="include/visp_common/pose.hpp" declline="57" declcolumn="21"/>
+        <location file="include/visp_common/pose.hpp" line="53" column="47" declfile="include/visp_common/pose.hpp" declline="53" declcolumn="47"/>
       </memberdef>
-      <memberdef kind="function" id="pose_8hpp_1addc5dd3ce873589705bc58fd7602b8fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpHomogeneousMatrix</type>
-        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+      <memberdef kind="function" id="pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
         <argsstring>(const geometry_msgs::msg::Pose &amp;pose)</argsstring>
         <name>toVispHomogeneousMatrix</name>
         <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
@@ -94,11 +94,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="64" column="21" declfile="include/visp_common/pose.hpp" declline="64" declcolumn="21"/>
+        <location file="include/visp_common/pose.hpp" line="60" column="47" declfile="include/visp_common/pose.hpp" declline="60" declcolumn="47"/>
       </memberdef>
-      <memberdef kind="function" id="pose_8hpp_1ad2526456b4a67d38cab86de9206129f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpHomogeneousMatrix</type>
-        <definition>vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
+      <memberdef kind="function" id="pose_8hpp_1a401a0b7557921c932783ba1d22b5a9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix visp_common::pose::toVispHomogeneousMatrix</definition>
         <argsstring>(const geometry_msgs::msg::Pose::ConstSharedPtr &amp;pose)</argsstring>
         <name>toVispHomogeneousMatrix</name>
         <qualifiedname>visp_common::pose::toVispHomogeneousMatrix</qualifiedname>
@@ -125,16 +125,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="71" column="21" declfile="include/visp_common/pose.hpp" declline="71" declcolumn="21"/>
+        <location file="include/visp_common/pose.hpp" line="67" column="47" declfile="include/visp_common/pose.hpp" declline="67" declcolumn="47"/>
       </memberdef>
-      <memberdef kind="function" id="pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="pose_8hpp_1a99cf162605318a244dcbc3ffad42db49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>geometry_msgs::msg::Transform</type>
         <definition>geometry_msgs::msg::Transform visp_common::pose::toGeometryMsgsTransform</definition>
-        <argsstring>(const vpHomogeneousMatrix &amp;mat)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;mat)</argsstring>
         <name>toGeometryMsgsTransform</name>
         <qualifiedname>visp_common::pose::toGeometryMsgsTransform</qualifiedname>
         <param>
-          <type>const vpHomogeneousMatrix &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;</type>
           <declname>mat</declname>
         </param>
         <briefdescription>
@@ -156,16 +156,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="78" column="31" declfile="include/visp_common/pose.hpp" declline="78" declcolumn="31"/>
+        <location file="include/visp_common/pose.hpp" line="74" column="31" declfile="include/visp_common/pose.hpp" declline="74" declcolumn="31"/>
       </memberdef>
-      <memberdef kind="function" id="pose_8hpp_1a67762dad984684272b65ef88a335c2c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="pose_8hpp_1aeff6e9a49446a013ed16a8d7fa49d6ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>geometry_msgs::msg::Pose</type>
         <definition>geometry_msgs::msg::Pose visp_common::pose::toGeometryMsgsPose</definition>
-        <argsstring>(const vpHomogeneousMatrix &amp;mat)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;mat)</argsstring>
         <name>toGeometryMsgsPose</name>
         <qualifiedname>visp_common::pose::toGeometryMsgsPose</qualifiedname>
         <param>
-          <type>const vpHomogeneousMatrix &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;</type>
           <declname>mat</declname>
         </param>
         <briefdescription>
@@ -187,13 +187,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/pose.hpp" line="85" column="26" declfile="include/visp_common/pose.hpp" declline="85" declcolumn="26"/>
+        <location file="include/visp_common/pose.hpp" line="81" column="26" declfile="include/visp_common/pose.hpp" declline="81" declcolumn="26"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_common/pose.hpp" line="44" column="1"/>
+    <location file="include/visp_common/pose.hpp" line="40" column="1"/>
   </compounddef>
 </doxygen>

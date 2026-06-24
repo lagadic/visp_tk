@@ -3,9 +3,9 @@
   <compounddef id="namespacevisp__common_1_1camera" kind="namespace" language="C++">
     <compoundname>visp_common::camera</compoundname>
     <sectiondef kind="func">
-      <memberdef kind="function" id="camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpCameraParameters</type>
-        <definition>vpCameraParameters visp_common::camera::toVispCameraParameters</definition>
+      <memberdef kind="function" id="camera_8hpp_1ae99fd2a005c42a91daefc08369bee32e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpCameraParameters visp_common::camera::toVispCameraParameters</definition>
         <argsstring>(const sensor_msgs::msg::CameraInfo &amp;cam_info)</argsstring>
         <name>toVispCameraParameters</name>
         <qualifiedname>visp_common::camera::toVispCameraParameters</qualifiedname>
@@ -32,11 +32,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/camera.hpp" line="50" column="20" declfile="include/visp_common/camera.hpp" declline="50" declcolumn="20"/>
+        <location file="include/visp_common/camera.hpp" line="46" column="46" declfile="include/visp_common/camera.hpp" declline="46" declcolumn="46"/>
       </memberdef>
-      <memberdef kind="function" id="camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpCameraParameters</type>
-        <definition>vpCameraParameters visp_common::camera::toVispCameraParameters</definition>
+      <memberdef kind="function" id="camera_8hpp_1ad2b913c8f4e74b3a949bc7c11c55f729" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpCameraParameters visp_common::camera::toVispCameraParameters</definition>
         <argsstring>(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &amp;cam_info)</argsstring>
         <name>toVispCameraParameters</name>
         <qualifiedname>visp_common::camera::toVispCameraParameters</qualifiedname>
@@ -63,16 +63,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/camera.hpp" line="56" column="20" declfile="include/visp_common/camera.hpp" declline="56" declcolumn="20"/>
+        <location file="include/visp_common/camera.hpp" line="52" column="46" declfile="include/visp_common/camera.hpp" declline="52" declcolumn="46"/>
       </memberdef>
-      <memberdef kind="function" id="camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="camera_8hpp_1a7b18b440c1dc99810d50eab14ea64518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>sensor_msgs::msg::CameraInfo</type>
         <definition>sensor_msgs::msg::CameraInfo visp_common::camera::toSensorMsgsCameraInfo</definition>
-        <argsstring>(vpCameraParameters &amp;cam_info, unsigned int cam_image_width, unsigned int cam_image_height)</argsstring>
+        <argsstring>(VISP_NAMESPACE_ADDRESSING vpCameraParameters &amp;cam_info, unsigned int cam_image_width, unsigned int cam_image_height)</argsstring>
         <name>toSensorMsgsCameraInfo</name>
         <qualifiedname>visp_common::camera::toSensorMsgsCameraInfo</qualifiedname>
         <param>
-          <type>vpCameraParameters &amp;</type>
+          <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters &amp;</type>
           <declname>cam_info</declname>
         </param>
         <param>
@@ -118,13 +118,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/camera.hpp" line="64" column="30" declfile="include/visp_common/camera.hpp" declline="64" declcolumn="30"/>
+        <location file="include/visp_common/camera.hpp" line="60" column="30" declfile="include/visp_common/camera.hpp" declline="60" declcolumn="30"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_common/camera.hpp" line="43" column="1"/>
+    <location file="include/visp_common/camera.hpp" line="39" column="1"/>
   </compounddef>
 </doxygen>

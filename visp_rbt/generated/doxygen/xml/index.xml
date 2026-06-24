@@ -8,17 +8,17 @@
     <member refid="classvisp__rbt_1_1RBTTracker_1ae930c37bd0122022943a9a65c7195cf4" kind="variable"><name>m_tracker_initialized</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b" kind="variable"><name>m_tracker_cams_set</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd" kind="variable"><name>m_init_file_path</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a5031ff1e667ebdcc766840e6836c0e5b" kind="variable"><name>m_I</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a3b9d5e8036421b39ba9e591161f12f54" kind="variable"><name>m_Ic</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a268367adcf98ce01e6f912fc6420664a" kind="variable"><name>m_I_depth</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1aa675e0b56835aa1cf75fcdc3c123dd03" kind="variable"><name>m_tracker</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1aae3e038b9ac87e4b96b863f36e60cc6f" kind="variable"><name>m_I</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a992c592a9265d3a2b316a638547cd0a9" kind="variable"><name>m_Ic</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a75ed11e41ee7f8f7a498dcede4a31628" kind="variable"><name>m_I_depth</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1aa894f7d8ac85afbbe8e3388c386877c5" kind="variable"><name>m_tracker</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a15eb38152a17650eee397c29a8146b78" kind="function"><name>RBTTracker</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a36ba7acfe6adb5f0d959242f6a463ffe" kind="function"><name>~RBTTracker</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1af20405d3ac422bf3b8b59f811fa47b9c" kind="function"><name>treat_rgb</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a27ce6478d655a2ffaba9326f378a29dc" kind="function"><name>treat_depth</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1afd0bb3fe54b57ca075ff699ca26331bd" kind="function"><name>track</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a4aa7558637f7a328c52543a6d4a71fec" kind="function"><name>init_tracking</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a90ac5ade12d73d59c3449c48463ba77e" kind="function"><name>perform_tracking</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a6b8726e1d0fc835aeff41cc911daedac" kind="function"><name>init_tracking</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a297020573b1490bd3657210b17c3c87f" kind="function"><name>perform_tracking</name></member>
   </compound>
   <compound refid="namespacevisp__rbt" kind="namespace"><name>visp_rbt</name>
   </compound>

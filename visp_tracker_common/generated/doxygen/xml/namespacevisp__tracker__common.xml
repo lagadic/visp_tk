@@ -101,6 +101,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="48" column="1"/>
+    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="44" column="1"/>
   </compounddef>
 </doxygen>

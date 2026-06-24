@@ -3,32 +3,32 @@
   <compound refid="namespacevisp__common" kind="namespace"><name>visp_common</name>
   </compound>
   <compound refid="namespacevisp__common_1_1camera" kind="namespace"><name>visp_common::camera</name>
-    <member refid="camera_8hpp_1ae982ee2c607f766d989e9a968b9d4e91" kind="function"><name>toVispCameraParameters</name></member>
-    <member refid="camera_8hpp_1afee4bfb1b06a8b575c813821ab8126cc" kind="function"><name>toVispCameraParameters</name></member>
-    <member refid="camera_8hpp_1a6137db34cdb709c2ffb9d1cb4bc72521" kind="function"><name>toSensorMsgsCameraInfo</name></member>
+    <member refid="camera_8hpp_1ae99fd2a005c42a91daefc08369bee32e" kind="function"><name>toVispCameraParameters</name></member>
+    <member refid="camera_8hpp_1ad2b913c8f4e74b3a949bc7c11c55f729" kind="function"><name>toVispCameraParameters</name></member>
+    <member refid="camera_8hpp_1a7b18b440c1dc99810d50eab14ea64518" kind="function"><name>toSensorMsgsCameraInfo</name></member>
   </compound>
   <compound refid="namespacevisp__common_1_1image" kind="namespace"><name>visp_common::image</name>
-    <member refid="image_8hpp_1a49c42eed79a389be93775ea21aec89b1" kind="function"><name>toSensorMsgsImage</name></member>
-    <member refid="image_8hpp_1a6a5fe425855683d79b371988d7d5439b" kind="function"><name>toSensorMsgsImage</name></member>
-    <member refid="image_8hpp_1a9747b8ed5f82e4247bacf4f055e0fa26" kind="function"><name>toSensorMsgsImage</name></member>
-    <member refid="image_8hpp_1af59c1f87a9a1b0de8601afac51fbf46e" kind="function"><name>toVispImageChar</name></member>
-    <member refid="image_8hpp_1ab4d8caaa006e64e830573f71ab65c5a0" kind="function"><name>toVispImageUint16</name></member>
-    <member refid="image_8hpp_1a1b7352fb085eeb0df06d567e88377d6b" kind="function"><name>toVispImageRGBa</name></member>
+    <member refid="image_8hpp_1a3178f5e3391eb20a6ad66d43f8ac9780" kind="function"><name>toSensorMsgsImage</name></member>
+    <member refid="image_8hpp_1abd2bce1963138ba257f78ece3037ce5e" kind="function"><name>toSensorMsgsImage</name></member>
+    <member refid="image_8hpp_1a4b86075928ea2125e933e7b079d4be84" kind="function"><name>toSensorMsgsImage</name></member>
+    <member refid="image_8hpp_1a36bfe50ba5d79ff25fa216d917878af0" kind="function"><name>toVispImageChar</name></member>
+    <member refid="image_8hpp_1a82e0790bcc7cc76c7da54e33224abee5" kind="function"><name>toVispImageUint16</name></member>
+    <member refid="image_8hpp_1adc67511fe2822c33d85de79f9c1edf4b" kind="function"><name>toVispImageRGBa</name></member>
   </compound>
   <compound refid="namespacevisp__common_1_1path" kind="namespace"><name>visp_common::path</name>
     <member refid="path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f" kind="function"><name>path_retriever</name></member>
   </compound>
   <compound refid="namespacevisp__common_1_1pose" kind="namespace"><name>visp_common::pose</name>
-    <member refid="pose_8hpp_1a9433407f20d765314aa9128633b5b7ca" kind="function"><name>toVispHomogeneousMatrix</name></member>
-    <member refid="pose_8hpp_1adc41c634f27039965dd0a2537f40fa6f" kind="function"><name>toVispHomogeneousMatrix</name></member>
-    <member refid="pose_8hpp_1addc5dd3ce873589705bc58fd7602b8fb" kind="function"><name>toVispHomogeneousMatrix</name></member>
-    <member refid="pose_8hpp_1ad2526456b4a67d38cab86de9206129f9" kind="function"><name>toVispHomogeneousMatrix</name></member>
-    <member refid="pose_8hpp_1aac53aefd82f7b811d858401d6a7d423c" kind="function"><name>toGeometryMsgsTransform</name></member>
-    <member refid="pose_8hpp_1a67762dad984684272b65ef88a335c2c7" kind="function"><name>toGeometryMsgsPose</name></member>
+    <member refid="pose_8hpp_1a47a46cb62c1ba58f0061088758f62358" kind="function"><name>toVispHomogeneousMatrix</name></member>
+    <member refid="pose_8hpp_1afbee63530aae5ba7572eaca47c7c5bab" kind="function"><name>toVispHomogeneousMatrix</name></member>
+    <member refid="pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990" kind="function"><name>toVispHomogeneousMatrix</name></member>
+    <member refid="pose_8hpp_1a401a0b7557921c932783ba1d22b5a9c9" kind="function"><name>toVispHomogeneousMatrix</name></member>
+    <member refid="pose_8hpp_1a99cf162605318a244dcbc3ffad42db49" kind="function"><name>toGeometryMsgsTransform</name></member>
+    <member refid="pose_8hpp_1aeff6e9a49446a013ed16a8d7fa49d6ad" kind="function"><name>toGeometryMsgsPose</name></member>
   </compound>
   <compound refid="namespacevisp__common_1_1vision" kind="namespace"><name>visp_common::vision</name>
-    <member refid="vision_8hpp_1a90dadaecf240bc9e574400f5a224add6" kind="function"><name>toVisionMsgsPoint2D</name></member>
-    <member refid="vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d" kind="function"><name>toVispImagePoint</name></member>
+    <member refid="vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036" kind="function"><name>toVisionMsgsPoint2D</name></member>
+    <member refid="vision_8hpp_1a761b5cc98e1ef476a5324941d345a518" kind="function"><name>toVispImagePoint</name></member>
   </compound>
   <compound refid="camera_8hpp" kind="file"><name>camera.hpp</name>
   </compound>

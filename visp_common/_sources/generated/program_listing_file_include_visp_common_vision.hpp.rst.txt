@@ -41,18 +41,14 @@ Program Listing for File vision.hpp
    
    #include <visp3/core/vpImagePoint.h>
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_common
    {
    namespace vision
    {
-   vision_msgs::msg::Point2D toVisionMsgsPoint2D(const vpImagePoint &ip);
+   vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vpImagePoint &ip);
    
    
-   vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
+   VISP_NAMESPACE_ADDRESSING vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
    }
    }
    

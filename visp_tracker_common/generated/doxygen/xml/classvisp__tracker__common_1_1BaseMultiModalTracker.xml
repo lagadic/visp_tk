@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="69" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="65" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="user-defined">
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="85" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="81" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5b5ccfc9a08e015290bf21a19866780" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="92" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="88" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1abab8e48e76358f97455d49a4d32fd7cd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -120,7 +120,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="100" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="96" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -137,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="131" column="36" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="131" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="127" column="36" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="127" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a6291d4e633d2b522966a0a889661abd4" prot="protected" static="no" mutable="no">
         <type>message_filters::Subscriber&lt; sensor_msgs::msg::Image &gt;</type>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="132" column="31" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="132" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="128" column="31" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="128" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1accfb8de0a1a276595a4ff7205ca0b3e6" prot="protected" static="no" mutable="no">
         <type>message_filters::Subscriber&lt; sensor_msgs::msg::Image &gt;</type>
@@ -167,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="133" column="31" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="133" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="129" column="31" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a97567812403d4049481260645b9a50a5" prot="protected" static="no" mutable="no">
         <type>std::shared_ptr&lt; message_filters::Synchronizer&lt; message_filters::sync_policies::ApproximateTime&lt; sensor_msgs::msg::Image, sensor_msgs::msg::Image &gt; &gt; &gt;</type>
@@ -182,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="135" column="2" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="135" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="131" column="2" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="131" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2cb6c71048240591c604bb27881e20cf" prot="protected" static="no" mutable="no">
         <type>rclcpp::Subscription&lt; sensor_msgs::msg::Image &gt;::SharedPtr</type>
@@ -197,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="136" column="36" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="136" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="132" column="36" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="132" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -213,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="143" column="8" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="143" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="139" column="8" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="139" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -228,7 +228,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="144" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="144" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="140" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="140" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a793dc0423fb01e8677cd10841f5d168a" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -243,11 +243,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="145" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="145" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="141" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="141" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a019e442cbecca9d6592d1d5279351a27" prot="protected" static="no" mutable="no">
-        <type>vpCameraParameters</type>
-        <definition>vpCameraParameters visp_tracker_common::BaseMultiModalTracker::m_depth_cam</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0c8d31ba49ce116fa8ea94ea1c1bf853" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpCameraParameters visp_tracker_common::BaseMultiModalTracker::m_depth_cam</definition>
         <argsstring></argsstring>
         <name>m_depth_cam</name>
         <qualifiedname>visp_tracker_common::BaseMultiModalTracker::m_depth_cam</qualifiedname>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="146" column="22" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="146" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="142" column="48" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="142" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -274,7 +274,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="147" column="8" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="147" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="143" column="8" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="143" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2425af3b39bc3658b8f95ce106be437c" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -289,7 +289,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="148" column="10" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="148" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="144" column="10" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0f3d32d7c030fcb708f8b7efd09caf8c" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -304,7 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="149" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="149" bodyend="-1"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="145" column="15" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="145" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -328,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="53" column="3"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="49" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a766db9af3d0ce2fedd965ec4aebfb0a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -342,7 +342,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="54" column="11"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="50" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
@@ -363,7 +363,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="59" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="55" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -394,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="111" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="107" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa704d104ecd009796bbefd5e6b410d94" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -423,7 +423,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="118" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="114" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a261bf71720f87f6c58db1320bc153f02" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
         <type>void</type>
@@ -438,7 +438,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="124" column="16"/>
+        <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="120" column="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -479,7 +479,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="50" column="1" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="51" bodyend="153"/>
+    <location file="include/visp_tracker_common/BaseMultiModalTracker.hpp" line="46" column="1" bodyfile="include/visp_tracker_common/BaseMultiModalTracker.hpp" bodystart="47" bodyend="149"/>
     <listofallmembers>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab2e6376d9dba6101546324dc16d20e00" prot="public" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>BaseMultiModalTracker</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e" prot="public" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>BaseTracker</name></member>
@@ -503,7 +503,7 @@
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ad2ef46ae0aab6b051023cbf9ab6368e7" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>initializationMethodFromString</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1abe67f248b25a79394bbfae03039223e3" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>initializationMethodToString</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a76560cf4b94a892db64eceb4f3879edd" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_config_file</name></member>
-      <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a019e442cbecca9d6592d1d5279351a27" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0c8d31ba49ce116fa8ea94ea1c1bf853" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam_info_received</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_cam_info_sub</name></member>
       <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a3a2ebf537190befc385939c57fba9e4b" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_depth_camera_topic_name</name></member>
@@ -528,7 +528,7 @@
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a991b68d7f04c76850c5720e09f338a23" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_poses_pub</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a9324ac8364a7ef7c81327ca4942144da" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_quit</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1af9fb3fdc5759916cc193c18c3683ce3a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_quit_srv</name></member>
-      <member refid="classvisp__tracker__common_1_1BaseTracker_1a422883521e958ad7bff3dfd57ae2ec8f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_rgb_cam</name></member>
+      <member refid="classvisp__tracker__common_1_1BaseTracker_1a0f27d9d04c4597e5a5d750b50a5fc93c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_rgb_cam</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_rgb_cam_info_received</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_rgb_cam_info_sub</name></member>
       <member refid="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" prot="protected" virt="non-virtual"><scope>visp_tracker_common::BaseMultiModalTracker</scope><name>m_rgb_camera_info_topic_name</name></member>

@@ -53,10 +53,6 @@ Program Listing for File BaseMultiModalTracker.hpp
    #include <visp_tracker_common/names.hpp>
    #include <visp_tracker_common/msg/named_feature.hpp>
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_tracker_common
    {
    class BaseMultiModalTracker : public BaseTracker
@@ -111,7 +107,7 @@ Program Listing for File BaseMultiModalTracker.hpp
      bool m_depth_cam_info_received = false; 
      std::string m_depth_camera_topic_name; 
      std::string m_depth_stream_name; 
-     vpCameraParameters m_depth_cam; 
+     VISP_NAMESPACE_ADDRESSING vpCameraParameters m_depth_cam; 
      bool m_depth_is_required = false; 
      double m_z_factor; 
      std::string m_frame_id; 

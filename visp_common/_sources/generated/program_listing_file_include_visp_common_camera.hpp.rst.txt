@@ -41,17 +41,13 @@ Program Listing for File camera.hpp
    
    #include <visp3/core/vpCameraParameters.h>
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_common
    {
    namespace camera
    {
-   vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
-   vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
-   sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(vpCameraParameters &cam_info, unsigned int cam_image_width,
+   VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
+   VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
+   sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(VISP_NAMESPACE_ADDRESSING vpCameraParameters &cam_info, unsigned int cam_image_width,
                                                        unsigned int cam_image_height);
    } // namespace camera
    } // namespace visp_common

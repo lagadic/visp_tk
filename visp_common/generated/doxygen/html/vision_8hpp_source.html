@@ -113,24 +113,20 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;visp3/core/vpImagePoint.h&gt;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifdef ENABLE_VISP_NAMESPACE</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">using namespace </span>VISP_NAMESPACE_NAME;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span>visp_common</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">namespace </span>vision</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="vision_8hpp.html#a90dadaecf240bc9e574400f5a224add6">   50</a></span>vision_msgs::msg::Point2D <a class="code hl_function" href="vision_8hpp.html#a90dadaecf240bc9e574400f5a224add6">toVisionMsgsPoint2D</a>(<span class="keyword">const</span> vpImagePoint &amp;ip);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="vision_8hpp.html#accc9b4ff2192ffb240de33b99bc61e5d">   58</a></span>vpImagePoint <a class="code hl_function" href="vision_8hpp.html#accc9b4ff2192ffb240de33b99bc61e5d">toVispImagePoint</a>(<span class="keyword">const</span> vision_msgs::msg::Point2D &amp;point_2d);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="avision_8hpp_html_a90dadaecf240bc9e574400f5a224add6"><div class="ttname"><a href="vision_8hpp.html#a90dadaecf240bc9e574400f5a224add6">visp_common::vision::toVisionMsgsPoint2D</a></div><div class="ttdeci">vision_msgs::msg::Point2D toVisionMsgsPoint2D(const vpImagePoint &amp;ip)</div><div class="ttdoc">Converts a ViSP image point to a vision_msgs::Point2D.</div></div>
-<div class="ttc" id="avision_8hpp_html_accc9b4ff2192ffb240de33b99bc61e5d"><div class="ttname"><a href="vision_8hpp.html#accc9b4ff2192ffb240de33b99bc61e5d">visp_common::vision::toVispImagePoint</a></div><div class="ttdeci">vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &amp;point_2d)</div><div class="ttdoc">Converts a vision_msgs::Point2D to a ViSP image point.</div></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">namespace </span>visp_common</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">namespace </span>vision</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="vision_8hpp.html#a9e0bec99791e857d13035a2ebfbf0036">   46</a></span>vision_msgs::msg::Point2D <a class="code hl_function" href="vision_8hpp.html#a9e0bec99791e857d13035a2ebfbf0036">toVisionMsgsPoint2D</a>(<span class="keyword">const</span> VISP_NAMESPACE_ADDRESSING vpImagePoint &amp;ip);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="vision_8hpp.html#a761b5cc98e1ef476a5324941d345a518">   54</a></span>VISP_NAMESPACE_ADDRESSING vpImagePoint <a class="code hl_function" href="vision_8hpp.html#a761b5cc98e1ef476a5324941d345a518">toVispImagePoint</a>(<span class="keyword">const</span> vision_msgs::msg::Point2D &amp;point_2d);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="avision_8hpp_html_a761b5cc98e1ef476a5324941d345a518"><div class="ttname"><a href="vision_8hpp.html#a761b5cc98e1ef476a5324941d345a518">visp_common::vision::toVispImagePoint</a></div><div class="ttdeci">VISP_NAMESPACE_ADDRESSING vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &amp;point_2d)</div><div class="ttdoc">Converts a vision_msgs::Point2D to a ViSP image point.</div></div>
+<div class="ttc" id="avision_8hpp_html_a9e0bec99791e857d13035a2ebfbf0036"><div class="ttname"><a href="vision_8hpp.html#a9e0bec99791e857d13035a2ebfbf0036">visp_common::vision::toVisionMsgsPoint2D</a></div><div class="ttdeci">vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vpImagePoint &amp;ip)</div><div class="ttdoc">Converts a ViSP image point to a vision_msgs::Point2D.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

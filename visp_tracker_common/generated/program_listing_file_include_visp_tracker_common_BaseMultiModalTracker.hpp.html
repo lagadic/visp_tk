@@ -207,10 +207,6 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;visp_tracker_common/names.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;visp_tracker_common/msg/named_feature.hpp&gt;</span>
 
-<span class="cp">#ifdef ENABLE_VISP_NAMESPACE</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">VISP_NAMESPACE_NAME</span><span class="p">;</span>
-<span class="cp">#endif</span>
-
 <span class="k">namespace</span><span class="w"> </span><span class="nn">visp_tracker_common</span>
 <span class="p">{</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">BaseMultiModalTracker</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">BaseTracker</span>
@@ -265,7 +261,7 @@
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_depth_cam_info_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_depth_camera_topic_name</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_depth_stream_name</span><span class="p">;</span>
-<span class="w">  </span><span class="n">vpCameraParameters</span><span class="w"> </span><span class="n">m_depth_cam</span><span class="p">;</span>
+<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpCameraParameters</span><span class="w"> </span><span class="n">m_depth_cam</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_depth_is_required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">m_z_factor</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_frame_id</span><span class="p">;</span>

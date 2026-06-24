@@ -57,10 +57,6 @@ Program Listing for File BaseTracker.hpp
    
    #include <optional>
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_tracker_common
    {
    class BaseTracker : public rclcpp::Node
@@ -155,7 +151,7 @@ Program Listing for File BaseTracker.hpp
      bool m_rgb_cam_info_received = false; 
      std::string m_rgb_camera_info_topic_name; 
      std::string m_rgb_stream_name; 
-     vpCameraParameters m_rgb_cam; 
+     VISP_NAMESPACE_ADDRESSING vpCameraParameters m_rgb_cam; 
      std::string m_config_file; 
      InitializationMethod m_init_method; 
      std::optional<geometry_msgs::msg::PoseStamped> m_opt_init_pose; 

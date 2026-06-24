@@ -42,23 +42,19 @@ Program Listing for File image.hpp
    #include <visp3/core/vpImage.h>
    #include <visp3/core/vpRGBa.h>
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_common
    {
    namespace image
    {
-   sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<unsigned char> &src);
-   sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<uint16_t> &src);
-   sensor_msgs::msg::Image toSensorMsgsImage(const vpImage<vpRGBa> &src);
+   sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> &src);
+   sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<uint16_t> &src);
+   sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> &src);
    
-   vpImage<unsigned char> toVispImageChar(const sensor_msgs::msg::Image &src);
+   VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> toVispImageChar(const sensor_msgs::msg::Image &src);
    
-   vpImage<uint16_t> toVispImageUint16(const sensor_msgs::msg::Image &src);
+   VISP_NAMESPACE_ADDRESSING vpImage<uint16_t> toVispImageUint16(const sensor_msgs::msg::Image &src);
    
-   vpImage<vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src);
+   VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src);
    } // namespace image
    } // namespace visp_common
    

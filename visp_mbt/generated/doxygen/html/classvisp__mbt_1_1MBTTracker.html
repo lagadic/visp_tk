@@ -143,12 +143,12 @@ Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Tracking</div></td></tr>
 <tr class="memitem:ab6f1f668e37682326825a192adad4e82" id="r_ab6f1f668e37682326825a192adad4e82"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#ab6f1f668e37682326825a192adad4e82">track</a> () override</td></tr>
 <tr class="separator:ab6f1f668e37682326825a192adad4e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8fef6434658e7e22549903983387655" id="r_ae8fef6434658e7e22549903983387655"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#ae8fef6434658e7e22549903983387655">init_tracking</a> (vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</td></tr>
-<tr class="memdesc:ae8fef6434658e7e22549903983387655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the tracker.  <br /></td></tr>
-<tr class="separator:ae8fef6434658e7e22549903983387655"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8ace2d002c0aeb9e9acf350c2c6e5f0" id="r_ac8ace2d002c0aeb9e9acf350c2c6e5f0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#ac8ace2d002c0aeb9e9acf350c2c6e5f0">perform_tracking</a> (vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</td></tr>
-<tr class="memdesc:ac8ace2d002c0aeb9e9acf350c2c6e5f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the tracking.  <br /></td></tr>
-<tr class="separator:ac8ace2d002c0aeb9e9acf350c2c6e5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c15eb13a1cf6f38d40d89c725d2d46b" id="r_a5c15eb13a1cf6f38d40d89c725d2d46b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a5c15eb13a1cf6f38d40d89c725d2d46b">init_tracking</a> (VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</td></tr>
+<tr class="memdesc:a5c15eb13a1cf6f38d40d89c725d2d46b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the tracker.  <br /></td></tr>
+<tr class="separator:a5c15eb13a1cf6f38d40d89c725d2d46b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a984d00d8c510cf3cb8a395275a9d168a" id="r_a984d00d8c510cf3cb8a395275a9d168a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a984d00d8c510cf3cb8a395275a9d168a">perform_tracking</a> (VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</td></tr>
+<tr class="memdesc:a984d00d8c510cf3cb8a395275a9d168a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the tracking.  <br /></td></tr>
+<tr class="separator:a984d00d8c510cf3cb8a395275a9d168a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
@@ -158,21 +158,21 @@ Static Protected Member Functions</h2></td></tr>
 <tr class="memitem:a1667d95797371a21c316278a90757522" id="r_a1667d95797371a21c316278a90757522"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a1667d95797371a21c316278a90757522">check_model_parameter</a> (const rclcpp::Parameter &amp;param, const rclcpp::Logger &amp;logger, const bool &amp;required, std::string &amp;value)</td></tr>
 <tr class="memdesc:a1667d95797371a21c316278a90757522"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the model file parameter is correctly set, perform path substitution if needed and store the result in value.  <br /></td></tr>
 <tr class="separator:a1667d95797371a21c316278a90757522"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a941b94809ed8a07c96592b0ad3741d73" id="r_a941b94809ed8a07c96592b0ad3741d73"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a941b94809ed8a07c96592b0ad3741d73">trackerTypeToStr</a> (const vpMbGenericTracker::vpTrackerType &amp;type)</td></tr>
-<tr class="memdesc:a941b94809ed8a07c96592b0ad3741d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a vpMbGenericTracker::vpTrackerType into its corresponding name.  <br /></td></tr>
-<tr class="separator:a941b94809ed8a07c96592b0ad3741d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5990a91ba46347339730442d4bf4b2a3" id="r_a5990a91ba46347339730442d4bf4b2a3"><td class="memItemLeft" align="right" valign="top">static vpMbGenericTracker::vpTrackerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a5990a91ba46347339730442d4bf4b2a3">trackerTypeFromStr</a> (const std::string &amp;name)</td></tr>
-<tr class="memdesc:a5990a91ba46347339730442d4bf4b2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a name into its corresponding vpMbGenericTracker::vpTrackerType.  <br /></td></tr>
-<tr class="separator:a5990a91ba46347339730442d4bf4b2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a758265096006e81b01f19fa61606a2c4" id="r_a758265096006e81b01f19fa61606a2c4"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a758265096006e81b01f19fa61606a2c4">trackerTypeToStr</a> (const VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType &amp;type)</td></tr>
+<tr class="memdesc:a758265096006e81b01f19fa61606a2c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a vpMbGenericTracker::vpTrackerType into its corresponding name.  <br /></td></tr>
+<tr class="separator:a758265096006e81b01f19fa61606a2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2edc3a84b94a1dcf2881ed17db83231f" id="r_a2edc3a84b94a1dcf2881ed17db83231f"><td class="memItemLeft" align="right" valign="top">static VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a2edc3a84b94a1dcf2881ed17db83231f">trackerTypeFromStr</a> (const std::string &amp;name)</td></tr>
+<tr class="memdesc:a2edc3a84b94a1dcf2881ed17db83231f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast a name into its corresponding vpMbGenericTracker::vpTrackerType.  <br /></td></tr>
+<tr class="separator:a2edc3a84b94a1dcf2881ed17db83231f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f43f3303192f6aa91791168f859ae12" id="r_a3f43f3303192f6aa91791168f859ae12"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__mbt_1_1MBTTracker.html#a3f43f3303192f6aa91791168f859ae12">getAvailableTrackerType</a> (const std::string &amp;prefix=&quot;&lt; &quot;, const std::string &amp;sep=&quot; , &quot;, const std::string &amp;suffix=&quot; &gt;&quot;)</td></tr>
 <tr class="memdesc:a3f43f3303192f6aa91791168f859ae12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of names of the available vpMbGenericTracker::vpTrackerType.  <br /></td></tr>
 <tr class="separator:a3f43f3303192f6aa91791168f859ae12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a74f6e42f80b0e6ae6527b6d158fae3c9" id="r_a74f6e42f80b0e6ae6527b6d158fae3c9"><td class="memItemLeft" align="right" valign="top"><a id="a74f6e42f80b0e6ae6527b6d158fae3c9" name="a74f6e42f80b0e6ae6527b6d158fae3c9"></a>
-std::shared_ptr&lt; vpMbGenericTracker &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker</b></td></tr>
-<tr class="separator:a74f6e42f80b0e6ae6527b6d158fae3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d4420bfbce0f3e52d2c6fbaaa3836c1" id="r_a6d4420bfbce0f3e52d2c6fbaaa3836c1"><td class="memItemLeft" align="right" valign="top"><a id="a6d4420bfbce0f3e52d2c6fbaaa3836c1" name="a6d4420bfbce0f3e52d2c6fbaaa3836c1"></a>
+std::shared_ptr&lt; VISP_NAMESPACE_ADDRESSING vpMbGenericTracker &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker</b></td></tr>
+<tr class="separator:a6d4420bfbce0f3e52d2c6fbaaa3836c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64525948772c88a3556afea9d61641b2" id="r_a64525948772c88a3556afea9d61641b2"><td class="memItemLeft" align="right" valign="top"><a id="a64525948772c88a3556afea9d61641b2" name="a64525948772c88a3556afea9d61641b2"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_init_file_path</b></td></tr>
 <tr class="memdesc:a64525948772c88a3556afea9d61641b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. <br /></td></tr>
@@ -229,26 +229,26 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_must_detect_failure
 double&#160;</td><td class="memItemRight" valign="bottom"><b>m_projection_error_thresh</b> = 30.</td></tr>
 <tr class="memdesc:a3969552d75edc42a435f1b1b70ed1fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">If m_must_detect_failure , maximum tolerated projection error. <br /></td></tr>
 <tr class="separator:a3969552d75edc42a435f1b1b70ed1fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06f384558b302c9af5f8670f0c26ea37" id="r_a06f384558b302c9af5f8670f0c26ea37"><td class="memItemLeft" align="right" valign="top"><a id="a06f384558b302c9af5f8670f0c26ea37" name="a06f384558b302c9af5f8670f0c26ea37"></a>
-vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
-<tr class="memdesc:a06f384558b302c9af5f8670f0c26ea37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gray-scale image. <br /></td></tr>
-<tr class="separator:a06f384558b302c9af5f8670f0c26ea37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa49711986d8924d07cb0fd2492ce495" id="r_afa49711986d8924d07cb0fd2492ce495"><td class="memItemLeft" align="right" valign="top"><a id="afa49711986d8924d07cb0fd2492ce495" name="afa49711986d8924d07cb0fd2492ce495"></a>
-vpImage&lt; vpRGBa &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_Ic</b></td></tr>
-<tr class="memdesc:afa49711986d8924d07cb0fd2492ce495"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGB image. <br /></td></tr>
-<tr class="separator:afa49711986d8924d07cb0fd2492ce495"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace6f1c1e4eaf4c1c6bca257b88b0570e" id="r_ace6f1c1e4eaf4c1c6bca257b88b0570e"><td class="memItemLeft" align="right" valign="top"><a id="ace6f1c1e4eaf4c1c6bca257b88b0570e" name="ace6f1c1e4eaf4c1c6bca257b88b0570e"></a>
-std::vector&lt; vpColVector &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_pointcloud</b></td></tr>
-<tr class="memdesc:ace6f1c1e4eaf4c1c6bca257b88b0570e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth information for the vpMbGenericTracker if it requires depth information. <br /></td></tr>
-<tr class="separator:ace6f1c1e4eaf4c1c6bca257b88b0570e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45474321fbe5ed9d99719e2c70251bd3" id="r_a45474321fbe5ed9d99719e2c70251bd3"><td class="memItemLeft" align="right" valign="top"><a id="a45474321fbe5ed9d99719e2c70251bd3" name="a45474321fbe5ed9d99719e2c70251bd3"></a>
-std::map&lt; std::string, const vpImage&lt; unsigned char &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map_img</b></td></tr>
-<tr class="memdesc:a45474321fbe5ed9d99719e2c70251bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image. <br /></td></tr>
-<tr class="separator:a45474321fbe5ed9d99719e2c70251bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3543390bb0f38bd1d077a515b9719003" id="r_a3543390bb0f38bd1d077a515b9719003"><td class="memItemLeft" align="right" valign="top"><a id="a3543390bb0f38bd1d077a515b9719003" name="a3543390bb0f38bd1d077a515b9719003"></a>
-std::map&lt; std::string, const std::vector&lt; vpColVector &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map_pc</b></td></tr>
-<tr class="memdesc:a3543390bb0f38bd1d077a515b9719003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information. <br /></td></tr>
-<tr class="separator:a3543390bb0f38bd1d077a515b9719003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a935f9e889ba46f7153f766107832bfbe" id="r_a935f9e889ba46f7153f766107832bfbe"><td class="memItemLeft" align="right" valign="top"><a id="a935f9e889ba46f7153f766107832bfbe" name="a935f9e889ba46f7153f766107832bfbe"></a>
+VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
+<tr class="memdesc:a935f9e889ba46f7153f766107832bfbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gray-scale image. <br /></td></tr>
+<tr class="separator:a935f9e889ba46f7153f766107832bfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1935b854f38ea6b261c24eb105448f3" id="r_ac1935b854f38ea6b261c24eb105448f3"><td class="memItemLeft" align="right" valign="top"><a id="ac1935b854f38ea6b261c24eb105448f3" name="ac1935b854f38ea6b261c24eb105448f3"></a>
+VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_Ic</b></td></tr>
+<tr class="memdesc:ac1935b854f38ea6b261c24eb105448f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGB image. <br /></td></tr>
+<tr class="separator:ac1935b854f38ea6b261c24eb105448f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27cc7b1a7933424d80cde96bde19beb1" id="r_a27cc7b1a7933424d80cde96bde19beb1"><td class="memItemLeft" align="right" valign="top"><a id="a27cc7b1a7933424d80cde96bde19beb1" name="a27cc7b1a7933424d80cde96bde19beb1"></a>
+std::vector&lt; VISP_NAMESPACE_ADDRESSING vpColVector &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_pointcloud</b></td></tr>
+<tr class="memdesc:a27cc7b1a7933424d80cde96bde19beb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth information for the vpMbGenericTracker if it requires depth information. <br /></td></tr>
+<tr class="separator:a27cc7b1a7933424d80cde96bde19beb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1332c5edd17eab0f23ac062d913336ba" id="r_a1332c5edd17eab0f23ac062d913336ba"><td class="memItemLeft" align="right" valign="top"><a id="a1332c5edd17eab0f23ac062d913336ba" name="a1332c5edd17eab0f23ac062d913336ba"></a>
+std::map&lt; std::string, const VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map_img</b></td></tr>
+<tr class="memdesc:a1332c5edd17eab0f23ac062d913336ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image. <br /></td></tr>
+<tr class="separator:a1332c5edd17eab0f23ac062d913336ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd5f26c9bfaa80fc142118e149353d2" id="r_a6fd5f26c9bfaa80fc142118e149353d2"><td class="memItemLeft" align="right" valign="top"><a id="a6fd5f26c9bfaa80fc142118e149353d2" name="a6fd5f26c9bfaa80fc142118e149353d2"></a>
+std::map&lt; std::string, const std::vector&lt; VISP_NAMESPACE_ADDRESSING vpColVector &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map_pc</b></td></tr>
+<tr class="memdesc:a6fd5f26c9bfaa80fc142118e149353d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information. <br /></td></tr>
+<tr class="separator:a6fd5f26c9bfaa80fc142118e149353d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac6ce37f701c6737695311f8f0534ea4" id="r_aac6ce37f701c6737695311f8f0534ea4"><td class="memItemLeft" align="right" valign="top"><a id="aac6ce37f701c6737695311f8f0534ea4" name="aac6ce37f701c6737695311f8f0534ea4"></a>
 std::map&lt; std::string, unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map_pcw</b></td></tr>
 <tr class="memdesc:aac6ce37f701c6737695311f8f0534ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map that contains the width of the depth information. <br /></td></tr>
@@ -553,8 +553,8 @@ false An error occured. </dd></dl>
 
 </div>
 </div>
-<a id="ae8fef6434658e7e22549903983387655" name="ae8fef6434658e7e22549903983387655"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8fef6434658e7e22549903983387655">&#9670;&#160;</a></span>init_tracking()</h2>
+<a id="a5c15eb13a1cf6f38d40d89c725d2d46b" name="a5c15eb13a1cf6f38d40d89c725d2d46b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c15eb13a1cf6f38d40d89c725d2d46b">&#9670;&#160;</a></span>init_tracking()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -565,7 +565,7 @@ false An error occured. </dd></dl>
         <tr>
           <td class="memname">virtual bool visp_mbt::MBTTracker::init_tracking </td>
           <td>(</td>
-          <td class="paramtype">vpHomogeneousMatrix &amp;&#160;</td>
+          <td class="paramtype">VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;&#160;</td>
           <td class="paramname"><em>cMo</em>, </td>
         </tr>
         <tr>
@@ -653,8 +653,8 @@ false The tracker is still uninitialized. </dd></dl>
 
 </div>
 </div>
-<a id="ac8ace2d002c0aeb9e9acf350c2c6e5f0" name="ac8ace2d002c0aeb9e9acf350c2c6e5f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8ace2d002c0aeb9e9acf350c2c6e5f0">&#9670;&#160;</a></span>perform_tracking()</h2>
+<a id="a984d00d8c510cf3cb8a395275a9d168a" name="a984d00d8c510cf3cb8a395275a9d168a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984d00d8c510cf3cb8a395275a9d168a">&#9670;&#160;</a></span>perform_tracking()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -665,7 +665,7 @@ false The tracker is still uninitialized. </dd></dl>
         <tr>
           <td class="memname">virtual bool visp_mbt::MBTTracker::perform_tracking </td>
           <td>(</td>
-          <td class="paramtype">vpHomogeneousMatrix &amp;&#160;</td>
+          <td class="paramtype">VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;&#160;</td>
           <td class="paramname"><em>cMo</em>, </td>
         </tr>
         <tr>
@@ -728,8 +728,8 @@ false Otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="a5990a91ba46347339730442d4bf4b2a3" name="a5990a91ba46347339730442d4bf4b2a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5990a91ba46347339730442d4bf4b2a3">&#9670;&#160;</a></span>trackerTypeFromStr()</h2>
+<a id="a2edc3a84b94a1dcf2881ed17db83231f" name="a2edc3a84b94a1dcf2881ed17db83231f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2edc3a84b94a1dcf2881ed17db83231f">&#9670;&#160;</a></span>trackerTypeFromStr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -738,7 +738,7 @@ false Otherwise. </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static vpMbGenericTracker::vpTrackerType visp_mbt::MBTTracker::trackerTypeFromStr </td>
+          <td class="memname">static VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType visp_mbt::MBTTracker::trackerTypeFromStr </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em></td><td>)</td>
@@ -763,8 +763,8 @@ false Otherwise. </dd></dl>
 
 </div>
 </div>
-<a id="a941b94809ed8a07c96592b0ad3741d73" name="a941b94809ed8a07c96592b0ad3741d73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a941b94809ed8a07c96592b0ad3741d73">&#9670;&#160;</a></span>trackerTypeToStr()</h2>
+<a id="a758265096006e81b01f19fa61606a2c4" name="a758265096006e81b01f19fa61606a2c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a758265096006e81b01f19fa61606a2c4">&#9670;&#160;</a></span>trackerTypeToStr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -775,7 +775,7 @@ false Otherwise. </dd></dl>
         <tr>
           <td class="memname">static std::string visp_mbt::MBTTracker::trackerTypeToStr </td>
           <td>(</td>
-          <td class="paramtype">const vpMbGenericTracker::vpTrackerType &amp;&#160;</td>
+          <td class="paramtype">const VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType &amp;&#160;</td>
           <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>

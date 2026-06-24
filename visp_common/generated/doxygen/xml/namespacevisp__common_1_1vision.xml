@@ -3,14 +3,14 @@
   <compounddef id="namespacevisp__common_1_1vision" kind="namespace" language="C++">
     <compoundname>visp_common::vision</compoundname>
     <sectiondef kind="func">
-      <memberdef kind="function" id="vision_8hpp_1a90dadaecf240bc9e574400f5a224add6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>vision_msgs::msg::Point2D</type>
         <definition>vision_msgs::msg::Point2D visp_common::vision::toVisionMsgsPoint2D</definition>
-        <argsstring>(const vpImagePoint &amp;ip)</argsstring>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImagePoint &amp;ip)</argsstring>
         <name>toVisionMsgsPoint2D</name>
         <qualifiedname>visp_common::vision::toVisionMsgsPoint2D</qualifiedname>
         <param>
-          <type>const vpImagePoint &amp;</type>
+          <type>const VISP_NAMESPACE_ADDRESSING vpImagePoint &amp;</type>
           <declname>ip</declname>
         </param>
         <briefdescription>
@@ -32,11 +32,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/vision.hpp" line="50" column="27" declfile="include/visp_common/vision.hpp" declline="50" declcolumn="27"/>
+        <location file="include/visp_common/vision.hpp" line="46" column="27" declfile="include/visp_common/vision.hpp" declline="46" declcolumn="27"/>
       </memberdef>
-      <memberdef kind="function" id="vision_8hpp_1accc9b4ff2192ffb240de33b99bc61e5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vpImagePoint</type>
-        <definition>vpImagePoint visp_common::vision::toVispImagePoint</definition>
+      <memberdef kind="function" id="vision_8hpp_1a761b5cc98e1ef476a5324941d345a518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VISP_NAMESPACE_ADDRESSING vpImagePoint</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImagePoint visp_common::vision::toVispImagePoint</definition>
         <argsstring>(const vision_msgs::msg::Point2D &amp;point_2d)</argsstring>
         <name>toVispImagePoint</name>
         <qualifiedname>visp_common::vision::toVispImagePoint</qualifiedname>
@@ -63,13 +63,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_common/vision.hpp" line="58" column="14" declfile="include/visp_common/vision.hpp" declline="58" declcolumn="14"/>
+        <location file="include/visp_common/vision.hpp" line="54" column="40" declfile="include/visp_common/vision.hpp" declline="54" declcolumn="40"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/visp_common/vision.hpp" line="43" column="1"/>
+    <location file="include/visp_common/vision.hpp" line="39" column="1"/>
   </compounddef>
 </doxygen>

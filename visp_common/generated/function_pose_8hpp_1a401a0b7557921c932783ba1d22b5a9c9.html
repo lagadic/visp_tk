@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr&amp;) &mdash; visp_common 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  
+        <script src="../_static/jquery.js?v=8dae8fb0"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function visp_common::vision::toVisionMsgsPoint2D" href="function_vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036.html" />
+    <link rel="prev" title="Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose&amp;)" href="function_pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            visp_common
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common.html">Namespace visp_common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common__camera.html">Namespace visp_common::camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common__image.html">Namespace visp_common::image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common__path.html">Namespace visp_common::path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common__pose.html">Namespace visp_common::pose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_common__vision.html">Namespace visp_common::vision</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#functions">Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="function_camera_8hpp_1a7b18b440c1dc99810d50eab14ea64518.html">Function visp_common::camera::toSensorMsgsCameraInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_camera_8hpp_1ae99fd2a005c42a91daefc08369bee32e.html">Function visp_common::camera::toVispCameraParameters(const sensor_msgs::msg::CameraInfo&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_camera_8hpp_1ad2b913c8f4e74b3a949bc7c11c55f729.html">Function visp_common::camera::toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1a3178f5e3391eb20a6ad66d43f8ac9780.html">Function visp_common::image::toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage&lt;unsigned char&gt;&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1abd2bce1963138ba257f78ece3037ce5e.html">Function visp_common::image::toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage&lt;uint16_t&gt;&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1a4b86075928ea2125e933e7b079d4be84.html">Function visp_common::image::toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage&lt;VISP_NAMESPACE_ADDRESSING vpRGBa&gt;&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1a36bfe50ba5d79ff25fa216d917878af0.html">Function visp_common::image::toVispImageChar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1adc67511fe2822c33d85de79f9c1edf4b.html">Function visp_common::image::toVispImageRGBa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_image_8hpp_1a82e0790bcc7cc76c7da54e33224abee5.html">Function visp_common::image::toVispImageUint16</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_path__retriever_8hpp_1af1448f2010b971ff6e6e26659d8bac3f.html">Function visp_common::path::path_retriever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_pose_8hpp_1aeff6e9a49446a013ed16a8d7fa49d6ad.html">Function visp_common::pose::toGeometryMsgsPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_pose_8hpp_1a99cf162605318a244dcbc3ffad42db49.html">Function visp_common::pose::toGeometryMsgsTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_pose_8hpp_1a47a46cb62c1ba58f0061088758f62358.html">Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Transform&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_pose_8hpp_1afbee63530aae5ba7572eaca47c7c5bab.html">Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Transform::ConstSharedPtr&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990.html">Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose&amp;)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036.html">Function visp_common::vision::toVisionMsgsPoint2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_vision_8hpp_1a761b5cc98e1ef476a5324941d345a518.html">Function visp_common::vision::toVispImagePoint</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_visp_common.html">Directory visp_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_common_camera.hpp.html">File camera.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_common_image.hpp.html">File image.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_common_path_retriever.hpp.html">File path_retriever.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_common_pose.hpp.html">File pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_common_vision.hpp.html">File vision.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/CHANGELOG.html">CHANGELOG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/CHANGELOG.html#changelog-for-package-visp-common">Changelog for package visp_common</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/CHANGELOG.html#xx-xx">0.1.0 (2026-XX-XX)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-common-package"><code class="docutils literal notranslate"><span class="pre">visp_common</span></code> package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#setup">Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-common">How to get and build visp_common</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">visp_common</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr&amp;)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/function_pose_8hpp_1a401a0b7557921c932783ba1d22b5a9c9.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="function-visp-common-pose-tovisphomogeneousmatrix-const-geometry-msgs-msg-pose-constsharedptr">
+<span id="exhale-function-pose-8hpp-1a401a0b7557921c932783ba1d22b5a9c9"></span><h1>Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr&amp;)<a class="headerlink" href="#function-visp-common-pose-tovisphomogeneousmatrix-const-geometry-msgs-msg-pose-constsharedptr" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_visp_common_pose.hpp.html#file-include-visp-common-pose-hpp"><span class="std std-ref">File pose.hpp</span></a></p></li>
+</ul>
+<section id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Unable to resolve function “visp_common::pose::toVispHomogeneousMatrix” with arguments “(const geometry_msgs::msg::Pose::ConstSharedPtr&amp;)”.
+Candidate function could not be parsed. Parsing error is
+Error when parsing function declaration.
+If the function has no return type:
+  Error in declarator or parameters-and-qualifiers
+  Invalid C++ declaration: Expecting “(” in parameters-and-qualifiers. [error at 26]
+    VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix (const geometry_msgs::msg::Transform &amp;trans)
+    ————————–^
+If the function has a return type:
+  Error in declarator or parameters-and-qualifiers
+  If pointer to member declarator:
+    Invalid C++ declaration: Expected ‘::’ in pointer to member (function). [error at 46]
+      VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix (const geometry_msgs::msg::Transform &amp;trans)
+      ———————————————-^
+  If declarator-id:
+    Invalid C++ declaration: Expecting “(” in parameters-and-qualifiers. [error at 46]
+      VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix (const geometry_msgs::msg::Transform &amp;trans)
+      ———————————————-^
+</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="function_pose_8hpp_1ac78a44dd7fc33a203665ae1b0b654990.html" class="btn btn-neutral float-left" title="Function visp_common::pose::toVispHomogeneousMatrix(const geometry_msgs::msg::Pose&amp;)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="function_vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036.html" class="btn btn-neutral float-right" title="Function visp_common::vision::toVisionMsgsPoint2D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;visp_common&gt; Contributors. License: GPL-2.0-or-later.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

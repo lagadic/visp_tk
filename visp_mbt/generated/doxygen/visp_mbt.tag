@@ -89,15 +89,15 @@
       <type>virtual bool</type>
       <name>init_tracking</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>ae8fef6434658e7e22549903983387655</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
+      <anchor>a5c15eb13a1cf6f38d40d89c725d2d46b</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
       <name>perform_tracking</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>ac8ace2d002c0aeb9e9acf350c2c6e5f0</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
+      <anchor>a984d00d8c510cf3cb8a395275a9d168a</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
       <type>static visp_tracker_common::msg::NamedFeature</type>
@@ -117,14 +117,14 @@
       <type>static std::string</type>
       <name>trackerTypeToStr</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>a941b94809ed8a07c96592b0ad3741d73</anchor>
-      <arglist>(const vpMbGenericTracker::vpTrackerType &amp;type)</arglist>
+      <anchor>a758265096006e81b01f19fa61606a2c4</anchor>
+      <arglist>(const VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType &amp;type)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
-      <type>static vpMbGenericTracker::vpTrackerType</type>
+      <type>static VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType</type>
       <name>trackerTypeFromStr</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>a5990a91ba46347339730442d4bf4b2a3</anchor>
+      <anchor>a2edc3a84b94a1dcf2881ed17db83231f</anchor>
       <arglist>(const std::string &amp;name)</arglist>
     </member>
     <member kind="function" protection="protected" static="yes">
@@ -233,38 +233,38 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; unsigned char &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
       <name>m_I</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>a06f384558b302c9af5f8670f0c26ea37</anchor>
+      <anchor>a935f9e889ba46f7153f766107832bfbe</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; vpRGBa &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
       <name>m_Ic</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>afa49711986d8924d07cb0fd2492ce495</anchor>
+      <anchor>ac1935b854f38ea6b261c24eb105448f3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::vector&lt; vpColVector &gt;</type>
+      <type>std::vector&lt; VISP_NAMESPACE_ADDRESSING vpColVector &gt;</type>
       <name>m_pointcloud</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>ace6f1c1e4eaf4c1c6bca257b88b0570e</anchor>
+      <anchor>a27cc7b1a7933424d80cde96bde19beb1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::map&lt; std::string, const vpImage&lt; unsigned char &gt; * &gt;</type>
+      <type>std::map&lt; std::string, const VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt; * &gt;</type>
       <name>m_map_img</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>a45474321fbe5ed9d99719e2c70251bd3</anchor>
+      <anchor>a1332c5edd17eab0f23ac062d913336ba</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::map&lt; std::string, const std::vector&lt; vpColVector &gt; * &gt;</type>
+      <type>std::map&lt; std::string, const std::vector&lt; VISP_NAMESPACE_ADDRESSING vpColVector &gt; * &gt;</type>
       <name>m_map_pc</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>a3543390bb0f38bd1d077a515b9719003</anchor>
+      <anchor>a6fd5f26c9bfaa80fc142118e149353d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -327,15 +327,15 @@
       <type>virtual bool</type>
       <name>init_tracking</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>ae8fef6434658e7e22549903983387655</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
+      <anchor>a5c15eb13a1cf6f38d40d89c725d2d46b</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
       <name>perform_tracking</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
-      <anchor>ac8ace2d002c0aeb9e9acf350c2c6e5f0</anchor>
-      <arglist>(vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
+      <anchor>a984d00d8c510cf3cb8a395275a9d168a</anchor>
+      <arglist>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</arglist>
     </member>
   </compound>
 </tagfile>

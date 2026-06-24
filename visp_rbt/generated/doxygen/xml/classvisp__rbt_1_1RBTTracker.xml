@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="82" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="78" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1ab886f318a270cdb805be85d2805e969d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="91" column="8"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="87" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a8ee1b287d5ca2b183904ec57d44e8964" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="96" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="92" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a305370e14f4c5e271911b9dcfb31edbd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="101" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="97" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="155" column="8" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="155" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="151" column="8" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="151" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="156" column="8" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="156" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="152" column="8" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -128,11 +128,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="157" column="15" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="157" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="153" column="15" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="153" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a5031ff1e667ebdcc766840e6836c0e5b" prot="protected" static="no" mutable="no">
-        <type>vpImage&lt; unsigned char &gt;</type>
-        <definition>vpImage&lt;unsigned char&gt; visp_rbt::RBTTracker::m_I</definition>
+      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1aae3e038b9ac87e4b96b863f36e60cc6f" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt;unsigned char&gt; visp_rbt::RBTTracker::m_I</definition>
         <argsstring></argsstring>
         <name>m_I</name>
         <qualifiedname>visp_rbt::RBTTracker::m_I</qualifiedname>
@@ -143,11 +143,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="158" column="11" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="158" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="154" column="37" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="154" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a3b9d5e8036421b39ba9e591161f12f54" prot="protected" static="no" mutable="no">
-        <type>vpImage&lt; vpRGBa &gt;</type>
-        <definition>vpImage&lt;vpRGBa&gt; visp_rbt::RBTTracker::m_Ic</definition>
+      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a992c592a9265d3a2b316a638547cd0a9" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt;VISP_NAMESPACE_ADDRESSING vpRGBa&gt; visp_rbt::RBTTracker::m_Ic</definition>
         <argsstring></argsstring>
         <name>m_Ic</name>
         <qualifiedname>visp_rbt::RBTTracker::m_Ic</qualifiedname>
@@ -158,11 +158,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="159" column="11" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="159" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="155" column="37" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="155" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a268367adcf98ce01e6f912fc6420664a" prot="protected" static="no" mutable="no">
-        <type>vpImage&lt; float &gt;</type>
-        <definition>vpImage&lt;float&gt; visp_rbt::RBTTracker::m_I_depth</definition>
+      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1a75ed11e41ee7f8f7a498dcede4a31628" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; float &gt;</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt;float&gt; visp_rbt::RBTTracker::m_I_depth</definition>
         <argsstring></argsstring>
         <name>m_I_depth</name>
         <qualifiedname>visp_rbt::RBTTracker::m_I_depth</qualifiedname>
@@ -173,11 +173,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="160" column="12" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="160" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="156" column="38" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="156" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1aa675e0b56835aa1cf75fcdc3c123dd03" prot="protected" static="no" mutable="no">
-        <type>vpRBTracker</type>
-        <definition>vpRBTracker visp_rbt::RBTTracker::m_tracker</definition>
+      <memberdef kind="variable" id="classvisp__rbt_1_1RBTTracker_1aa894f7d8ac85afbbe8e3388c386877c5" prot="protected" static="no" mutable="no">
+        <type>VISP_NAMESPACE_ADDRESSING vpRBTracker</type>
+        <definition>VISP_NAMESPACE_ADDRESSING vpRBTracker visp_rbt::RBTTracker::m_tracker</definition>
         <argsstring></argsstring>
         <name>m_tracker</name>
         <qualifiedname>visp_rbt::RBTTracker::m_tracker</qualifiedname>
@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="161" column="15" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="161" bodyend="-1"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="157" column="41" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="157" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -207,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="63" column="3"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="59" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a36ba7acfe6adb5f0d959242f6a463ffe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type></type>
@@ -221,7 +221,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="65" column="11" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="65" bodyend="70"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="61" column="11" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="61" bodyend="66"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -241,7 +241,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="107" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="103" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a27ce6478d655a2ffaba9326f378a29dc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -259,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="112" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="108" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1afd0bb3fe54b57ca075ff699ca26331bd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -273,16 +273,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="117" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="113" column="16"/>
       </memberdef>
-      <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a4aa7558637f7a328c52543a6d4a71fec" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a6b8726e1d0fc835aeff41cc911daedac" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
         <definition>virtual bool visp_rbt::RBTTracker::init_tracking</definition>
-        <argsstring>(vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</argsstring>
+        <argsstring>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</argsstring>
         <name>init_tracking</name>
         <qualifiedname>visp_rbt::RBTTracker::init_tracking</qualifiedname>
         <param>
-          <type>vpHomogeneousMatrix &amp;</type>
+          <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;</type>
           <declname>cMo</declname>
         </param>
         <param>
@@ -310,16 +310,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="126" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="122" column="16"/>
       </memberdef>
-      <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a90ac5ade12d73d59c3449c48463ba77e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="classvisp__rbt_1_1RBTTracker_1a297020573b1490bd3657210b17c3c87f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>bool</type>
         <definition>virtual bool visp_rbt::RBTTracker::perform_tracking</definition>
-        <argsstring>(vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</argsstring>
+        <argsstring>(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</argsstring>
         <name>perform_tracking</name>
         <qualifiedname>visp_rbt::RBTTracker::perform_tracking</qualifiedname>
         <param>
-          <type>vpHomogeneousMatrix &amp;</type>
+          <type>VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;</type>
           <declname>cMo</declname>
         </param>
         <param>
@@ -355,7 +355,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_rbt/RBTTracker.hpp" line="136" column="16"/>
+        <location file="include/visp_rbt/RBTTracker.hpp" line="132" column="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -384,21 +384,21 @@
         <label>visp_tracker_common::BaseMultiModalTracker</label>
       </node>
     </collaborationgraph>
-    <location file="include/visp_rbt/RBTTracker.hpp" line="60" column="1" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="61" bodyend="162"/>
+    <location file="include/visp_rbt/RBTTracker.hpp" line="56" column="1" bodyfile="include/visp_rbt/RBTTracker.hpp" bodystart="57" bodyend="158"/>
     <listofallmembers>
       <member refid="classvisp__rbt_1_1RBTTracker_1a305370e14f4c5e271911b9dcfb31edbd" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>check_requires_depth</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1ab886f318a270cdb805be85d2805e969d" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>init_from_json</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a8ee1b287d5ca2b183904ec57d44e8964" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>init_info_strings</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a335fc3bf13bcc480c1de68b25e3a67ac" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>init_tracker</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1a4aa7558637f7a328c52543a6d4a71fec" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>init_tracking</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1a5031ff1e667ebdcc766840e6836c0e5b" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_I</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1a268367adcf98ce01e6f912fc6420664a" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_I_depth</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1a3b9d5e8036421b39ba9e591161f12f54" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_Ic</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1a6b8726e1d0fc835aeff41cc911daedac" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>init_tracking</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1aae3e038b9ac87e4b96b863f36e60cc6f" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_I</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1a75ed11e41ee7f8f7a498dcede4a31628" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_I_depth</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1a992c592a9265d3a2b316a638547cd0a9" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_Ic</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_init_file_path</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1aa675e0b56835aa1cf75fcdc3c123dd03" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_tracker</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1aa894f7d8ac85afbbe8e3388c386877c5" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_tracker</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_tracker_cams_set</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1ae930c37bd0122022943a9a65c7195cf4" prot="protected" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>m_tracker_initialized</name></member>
-      <member refid="classvisp__rbt_1_1RBTTracker_1a90ac5ade12d73d59c3449c48463ba77e" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>perform_tracking</name></member>
+      <member refid="classvisp__rbt_1_1RBTTracker_1a297020573b1490bd3657210b17c3c87f" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>perform_tracking</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a15eb38152a17650eee397c29a8146b78" prot="public" virt="non-virtual"><scope>visp_rbt::RBTTracker</scope><name>RBTTracker</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1afd0bb3fe54b57ca075ff699ca26331bd" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>track</name></member>
       <member refid="classvisp__rbt_1_1RBTTracker_1a27ce6478d655a2ffaba9326f378a29dc" prot="protected" virt="virtual"><scope>visp_rbt::RBTTracker</scope><name>treat_depth</name></member>

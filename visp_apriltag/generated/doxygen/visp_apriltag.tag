@@ -39,10 +39,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpDetectorAprilTag</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpDetectorAprilTag</type>
       <name>m_tag_detector</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
-      <anchor>aba96561e4e37f74b1149872dd76b506d</anchor>
+      <anchor>acf32f4d09500765e2a48a51d8f109344</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -67,10 +67,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>vpImage&lt; unsigned char &gt;</type>
+      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
       <name>m_I</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
-      <anchor>a870657e5053ec5a2c627f383e28b7233</anchor>
+      <anchor>ab2dcf4c89bb248617ca81a9197de518e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">

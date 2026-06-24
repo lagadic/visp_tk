@@ -56,10 +56,6 @@ Program Listing for File MBTTracker.hpp
    #include VISP_NLOHMANN_JSON(json.hpp)
    #endif
    
-   #ifdef ENABLE_VISP_NAMESPACE
-   using namespace VISP_NAMESPACE_NAME;
-   #endif
-   
    namespace visp_mbt
    {
    class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
@@ -88,17 +84,17 @@ Program Listing for File MBTTracker.hpp
    
      virtual void track() override;
    
-     virtual bool init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame);
+     virtual bool init_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, bool &display_frame);
    
-     virtual bool perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+     virtual bool perform_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
    
      static visp_tracker_common::msg::NamedFeature mbt_model_to_msg(const std::vector<std::vector<double>> &model, const std::string &name, const rclcpp::Logger &logger);
    
      static bool check_model_parameter(const rclcpp::Parameter &param, const rclcpp::Logger &logger, const bool &required, std::string &value);
    
-     static std::string trackerTypeToStr(const vpMbGenericTracker::vpTrackerType &type);
+     static std::string trackerTypeToStr(const VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType &type);
    
-     static vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
+     static VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
    
      static std::string getAvailableTrackerType(const std::string &prefix = "< ", const std::string &sep = " , ", const std::string &suffix = " >");
    
@@ -116,15 +112,15 @@ Program Listing for File MBTTracker.hpp
    
      // ----- Display-related attributes -----
    #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-     vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
+     VISP_NAMESPACE_ADDRESSING vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
      double m_max_z_display; // Maximum depth we want to display
-     std::shared_ptr<vpDisplay> m_display; 
-     std::shared_ptr<vpDisplay> m_display_depth; 
+     std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display; 
+     std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_depth; 
      bool m_display_initialized = false; 
    #endif
    
      // ----- Tracking-related attributes -----
-     std::shared_ptr<vpMbGenericTracker> m_tracker;
+     std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpMbGenericTracker> m_tracker;
      std::string m_init_file_path; 
      bool m_load_models_from_params = false; 
      std::string m_rgb_model; 
@@ -139,11 +135,11 @@ Program Listing for File MBTTracker.hpp
      bool m_tracker_cams_set = false; 
      bool m_must_detect_failure = false; 
      double m_projection_error_thresh = 30.; 
-     vpImage<unsigned char> m_I; 
-     vpImage<vpRGBa> m_Ic; 
-     std::vector<vpColVector> m_pointcloud; 
-     std::map<std::string, const vpImage<unsigned char> *> m_map_img; 
-     std::map<std::string, const std::vector<vpColVector> *> m_map_pc; 
+     VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> m_I; 
+     VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> m_Ic; 
+     std::vector<VISP_NAMESPACE_ADDRESSING vpColVector> m_pointcloud; 
+     std::map<std::string, const VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> *> m_map_img; 
+     std::map<std::string, const std::vector<VISP_NAMESPACE_ADDRESSING vpColVector> *> m_map_pc; 
      std::map<std::string, unsigned int> m_map_pcw; 
      std::map<std::string, unsigned int> m_map_pch; 
    };

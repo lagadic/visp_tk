@@ -6,11 +6,11 @@
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66b0683d7e484ac5e6e1ee74fa8c32a" kind="function"><name>image_callback</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a43f00297c3a03afc74dfa67120bbd1d6" kind="variable"><name>m_rgb_stream_sub</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197" kind="variable"><name>m_tags_info_pub</name></member>
-    <member refid="classvisp__apriltag_1_1AprilTagTracker_1aba96561e4e37f74b1149872dd76b506d" kind="variable"><name>m_tag_detector</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1acf32f4d09500765e2a48a51d8f109344" kind="variable"><name>m_tag_detector</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" kind="variable"><name>m_family_name</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" kind="variable"><name>m_tag_size_map</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace" kind="variable"><name>m_default_tag_size</name></member>
-    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a870657e5053ec5a2c627f383e28b7233" kind="variable"><name>m_I</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab2dcf4c89bb248617ca81a9197de518e" kind="variable"><name>m_I</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" kind="variable"><name>m_opt_id</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d" kind="function"><name>AprilTagTracker</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66da88108141af4ccec02d0af7f4c73" kind="function"><name>~AprilTagTracker</name></member>
