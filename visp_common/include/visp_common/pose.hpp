@@ -35,10 +35,6 @@
 #ifndef VISP_COMMON__3DPOSE_H_
 #define VISP_COMMON__3DPOSE_H_
 
-#ifdef ENABLE_VISP_NAMESPACE
-using namespace VISP_NAMESPACE_NAME;
-#endif
-
 namespace visp_common
 {
 namespace pose
@@ -48,41 +44,41 @@ namespace pose
   \param[in] trans Homogeneous transformation in ROS/geometry_msgs format.
   \return Corresponding transformation in ViSP format.
 */
-vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform &trans);
+VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform &trans);
 /*!
   \brief Converts a geometry_msgs::msg::Transform to a ViSP homogeneous matrix (vpHomogeneousMatrix).
   \param[in] trans Homogeneous transformation in ROS/geometry_msgs format.
   \return Corresponding transformation in ViSP format.
 */
-vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform::ConstSharedPtr &trans);
+VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform::ConstSharedPtr &trans);
 
 /*!
   \brief Converts a geometry_msgs::msg::Pose to a ViSP homogeneous matrix (vpHomogeneousMatrix).
   \param[in] pose Homogeneous transformation in ROS/geometry_msgs format.
   \return Corresponding transformation in ViSP format.
 */
-vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose);
+VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose);
 
 /*!
   \brief Converts a geometry_msgs::msg::Pose to a ViSP homogeneous matrix (vpHomogeneousMatrix).
   \param[in] pose Homogeneous transformation in ROS/geometry_msgs format.
   \return Corresponding transformation in ViSP format.
 */
-vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr &pose);
+VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr &pose);
 
 /*!
   \brief Converts a ViSP homogeneous matrix (vpHomogeneousMatrix) to a geometry_msgs::msg::Transform.
   \param[in] mat Homogeneous transformation in ViSP format.
   \return: transformation in ROS/geometry_msgs format.
 */
-geometry_msgs::msg::Transform toGeometryMsgsTransform(const vpHomogeneousMatrix &mat);
+geometry_msgs::msg::Transform toGeometryMsgsTransform(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &mat);
 
 /*!
         \brief Converts a ViSP homogeneous matrix (vpHomogeneousMatrix) to a geometry_msgs::msg::Pose.
         \param[in] mat Homogeneous transformation in ViSP format.
         \return: transformation in ROS/geometry_msgs format.
       */
-geometry_msgs::msg::Pose toGeometryMsgsPose(const vpHomogeneousMatrix &mat);
+geometry_msgs::msg::Pose toGeometryMsgsPose(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &mat);
 } // namespace pose
 } // namespace visp_common
 

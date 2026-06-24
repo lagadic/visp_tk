@@ -26,6 +26,10 @@
 
 namespace visp_tracker_common
 {
+#ifdef ENABLE_VISP_NAMESPACE
+using namespace VISP_NAMESPACE_NAME;
+#endif
+
 const std::string BaseTracker::s_dumb_topic_name = "dumb_topic_name";
 
 const unsigned int BaseTracker::s_default_hor_offset = 180;

@@ -44,6 +44,10 @@ namespace fs = std::filesystem;
 // Usage : [-int <integer value>] [-float <float value>] [-double <double value>] [-h]
 int main(int argc, char **argv)
 {
+#ifdef ENABLE_VISP_NAMESPACE
+  using namespace VISP_NAMESPACE_NAME;
+#endif
+
   unsigned int opt_width = 0;
   unsigned int opt_height = 0;
   std::string opt_camera_name;
