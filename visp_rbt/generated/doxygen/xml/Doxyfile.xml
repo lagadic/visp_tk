@@ -347,9 +347,9 @@
   </option>
   <option  id='SKIP_FUNCTION_MACROS' default='yes' type='bool'><value>YES</value></option>
   <option  id='TAGFILES' default='no' type='stringlist'>
-    <value><![CDATA[/__w/visp_tk/visp_tk/cross_reference/visp_apriltag/visp_apriltag.tag=http://docs.ros.org/en/latest/p/visp_apriltag/generated/doxygen/html]]></value>
-    <value><![CDATA[/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag=http://docs.ros.org/en/latest/p/visp_common/generated/doxygen/html]]></value>
     <value><![CDATA[/__w/visp_tk/visp_tk/cross_reference/visp_mbt/visp_mbt.tag=http://docs.ros.org/en/latest/p/visp_mbt/generated/doxygen/html]]></value>
+    <value><![CDATA[/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag=http://docs.ros.org/en/latest/p/visp_common/generated/doxygen/html]]></value>
+    <value><![CDATA[/__w/visp_tk/visp_tk/cross_reference/visp_apriltag/visp_apriltag.tag=http://docs.ros.org/en/latest/p/visp_apriltag/generated/doxygen/html]]></value>
   </option>
   <option  id='GENERATE_TAGFILE' default='no' type='string'><value><![CDATA[/__w/visp_tk/visp_tk/docs_build/visp_rbt/visp_rbt-public-cc-api/doxygen_output/visp_rbt.tag]]></value></option>
   <option  id='ALLEXTERNALS' default='yes' type='bool'><value>NO</value></option>

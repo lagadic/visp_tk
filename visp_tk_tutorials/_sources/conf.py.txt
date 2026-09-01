@@ -128,11 +128,11 @@ if rosdoc2_settings.get('automatically_extend_intersphinx_mapping', True):
             "Cannot extend intersphinx mapping if 'sphinx.ext.intersphinx' "
             "has not been added to the extensions")
     ensure_global('intersphinx_mapping', {
+        'visp_mbt': ('http://docs.ros.org/en/latest/p/visp_mbt/', '/__w/visp_tk/visp_tk/cross_reference/visp_mbt/objects.inv'),
+        'visp_common': ('http://docs.ros.org/en/latest/p/visp_common/', '/__w/visp_tk/visp_tk/cross_reference/visp_common/objects.inv'),
         'visp_apriltag': ('http://docs.ros.org/en/latest/p/visp_apriltag/', '/__w/visp_tk/visp_tk/cross_reference/visp_apriltag/objects.inv'),
         'visp_tk': ('http://docs.ros.org/en/latest/p/visp_tk/', '/__w/visp_tk/visp_tk/cross_reference/visp_tk/objects.inv'),
-        'visp_rbt': ('http://docs.ros.org/en/latest/p/visp_rbt/', '/__w/visp_tk/visp_tk/cross_reference/visp_rbt/objects.inv'),
-        'visp_common': ('http://docs.ros.org/en/latest/p/visp_common/', '/__w/visp_tk/visp_tk/cross_reference/visp_common/objects.inv'),
-        'visp_mbt': ('http://docs.ros.org/en/latest/p/visp_mbt/', '/__w/visp_tk/visp_tk/cross_reference/visp_mbt/objects.inv')
+        'visp_rbt': ('http://docs.ros.org/en/latest/p/visp_rbt/', '/__w/visp_tk/visp_tk/cross_reference/visp_rbt/objects.inv')
     })
 
 if rosdoc2_settings.get('support_markdown', True):
