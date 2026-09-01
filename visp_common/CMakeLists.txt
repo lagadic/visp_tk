@@ -39,6 +39,7 @@ endif()
 find_package(ament_cmake_ros REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(vision_msgs REQUIRED)
 find_package(camera_calibration_parsers REQUIRED)
@@ -109,15 +110,16 @@ install(DIRECTORY
 set(visp_common_lib_dir "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
 
 ament_export_targets(export_${PROJECT_NAME})
-ament_export_dependencies(VISP)
+ament_export_dependencies(
+  ament_index_cpp
+  geometry_msgs
+  rclcpp
+  sensor_msgs
+  vision_msgs
+  VISP
+  )
 
 # Mark cpp header files for installation
 install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME})
-
-install(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION bin
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-)
 
 ament_package()
