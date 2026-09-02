@@ -1,12 +1,12 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, RegisterEventHandler, EmitEvent, LogInfo
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, RegisterEventHandler, EmitEvent, LogInfo
 from launch.events import Shutdown
 from launch.event_handlers import (
     OnProcessExit
 )
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
-
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
 
@@ -14,23 +14,7 @@ def generate_launch_description():
     #  Launch arguments                                                    #
     # ------------------------------------------------------------------ #
     declared_args = [
-        # --- v4l2_camera ---
-        DeclareLaunchArgument(
-            "video_device",
-            default_value="/dev/video0",
-            description="Video device path (e.g. /dev/video0, /dev/video2 ...)",
-        ),
-        DeclareLaunchArgument(
-            "camera_namespace",
-            default_value="camera",
-            description="Namespace for the v4l2_camera node",
-        ),
-        DeclareLaunchArgument(
-            "camera_info_url",
-            default_value="",
-            description="URL to the camera calibration file (e.g. file:///path/to/camera.yaml).",
-        ),
-        # --- AprilTag detector ---
+       # BEGIN_APRILTAG_ARGUMENTS
         DeclareLaunchArgument(
             "tag_family",
             default_value="36h11",
@@ -38,13 +22,13 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             "tag_size_keys",
-            default_value="[-1]",
+            default_value="[-1,0,1]",
             description="List of tag IDs for which a size is specified. -1 = default for all.",
         ),
         DeclareLaunchArgument(
             "tag_size_values",
-            default_value="[0.1]",
-            description="Tag sizes in metres, matched by index with tag_size_keys.",
+            default_value="[0.2315,0.2315,0.064]",
+            description="Tag sizes in meters, matched by index with tag_size_keys.",
         ),
         DeclareLaunchArgument(
             "id_published",
@@ -57,54 +41,55 @@ def generate_launch_description():
             description="Pose estimation method",
         ),
         DeclareLaunchArgument(
-            "rgb_camera_info_topic_name",
-            default_value="/camera/image_raw",
+            "rgb_image_topic_name",
+            default_value="/head_arm_rgbd/color/image_raw",
             description="Topic name for the input image",
         ),
         DeclareLaunchArgument(
+              "rgb_camera_info_topic_name",
+              default_value="/head_arm_rgbd/color/camera_info",
+              description="Topic name for the camera parameters related to the input image",
+          ),
+        DeclareLaunchArgument(
             "display_tag",
-            default_value="false",
+            default_value="true",
             description="Display the detected tags in a ViSP window",
         ),
-
+      # END_APRILTAG_ARGUMENTS
     ]
 
     # ------------------------------------------------------------------ #
-    #  v4l2_camera node                                                    #
+    #  ROS2 bag node node                                                    #
     # ------------------------------------------------------------------ #
-    # image_size doit être une liste d'entiers Python — pas de LaunchConfiguration
-    # pour ce paramètre (le type integer_array est strict sous ROS 2)
-    v4l2_camera_node = Node(
-        package="v4l2_camera",
-        executable="v4l2_camera_node",
-        name="v4l2_camera",
-        namespace=LaunchConfiguration("camera_namespace"),
-        parameters=[
-            {
-                "video_device": LaunchConfiguration("video_device"),
-                "image_size": [1280, 720],   # entiers natifs, pas de substitution
-                "time_per_frame": [1, 30],   # idem : 1/30 s → 30 fps
-                "camera_info_url": LaunchConfiguration("camera_info_url"),
-            }
+    # BEGIN_ROSBAG_PLAYER
+    bag_folder = PathJoinSubstitution(
+        [FindPackageShare("visp_tk_tutorials"), "bag", "apriltag","humble_short_apriltag_tutorial"]
+    )
+    bag_player = ExecuteProcess(
+        cmd=[
+            FindExecutable(name="ros2"),
+            " bag",
+            " play ",
+            " --loop ",
+            bag_folder
         ],
         output="screen",
-    )
+        shell=True
+      )
+    # END_ROSBAG_PLAYER
 
     # ------------------------------------------------------------------ #
     #  AprilTag tracker node                                               #
     # ------------------------------------------------------------------ #
-    # Le BaseTracker de visp utilise ses propres paramètres de topic
-    # rgb_camera_info_topic_name  → topic camera_info
-    # rgb_image_topic_name  → topic image
+    # BEGIN_APRILTAG_NODE
     apriltag_tracker_node = Node(
         package="visp_apriltag",
         executable="visp_apriltag_node",
         name="tracker_apriltag",
         parameters=[
             {
-                #"rgb_camera_info_topic_name": LaunchConfiguration("rgb_camera_info_topic_name"),
-                "rgb_image_topic_name": "/camera/image_raw",
-                "rgb_camera_info_topic_name": "/camera/camera_info",
+                "rgb_camera_info_topic_name": LaunchConfiguration("rgb_camera_info_topic_name"),
+                "rgb_image_topic_name": LaunchConfiguration("rgb_image_topic_name"),
                 "tag_family": LaunchConfiguration("tag_family"),
                 "tag_size_keys": LaunchConfiguration("tag_size_keys"),
                 "tag_size_values": LaunchConfiguration("tag_size_values"),
@@ -115,7 +100,9 @@ def generate_launch_description():
         ],
         output="screen",
     )
+    # BEGIN_APRILTAG_NODE
 
+    # BEGIN_SHUTDOWN
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
                 target_action=apriltag_tracker_node,
@@ -126,5 +113,6 @@ def generate_launch_description():
                 ]
             )
         )
+    # END_SHUTDOWN
 
-    return LaunchDescription(declared_args + [v4l2_camera_node, apriltag_tracker_node, shutdown_handler])
+    return LaunchDescription(declared_args + [bag_player, apriltag_tracker_node, shutdown_handler])
