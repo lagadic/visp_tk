@@ -325,6 +325,7 @@ bool AprilTagTracker::init_tracker()
     this->get_parameter("display_tag", display_tag_param);
     auto display_tag = display_tag_param.as_bool();
     m_tag_detector.setDisplayTag(display_tag);
+    m_display_tag = display_tag;
 
     auto align_z_param = rclcpp::Parameter();
     this->get_parameter("align_z", align_z_param);
@@ -551,7 +552,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         m_tags_info_pub->publish(detectionArray);
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-        if (m_display_initialized && display_frame) {
+        if (m_display_initialized && display_frame && m_display_tag) {
           unsigned int thickness = 2;
           m_tag_detector.displayTags(m_I, tags_corners, vpColor::blue, thickness);
         }

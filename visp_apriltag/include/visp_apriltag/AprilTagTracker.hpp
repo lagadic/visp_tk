@@ -101,6 +101,7 @@ protected:
   float m_default_tag_size; //!< Tag size for any tag ID that is not list in m_tag_size_map.
   VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> m_I; //!< Color image on which the detection is performed.
   std::optional<int> m_opt_id = std::nullopt; //!< If set, the ID of the tag whose pose must be published
+  bool m_display_tag; //!< If true, the borders of the detected tags will be displayed.
 };
 }
 
