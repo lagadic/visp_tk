@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# visp_apriltag documentation build configuration file, created by
+# visp_tk_tutorials documentation build configuration file, created by
 # sphinx-quickstart on Mon Jun  1 14:21:53 2009.
 #
 # This file is execfile()d with the current directory set to its containing dir.
