@@ -14,7 +14,7 @@ def generate_launch_description():
     #  Launch arguments                                                    #
     # ------------------------------------------------------------------ #
     declared_args = [
-        # --- AprilTag detector ---
+       # BEGIN_APRILTAG_ARGUMENTS
         DeclareLaunchArgument(
             "tag_family",
             default_value="36h11",
@@ -28,7 +28,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "tag_size_values",
             default_value="[0.2315,0.2315,0.064]",
-            description="Tag sizes in metres, matched by index with tag_size_keys.",
+            description="Tag sizes in meters, matched by index with tag_size_keys.",
         ),
         DeclareLaunchArgument(
             "id_published",
@@ -55,13 +55,13 @@ def generate_launch_description():
             default_value="false",
             description="Display the detected tags in a ViSP window",
         ),
-
+      # END_APRILTAG_ARGUMENTS
     ]
 
     # ------------------------------------------------------------------ #
     #  ROS2 bag node node                                                    #
     # ------------------------------------------------------------------ #
-    # Rosbag player
+    # BEGIN_ROSBAG_PLAYER
     bag_folder = PathJoinSubstitution(
         [FindPackageShare("visp_tk_tutorials"), "bag", "apriltag","humble_short_apriltag_tutorial"]
     )
@@ -76,10 +76,12 @@ def generate_launch_description():
         output="screen",
         shell=True
       )
+    # END_ROSBAG_PLAYER
 
     # ------------------------------------------------------------------ #
     #  AprilTag tracker node                                               #
     # ------------------------------------------------------------------ #
+    # BEGIN_APRILTAG_NODE
     apriltag_tracker_node = Node(
         package="visp_apriltag",
         executable="visp_apriltag_node",
@@ -98,7 +100,9 @@ def generate_launch_description():
         ],
         output="screen",
     )
+    # BEGIN_APRILTAG_NODE
 
+    # BEGIN_SHUTDOWN
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
                 target_action=apriltag_tracker_node,
@@ -109,5 +113,6 @@ def generate_launch_description():
                 ]
             )
         )
+    # END_SHUTDOWN
 
     return LaunchDescription(declared_args + [bag_player, apriltag_tracker_node, shutdown_handler])
