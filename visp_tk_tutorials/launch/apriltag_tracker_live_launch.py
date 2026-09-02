@@ -59,7 +59,7 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             "display_tag",
-            default_value="false",
+            default_value="true",
             description="Display the detected tags in a ViSP window",
         ),
         # END_APRILTAG_ARGUMENTS
