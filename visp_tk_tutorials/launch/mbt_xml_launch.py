@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 def prepare_parameters(context):
-
+    ## [Getting the launch arguments values]
     config_file = LaunchConfiguration("config_file")
     depth_camera_info_topic_name = LaunchConfiguration("depth_camera_info_topic_name")
     depth_config_file = LaunchConfiguration("depth_config_file")
@@ -57,6 +57,7 @@ def prepare_parameters(context):
                 {'z_factor': z_factor}
                 ]
 
+    ## [Checking the validity of some launch arguments]
     # Trick to manage other_tracker and reference_tracker that can be empty list of strings
     other_tracker_raw = LaunchConfiguration("other_tracker").perform(context)
     reference_tracker_raw = LaunchConfiguration("reference_tracker").perform(context)
@@ -93,6 +94,7 @@ def prepare_parameters(context):
     if len(reference_tracker_parsed ) > 0:
         parameters.append({'reference_tracker': reference_tracker_parsed})
 
+    ## [Instanciating the node]
     mbt_node = Node(
         package="visp_mbt",
         executable="visp_mbt_node",
@@ -102,12 +104,13 @@ def prepare_parameters(context):
         parameters=parameters,
     )
 
-    # Rosbag player
+    ## [Rosbag player]
     bag_folder = PathJoinSubstitution(
-        [FindPackageShare("visp_tk_tutorials"), "bag", "tutorial-static-box-jazzy"]
+        [FindPackageShare("visp_tk_tutorials"), "bag", "mbt", "tutorial-static-box"]
     )
     bag_player = ExecuteProcess(
         cmd=[
+            "exec ",
             FindExecutable(name="ros2"),
             " bag",
             " play ",
@@ -118,11 +121,12 @@ def prepare_parameters(context):
         shell=True
       )
 
-    # Launch the node after having set GOMP_SPINCOUNT OpenMP variable to 0 to avoid waiting between threads
+    ## [Launching nodes]
     spawn_process = GroupAction([
       bag_player,
       mbt_node])
 
+    ## [Handling shutdown]
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
                 target_action=mbt_node,
@@ -146,6 +150,7 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
+                'box',
                 'box.xml'
               ])
         ),
@@ -192,6 +197,7 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
+                'box',
                 'box.init'
               ])
         ),
@@ -228,7 +234,7 @@ def generate_launch_description():
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_model_file",
             description="When using an XML file or not configuring the model for all trackers using a JSON file, this parameter becomes **REQUIRED** and must be set to the path towards the model file for the RGB tracker. ``package://`` will be replaced by the path to the share folder of the corresponding package.",
-            default_value="package://visp_tk_tutorials/config/mbt/box.cao"
+            default_value="package://visp_tk_tutorials/config/mbt/box/box.cao"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_image_topic_name",
@@ -265,7 +271,8 @@ def generate_launch_description():
             description="Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.",
             default_value="0.001"
         ),
-        SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0') # To enable OpenMP acceleration
+        SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'), # To enable OpenMP acceleration
+        SetEnvironmentVariable(name='RMW_FASTRTPS_PUBLICATION_MODE', value='ASYNCHRONOUS') # To avoid laggy rosbag
         ]
     )
 

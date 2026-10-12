@@ -295,12 +295,17 @@ void BaseTracker::color_camera_info_callback(const sensor_msgs::msg::CameraInfo:
     return;
   }
 
-  m_rgb_cam = visp_common::camera::toVispCameraParameters(msg);
+  try {
+    m_rgb_cam = visp_common::camera::toVispCameraParameters(msg);
 
-  m_rgb_cam_info_received = true;
-  m_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
+    m_rgb_cam_info_received = true;
+    m_rgb_cam_info_sub.reset(); // Remove the subscription to avoid unecessary interruptions
 
-  RCLCPP_INFO_STREAM(this->get_logger(), "RGB camera parameters:\n" << m_rgb_cam);
+    RCLCPP_INFO_STREAM(this->get_logger(), "RGB camera parameters:\n" << m_rgb_cam);
+  }
+  catch (...) {
+    RCLCPP_WARN_STREAM(this->get_logger(), "Published RGB camera parameters are incorrect.");
+  }
 }
 
 //////////////////////////////////////////////////////////////////////

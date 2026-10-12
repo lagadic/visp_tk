@@ -44,40 +44,40 @@ namespace image
  * \param[in] src Image in ViSP format.
  * \return Image in ROS/sensor_msgs format.
 */
-sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> &src);
+sensor_msgs::msg::Image toSensorMsgsImage(const visp::vpImage<unsigned char> &src);
 /**
  * \brief Converts a ViSP image (vpImage) to a sensor_msgs::Image.
  * \param[in] src Image in ViSP format.
  * \return Image in ROS/sensor_msgs format.
 */
-sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<uint16_t> &src);
+sensor_msgs::msg::Image toSensorMsgsImage(const visp::vpImage<uint16_t> &src);
 /**
  * \brief Converts a ViSP image (vpImage) to a sensor_msgs::Image.
  * \param[in] src Image in ViSP format.
  * \return Image in ROS/sensor_msgs format.
 */
-sensor_msgs::msg::Image toSensorMsgsImage(const VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> &src);
+sensor_msgs::msg::Image toSensorMsgsImage(const visp::vpImage<visp::vpRGBa> &src);
 
 /**
  * \brief Converts a sensor_msgs::Image to a ViSP image (vpImage).
  * \param[in] src Image in ROS/sensor_msgs format.
  * \return Image in ViSP format.
 */
-VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> toVispImageChar(const sensor_msgs::msg::Image &src);
+visp::vpImage<unsigned char> toVispImageChar(const sensor_msgs::msg::Image &src);
 
 /**
  * \brief Converts a sensor_msgs::Image to a ViSP image (vpImage).
  * \param[in] src Image in ROS/sensor_msgs format.
  * \return vpImage<uint16_t> The ViSP image, encoded using uint16_t
  */
-VISP_NAMESPACE_ADDRESSING vpImage<uint16_t> toVispImageUint16(const sensor_msgs::msg::Image &src);
+visp::vpImage<uint16_t> toVispImageUint16(const sensor_msgs::msg::Image &src);
 
 /**
  * \brief Converts a sensor_msgs::Image to a ViSP image (vpImage).
  * \param[in] src Image in ROS/sensor_msgs format.
  * \return vpImage<vpRGBa> The ViSP color image.
  */
-VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src);
+visp::vpImage<visp::vpRGBa> toVispImageRGBa(const sensor_msgs::msg::Image &src);
 } // namespace image
 } // namespace visp_common
 
