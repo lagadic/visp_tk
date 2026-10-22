@@ -57,28 +57,28 @@ TrackerGUI::TrackerGUI(const std::string &node_name)
   m_client_nodes_name = this->declare_parameter<std::vector<std::string>>("client_nodes", std::vector<std::string>());
 
   // // ---- Other parameters ----
-  auto use_depth_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto use_depth_desc = rcl_interfaces::msg::ParameterDescriptor { };
   use_depth_desc.description = "If true, the GUI will also subscribe to the compressed depth stream..";
   this->declare_parameter<bool>("use_depth", false, use_depth_desc);
 
-  auto depth_scale_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_scale_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_scale_desc.description = "The depth scale that converts meters into raw depth image (uint16_t).";
   this->declare_parameter<double>("depth_scale", 1e3, depth_scale_desc);
 
-  auto depth_min_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_min_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_min_desc.description = "The minimum depth to display, in meters. If not set, any point closer than max_depth will be displayed.";
   this->declare_parameter<double>("min_depth", std::numeric_limits<double>::max(), depth_min_desc);
 
-  auto depth_max_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_max_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_max_desc.description = "The maximum depth to display, in meters. If not set, any point further than min_depth will be displayed.";
   this->declare_parameter<double>("max_depth", -1., depth_max_desc);
 
-  auto features_thick_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto features_thick_desc = rcl_interfaces::msg::ParameterDescriptor { };
   features_thick_desc.description = "Thickness to use to display the 2D features.";
   this->declare_parameter("features_thickness", 1, features_thick_desc);
   m_features_thickness = this->get_parameter("features_thickness").as_int();
 
-  auto features_type_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto features_type_desc = rcl_interfaces::msg::ParameterDescriptor { };
   features_type_desc.description = "Available types of 2D visualization for the potential 2D features we are listening to: " + getAvailableFeaturesType();
   this->declare_parameter("features_type", "point", features_type_desc);
   m_features_type = featuresTypeFromString(this->get_parameter("features_type").as_string());
@@ -163,10 +163,11 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
   m_it_node = self;
   m_it = std::make_shared<image_transport::ImageTransport>(m_it_node);
   m_hints = std::make_shared<image_transport::TransportHints>(m_it_node.get(), image_transport_type);
-  rmw_qos_profile_t compressed_color_qos = rmw_qos_profile_default;
-  compressed_color_qos.depth = this->get_parameter("color_qos_queue_depth").as_int();
-  compressed_color_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
-  compressed_color_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("color_qos_reliability").as_string().c_str());
+  rmw_qos_profile_t compressed_color_qos_ = rmw_qos_profile_default;
+  compressed_color_qos_.depth = this->get_parameter("color_qos_queue_depth").as_int();
+  compressed_color_qos_.durability = rmw_qos_durability_policy_from_str(this->get_parameter("color_qos_durability").as_string().c_str());
+  compressed_color_qos_.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("color_qos_reliability").as_string().c_str());
+  rclcpp::QoS compressed_color_qos(rclcpp::QoSInitialization::from_rmw(compressed_color_qos_));
   m_sub_color = m_it->subscribe(rgb_topic_name, compressed_color_qos, std::bind(&TrackerGUI::image_callback, this, std::placeholders::_1), image_transport::ImageTransport::VoidPtr(), m_hints.get(), rclcpp::SubscriptionOptions());
 
   std::string rgb_cam_topic = this->get_parameter("camera_topic").as_string();
@@ -186,10 +187,11 @@ bool TrackerGUI::init(std::shared_ptr<rclcpp::Node> self)
       RCLCPP_ERROR(this->get_logger(), "'depth_topic' has not been set");
       return false;
     }
-    rmw_qos_profile_t compressed_depth_qos = rmw_qos_profile_default;
-    compressed_depth_qos.depth = this->get_parameter("depth_qos_queue_depth").as_int();
-    compressed_depth_qos.durability = rmw_qos_durability_policy_from_str(this->get_parameter("depth_qos_durability").as_string().c_str());
-    compressed_depth_qos.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("depth_qos_reliability").as_string().c_str());
+    rmw_qos_profile_t compressed_depth_qos_ = rmw_qos_profile_default;
+    compressed_depth_qos_.depth = this->get_parameter("depth_qos_queue_depth").as_int();
+    compressed_depth_qos_.durability = rmw_qos_durability_policy_from_str(this->get_parameter("depth_qos_durability").as_string().c_str());
+    compressed_depth_qos_.reliability = rmw_qos_reliability_policy_from_str(this->get_parameter("depth_qos_reliability").as_string().c_str());
+    rclcpp::QoS compressed_depth_qos(rclcpp::QoSInitialization::from_rmw(compressed_depth_qos_));
 
     RCLCPP_INFO(this->get_logger(), "Subscribing to depth topic '%s'", depth_topic_name.c_str());
     m_hints_depth = std::make_shared<image_transport::TransportHints>(m_it_node.get(), this->get_parameter("depth_image_transport").as_string(), "depth_image_transport");

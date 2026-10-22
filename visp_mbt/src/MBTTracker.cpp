@@ -42,51 +42,51 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
 
   // // ---- Others ----
   auto init_file_param = rclcpp::Parameter();
-  auto init_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto init_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   init_param_desc.description = "This parameter must be set to the path towards the file that contains the init points.";
   this->declare_parameter("init_file", "", init_param_desc);
   this->get_parameter("init_file", init_file_param);
   m_init_file_path = init_file_param.as_string();
 
-  auto config_file_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto config_file_desc = rcl_interfaces::msg::ParameterDescriptor { };
   config_file_desc.description = "When using an XML file, path to the configuration file to initialize the depth tracker, if any. package:// will be replaced by the path to the share folder of the corresponding package.";
   this->declare_parameter("depth_config_file", "", config_file_desc);
 
-  auto rgb_model_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto rgb_model_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   rgb_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the RGB tracker.";
   this->declare_parameter("rgb_model_file", "", rgb_model_param_desc);
 
-  auto depth_model_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_model_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_model_param_desc.description = "When using an XML file or not configuring the model for all trackers using a JSON file, this parameter must be set to the path towards the model file for the depth tracker, if there is one.";
   this->declare_parameter("depth_model_file", "", depth_model_param_desc);
 
-  auto types_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto types_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   types_param_desc.description = "When using an XML file, this parameter must be set as an array of types of trackers to use and must be of the same size than the parameter 'tracker_names'. If a tracker must have several types (e.g. edge tracker + klt), the types name must be separated by a + (e.g. 'edge+klt' is a valid value).\n";
   // types_param_desc.description += "Tolerated values are " + getAvailableTrackerType();
   types_param_desc.additional_constraints += "Tolerated values are " + getAvailableTrackerType();
   this->declare_parameter<std::vector<std::string>>("tracker_types", std::vector<std::string>(), types_param_desc);
 
-  auto tracker_names_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto tracker_names_desc = rcl_interfaces::msg::ParameterDescriptor { };
   tracker_names_desc.description = "When using an XML file, this parameter must be set as an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter 'tracker_types'.";
   this->declare_parameter<std::vector<std::string>>("tracker_names", std::vector<std::string>(), tracker_names_desc);
 
-  auto ref_tracker_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto ref_tracker_desc = rcl_interfaces::msg::ParameterDescriptor { };
   ref_tracker_desc.description = "When set, the extrinsics will be loaded from a TF2 topic and this parameter must be a vector of size 2 such as [\"${REF_TRACKER_NAME}\",\"${REF_TRACKER_FRAME_NAME}\"]. The parameter 'other_tracker' must also be set.";
   this->declare_parameter<std::vector<std::string>>("reference_tracker", std::vector<std::string>(), ref_tracker_desc);
 
-  auto other_tracker_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto other_tracker_desc = rcl_interfaces::msg::ParameterDescriptor { };
   other_tracker_desc.description = "When set, the extrinsics will be loaded from a TF2 topic and this parameter must be a vector of size 2 such as [\"${OTHER_TRACKER_NAME}\",\"${OTHER_TRACKER_FRAME_NAME}\"]. The parameter 'reference_tracker' must also be set.";
   this->declare_parameter<std::vector<std::string>>("other_tracker", std::vector<std::string>(), other_tracker_desc);
 
   auto detect_failure_param = rclcpp::Parameter();
-  auto detect_failure_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto detect_failure_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   detect_failure_param_desc.description = "This parameter permits to activate the detection of tracking failure based on the projection error.";
   this->declare_parameter("detect_failure", m_must_detect_failure, detect_failure_param_desc);
   this->get_parameter("detect_failure", detect_failure_param);
   m_must_detect_failure = detect_failure_param.as_bool();
 
   auto proj_error_thresh_param = rclcpp::Parameter();
-  auto proj_error_thresh_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto proj_error_thresh_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   proj_error_thresh_param_desc.description = "This parameter indicates the maximum tolerated projection error, if detect_failure is set to true.";
   this->declare_parameter("projection_error_threshold", m_projection_error_thresh, proj_error_thresh_param_desc);
   this->get_parameter("projection_error_threshold", proj_error_thresh_param);
@@ -94,7 +94,7 @@ MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMulti
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   auto max_z_param = rclcpp::Parameter();
-  auto max_z_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto max_z_param_desc = rcl_interfaces::msg::ParameterDescriptor { };
   max_z_param_desc.description = "This parameter permits the maximum depth we want to display.";
   this->declare_parameter("max_z_display", 2.0, max_z_param_desc);
   this->get_parameter("max_z_display", max_z_param);
@@ -732,12 +732,14 @@ bool MBTTracker::perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::str
     // Check if the projection error is below the threshold, if the user activated this option
     if (m_must_detect_failure && (reprojection_error > m_projection_error_thresh)) {
       RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: projection error (%f) too high (thresh = %f)", reprojection_error, m_projection_error_thresh);
+      std::scoped_lock sl(m_mutex_initialized);
       m_tracker_initialized = false;
       return false;
     }
   }
   catch (vpTrackingException &e) {
     RCLCPP_WARN(this->get_logger(), "Tracking failed. Reason: %s", e.getMessage());
+    std::scoped_lock sl(m_mutex_initialized);
     m_tracker_initialized = false;
     std::string tracking_time = "Tracking failed";
     vec_info.push_back(tracking_time);
@@ -806,7 +808,10 @@ void MBTTracker::track()
   bool display_frame = false;
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
   // Check if frame has to be displayed
-  display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+  {
+    std::scoped_lock sl(m_mutex_initialized);
+    display_frame = ((!m_is_headless_mode) || ((!m_tracker_initialized) && m_has_to_track && (m_init_method == BaseTracker::CLICK))) &&((m_display_nb_frames_skipped <= 0) || ((m_frame_cnt % m_display_nb_frames_skipped) == 0));
+  }
 
   if (display_frame) {
 
@@ -819,7 +824,7 @@ void MBTTracker::track()
     vpDisplay::display(m_I_depth_display);
     {
       std::stringstream ss;
-      ss << "Left click to " << (m_has_to_track ? "stop" : "start") << " the tracking, right click to quit.";
+      ss << "Left click to " << (m_has_to_track ? "stop" : "start") << " the tracking, middle click to reinitialize the tracking, right click to quit.";
       vpDisplay::displayText(m_Ic, 20, 20, ss.str(), vpColor::red);
     }
   }
@@ -829,7 +834,13 @@ void MBTTracker::track()
   bool tracking_successful = false;
   if (m_has_to_track) {
     RCLCPP_DEBUG(this->get_logger(), "Starting tracking");
-    if (!m_tracker_initialized) {
+    bool tracker_initialized;
+    {
+      std::scoped_lock sl(m_mutex_initialized);
+      tracker_initialized = m_tracker_initialized;
+    }
+    if (!tracker_initialized) {
+      std::scoped_lock sl(m_mutex_initialized);
       m_tracker_initialized = init_tracking(cMo, display_frame);
     }
 
@@ -893,6 +904,12 @@ void MBTTracker::track()
       {
         std::scoped_lock lock(m_mutex_tracking);
         m_has_to_track = (!m_has_to_track);
+        break;
+      }
+      case vpMouseButton::button2:
+      {
+        std::scoped_lock lock(m_mutex_initialized);
+        m_tracker_initialized = false;
         break;
       }
       case vpMouseButton::button3:

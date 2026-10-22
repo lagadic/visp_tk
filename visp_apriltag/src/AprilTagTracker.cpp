@@ -325,6 +325,7 @@ bool AprilTagTracker::init_tracker()
     this->get_parameter("display_tag", display_tag_param);
     auto display_tag = display_tag_param.as_bool();
     m_tag_detector.setDisplayTag(display_tag);
+    m_display_tag = display_tag;
 
     auto align_z_param = rclcpp::Parameter();
     this->get_parameter("align_z", align_z_param);
@@ -394,10 +395,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
       std::scoped_lock lock(m_mutex_tracking);
       has_to_track = m_has_to_track;
     }
-    if (quit || (!m_rgb_cam_info_received) || ((!has_to_track) && m_is_headless_mode)) {
-      if (!m_rgb_cam_info_received) {
-        RCLCPP_INFO(this->get_logger(), "Waiting for camera info...");
-      }
+    if (quit || ((!has_to_track) && m_is_headless_mode)) {
       return;
     }
 
@@ -469,7 +467,10 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
           }
 
           vpHomogeneousMatrix c_M_o;
-          m_tag_detector.getPose(i, tag_size, m_rgb_cam, c_M_o);
+          bool is_pose_available = false;
+          if (m_rgb_cam_info_received) {
+            is_pose_available = m_tag_detector.getPose(i, tag_size, m_rgb_cam, c_M_o);
+          }
 
           RCLCPP_DEBUG_STREAM(this->get_logger(), "Tag " << i << " with size " << tag_size << " with margin " << decision_margins[i] << " and pose:\n" << c_M_o);
 
@@ -477,8 +478,10 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
           if (m_display_initialized && display_frame) {
-            unsigned int thickness = 2;
-            vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1, vpColor::none, thickness);
+            if (is_pose_available) {
+              unsigned int thickness = 2;
+              vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1, vpColor::none, thickness);
+            }
           }
 #endif
 
@@ -490,6 +493,7 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
           detectionMsg.id = tags_IDs[i];
           detectionMsg.size = tag_size;
           detectionMsg.pose = pose_c_M_o;
+          detectionMsg.is_pose_valid = is_pose_available;
           vpImagePoint cog = m_tag_detector.getCog(i);
           fromImagePoint(cog, detectionMsg.center);
           fromImagePoint(tag_corners[0], detectionMsg.corners[0]);
@@ -546,6 +550,13 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
         }
         // m_poses_pub->publish(stamped_pose);
         m_tags_info_pub->publish(detectionArray);
+
+#if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
+        if (m_display_initialized && display_frame && m_display_tag) {
+          unsigned int thickness = 2;
+          m_tag_detector.displayTags(m_I, tags_corners, vpColor::blue, thickness);
+        }
+#endif
       }
 
       // Manage info strings publication

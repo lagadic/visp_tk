@@ -38,7 +38,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
 
   // // ---- Parameters related to the publishers / subscribers ----
   auto depth_camera_info_topic_name_param = rclcpp::Parameter();
-  auto depth_camera_info_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_camera_info_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_camera_info_topic_name_desc.description = "Name of the depth camera topic.";
   this->declare_parameter("depth_camera_info_topic_name", "", depth_camera_info_topic_name_desc);
   this->get_parameter("depth_camera_info_topic_name", depth_camera_info_topic_name_param);
@@ -49,7 +49,7 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   }
 
   auto depth_image_topic_name_param = rclcpp::Parameter();
-  auto depth_image_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto depth_image_topic_name_desc = rcl_interfaces::msg::ParameterDescriptor { };
   depth_image_topic_name_desc.description = "Name of the depth image topic.";
   this->declare_parameter("depth_image_topic_name", "", depth_image_topic_name_desc);
   this->get_parameter("depth_image_topic_name", depth_image_topic_name_param);
@@ -59,20 +59,20 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
     m_depth_stream_name = BaseTracker::s_dumb_topic_name;
   }
 
-  auto durability_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto durability_desc = rcl_interfaces::msg::ParameterDescriptor { };
   durability_desc.description = "The durability of both the RGB and depth image streams (they need to be the same) if depth is required.";
   this->declare_parameter("stream_qos_durability", "volatile", durability_desc);
 
-  auto reliability_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto reliability_desc = rcl_interfaces::msg::ParameterDescriptor { };
   reliability_desc.description = "The reliability of both the RGB and depth image streams (they need to be the same) if depth is required.";
   this->declare_parameter("stream_qos_reliability", "best_effort", reliability_desc);
 
-  auto qos_depth_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto qos_depth_desc = rcl_interfaces::msg::ParameterDescriptor { };
   qos_depth_desc.description = "The depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.";
   this->declare_parameter("stream_qos_depth", 1, qos_depth_desc);
 
   auto z_factor_param = rclcpp::Parameter();
-  auto z_factor_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  auto z_factor_desc = rcl_interfaces::msg::ParameterDescriptor { };
   z_factor_desc.description = "Factor to convert the depth image expressed as uint16_t into meters.";
   this->declare_parameter("z_factor", 0.001, z_factor_desc);
   this->get_parameter("z_factor", z_factor_param);
@@ -84,6 +84,10 @@ BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 SERVICES                             //
   //////////////////////////////////////////////////////////////////////
+
+  std::string reinit_service_name = std::string(this->get_name()) + visp_tracker_common::reinit_srv_name;
+  auto reinit_callback = std::bind(&BaseMultiModalTracker::reinit_callback, this, std::placeholders::_1, std::placeholders::_2);
+  m_reinit_srv = this->create_service<std_srvs::srv::Trigger>(reinit_service_name, reinit_callback);
 
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PUB/SUB                              //
@@ -204,7 +208,15 @@ bool BaseMultiModalTracker::init()
 //                        ROS2 SERVICES                             //
 //////////////////////////////////////////////////////////////////////
 
-
+void BaseMultiModalTracker::reinit_callback(const  std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                           std::shared_ptr<std_srvs::srv::Trigger::Response> response)
+{
+  (void)request;
+  std::scoped_lock sl(m_mutex_initialized);
+  m_tracker_initialized = false;
+  response->success = true;
+  response->message = "The node will enter its initialization phase as soon as the loop ends.";
+}
 
 //////////////////////////////////////////////////////////////////////
 //                        ROS2 SUBCRIPTIONS                         //

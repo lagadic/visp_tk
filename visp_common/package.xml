@@ -9,8 +9,6 @@
 
   <maintainer email="Fabien.Spindler@inria.fr">Fabien Spindler</maintainer>
   <author>Fabien Spindler</author>
-  <author>Riccardo Spica</author>
-  <author>Filip Novotny</author>
   <author email="romain.lagneau@inria.fr">Romain Lagneau</author>
 
   <license>GPL-2.0-or-later</license>
@@ -26,7 +24,6 @@
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>vision_msgs</depend>
-  <depend version_gt="3.7.0">visp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

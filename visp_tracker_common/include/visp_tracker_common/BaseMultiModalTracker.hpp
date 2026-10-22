@@ -96,6 +96,15 @@ protected:
   virtual void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
 
   // ----- Services -----
+  /**
+   * @brief Callback that is called to aks the tracker to perform once again the initialization of the tracking.
+   * **IMPORTANT**: it does not call init() or any of its sub-routines.
+   *
+   * @param request Trigger signal.
+   * @param response Response containing the status and the message.
+   */
+  void reinit_callback(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                             std::shared_ptr<std_srvs::srv::Trigger::Response> response);
 
   ///@}
 
@@ -122,6 +131,7 @@ protected:
   // ----- Parameters changes handling -----
 
   // ----- Services -----
+  rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_reinit_srv; //!< Service to ask the node to reinitialize using ros2 service
 
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_depth_cam_info_sub; //!< Depth camera parameters subscriber
@@ -136,10 +146,12 @@ protected:
   // ----- Display-related attributes -----
 
   // ----- Tracking-related attributes -----
+  std::mutex m_mutex_initialized; //!< Mutex to protect m_tracker_initialized from concurrent access
+  bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
   bool m_depth_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.
   std::string m_depth_camera_info_topic_name; //!< The name of the depth camera topic.
   std::string m_depth_stream_name; //!< The name of the depth image topic.
-  VISP_NAMESPACE_ADDRESSING vpCameraParameters m_depth_cam; //!< The depth camera parameters.
+  visp::vpCameraParameters m_depth_cam; //!< The depth camera parameters.
   bool m_depth_is_required = false; //!< If true, it means that the tracker requires a depth stream to run.
   double m_z_factor; //!< Factor to translate uint16_t depth image into meters.
   std::string m_frame_id; //!< The frame ID of the RGB stream, in which will be expressed the tracking result.

@@ -117,7 +117,7 @@ protected:
    * @return true Initialization went well.
    * @return false The tracker is still uninitialized.
    */
-  virtual bool init_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, bool &display_frame);
+  virtual bool init_tracking(visp::vpHomogeneousMatrix &cMo, bool &display_frame);
 
   /**
    * @brief Perform the tracking.
@@ -127,7 +127,7 @@ protected:
    * @return true Tracking was successful.
    * @return false Otherwise.
    */
-  virtual bool perform_tracking(VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
+  virtual bool perform_tracking(visp::vpHomogeneousMatrix &cMo, std::vector<std::string> &vec_info);
   ///@}
 
   /**
@@ -157,7 +157,7 @@ protected:
    * @param type The vpMbGenericTracker::vpTrackerType we want to know the name.
    * @return std::string The corresponding name.
    */
-  static std::string trackerTypeToStr(const VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType &type);
+  static std::string trackerTypeToStr(const visp::vpMbGenericTracker::vpTrackerType &type);
 
   /**
    * @brief Cast a name into its corresponding vpMbGenericTracker::vpTrackerType.
@@ -165,7 +165,7 @@ protected:
    * @param name The name of the tracker type.
    * @return vpMbGenericTracker::vpTrackerType The corresponding vpMbGenericTracker::vpTrackerType.
    */
-  static VISP_NAMESPACE_ADDRESSING vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
+  static visp::vpMbGenericTracker::vpTrackerType trackerTypeFromStr(const std::string &name);
 
   /**
    * @brief Get the list of names of the available vpMbGenericTracker::vpTrackerType.
@@ -194,15 +194,15 @@ protected:
 
   // ----- Display-related attributes -----
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
-  VISP_NAMESPACE_ADDRESSING vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
+  visp::vpImage <unsigned char> m_I_depth_display; // Color encoded depth image
   double m_max_z_display; // Maximum depth we want to display
-  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display; //!< RGB image display
-  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpDisplay> m_display_depth; //!< Depth display
+  std::shared_ptr<visp::vpDisplay> m_display; //!< RGB image display
+  std::shared_ptr<visp::vpDisplay> m_display_depth; //!< Depth display
   bool m_display_initialized = false; //!< True when the RGB image display is up and running
 #endif
 
   // ----- Tracking-related attributes -----
-  std::shared_ptr<VISP_NAMESPACE_ADDRESSING vpMbGenericTracker> m_tracker;
+  std::shared_ptr<visp::vpMbGenericTracker> m_tracker;
   std::string m_init_file_path; //!< Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker.
   bool m_load_models_from_params = false; //!< If true, the model files must be read from the node parameters.
   std::string m_rgb_model; //!< If the models must be read from the node parameters, the path towards the model of the RGB tracker.
@@ -213,15 +213,14 @@ protected:
   ExtrinsicsHelper m_other_cam; //!< The name of the other camera frame and corresponding tracker name.
   bool m_extrinsics_from_tf = false; //!< If true, the extrinsics will be loaded from a TF2 using the associated node params.
   bool m_extrinsics_set = false; //!< If initializing extrinsics from TF2 topic, set to true once the extrinsics have been received.
-  bool m_tracker_initialized = false; //!< True when the tracker is correctly initialized, false when the tracking was lost or never began.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
   bool m_must_detect_failure = false; //!< If true, the tracker must monitor the projection error to invalidate the tracking if needed.
   double m_projection_error_thresh = 30.; //!< If m_must_detect_failure , maximum tolerated projection error.
-  VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> m_I; //!< Gray-scale image.
-  VISP_NAMESPACE_ADDRESSING vpImage<VISP_NAMESPACE_ADDRESSING vpRGBa> m_Ic; //!< RGB image.
-  std::vector<VISP_NAMESPACE_ADDRESSING vpColVector> m_pointcloud; //!< Depth information for the vpMbGenericTracker if it requires depth information.
-  std::map<std::string, const VISP_NAMESPACE_ADDRESSING vpImage<unsigned char> *> m_map_img; //!< Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image.
-  std::map<std::string, const std::vector<VISP_NAMESPACE_ADDRESSING vpColVector> *> m_map_pc; //!< Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information.
+  visp::vpImage<unsigned char> m_I; //!< Gray-scale image.
+  visp::vpImage<visp::vpRGBa> m_Ic; //!< RGB image.
+  std::vector<visp::vpColVector> m_pointcloud; //!< Depth information for the vpMbGenericTracker if it requires depth information.
+  std::map<std::string, const visp::vpImage<unsigned char> *> m_map_img; //!< Map that contains the name(s) of the color tracker(s) and a pointer towards the current color image.
+  std::map<std::string, const std::vector<visp::vpColVector> *> m_map_pc; //!< Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information.
   std::map<std::string, unsigned int> m_map_pcw; //!< Map that contains the width of the depth information.
   std::map<std::string, unsigned int> m_map_pch; //!< Map that contains the height of the depth information.
 };
