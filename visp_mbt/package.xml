@@ -20,7 +20,6 @@
   <depend>sensor_msgs</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
-  <depend version_gt="3.7.0">visp</depend>
   <depend>visp_common</depend>
   <depend>visp_tracker_common</depend>
 

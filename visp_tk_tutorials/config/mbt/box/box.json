@@ -2,7 +2,7 @@
   "referenceCameraName": "Color",
   "trackers": {
     "Color": {
-      "model": "package://visp_tk_tutorials/config/mbt/box.cao",
+      "model": "package://visp_tk_tutorials/config/mbt/box/box.cao",
       "angleAppear": 70.0,
       "angleDisappear": 80.00000000000001,
       "camTref": {

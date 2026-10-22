@@ -43,7 +43,7 @@ namespace vision
  * \param[in] ip Image point in ViSP format.
  * \return Image point in ROS/vision_msgs format.
 */
-vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vpImagePoint &ip);
+vision_msgs::msg::Point2D toVisionMsgsPoint2D(const visp::vpImagePoint &ip);
 
 
 /**
@@ -51,7 +51,7 @@ vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vp
  * \param[in] point_2d Image point in vision_msgs::Point2D format
  * \return Image point in ViSP format.
 */
-VISP_NAMESPACE_ADDRESSING vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
+visp::vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
 }
 }
 
