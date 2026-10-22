@@ -68,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819.html">Variable visp_tracker_common::reinit_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
 </ul>
@@ -104,11 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
@@ -233,6 +235,8 @@
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sync_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Image</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rgb</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Image</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">depth</span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// ----- Services -----</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">reinit_callback</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std_srvs</span><span class="o">::</span><span class="n">srv</span><span class="o">::</span><span class="n">Trigger</span><span class="o">::</span><span class="n">Request</span><span class="o">&gt;</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">std_srvs</span><span class="o">::</span><span class="n">srv</span><span class="o">::</span><span class="n">Trigger</span><span class="o">::</span><span class="n">Response</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="p">);</span>
 
 
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">treat_rgb</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">Image</span><span class="o">::</span><span class="n">ConstSharedPtr</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rgb</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -244,6 +248,7 @@
 <span class="w">  </span><span class="c1">// ----- Parameters changes handling -----</span>
 
 <span class="w">  </span><span class="c1">// ----- Services -----</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Service</span><span class="o">&lt;</span><span class="n">std_srvs</span><span class="o">::</span><span class="n">srv</span><span class="o">::</span><span class="n">Trigger</span><span class="o">&gt;::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">m_reinit_srv</span><span class="p">;</span>
 
 <span class="w">  </span><span class="c1">// ----- Subscribers -----</span>
 <span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Subscription</span><span class="o">&lt;</span><span class="n">sensor_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">CameraInfo</span><span class="o">&gt;::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">m_depth_cam_info_sub</span><span class="p">;</span>
@@ -258,10 +263,12 @@
 <span class="w">  </span><span class="c1">// ----- Display-related attributes -----</span>
 
 <span class="w">  </span><span class="c1">// ----- Tracking-related attributes -----</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">m_mutex_initialized</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_tracker_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_depth_cam_info_received</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_depth_camera_info_topic_name</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_depth_stream_name</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpCameraParameters</span><span class="w"> </span><span class="n">m_depth_cam</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpCameraParameters</span><span class="w"> </span><span class="n">m_depth_cam</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_depth_is_required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">m_z_factor</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_frame_id</span><span class="p">;</span>

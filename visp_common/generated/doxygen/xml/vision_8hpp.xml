@@ -63,10 +63,10 @@
 <codeline lineno="38"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">vision</highlight></codeline>
 <codeline lineno="40"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="46" refid="vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036" refkind="member"><highlight class="normal">vision_msgs::msg::Point2D<sp/><ref refid="vision_8hpp_1a9e0bec99791e857d13035a2ebfbf0036" kindref="member">toVisionMsgsPoint2D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VISP_NAMESPACE_ADDRESSING<sp/>vpImagePoint<sp/>&amp;ip);</highlight></codeline>
+<codeline lineno="46" refid="vision_8hpp_1af5fc9b0882518f3f487a93f6ea37a89d" refkind="member"><highlight class="normal">vision_msgs::msg::Point2D<sp/><ref refid="vision_8hpp_1af5fc9b0882518f3f487a93f6ea37a89d" kindref="member">toVisionMsgsPoint2D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>visp::vpImagePoint<sp/>&amp;ip);</highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54" refid="vision_8hpp_1a761b5cc98e1ef476a5324941d345a518" refkind="member"><highlight class="normal">VISP_NAMESPACE_ADDRESSING<sp/>vpImagePoint<sp/><ref refid="vision_8hpp_1a761b5cc98e1ef476a5324941d345a518" kindref="member">toVispImagePoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vision_msgs::msg::Point2D<sp/>&amp;point_2d);</highlight></codeline>
+<codeline lineno="54" refid="vision_8hpp_1a484a1334be264197af9caabfb4fb1cd8" refkind="member"><highlight class="normal">visp::vpImagePoint<sp/><ref refid="vision_8hpp_1a484a1334be264197af9caabfb4fb1cd8" kindref="member">toVispImagePoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vision_msgs::msg::Point2D<sp/>&amp;point_2d);</highlight></codeline>
 <codeline lineno="55"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="56"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.8" xml:lang="en-US">
+  <compound refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame" kind="struct"><name>visp_tk_tutorials::SequencePlayer::SequenceFrame</name>
+    <member refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1a28deaff7d06087d1cd6627208c739412" kind="variable"><name>IRGB</name></member>
+    <member refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1afd379b3d61b8a067fad62eb8266247d2" kind="variable"><name>depth</name></member>
+  </compound>
+  <compound refid="classvisp__tk__tutorials_1_1SequencePlayer" kind="class"><name>visp_tk_tutorials::SequencePlayer</name>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad855693bd95bfe6d44f8293e66d2f899" kind="variable"><name>m_has_to_quit</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1abdb829dd9da3ddd9b860f53467540cf6" kind="variable"><name>m_path</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4ba5b4c740d85d636a1fe985e2f76f75" kind="variable"><name>m_object_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a74912f7245021ee5fcd4120bafbfb64c" kind="variable"><name>m_depth_camera_info_topic_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1afaa97a9e724a224f1146f1b89110e0a6" kind="variable"><name>m_depth_stream_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a3445ef28a53581ca817fd7d4e77e9f97" kind="variable"><name>m_rgb_camera_info_topic_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a901c4d2842f902d22a6911bb402514db" kind="variable"><name>m_rgb_stream_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aac1334669e7e5ea806f5e44360acac4b" kind="variable"><name>m_init_pose_topic_name</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a9078a1cf5425e697945e44a3055cd368" kind="variable"><name>m_cam</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aa5e51c7b1f03b6624232818d8f65fa24" kind="variable"><name>m_cam_info</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ae60960e324b5802e4ffb3ef6ffbe2c0a" kind="variable"><name>m_depthScale</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a8b18292a925f723362b820c6997ae9a8" kind="variable"><name>m_h</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ac4f34805e1d4926dec9921ecc2f1998d" kind="variable"><name>m_w</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad057b073d4425956e64c18058b91b934" kind="variable"><name>m_frames</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a5abee39f5070878d3340a7a1ef7f0026" kind="variable"><name>m_initial_cMo</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1adcee6a48491f4ca1e2b75bf55a2717bd" kind="variable"><name>m_initial_pose</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a2f2c51c77bc20146aa3f653426bbcfae" kind="variable"><name>m_depth_cam_info_pub</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a47c60dd3594b9e54cd6b6b19fd5fae99" kind="variable"><name>m_depth_img_pub</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aed5c871f1cc221ac7c15cb324445e875" kind="variable"><name>m_rgb_cam_info_pub</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a41e0852569884731977a4f8041060090" kind="variable"><name>m_rgb_img_pub</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a198e0093f8564e7dbc809f2277b82266" kind="variable"><name>m_init_pose_pub</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a01002b907bb5b158b8bbacef62dd5173" kind="variable"><name>m_timer</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a7b0f9f80c1c910b0435b2d50e68bb726" kind="function"><name>SequencePlayer</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad59990d1844f4999d31f527faddeeb2c" kind="function"><name>init</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a38bbf6f5fafb10e2193aa5b183f58b4d" kind="function"><name>has_to_quit</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a1565e6e9db16fa881b677024d5aebbf5" kind="function"><name>stop_and_quit</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a348c7af054b42af909e0d8ded95eef7a" kind="function"><name>getImageHeight</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a6e045720789edbc6ae21ab9cd707ee6b" kind="function"><name>getImageWidth</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a0c3227f63aa83504e0f26e137edef17f" kind="function"><name>cam</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a98c5d875622951f95c102319d34f6847" kind="function"><name>numFrames</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a9343eb8fb97f90a6d45c9ef3a638dea6" kind="function"><name>getFrame</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4761c3e5cdd34cebf8ca463d7aeef685" kind="function"><name>loadCameraSettings</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1acdf4767c0dc496cf34008f998d48c940" kind="function"><name>getColorFrame</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad982fa4ed37cb6c562abc51658a7cd37" kind="function"><name>getDepthFrame</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a1fc55aa867a31505825a23abaeb33e7a" kind="function"><name>loadFrames</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4d18c65557eceaa7c224a5e01202af19" kind="function"><name>getInitialPoses</name></member>
+    <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ac2dfe6aeb904d52bde4102669c87afc6" kind="function"><name>periodic_publication</name></member>
+  </compound>
+  <compound refid="namespacerclcpp" kind="namespace"><name>rclcpp</name>
+  </compound>
+  <compound refid="namespacevisp__tk__tutorials" kind="namespace"><name>visp_tk_tutorials</name>
+  </compound>
+  <compound refid="SequencePlayer_8hpp" kind="file"><name>SequencePlayer.hpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_5e157efc5ca5d0c2cc4fa5b8694d042f" kind="dir"><name>include/visp_tk_tutorials</name>
+  </compound>
+</doxygenindex>

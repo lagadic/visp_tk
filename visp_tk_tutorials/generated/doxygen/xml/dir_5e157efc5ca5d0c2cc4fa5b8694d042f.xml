@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_5e157efc5ca5d0c2cc4fa5b8694d042f" kind="dir">
+    <compoundname>include/visp_tk_tutorials</compoundname>
+    <innerfile refid="SequencePlayer_8hpp">SequencePlayer.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_tk_tutorials/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame" kind="struct" language="C++" prot="private">
+    <compoundname>visp_tk_tutorials::SequencePlayer::SequenceFrame</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1a28deaff7d06087d1cd6627208c739412" prot="public" static="no" mutable="no">
+        <type>sensor_msgs::msg::Image</type>
+        <definition>sensor_msgs::msg::Image visp_tk_tutorials::SequencePlayer::SequenceFrame::IRGB</definition>
+        <argsstring></argsstring>
+        <name>IRGB</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::SequenceFrame::IRGB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="76" column="29" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1afd379b3d61b8a067fad62eb8266247d2" prot="public" static="no" mutable="no">
+        <type>sensor_msgs::msg::Image</type>
+        <definition>sensor_msgs::msg::Image visp_tk_tutorials::SequencePlayer::SequenceFrame::depth</definition>
+        <argsstring></argsstring>
+        <name>depth</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::SequenceFrame::depth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="77" column="29" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="74" column="3" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="75" bodyend="78"/>
+    <listofallmembers>
+      <member refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1afd379b3d61b8a067fad62eb8266247d2" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer::SequenceFrame</scope><name>depth</name></member>
+      <member refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame_1a28deaff7d06087d1cd6627208c739412" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer::SequenceFrame</scope><name>IRGB</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

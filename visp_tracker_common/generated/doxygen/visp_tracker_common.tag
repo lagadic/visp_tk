@@ -60,6 +60,20 @@
       <anchor>abab8e48e76358f97455d49a4d32fd7cd</anchor>
       <arglist>(const sensor_msgs::msg::Image::ConstSharedPtr &amp;rgb, const sensor_msgs::msg::Image::ConstSharedPtr &amp;depth)</arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>reinit_callback</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
+      <anchor>ae44352f9de8c380c47f601190ed9d227</anchor>
+      <arglist>(const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr</type>
+      <name>m_reinit_srv</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
+      <anchor>a62c9dd9b4896812f2e64e959ead3163d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="variable" protection="protected">
       <type>rclcpp::Subscription&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr</type>
       <name>m_depth_cam_info_sub</name>
@@ -96,6 +110,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>std::mutex</type>
+      <name>m_mutex_initialized</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
+      <anchor>aa156b12372a5216c1d50944583f36d23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_tracker_initialized</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
+      <anchor>a5b60acddf1851c102c1acfb61fa6c853</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>bool</type>
       <name>m_depth_cam_info_received</name>
       <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
@@ -117,10 +145,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+      <type>visp::vpCameraParameters</type>
       <name>m_depth_cam</name>
       <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
-      <anchor>a0c8d31ba49ce116fa8ea94ea1c1bf853</anchor>
+      <anchor>ac9540e82c4d616d37ff462c9c810b81e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -171,6 +199,13 @@
       <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
       <anchor>abab8e48e76358f97455d49a4d32fd7cd</anchor>
       <arglist>(const sensor_msgs::msg::Image::ConstSharedPtr &amp;rgb, const sensor_msgs::msg::Image::ConstSharedPtr &amp;depth)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>reinit_callback</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseMultiModalTracker.html</anchorfile>
+      <anchor>ae44352f9de8c380c47f601190ed9d227</anchor>
+      <arglist>(const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -498,10 +533,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VISP_NAMESPACE_ADDRESSING vpCameraParameters</type>
+      <type>visp::vpCameraParameters</type>
       <name>m_rgb_cam</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
-      <anchor>a0f27d9d04c4597e5a5d750b50a5fc93c</anchor>
+      <anchor>a497e13c9f2c498b3dddbae6d67bbe28c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -864,24 +899,24 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::shared_ptr&lt; VISP_NAMESPACE_ADDRESSING vpDisplay &gt;</type>
+      <type>std::shared_ptr&lt; visp::vpDisplay &gt;</type>
       <name>m_display_color</name>
       <anchorfile>classvisp__tracker__common_1_1TrackerGUI.html</anchorfile>
-      <anchor>a2daec64b7980f62f3e958e07b32d5132</anchor>
+      <anchor>a95afa94571de38e5f5a77d1bf016be4b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::shared_ptr&lt; VISP_NAMESPACE_ADDRESSING vpDisplay &gt;</type>
+      <type>std::shared_ptr&lt; visp::vpDisplay &gt;</type>
       <name>m_display_depth</name>
       <anchorfile>classvisp__tracker__common_1_1TrackerGUI.html</anchorfile>
-      <anchor>aeaef65a944bc6283b8d2967dd74b30e9</anchor>
+      <anchor>a5c8ae20d48bcf8459d9611ee1dbf85de</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
+      <type>visp::vpImage&lt; visp::vpRGBa &gt;</type>
       <name>m_I</name>
       <anchorfile>classvisp__tracker__common_1_1TrackerGUI.html</anchorfile>
-      <anchor>acab4dc67380baa7f4230d94c94ba9c99</anchor>
+      <anchor>afd7cd11931c1468b8b07e90866f0e746</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -892,10 +927,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::optional&lt; VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt; &gt;</type>
+      <type>std::optional&lt; visp::vpImage&lt; visp::vpRGBa &gt; &gt;</type>
       <name>m_opt_Id</name>
       <anchorfile>classvisp__tracker__common_1_1TrackerGUI.html</anchorfile>
-      <anchor>a786194ef32b486e0a9cd662cbe84c9b2</anchor>
+      <anchor>a58cce6cdbd67df7fa5a5d5e464e55b35</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -941,10 +976,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>std::optional&lt; VISP_NAMESPACE_ADDRESSING vpCameraParameters &gt;</type>
+      <type>std::optional&lt; visp::vpCameraParameters &gt;</type>
       <name>m_opt_rgb_cam</name>
       <anchorfile>classvisp__tracker__common_1_1TrackerGUI.html</anchorfile>
-      <anchor>a229769ce7c87e174037990aeccfa7ad3</anchor>
+      <anchor>af9d92ec89b7a4aa94fb37a6163409873</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">

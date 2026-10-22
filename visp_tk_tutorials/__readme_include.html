@@ -7,6 +7,7 @@
   <title>README &mdash; visp_tk_tutorials 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
 
   
   
@@ -15,6 +16,8 @@
         <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -73,10 +76,96 @@
              
   <section id="readme">
 <h1>README<a class="headerlink" href="#readme" title="Link to this heading"></a></h1>
-<section id="visp-tk-tutorials">
-<h2>visp_tk_tutorials<a class="headerlink" href="#visp-tk-tutorials" title="Link to this heading"></a></h2>
-<p>This package contains tutorials for the different packages of the <code class="docutils literal notranslate"><span class="pre">visp_tk</span></code> metapackage.</p>
 </section>
+<section id="visp-tk-tutorials-documentation">
+<h1><code class="docutils literal notranslate"><span class="pre">visp_tk_tutorials</span></code> documentation<a class="headerlink" href="#visp-tk-tutorials-documentation" title="Link to this heading"></a></h1>
+<p>This package contains tutorials for the different packages of the <cite>visp_tk</cite> metapackage.</p>
+</section>
+<section id="prerequisities">
+<h1>Prerequisities<a class="headerlink" href="#prerequisities" title="Link to this heading"></a></h1>
+<section id="install-ros-2">
+<h2>Install ROS 2<a class="headerlink" href="#install-ros-2" title="Link to this heading"></a></h2>
+<p>Make sure your ROS 2 core environment is installed. Refer to the official
+<a class="reference external" href="https://docs.ros.org/">ROS 2 documentation</a> to get started.</p>
+</section>
+<section id="install-visp">
+<h2>Install ViSP<a class="headerlink" href="#install-visp" title="Link to this heading"></a></h2>
+<p>Please refer to the official installation instructions from the
+<a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial_install.html">ViSP installation tutorials</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>Pre-built ViSP packages exist for Ubuntu (<cite>libvisp-dev</cite>) and ROS 2 (<cite>ros2-&lt;distro&gt;-visp</cite>), but they are usually
+built against a reduced number of third-party libraries. Consequently, you might miss advanced features required
+to control hardware (e.g., Franka robots), acquire images from RealSense cameras, or leverage the Panda3D
+dependency needed for the <cite>visp_tk_tutorials</cite> package.</p></li>
+<li><p>That’s why <strong>we strongly recommend building ViSP from source.</strong>
+See <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial_install_src.html">tutorials</a>.</p></li>
+<li><p>After building ViSP from source, remember to set the <cite>VISP_DIR</cite> environment variable to your build directory,
+for example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">VISP_DIR</span><span class="o">=</span><span class="nv">$VISP_WS</span>/visp-build
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="how-to-get-and-build-visp-tk-tutorials">
+<h1>How to get and build visp_tk_tutorials<a class="headerlink" href="#how-to-get-and-build-visp-tk-tutorials" title="Link to this heading"></a></h1>
+<p>Here we suppose that you have a ROS 2  workspace in <code class="docutils literal notranslate"><span class="pre">~/colcon_ws/</span></code> folder.</p>
+<blockquote>
+<div><ul>
+<li><p>Clone the repository into your workspace source directory, checking out the branch corresponding to your
+ROS distribution:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/colcon_ws/src
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="nv">$ROS_DISTRO</span><span class="w"> </span>https://github.com/lagadic/visp_tk.git
+<span class="nb">cd</span><span class="w"> </span>..
+</pre></div>
+</div>
+</li>
+<li><p>Install required ROS 2 dependencies via <code class="docutils literal notranslate"><span class="pre">rosdep</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>rosdep<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src
+</pre></div>
+</div>
+</li>
+<li><p>Build the <code class="docutils literal notranslate"><span class="pre">visp_tk_tutorials</span></code> package:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-up-to<span class="w"> </span>visp_tk_tutorials
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you encounter the following issue:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>---<span class="w"> </span>stderr:<span class="w"> </span>visp_tk_tutorials
+CMake<span class="w"> </span>Error<span class="w"> </span>at<span class="w"> </span>CMakeLists.txt:46<span class="w"> </span><span class="o">(</span>find_package<span class="o">)</span>:
+<span class="w">  </span>By<span class="w"> </span>not<span class="w"> </span>providing<span class="w"> </span><span class="s2">&quot;FindVISP.cmake&quot;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>CMAKE_MODULE_PATH<span class="w"> </span>this<span class="w"> </span>project<span class="w"> </span>has
+<span class="w">  </span>asked<span class="w"> </span>CMake<span class="w"> </span>to<span class="w"> </span>find<span class="w"> </span>a<span class="w"> </span>package<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span><span class="s2">&quot;VISP&quot;</span>,<span class="w"> </span>but
+<span class="w">  </span>CMake<span class="w"> </span>did<span class="w"> </span>not<span class="w"> </span>find<span class="w"> </span>one.
+
+<span class="w">  </span>Could<span class="w"> </span>not<span class="w"> </span>find<span class="w"> </span>a<span class="w"> </span>package<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span><span class="s2">&quot;VISP&quot;</span><span class="w"> </span><span class="o">(</span>requested
+<span class="w">  </span>version<span class="w"> </span><span class="m">3</span>.7<span class="o">)</span><span class="w"> </span>with<span class="w"> </span>any<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>names:
+
+<span class="w">    </span>VISPConfig.cmake
+<span class="w">    </span>visp-config.cmake
+
+<span class="w">  </span>Add<span class="w"> </span>the<span class="w"> </span>installation<span class="w"> </span>prefix<span class="w"> </span>of<span class="w"> </span><span class="s2">&quot;VISP&quot;</span><span class="w"> </span>to<span class="w"> </span>CMAKE_PREFIX_PATH<span class="w"> </span>or<span class="w"> </span><span class="nb">set</span>
+<span class="w">  </span><span class="s2">&quot;VISP_DIR&quot;</span><span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>directory<span class="w"> </span>containing<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>files.<span class="w">  </span>If<span class="w"> </span><span class="s2">&quot;VISP&quot;</span>
+<span class="w">  </span>provides<span class="w"> </span>a<span class="w"> </span>separate<span class="w"> </span>development<span class="w"> </span>package<span class="w"> </span>or<span class="w"> </span>SDK,<span class="w"> </span>be<span class="w"> </span>sure<span class="w"> </span>it<span class="w"> </span>has<span class="w"> </span>been
+<span class="w">  </span>installed.
+</pre></div>
+</div>
+</div></blockquote>
+<p>it means that ViSP is not found. Use <code class="docutils literal notranslate"><span class="pre">VISP_DIR</span></code> to point to <code class="docutils literal notranslate"><span class="pre">$VISP_WS/visp-build</span></code> folder like:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-up-to<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>--cmake-args<span class="w"> </span>-DVISP_DIR<span class="o">=</span><span class="nv">$VISP_WS</span>/visp-build
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</li>
+</ul>
+</div></blockquote>
 </section>
 
 

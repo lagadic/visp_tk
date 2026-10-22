@@ -7,6 +7,7 @@
   <title>AprilTag tutorial &mdash; visp_tk_tutorials 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
 
   
   
@@ -15,6 +16,8 @@
         <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -73,7 +76,193 @@
              
   <section id="apriltag-tutorial">
 <h1>AprilTag tutorial<a class="headerlink" href="#apriltag-tutorial" title="Link to this heading"></a></h1>
-<p>This is a tutorial for the <cite>visp_apriltag</cite> package.</p>
+<p>This is a tutorial for the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> package. The documentation of the AprilTag and ArUco tags detector provided
+by ViSP can be found <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html">here</a>.
+ViSP documentation also provides step-by-step tutorials to progressively learn how to use the detector
+<a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-detection-apriltag.htmll">here</a> .</p>
+<p>Consequently, this tutorial will not focus on explaining the meaning of the different parameters of the
+detector, but instead focus on the specificities on how to use the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> package.</p>
+<p>We provide two examples on how to use the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> package: one that works with a live camera thanks to
+the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> package, and one that uses a pre-recorded rosbag. We will first have a look to the tutorial
+that uses a live camera.</p>
+<section id="tutorial-using-a-live-camera">
+<h2>Tutorial using a live camera<a class="headerlink" href="#tutorial-using-a-live-camera" title="Link to this heading"></a></h2>
+<section id="purpose-of-this-tutorial">
+<h3>Purpose of this tutorial<a class="headerlink" href="#purpose-of-this-tutorial" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to have a simple situation where we assume that all the tags have the same dimension.</p>
+</section>
+<section id="how-to-launch-it">
+<h3>How to launch it<a class="headerlink" href="#how-to-launch-it" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_v4l_launch.py
+</pre></div>
+</div>
+<p>If you get the following error when launching the launch file, it is because your camera has not been calibrated yet.
+See for instance the documentation of the <a class="reference external" href="https://docs.ros.org/en/rolling/p/camera_calibration/doc/tutorial_mono.html">camera_calibration package</a>
+to see how to calibrate your camera.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>camera.v4l2_camera<span class="o">]</span>:<span class="w"> </span>using<span class="w"> </span>default<span class="w"> </span>calibration<span class="w"> </span>URL
+<span class="o">[</span>v4l2_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w">  </span><span class="o">[</span>camera.v4l2_camera<span class="o">]</span>:<span class="w"> </span>camera<span class="w"> </span>calibration<span class="w"> </span>URL:<span class="w"> </span>file:///home/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/.ros/camera_info/integrated_webcam_hd:_integrate.yaml
+<span class="o">[</span>v4l2_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>ERROR<span class="o">]</span><span class="w"> </span><span class="o">[</span>camera_calibration_parsers<span class="o">]</span>:<span class="w"> </span>Unable<span class="w"> </span>to<span class="w"> </span>open<span class="w"> </span>camera<span class="w"> </span>calibration<span class="w"> </span>file<span class="w"> </span><span class="o">[</span>/home/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/.ros/camera_info/integrated_webcam_hd:_integrate.yaml<span class="o">]</span>
+<span class="o">[</span>v4l2_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w">  </span><span class="o">[</span>camera.v4l2_camera<span class="o">]</span>:<span class="w"> </span>Camera<span class="w"> </span>calibration<span class="w"> </span>file<span class="w"> </span>/home/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/.ros/camera_info/integrated_webcam_hd:_integrate.yaml<span class="w"> </span>not<span class="w"> </span>found
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Receive<span class="w"> </span>image
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>camera<span class="w"> </span>info...
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span>terminate<span class="w"> </span>called<span class="w"> </span>after<span class="w"> </span>throwing<span class="w"> </span>an<span class="w"> </span>instance<span class="w"> </span>of<span class="w"> </span><span class="s1">&#39;std::runtime_error&#39;</span>
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w">   </span>what<span class="o">()</span>:<span class="w">  </span>uncalibrated<span class="w"> </span>camera
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_v4l_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>When you start the launch file, the detector will be turned on, and you should see the result of
+the detection on screen. It should look like the following image (please be careful of using the same tag
+family than the one set as the launch argument <code class="docutils literal notranslate"><span class="pre">tag_family</span></code>):</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/apriltag_live_detect.png"><img alt="_images/apriltag_live_detect.png" src="_images/apriltag_live_detect.png" style="width: 90%;" /></a>
+</figure>
+</section>
+<section id="code-explanation">
+<h3>Code explanation<a class="headerlink" href="#code-explanation" title="Link to this heading"></a></h3>
+<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">apriltag_tracker_live_v4l_launch.py</span></code>:</p>
+<p>We will break it down to better understand it.</p>
+<p>First, we begin by declaring the parameters that will be needed by the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> node. See the
+<a class="reference external" href="https://gitlab.com/boldhearts/ros2_v4l2_camera/#nodes">v4l2_camera documentation</a> for
+more details on these parameters.</p>
+<p>Then, we declare the parameters of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node. See
+<a class="reference external" href="../visp_apriltag/index.html#node-parameters">visp_apriltag documentation</a>
+for a detailed explanation of its parameters.</p>
+<p>The important thing to notice is that the behavior of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node if the launch file is launched
+without any arguments is to consider that all the tags have a size of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> meter and that the node will not publish
+any messages on the <code class="docutils literal notranslate"><span class="pre">pose</span></code> topic.</p>
+<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> node, using some launch arguments and some hard-coded values for its parameters:</p>
+<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node, using some launch arguments and some hard-coded values for its parameters:</p>
+<p>Finally, we ask to stop all the nodes once the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> is killed by a right click on the window.</p>
+</section>
+</section>
+<section id="tutorial-using-a-rosbag">
+<h2>Tutorial using a rosbag<a class="headerlink" href="#tutorial-using-a-rosbag" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Purpose of this tutorial<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to learn how to handle situations where the tags may have different sizes.</p>
+</section>
+<section id="id2">
+<h3>How to launch it<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_bag_launch.py
+</pre></div>
+</div>
+<p>When you start the launch file, the detector will be turned on, and you should see the result of
+the detection on screen, which sould look like the following image:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/apriltag_bag_expected_output.png"><img alt="_images/apriltag_bag_expected_output.png" src="_images/apriltag_bag_expected_output.png" style="width: 90%;" /></a>
+</figure>
+</section>
+<section id="id3">
+<h3>Code explanation<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">apriltag_tracker_bag_launch.py</span></code>:</p>
+<p>First, we declare the parameters of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node. See
+<a class="reference external" href="../visp_apriltag/index.html#node-parameters">visp_apriltag documentation</a>
+for a detailed explanation of its parameters.</p>
+<p>The important thing to notice is that the behavior of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node if the launch file is launched
+without any arguments is to consider that all the tags whose ID is <code class="docutils literal notranslate"><span class="pre">0</span></code> have a size of <code class="docutils literal notranslate"><span class="pre">0.2315</span></code> meter,
+all the tags whose ID is <code class="docutils literal notranslate"><span class="pre">1</span></code> have a size of <code class="docutils literal notranslate"><span class="pre">0.064</span></code> meter and all the other tags have a size of <code class="docutils literal notranslate"><span class="pre">0.2315</span></code> meter.
+Additionally, that the node will not publish any messages on the <code class="docutils literal notranslate"><span class="pre">pose</span></code> topic.</p>
+<p>Then, we create the process that will read the rosbag in a loop manner:</p>
+<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node, using the values of the launch arguments:</p>
+<p>Finally, we ask to stop all the nodes once the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> is killed by a right click on the window.</p>
+</section>
+</section>
+<section id="how-to-exploit-the-apriltag-detection">
+<h2>How to exploit the AprilTag detection?<a class="headerlink" href="#how-to-exploit-the-apriltag-detection" title="Link to this heading"></a></h2>
+<p>When tags are detected in the image, an array of the <code class="docutils literal notranslate"><span class="pre">AprilTagDetection</span></code> message is published on the <code class="docutils literal notranslate"><span class="pre">/&lt;node_name&gt;/tags_info</span></code>
+topic:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the message is not displayed, please refer to <a class="reference external" href="../visp_tracker_common/interfaces/msg/AprilTagDetection.html">the definition of the message present here.</a></p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">AprilTagDetectionArray</span></code> has one such element for each detected tag.</p>
+</section>
+<section id="tips-and-tricks-tag-pose-not-published">
+<h2>Tips and Tricks: Tag pose not published<a class="headerlink" href="#tips-and-tricks-tag-pose-not-published" title="Link to this heading"></a></h2>
+<p>Several clues can show that the poses are not computed:</p>
+<blockquote>
+<div><ul>
+<li><p>If you use these tutorial launch files, the tags borders are displayed but the frame is not projected in the image.</p></li>
+<li><p>In the console, there are some error messages:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_v4l_launch.py
+...
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1790253340</span>.305237753<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Receive<span class="w"> </span>image
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1790253340</span>.310646522<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Published<span class="w"> </span>RGB<span class="w"> </span>camera<span class="w"> </span>parameters<span class="w"> </span>are<span class="w"> </span>incorrect.
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1790253340</span>.340782250<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Published<span class="w"> </span>RGB<span class="w"> </span>camera<span class="w"> </span>parameters<span class="w"> </span>are<span class="w"> </span>incorrect.
+<span class="o">[</span>visp_apriltag_node-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1790253340</span>.373742210<span class="o">]</span><span class="w"> </span><span class="o">[</span>tracker_apriltag<span class="o">]</span>:<span class="w"> </span>Published<span class="w"> </span>RGB<span class="w"> </span>camera<span class="w"> </span>parameters<span class="w"> </span>are<span class="w"> </span>incorrect.
+</pre></div>
+</div>
+</li>
+<li><p>If you echo the topic <code class="docutils literal notranslate"><span class="pre">/tracker_apriltag/tags_info</span></code>, you will see:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>...
+is_pose_valid:<span class="w"> </span><span class="nb">false</span>
+pose:
+<span class="w">    </span>position:
+<span class="w">    </span>x:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>y:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>z:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>orientation:
+<span class="w">    </span>x:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>y:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>z:<span class="w"> </span><span class="m">0</span>.0
+<span class="w">    </span>w:<span class="w"> </span><span class="m">1</span>.0
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>It probably means that your camera is not calibrated. See for instance the documentation of the
+<a class="reference external" href="https://docs.ros.org/en/rolling/p/camera_calibration/doc/tutorial_mono.html">camera_calibration package</a>
+to see how to calibrate your camera.</p>
+<p>Then, you have to set the <code class="docutils literal notranslate"><span class="pre">camera_info_url</span></code> in order to point towards the file resulting from the calibration process.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_v4l_launch.py<span class="w"> </span>camera_info_url:<span class="o">=</span>&lt;/path/to/file&gt;
+</pre></div>
+</div>
+</section>
+<section id="tutorial-using-a-realsense-camera">
+<h2>Tutorial using a Realsense camera<a class="headerlink" href="#tutorial-using-a-realsense-camera" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>Purpose of this tutorial<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node when using another sensor.
+We chose to use a Realsense RGBD sensor because it is  fairly spread among the community.</p>
+</section>
+<section id="id5">
+<h3>How to launch it<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_rs2_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_live_rs2_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>If nothing appears on screen, it may mean that the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> package changed the names of
+the topic on which are published the data. Please run <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">info</span> <span class="pre">-v</span> <span class="pre">/&lt;camera_topic&gt;</span></code>
+to check if the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> publisher and the <code class="docutils literal notranslate"><span class="pre">tracker_rbt</span></code> subscriber are both listed.
+If not, please change the topic names accordingly.</p>
+</section>
+<section id="id6">
+<h3>Code explanation<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>We won’t give a detailed explanation of this launch file, because nothing of importance changed except the
+<code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> node, which goes beyond the scope of this package.</p>
+</section>
+</section>
 </section>
 
 

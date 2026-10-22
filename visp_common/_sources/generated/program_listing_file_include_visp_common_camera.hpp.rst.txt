@@ -45,9 +45,9 @@ Program Listing for File camera.hpp
    {
    namespace camera
    {
-   VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
-   VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
-   sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(VISP_NAMESPACE_ADDRESSING vpCameraParameters &cam_info, unsigned int cam_image_width,
+   visp::vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
+   visp::vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
+   sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(visp::vpCameraParameters &cam_info, unsigned int cam_image_width,
                                                        unsigned int cam_image_height);
    } // namespace camera
    } // namespace visp_common

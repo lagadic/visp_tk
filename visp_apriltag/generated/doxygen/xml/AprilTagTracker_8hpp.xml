@@ -139,20 +139,21 @@
 <codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Display-related<sp/>attributes<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(VISP_HAVE_DISPLAY)<sp/>&amp;&amp;<sp/>defined(VISP_HAVE_MODULE_GUI)</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>m_display_initialized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;VISP_NAMESPACE_ADDRESSING<sp/>vpDisplay&gt;<sp/>m_display;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>std::shared_ptr&lt;visp::vpDisplay&gt;<sp/>m_display;</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
 <codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>-----<sp/>Tracking-related<sp/>attributes<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98" refid="classvisp__apriltag_1_1AprilTagTracker_1acf32f4d09500765e2a48a51d8f109344" refkind="member"><highlight class="normal"><sp/><sp/>VISP_NAMESPACE_ADDRESSING<sp/>vpDetectorAprilTag<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1acf32f4d09500765e2a48a51d8f109344" kindref="member">m_tag_detector</ref>;<sp/></highlight></codeline>
+<codeline lineno="98" refid="classvisp__apriltag_1_1AprilTagTracker_1aacef15e04877f9b2c00f9aee31c4cbcc" refkind="member"><highlight class="normal"><sp/><sp/>visp::vpDetectorAprilTag<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1aacef15e04877f9b2c00f9aee31c4cbcc" kindref="member">m_tag_detector</ref>;<sp/></highlight></codeline>
 <codeline lineno="99" refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" refkind="member"><highlight class="normal"><sp/><sp/>std::string<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" kindref="member">m_family_name</ref>;<sp/></highlight></codeline>
 <codeline lineno="100" refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" refkind="member"><highlight class="normal"><sp/><sp/>std::map&lt;int64_t,<sp/>float&gt;<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" kindref="member">m_tag_size_map</ref>;<sp/></highlight></codeline>
 <codeline lineno="101" refid="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace" kindref="member">m_default_tag_size</ref>;<sp/></highlight></codeline>
-<codeline lineno="102" refid="classvisp__apriltag_1_1AprilTagTracker_1ab2dcf4c89bb248617ca81a9197de518e" refkind="member"><highlight class="normal"><sp/><sp/>VISP_NAMESPACE_ADDRESSING<sp/>vpImage&lt;unsigned<sp/>char&gt;<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1ab2dcf4c89bb248617ca81a9197de518e" kindref="member">m_I</ref>;<sp/></highlight></codeline>
+<codeline lineno="102" refid="classvisp__apriltag_1_1AprilTagTracker_1a4f3af236545cad703634f4cbd2941a8f" refkind="member"><highlight class="normal"><sp/><sp/>visp::vpImage&lt;unsigned<sp/>char&gt;<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1a4f3af236545cad703634f4cbd2941a8f" kindref="member">m_I</ref>;<sp/></highlight></codeline>
 <codeline lineno="103" refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" refkind="member"><highlight class="normal"><sp/><sp/>std::optional&lt;int&gt;<sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" kindref="member">m_opt_id</ref><sp/>=<sp/>std::nullopt;<sp/></highlight></codeline>
-<codeline lineno="104"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="104" refid="classvisp__apriltag_1_1AprilTagTracker_1ac94c0bc710b5361b6f805c20b275c896" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classvisp__apriltag_1_1AprilTagTracker_1ac94c0bc710b5361b6f805c20b275c896" kindref="member">m_display_tag</ref>;<sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="include/visp_apriltag/AprilTagTracker.hpp"/>
   </compounddef>

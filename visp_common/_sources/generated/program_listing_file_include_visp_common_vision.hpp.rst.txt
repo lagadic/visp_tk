@@ -45,10 +45,10 @@ Program Listing for File vision.hpp
    {
    namespace vision
    {
-   vision_msgs::msg::Point2D toVisionMsgsPoint2D(const VISP_NAMESPACE_ADDRESSING vpImagePoint &ip);
+   vision_msgs::msg::Point2D toVisionMsgsPoint2D(const visp::vpImagePoint &ip);
    
    
-   VISP_NAMESPACE_ADDRESSING vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
+   visp::vpImagePoint toVispImagePoint(const vision_msgs::msg::Point2D &point_2d);
    }
    }
    

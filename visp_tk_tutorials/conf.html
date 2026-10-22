@@ -7,6 +7,7 @@
   <title>&lt;no title&gt; &mdash; visp_tk_tutorials 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
 
   
   
@@ -15,6 +16,8 @@
         <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -99,7 +102,7 @@ ensure_global(‘version’, “0.1”)</p>
 extensions.append(‘sphinx.ext.autodoc’)</p>
 <p>pkgs_to_mock = []
 import importlib
-for exec_depend in [‘ros2launch’, ‘visp_tk’]:</p>
+for exec_depend in [‘ros2launch’, ‘rosbag2’, ‘visp_tk’, ‘v4l2_camera’, ‘realsense2_camera’]:</p>
 <blockquote>
 <div><dl class="simple">
 <dt>try:</dt><dd><p># Some python dependencies may be dist packages.
@@ -122,7 +125,7 @@ extensions.append(‘sphinx.ext.intersphinx’)</p>
 <p>build_type = ‘ament_cmake’
 always_run_doxygen = False
 # By default, the <cite>exhale</cite>/<cite>breathe</cite> extensions should be added if <cite>doxygen</cite> was invoked
-is_doxygen_invoked = False</p>
+is_doxygen_invoked = True</p>
 <dl>
 <dt>if rosdoc2_settings.get(‘enable_breathe’, is_doxygen_invoked):</dt><dd><p># Configure Breathe.
 # Breathe ingests the XML output from Doxygen and makes it accessible from Sphinx.
@@ -138,7 +141,7 @@ if not is_doxygen_invoked:</p>
 </dl>
 </div></blockquote>
 <p>ensure_global(‘breathe_projects’, {})
-breathe_projects.update({
+breathe_projects.update({        “visp_tk_tutorials Doxygen Project”: “/__w/visp_tk/visp_tk/docs_build/visp_tk_tutorials/output_staging/generated/doxygen/xml”
 })
 if breathe_projects:</p>
 <blockquote>
@@ -220,10 +223,10 @@ if ‘sphinx.ext.intersphinx’ not in extensions:</p>
 </div></blockquote>
 <dl class="simple">
 <dt>ensure_global(‘intersphinx_mapping’, {</dt><dd><p>‘visp_mbt’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_mbt/">http://docs.ros.org/en/latest/p/visp_mbt/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_mbt/objects.inv’),
+‘visp_rbt’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_rbt/">http://docs.ros.org/en/latest/p/visp_rbt/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_rbt/objects.inv’),
 ‘visp_common’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_common/">http://docs.ros.org/en/latest/p/visp_common/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_common/objects.inv’),
 ‘visp_apriltag’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_apriltag/">http://docs.ros.org/en/latest/p/visp_apriltag/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_apriltag/objects.inv’),
-‘visp_tk’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_tk/">http://docs.ros.org/en/latest/p/visp_tk/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_tk/objects.inv’),
-‘visp_rbt’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_rbt/">http://docs.ros.org/en/latest/p/visp_rbt/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_rbt/objects.inv’)</p>
+‘visp_tk’: (’<a class="reference external" href="http://docs.ros.org/en/latest/p/visp_tk/">http://docs.ros.org/en/latest/p/visp_tk/</a>’, ‘/__w/visp_tk/visp_tk/cross_reference/visp_tk/objects.inv’)</p>
 </dd>
 </dl>
 <p>})</p>

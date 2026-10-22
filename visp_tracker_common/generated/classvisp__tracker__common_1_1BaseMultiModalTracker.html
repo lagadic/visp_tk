@@ -68,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819.html">Variable visp_tracker_common::reinit_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
 </ul>
@@ -104,11 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
@@ -226,6 +228,20 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker15reinit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker15reinit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker15reinit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE"></span><span id="visp_tracker_common::BaseMultiModalTracker::reinit_callback__std::shared_ptr:std_srvs::srv::Trigger::Request:C.std::shared_ptr:std_srvs::srv::Trigger::Response:"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1ae44352f9de8c380c47f601190ed9d227"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reinit_callback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">request</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Response</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">response</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker15reinit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Callback that is called to aks the tracker to perform once again the initialization of the tracking. <strong>IMPORTANT</strong>: it does not call <a class="reference internal" href="#classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1"><span class="std std-ref">init()</span></a> or any of its sub-routines. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> – Trigger signal. </p></li>
+<li><p><strong>response</strong> – Response containing the status and the message. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
@@ -288,6 +304,12 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker12m_reinit_srvE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker12m_reinit_srvE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker12m_reinit_srvE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_reinit_srv__rclcpp::Service:std_srvs::srv::Trigger:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a62c9dd9b4896812f2e64e959ead3163d"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Service</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std_srvs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">srv</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Trigger</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_reinit_srv</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker12m_reinit_srvE" title="Link to this definition"></a><br /></dt>
+<dd><p>Service to ask the node to reinitialize using ros2 service. </p>
+</dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE">
 <span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_sub__rclcpp::Subscription:sensor_msgs::msg::CameraInfo:::SharedPtr"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a19bc629ae09c6809b58d0ce557dbd7f4"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">sensor_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CameraInfo</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam_info_sub</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE" title="Link to this definition"></a><br /></dt>
 <dd><p>Depth camera parameters subscriber. </p>
@@ -318,6 +340,18 @@
 </dd></dl>
 
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_mutex_initializedE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker19m_mutex_initializedE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker19m_mutex_initializedE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_mutex_initialized__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa156b12372a5216c1d50944583f36d23"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_initialized</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_mutex_initializedE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex to protect m_tracker_initialized from concurrent access. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_tracker_initializedE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker21m_tracker_initializedE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker21m_tracker_initializedE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_tracker_initialized__b"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5b60acddf1851c102c1acfb61fa6c853"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker_initialized</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_tracker_initializedE" title="Link to this definition"></a><br /></dt>
+<dd><p>True when the tracker is correctly initialized, false when the tracking was lost or never began. </p>
+</dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE">
 <span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_received__b"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8694cb4fff8fdac19099a60a719fc71a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam_info_received</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE" title="Link to this definition"></a><br /></dt>
 <dd><p>Set to true once the color camera parameters have been retrieved. </p>
@@ -336,8 +370,8 @@
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0c8d31ba49ce116fa8ea94ea1c1bf853"></span><span class="sig-name descname"><span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpCameraParameters</span> <span class="pre">m_depth_cam</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE">
+<span id="_CPPv3N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE"></span><span id="_CPPv2N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE"></span><span id="visp_tracker_common::BaseMultiModalTracker::m_depth_cam__visp::vpCameraParameters"></span><span class="target" id="classvisp__tracker__common_1_1BaseMultiModalTracker_1ac9540e82c4d616d37ff462c9c810b81e"></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpCameraParameters</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_depth_cam</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE" title="Link to this definition"></a><br /></dt>
 <dd><p>The depth camera parameters. </p>
 </dd></dl>
 

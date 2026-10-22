@@ -733,9 +733,9 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/TrackerGUI.hpp" line="234" column="8" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="234" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a2daec64b7980f62f3e958e07b32d5132" prot="protected" static="no" mutable="no">
-        <type>std::shared_ptr&lt; VISP_NAMESPACE_ADDRESSING vpDisplay &gt;</type>
-        <definition>std::shared_ptr&lt;VISP_NAMESPACE_ADDRESSING vpDisplay&gt; visp_tracker_common::TrackerGUI::m_display_color</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a95afa94571de38e5f5a77d1bf016be4b" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; visp::vpDisplay &gt;</type>
+        <definition>std::shared_ptr&lt;visp::vpDisplay&gt; visp_tracker_common::TrackerGUI::m_display_color</definition>
         <argsstring></argsstring>
         <name>m_display_color</name>
         <qualifiedname>visp_tracker_common::TrackerGUI::m_display_color</qualifiedname>
@@ -748,9 +748,9 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/TrackerGUI.hpp" line="235" column="19" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="235" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1aeaef65a944bc6283b8d2967dd74b30e9" prot="protected" static="no" mutable="no">
-        <type>std::shared_ptr&lt; VISP_NAMESPACE_ADDRESSING vpDisplay &gt;</type>
-        <definition>std::shared_ptr&lt;VISP_NAMESPACE_ADDRESSING vpDisplay&gt; visp_tracker_common::TrackerGUI::m_display_depth</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a5c8ae20d48bcf8459d9611ee1dbf85de" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; visp::vpDisplay &gt;</type>
+        <definition>std::shared_ptr&lt;visp::vpDisplay&gt; visp_tracker_common::TrackerGUI::m_display_depth</definition>
         <argsstring></argsstring>
         <name>m_display_depth</name>
         <qualifiedname>visp_tracker_common::TrackerGUI::m_display_depth</qualifiedname>
@@ -763,9 +763,9 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/TrackerGUI.hpp" line="236" column="19" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="236" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1acab4dc67380baa7f4230d94c94ba9c99" prot="protected" static="no" mutable="no">
-        <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;</type>
-        <definition>VISP_NAMESPACE_ADDRESSING vpImage&lt;VISP_NAMESPACE_ADDRESSING vpRGBa&gt; visp_tracker_common::TrackerGUI::m_I</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1afd7cd11931c1468b8b07e90866f0e746" prot="protected" static="no" mutable="no">
+        <type>visp::vpImage&lt; visp::vpRGBa &gt;</type>
+        <definition>visp::vpImage&lt;visp::vpRGBa&gt; visp_tracker_common::TrackerGUI::m_I</definition>
         <argsstring></argsstring>
         <name>m_I</name>
         <qualifiedname>visp_tracker_common::TrackerGUI::m_I</qualifiedname>
@@ -776,7 +776,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_tracker_common/TrackerGUI.hpp" line="238" column="37" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="238" bodyend="-1"/>
+        <location file="include/visp_tracker_common/TrackerGUI.hpp" line="238" column="17" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="238" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1aeae742498acdcaceae4f9b011d186fd5" prot="protected" static="no" mutable="no">
         <type>std::mutex</type>
@@ -793,9 +793,9 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/TrackerGUI.hpp" line="239" column="14" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="239" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a786194ef32b486e0a9cd662cbe84c9b2" prot="protected" static="no" mutable="no">
-        <type>std::optional&lt; VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt; &gt;</type>
-        <definition>std::optional&lt;VISP_NAMESPACE_ADDRESSING vpImage&lt;VISP_NAMESPACE_ADDRESSING vpRGBa&gt; &gt; visp_tracker_common::TrackerGUI::m_opt_Id</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a58cce6cdbd67df7fa5a5d5e464e55b35" prot="protected" static="no" mutable="no">
+        <type>std::optional&lt; visp::vpImage&lt; visp::vpRGBa &gt; &gt;</type>
+        <definition>std::optional&lt;visp::vpImage&lt;visp::vpRGBa&gt; &gt; visp_tracker_common::TrackerGUI::m_opt_Id</definition>
         <argsstring></argsstring>
         <name>m_opt_Id</name>
         <qualifiedname>visp_tracker_common::TrackerGUI::m_opt_Id</qualifiedname>
@@ -905,9 +905,9 @@
         </inbodydescription>
         <location file="include/visp_tracker_common/TrackerGUI.hpp" line="246" column="16" bodyfile="include/visp_tracker_common/TrackerGUI.hpp" bodystart="246" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1a229769ce7c87e174037990aeccfa7ad3" prot="protected" static="no" mutable="no">
-        <type>std::optional&lt; VISP_NAMESPACE_ADDRESSING vpCameraParameters &gt;</type>
-        <definition>std::optional&lt;VISP_NAMESPACE_ADDRESSING vpCameraParameters&gt; visp_tracker_common::TrackerGUI::m_opt_rgb_cam</definition>
+      <memberdef kind="variable" id="classvisp__tracker__common_1_1TrackerGUI_1af9d92ec89b7a4aa94fb37a6163409873" prot="protected" static="no" mutable="no">
+        <type>std::optional&lt; visp::vpCameraParameters &gt;</type>
+        <definition>std::optional&lt;visp::vpCameraParameters&gt; visp_tracker_common::TrackerGUI::m_opt_rgb_cam</definition>
         <argsstring></argsstring>
         <name>m_opt_rgb_cam</name>
         <qualifiedname>visp_tracker_common::TrackerGUI::m_opt_rgb_cam</qualifiedname>
@@ -1116,8 +1116,8 @@
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1ac455b89006efa8d0583755821d242e74" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_clients_quit</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a0f1114ad3c64503e5e890c4ccad9ca95" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_clients_switch_tracking</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a5dc47902ef35d3f13844092f9cfc9244" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_clients_switch_visualization</name></member>
-      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a2daec64b7980f62f3e958e07b32d5132" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_display_color</name></member>
-      <member refid="classvisp__tracker__common_1_1TrackerGUI_1aeaef65a944bc6283b8d2967dd74b30e9" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_display_depth</name></member>
+      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a95afa94571de38e5f5a77d1bf016be4b" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_display_color</name></member>
+      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a5c8ae20d48bcf8459d9611ee1dbf85de" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_display_depth</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a820e0a8fbd29dca0e1a7409968018e0a" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_display_nb_frames_skipped</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a0f6a4337a657bce7473b6b2691ba095b" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_feat_2D_sub</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a0c0a79bdfb63c75db1a52d03d9354eb0" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_feature_opt_vec</name></member>
@@ -1126,7 +1126,7 @@
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a50adefa6f01edddb230f4150e26a48fd" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_frame_cnt</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1ac063ea1ea84991b5a7d731d0b22663b0" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_hints</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1ae855e8776c06bc6c5be002a8d3d5280c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_hints_depth</name></member>
-      <member refid="classvisp__tracker__common_1_1TrackerGUI_1acab4dc67380baa7f4230d94c94ba9c99" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_I</name></member>
+      <member refid="classvisp__tracker__common_1_1TrackerGUI_1afd7cd11931c1468b8b07e90866f0e746" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_I</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a7ca6e4f759e369628ce9484eb474e174" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_info_strings_sub</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1aa4312c69f7ce06f07bbc0f417187ddc2" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_it</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a90671ee532e990610fc04d30102a802c" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_it_node</name></member>
@@ -1136,10 +1136,10 @@
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a562e23ddc5744c9778ca19d1d515c6fe" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_mutex_info</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a983e0ca80f9d9b8f5ae6ffc75314ef55" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_mutex_poses</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a3cb736cb69978a8014437f71a906eda0" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_mutex_run</name></member>
-      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a786194ef32b486e0a9cd662cbe84c9b2" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_Id</name></member>
+      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a58cce6cdbd67df7fa5a5d5e464e55b35" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_Id</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1af0f25abb4f027353c6fe950b58ee73b2" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_max_depth</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a34129c2b34975a16ff949a4f37ee7677" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_min_depth</name></member>
-      <member refid="classvisp__tracker__common_1_1TrackerGUI_1a229769ce7c87e174037990aeccfa7ad3" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_rgb_cam</name></member>
+      <member refid="classvisp__tracker__common_1_1TrackerGUI_1af9d92ec89b7a4aa94fb37a6163409873" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_opt_rgb_cam</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a03452266e3fad1802828a79138a8aeb8" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_pose_name_array</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a671c127d794f7f13dc7d0104ea094d2f" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_pose_opt_vec</name></member>
       <member refid="classvisp__tracker__common_1_1TrackerGUI_1a61468f56e9c0f46a8539a8044f3099a8" prot="protected" virt="non-virtual"><scope>visp_tracker_common::TrackerGUI</scope><name>m_poses_sub</name></member>

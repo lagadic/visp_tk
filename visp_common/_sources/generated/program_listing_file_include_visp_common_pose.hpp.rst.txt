@@ -46,16 +46,16 @@ Program Listing for File pose.hpp
    {
    namespace pose
    {
-   VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform &trans);
-   VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform::ConstSharedPtr &trans);
+   visp::vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform &trans);
+   visp::vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Transform::ConstSharedPtr &trans);
    
-   VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose);
+   visp::vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose &pose);
    
-   VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr &pose);
+   visp::vpHomogeneousMatrix toVispHomogeneousMatrix(const geometry_msgs::msg::Pose::ConstSharedPtr &pose);
    
-   geometry_msgs::msg::Transform toGeometryMsgsTransform(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &mat);
+   geometry_msgs::msg::Transform toGeometryMsgsTransform(const visp::vpHomogeneousMatrix &mat);
    
-   geometry_msgs::msg::Pose toGeometryMsgsPose(const VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &mat);
+   geometry_msgs::msg::Pose toGeometryMsgsPose(const visp::vpHomogeneousMatrix &mat);
    } // namespace pose
    } // namespace visp_common
    

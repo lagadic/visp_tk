@@ -7,6 +7,7 @@
   <title>Model-Based Tracker (MBT) tutorial &mdash; visp_tk_tutorials 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
 
   
   
@@ -15,6 +16,8 @@
         <script src="../_static/documentation_options.js?v=01f34227"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -49,7 +52,27 @@
 <li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html">AprilTag tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Model-Based Tracker (MBT) tutorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Model-Based Tracker (MBT) tutorial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tutorial-using-a-json-file">Tutorial using a JSON file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#purpose-of-this-tutorial">Purpose of this tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-launch-it">How to launch it</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#code-explanation">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tutorial-using-an-xml-file">Tutorial using an XML file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Purpose of this tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">How to launch it</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Purpose of this tutorial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">How to launch it</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Code explanation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="rbt_tutorial.html">Render-Based Tracker (RBT) tutorial</a></li>
 </ul>
 </li>
@@ -89,7 +112,169 @@ ViSP documentation also provides step-by-step tutorials to progressively learn h
 <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-tracking-mb-generic.html">here</a> .</p>
 <p>Consequently, this tutorial will not focus on explaining the meaning of the different parameters of the
 MBT, but instead focus on the specificities on how to use the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> package.</p>
-<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">mbt_json_launch.py</span></code>:</p>
+<p>A node of the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> package can either be initialized using a <cite>JSON</cite> configuration file or an <cite>XML</cite> configuration
+file. Depending on the type of the configuration file, some parameters of the node must be or must not be set.
+Consequently, we will study the two cases separately.</p>
+<section id="tutorial-using-a-json-file">
+<h2>Tutorial using a JSON file<a class="headerlink" href="#tutorial-using-a-json-file" title="Link to this heading"></a></h2>
+<section id="purpose-of-this-tutorial">
+<h3>Purpose of this tutorial<a class="headerlink" href="#purpose-of-this-tutorial" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node using a JSON file.
+We begin with this kind of file because it is the simplest way of configuring the node.
+If you have the choice between the XML and the JSON options, we suggest you to use a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> file.
+See <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-mb-generic-json.html">ViSP tutorial</a> for
+more information.</p>
+</section>
+<section id="how-to-launch-it">
+<h3>How to launch it<a class="headerlink" href="#how-to-launch-it" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_json_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_json_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>When you first start the launch file, you should see something similar to the following image:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_start1.png"><img alt="../_images/mbt_json_start1.png" src="../_images/mbt_json_start1.png" style="width: 90%;" /></a>
+</figure>
+<p>After left clicking on the image, the tracker will be turned on, and you should see</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_init1.png"><img alt="../_images/mbt_json_init1.png" src="../_images/mbt_json_init1.png" style="width: 90%;" /></a>
+</figure>
+<p>After having click on the corners of the cube, respecting the ordering explained in the small
+window that opened on the side, you should see the cube being tracked. A left click will momentarily pause
+the tracker, while a right click will kill the node.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_track1.png"><img alt="../_images/mbt_json_track1.png" src="../_images/mbt_json_track1.png" style="width: 90%;" /></a>
+</figure>
+</section>
+<section id="code-explanation">
+<h3>Code explanation<a class="headerlink" href="#code-explanation" title="Link to this heading"></a></h3>
+<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">mbt_json_launch.py</span></code>. Because it is a fairly big file, we will study the parts
+separately. Let’s first have a look to the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method that is called
+by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> utilitary or by a call to <code class="docutils literal notranslate"><span class="pre">IncludeLaunchDescription</span></code> in another launch file:</p>
+<p>As you can see, the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method mostly declare the launch arguments and
+register an <code class="xref py py-class docutils literal notranslate"><span class="pre">OpaqueFunction</span></code> object that will be called once the context of the launch file will
+be known. However, it is important to notice that it also sets an OpenMP environment variable. It helps accelerate
+the processing of depth images when the depth stream is used too.</p>
+<p>Here is a quick overview of the <code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_parameters()</span></code> function:</p>
+<p>First, we get the launch arguments values and store them in a dictionnary that will serve
+at initializing the node:</p>
+<p>Then, we check the validity of some launch arguments. The parsing of empty lists in ROS2 can
+be problematic, so we have to use a small trick to handle that case:</p>
+<p>Then, we instanciate the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node, using the dictionnary that we previously filled:</p>
+<p>Then, we create a process that will play the rosbag:</p>
+<p>Then, we group the spawning of the node and of the process into a <code class="xref py py-class docutils literal notranslate"><span class="pre">GroupAction</span></code> object:</p>
+<p>Finally, we ask to shutdown the whole launch file when the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node dies:</p>
+</section>
+</section>
+<section id="tutorial-using-an-xml-file">
+<h2>Tutorial using an XML file<a class="headerlink" href="#tutorial-using-an-xml-file" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Purpose of this tutorial<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node using an XML file.
+If you have the choice between the two options, we suggest you to use a <code class="docutils literal notranslate"><span class="pre">JSON</span></code> file instead,
+but you may not have the possibility if ViSP has not been compiled with the required dependency.
+See <a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-mb-generic-json.html">ViSP tutorial</a> for
+more information.</p>
+</section>
+<section id="id2">
+<h3>How to launch it<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_xml_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_xml_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>When you first start the launch file, you should see something similar to the following image:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_start1.png"><img alt="../_images/mbt_json_start1.png" src="../_images/mbt_json_start1.png" style="width: 90%;" /></a>
+</figure>
+<p>After left clicking on the image, the detector will be turned on, and you should see</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_init1.png"><img alt="../_images/mbt_json_init1.png" src="../_images/mbt_json_init1.png" style="width: 90%;" /></a>
+</figure>
+<p>After having click on the corners of the cube, respecting the ordering explained in the small
+window that opened on the side, you should see the cube being tracked. A left click will momentarily pause
+the tracker, while a right click will kill the node.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/mbt_json_track1.png"><img alt="../_images/mbt_json_track1.png" src="../_images/mbt_json_track1.png" style="width: 90%;" /></a>
+</figure>
+</section>
+<section id="id3">
+<h3>Code explanation<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">mbt_xml_launch.py</span></code>. Because it is a fairly big file, we will study the parts
+separately. Let’s first have a look to the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method that is called
+by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> utilitary or by a call to <code class="docutils literal notranslate"><span class="pre">IncludeLaunchDescription</span></code> in another launch file:</p>
+<p>As you can see, the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method mostly declare the launch arguments and
+register an <code class="xref py py-class docutils literal notranslate"><span class="pre">OpaqueFunction</span></code> object that will be called once the context of the launch file will
+be known. However, it is important to notice that it also sets an OpenMP environment variable. It helps accelerate
+the processing of depth images when the depth stream is used too. It is also interesting to notice that in the case
+of using an XML configuration file, the parameters <code class="docutils literal notranslate"><span class="pre">rgb_model_file</span></code>, <code class="docutils literal notranslate"><span class="pre">tracker_names</span></code> and <code class="docutils literal notranslate"><span class="pre">tracker_types</span></code> must be set.</p>
+<p>Here is a quick overview of the <code class="xref py py-func docutils literal notranslate"><span class="pre">prepare_parameters()</span></code> function:</p>
+<p>First, we get the launch arguments values and store them in a dictionnary that will serve
+at initializing the node:</p>
+<p>Then, we check the validity of some launch arguments. The parsing of empty lists in ROS2 can
+be problematic, so we have to use a small trick to handle that case:</p>
+<p>Then, we instanciate the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node, using the dictionnary that we previously filled:</p>
+<p>Then, we create a process that will play the rosbag:</p>
+<p>Then, we group the spawning of the node and of the process into a <code class="xref py py-class docutils literal notranslate"><span class="pre">GroupAction</span></code> object:</p>
+<p>Finally, we ask to shutdown the whole launch file when the <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node dies:</p>
+</section>
+</section>
+<section id="tutorial-using-a-realsense-camera">
+<h2>Tutorial using a Realsense camera<a class="headerlink" href="#tutorial-using-a-realsense-camera" title="Link to this heading"></a></h2>
+<section id="id4">
+<h3>Purpose of this tutorial<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_mbt</span></code> node when using an RGBD sensor.
+We chose to use a Realsense RGBD sensor, and deliberately chose not to require the depth stream aligned
+with the color stream in order to show you how to face such a situation.</p>
+</section>
+<section id="id5">
+<h3>How to launch it<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_live_rs2_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>mbt_live_rs2_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>If nothing appears on screen, it may mean that the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> package changed the names of
+the topic on which are published the data. Please run <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">info</span> <span class="pre">-v</span> <span class="pre">/&lt;camera_topic&gt;</span></code>
+to check if the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> publisher and the <code class="docutils literal notranslate"><span class="pre">tracker_rbt</span></code> subscriber are both listed.
+If not, please change the topic names accordingly.</p>
+</section>
+<section id="id6">
+<h3>Code explanation<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>We will only show the explanation of how is handled the fact that we use a depth stream that is not aligned
+with the color stream.</p>
+<p>In the instanciation of the camera node, which is done in the <code class="docutils literal notranslate"><span class="pre">rs_launch.py</span></code> launch file of the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code>
+package, we explicitly ask not to align the depth stream with the color stream, and to publish the TFs in order to have
+the transform between the frames of the two sensors (the color one and the depth one).</p>
+<p>By telling that the <code class="docutils literal notranslate"><span class="pre">reference_tracker</span></code> is the <code class="docutils literal notranslate"><span class="pre">Color</span></code> one, we mean that the tracking results will be expressed with
+regard to the color sensor. We then give the name of the frame that corresponds to the color sensor.</p>
+<p>By telling that the <code class="docutils literal notranslate"><span class="pre">other_tracker</span></code> is the <code class="docutils literal notranslate"><span class="pre">Depth</span></code> one, we mean that the tracking features of the depth frame will be
+translated into the frame of the color sensor. We then give the name of the frame that corresponds to the depth sensor
+to extract the extrinsics from the TFs that are published.</p>
+</section>
+</section>
 </section>
 
 

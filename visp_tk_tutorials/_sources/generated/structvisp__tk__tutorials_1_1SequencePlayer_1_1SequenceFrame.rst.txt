@@ -1,0 +1,23 @@
+.. _exhale_struct_structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame:
+
+Struct SequencePlayer::SequenceFrame
+====================================
+
+- Defined in :ref:`file_include_visp_tk_tutorials_SequencePlayer.hpp`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classvisp__tk__tutorials_1_1SequencePlayer`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: visp_tk_tutorials::SequencePlayer::SequenceFrame
+   :project: visp_tk_tutorials Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

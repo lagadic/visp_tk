@@ -151,7 +151,7 @@ Program Listing for File BaseTracker.hpp
      bool m_rgb_cam_info_received = false; 
      std::string m_rgb_camera_info_topic_name; 
      std::string m_rgb_stream_name; 
-     VISP_NAMESPACE_ADDRESSING vpCameraParameters m_rgb_cam; 
+     visp::vpCameraParameters m_rgb_cam; 
      std::string m_config_file; 
      InitializationMethod m_init_method; 
      std::optional<geometry_msgs::msg::PoseStamped> m_opt_init_pose; 

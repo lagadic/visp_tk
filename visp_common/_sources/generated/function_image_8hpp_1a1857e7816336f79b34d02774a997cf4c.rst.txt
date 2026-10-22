@@ -1,0 +1,14 @@
+.. _exhale_function_image_8hpp_1a1857e7816336f79b34d02774a997cf4c:
+
+Function visp_common::image::toVispImageChar
+============================================
+
+- Defined in :ref:`file_include_visp_common_image.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: visp_common::image::toVispImageChar(const sensor_msgs::msg::Image&)
+   :project: visp_common Doxygen Project

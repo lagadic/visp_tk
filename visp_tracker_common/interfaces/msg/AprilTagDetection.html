@@ -68,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819.html">Variable visp_tracker_common::reinit_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../generated/variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
 </ul>
@@ -104,11 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
@@ -165,14 +167,15 @@
 <p>This is a ROS message definition.</p>
 <p><strong>Source</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std_msgs</span><span class="o">/</span><span class="n">Header</span> <span class="n">header</span>
-<span class="n">string</span> <span class="n">family</span>
-<span class="n">int32</span> <span class="nb">id</span>
-<span class="n">float32</span> <span class="n">size</span> <span class="c1"># size of the tag, in meters</span>
+<span class="n">string</span> <span class="n">family</span>                        <span class="c1"># Tag family (36h11, 25h9, 16h5...)</span>
+<span class="n">int32</span> <span class="nb">id</span>                             <span class="c1"># Tag id</span>
+<span class="n">float32</span> <span class="n">size</span>                         <span class="c1"># Size of the black tag border, in meters</span>
 <span class="nb">bool</span> <span class="n">z_axis_aligned_with_camera_axis</span> <span class="c1"># If true, the z-axis of the tag frame is aligned with the camera frame</span>
-<span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span> <span class="n">center</span>      <span class="c1"># centre in (x,y) pixel coordinates</span>
-<span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners</span>  <span class="c1"># corners of tag ((x1,y1),(x2,y2),...)</span>
-<span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners_3d</span>  <span class="c1"># 3D coordinates in the object frame of the corners of tag ((x1,y1,z1),(x2,y2,z2),...)</span>
-<span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Pose</span> <span class="n">pose</span>
+<span class="nb">bool</span> <span class="n">is_pose_valid</span>                   <span class="c1"># True if the pose could be computed, false otherwise</span>
+<span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span> <span class="n">center</span>           <span class="c1"># Tag center of gravity pixel coordinates (x,y)</span>
+<span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners</span>       <span class="c1"># Tag corners pixel coordinates ((x1,y1),(x2,y2),...)</span>
+<span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners_3d</span>    <span class="c1"># Tag corners 3D coordinates in the object frame ((x1,y1,z1),(x2,y2,z2),...)</span>
+<span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Pose</span> <span class="n">pose</span>              <span class="c1"># Tag pose (3D position and orientation)</span>
 </pre></div>
 </div>
 </section>

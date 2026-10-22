@@ -41,6 +41,7 @@ Program Listing for File names.hpp
    
    namespace visp_tracker_common
    {
+   extern const std::string reinit_srv_name; 
    extern const std::string quit_srv_name; 
    extern const std::string switch_tracking_srv_name; 
    extern const std::string switch_vismode_srv_name; 

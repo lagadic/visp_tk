@@ -108,6 +108,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a15eb38152a17650eee397c29a8146b78" id="r_a15eb38152a17650eee397c29a8146b78"><td class="memItemLeft" align="right" valign="top"><a id="a15eb38152a17650eee397c29a8146b78" name="a15eb38152a17650eee397c29a8146b78"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>RBTTracker</b> (const std::string &amp;name)</td></tr>
 <tr class="separator:a15eb38152a17650eee397c29a8146b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5c511a5afda83200a8604d9f23c1d8" id="r_a1f5c511a5afda83200a8604d9f23c1d8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init</a> () override</td></tr>
+<tr class="separator:a1f5c511a5afda83200a8604d9f23c1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -117,14 +119,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a27ce6478d655a2ffaba9326f378a29dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd0bb3fe54b57ca075ff699ca26331bd" id="r_afd0bb3fe54b57ca075ff699ca26331bd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#afd0bb3fe54b57ca075ff699ca26331bd">track</a> () override</td></tr>
 <tr class="separator:afd0bb3fe54b57ca075ff699ca26331bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b8726e1d0fc835aeff41cc911daedac" id="r_a6b8726e1d0fc835aeff41cc911daedac"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a6b8726e1d0fc835aeff41cc911daedac">init_tracking</a> (VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</td></tr>
-<tr class="memdesc:a6b8726e1d0fc835aeff41cc911daedac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the tracker.  <br /></td></tr>
-<tr class="separator:a6b8726e1d0fc835aeff41cc911daedac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a297020573b1490bd3657210b17c3c87f" id="r_a297020573b1490bd3657210b17c3c87f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a297020573b1490bd3657210b17c3c87f">perform_tracking</a> (VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</td></tr>
-<tr class="memdesc:a297020573b1490bd3657210b17c3c87f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the tracking.  <br /></td></tr>
-<tr class="separator:a297020573b1490bd3657210b17c3c87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d8e5b66a302140c3b0128dbfe2888ba" id="r_a6d8e5b66a302140c3b0128dbfe2888ba"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a6d8e5b66a302140c3b0128dbfe2888ba">init_tracking</a> (visp::vpHomogeneousMatrix &amp;cMo, bool &amp;display_frame)</td></tr>
+<tr class="memdesc:a6d8e5b66a302140c3b0128dbfe2888ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the tracker.  <br /></td></tr>
+<tr class="separator:a6d8e5b66a302140c3b0128dbfe2888ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1611d086c9fa02f5ce0c16ff3cffdb59" id="r_a1611d086c9fa02f5ce0c16ff3cffdb59"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1611d086c9fa02f5ce0c16ff3cffdb59">perform_tracking</a> (visp::vpHomogeneousMatrix &amp;cMo, std::vector&lt; std::string &gt; &amp;vec_info)</td></tr>
+<tr class="memdesc:a1611d086c9fa02f5ce0c16ff3cffdb59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform the tracking.  <br /></td></tr>
+<tr class="separator:a1611d086c9fa02f5ce0c16ff3cffdb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Initialization</div></td></tr>
-<tr><td colspan="2"><div class="groupText"></div></td></tr>
 <tr class="memitem:a335fc3bf13bcc480c1de68b25e3a67ac" id="r_a335fc3bf13bcc480c1de68b25e3a67ac"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a335fc3bf13bcc480c1de68b25e3a67ac">init_tracker</a> () override</td></tr>
 <tr class="separator:a335fc3bf13bcc480c1de68b25e3a67ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab886f318a270cdb805be85d2805e969d" id="r_ab886f318a270cdb805be85d2805e969d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#ab886f318a270cdb805be85d2805e969d">init_from_json</a> (const std::string &amp;config_file_path)</td></tr>
@@ -137,33 +138,33 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae930c37bd0122022943a9a65c7195cf4" id="r_ae930c37bd0122022943a9a65c7195cf4"><td class="memItemLeft" align="right" valign="top"><a id="ae930c37bd0122022943a9a65c7195cf4" name="ae930c37bd0122022943a9a65c7195cf4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker_initialized</b> = false</td></tr>
-<tr class="memdesc:ae930c37bd0122022943a9a65c7195cf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when the tracker is correctly initialized, false when the tracking was lost or never began. <br /></td></tr>
-<tr class="separator:ae930c37bd0122022943a9a65c7195cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40690ca7adde61a11dbd3562b2ccf40b" id="r_a40690ca7adde61a11dbd3562b2ccf40b"><td class="memItemLeft" align="right" valign="top"><a id="a40690ca7adde61a11dbd3562b2ccf40b" name="a40690ca7adde61a11dbd3562b2ccf40b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker_cams_set</b> = false</td></tr>
 <tr class="memdesc:a40690ca7adde61a11dbd3562b2ccf40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">True once the camera parameters of the tracker will be set. <br /></td></tr>
 <tr class="separator:a40690ca7adde61a11dbd3562b2ccf40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c76651b05153191363597a6c2dac98d" id="r_a2c76651b05153191363597a6c2dac98d"><td class="memItemLeft" align="right" valign="top"><a id="a2c76651b05153191363597a6c2dac98d" name="a2c76651b05153191363597a6c2dac98d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_load_model_from_params</b> = false</td></tr>
+<tr class="memdesc:a2c76651b05153191363597a6c2dac98d"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, the model file must be read from the node parameters. <br /></td></tr>
+<tr class="separator:a2c76651b05153191363597a6c2dac98d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a939618c2feb8a76da73cd25a608aa8bd" id="r_a939618c2feb8a76da73cd25a608aa8bd"><td class="memItemLeft" align="right" valign="top"><a id="a939618c2feb8a76da73cd25a608aa8bd" name="a939618c2feb8a76da73cd25a608aa8bd"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_init_file_path</b></td></tr>
 <tr class="memdesc:a939618c2feb8a76da73cd25a608aa8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. <br /></td></tr>
 <tr class="separator:a939618c2feb8a76da73cd25a608aa8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae3e038b9ac87e4b96b863f36e60cc6f" id="r_aae3e038b9ac87e4b96b863f36e60cc6f"><td class="memItemLeft" align="right" valign="top"><a id="aae3e038b9ac87e4b96b863f36e60cc6f" name="aae3e038b9ac87e4b96b863f36e60cc6f"></a>
-VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
-<tr class="memdesc:aae3e038b9ac87e4b96b863f36e60cc6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gray-scale image. <br /></td></tr>
-<tr class="separator:aae3e038b9ac87e4b96b863f36e60cc6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a992c592a9265d3a2b316a638547cd0a9" id="r_a992c592a9265d3a2b316a638547cd0a9"><td class="memItemLeft" align="right" valign="top"><a id="a992c592a9265d3a2b316a638547cd0a9" name="a992c592a9265d3a2b316a638547cd0a9"></a>
-VISP_NAMESPACE_ADDRESSING vpImage&lt; VISP_NAMESPACE_ADDRESSING vpRGBa &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_Ic</b></td></tr>
-<tr class="memdesc:a992c592a9265d3a2b316a638547cd0a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color image. <br /></td></tr>
-<tr class="separator:a992c592a9265d3a2b316a638547cd0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75ed11e41ee7f8f7a498dcede4a31628" id="r_a75ed11e41ee7f8f7a498dcede4a31628"><td class="memItemLeft" align="right" valign="top"><a id="a75ed11e41ee7f8f7a498dcede4a31628" name="a75ed11e41ee7f8f7a498dcede4a31628"></a>
-VISP_NAMESPACE_ADDRESSING vpImage&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I_depth</b></td></tr>
-<tr class="memdesc:a75ed11e41ee7f8f7a498dcede4a31628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth image. <br /></td></tr>
-<tr class="separator:a75ed11e41ee7f8f7a498dcede4a31628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa894f7d8ac85afbbe8e3388c386877c5" id="r_aa894f7d8ac85afbbe8e3388c386877c5"><td class="memItemLeft" align="right" valign="top"><a id="aa894f7d8ac85afbbe8e3388c386877c5" name="aa894f7d8ac85afbbe8e3388c386877c5"></a>
-VISP_NAMESPACE_ADDRESSING vpRBTracker&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker</b></td></tr>
-<tr class="separator:aa894f7d8ac85afbbe8e3388c386877c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4097e9ba2d03cfa7c6d9ddf39a462ce" id="r_ab4097e9ba2d03cfa7c6d9ddf39a462ce"><td class="memItemLeft" align="right" valign="top"><a id="ab4097e9ba2d03cfa7c6d9ddf39a462ce" name="ab4097e9ba2d03cfa7c6d9ddf39a462ce"></a>
+visp::vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
+<tr class="memdesc:ab4097e9ba2d03cfa7c6d9ddf39a462ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gray-scale image. <br /></td></tr>
+<tr class="separator:ab4097e9ba2d03cfa7c6d9ddf39a462ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3537d10c44b37cc5cfd34568cf596ae3" id="r_a3537d10c44b37cc5cfd34568cf596ae3"><td class="memItemLeft" align="right" valign="top"><a id="a3537d10c44b37cc5cfd34568cf596ae3" name="a3537d10c44b37cc5cfd34568cf596ae3"></a>
+visp::vpImage&lt; visp::vpRGBa &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_Ic</b></td></tr>
+<tr class="memdesc:a3537d10c44b37cc5cfd34568cf596ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color image. <br /></td></tr>
+<tr class="separator:a3537d10c44b37cc5cfd34568cf596ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12c61e21c794d391f1ba1513c052bd4f" id="r_a12c61e21c794d391f1ba1513c052bd4f"><td class="memItemLeft" align="right" valign="top"><a id="a12c61e21c794d391f1ba1513c052bd4f" name="a12c61e21c794d391f1ba1513c052bd4f"></a>
+visp::vpImage&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I_depth</b></td></tr>
+<tr class="memdesc:a12c61e21c794d391f1ba1513c052bd4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth image. <br /></td></tr>
+<tr class="separator:a12c61e21c794d391f1ba1513c052bd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba6ad4450ee0aa2ac259a6175501116" id="r_a0ba6ad4450ee0aa2ac259a6175501116"><td class="memItemLeft" align="right" valign="top"><a id="a0ba6ad4450ee0aa2ac259a6175501116" name="a0ba6ad4450ee0aa2ac259a6175501116"></a>
+visp::vpRBTracker&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker</b></td></tr>
+<tr class="separator:a0ba6ad4450ee0aa2ac259a6175501116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a305370e14f4c5e271911b9dcfb31edbd" name="a305370e14f4c5e271911b9dcfb31edbd"></a>
@@ -185,6 +186,33 @@ VISP_NAMESPACE_ADDRESSING vpRBTracker&#160;</td><td class="memItemRight" valign=
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+</div>
+</div>
+<a id="a1f5c511a5afda83200a8604d9f23c1d8" name="a1f5c511a5afda83200a8604d9f23c1d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f5c511a5afda83200a8604d9f23c1d8">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool visp_rbt::RBTTracker::init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -284,8 +312,8 @@ false An error occured. </dd></dl>
 
 </div>
 </div>
-<a id="a6b8726e1d0fc835aeff41cc911daedac" name="a6b8726e1d0fc835aeff41cc911daedac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b8726e1d0fc835aeff41cc911daedac">&#9670;&#160;</a></span>init_tracking()</h2>
+<a id="a6d8e5b66a302140c3b0128dbfe2888ba" name="a6d8e5b66a302140c3b0128dbfe2888ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d8e5b66a302140c3b0128dbfe2888ba">&#9670;&#160;</a></span>init_tracking()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -296,7 +324,7 @@ false An error occured. </dd></dl>
         <tr>
           <td class="memname">virtual bool visp_rbt::RBTTracker::init_tracking </td>
           <td>(</td>
-          <td class="paramtype">VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;&#160;</td>
+          <td class="paramtype">visp::vpHomogeneousMatrix &amp;&#160;</td>
           <td class="paramname"><em>cMo</em>, </td>
         </tr>
         <tr>
@@ -331,8 +359,8 @@ false The tracker is still uninitialized. </dd></dl>
 
 </div>
 </div>
-<a id="a297020573b1490bd3657210b17c3c87f" name="a297020573b1490bd3657210b17c3c87f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a297020573b1490bd3657210b17c3c87f">&#9670;&#160;</a></span>perform_tracking()</h2>
+<a id="a1611d086c9fa02f5ce0c16ff3cffdb59" name="a1611d086c9fa02f5ce0c16ff3cffdb59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1611d086c9fa02f5ce0c16ff3cffdb59">&#9670;&#160;</a></span>perform_tracking()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +371,7 @@ false The tracker is still uninitialized. </dd></dl>
         <tr>
           <td class="memname">virtual bool visp_rbt::RBTTracker::perform_tracking </td>
           <td>(</td>
-          <td class="paramtype">VISP_NAMESPACE_ADDRESSING vpHomogeneousMatrix &amp;&#160;</td>
+          <td class="paramtype">visp::vpHomogeneousMatrix &amp;&#160;</td>
           <td class="paramname"><em>cMo</em>, </td>
         </tr>
         <tr>

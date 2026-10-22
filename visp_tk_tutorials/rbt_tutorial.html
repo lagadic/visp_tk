@@ -7,6 +7,7 @@
   <title>Render-Based Tracker (RBT) tutorial &mdash; visp_tk_tutorials 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=86f27845" />
+      <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
 
   
   
@@ -15,6 +16,8 @@
         <script src="_static/documentation_options.js?v=01f34227"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -73,7 +76,96 @@
              
   <section id="render-based-tracker-rbt-tutorial">
 <h1>Render-Based Tracker (RBT) tutorial<a class="headerlink" href="#render-based-tracker-rbt-tutorial" title="Link to this heading"></a></h1>
-<p>This is a tutorial for the <cite>visp_rbt</cite> package.</p>
+<p>This is a tutorial for the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> package. The documentation of the Render-Based Tracker (RBT) provided
+by ViSP can be found <a class="reference external" href="https://https://visp-doc.inria.fr/doxygen/visp-daily/classvpRBTracker.html">here</a>
+ViSP documentation also provides step-by-step tutorials to progressively learn how to use the RBT
+<a class="reference external" href="https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-tracking-rbt.html">here</a> .</p>
+<p>Consequently, this tutorial will not focus on explaining the meaning of the different parameters of the
+RBT, but instead focus on the specificities on how to use the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> package.</p>
+<section id="tutorial-using-a-recorded-sequence">
+<h2>Tutorial using a recorded sequence<a class="headerlink" href="#tutorial-using-a-recorded-sequence" title="Link to this heading"></a></h2>
+<section id="purpose-of-this-tutorial">
+<h3>Purpose of this tutorial<a class="headerlink" href="#purpose-of-this-tutorial" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node on a recorded sequence.
+We begin with this setup because it is less prone to runtime errors, such as problems with a camera.</p>
+</section>
+<section id="how-to-launch-it">
+<h3>How to launch it<a class="headerlink" href="#how-to-launch-it" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_bag_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_bag_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>You can for instance easily switch between the object to track thanks to the <code class="docutils literal notranslate"><span class="pre">object_name</span></code> launch argument.</p>
+<p>When you first start the launch file, you should see something similar to the following image:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/rbt_start.png"><img alt="_images/rbt_start.png" src="_images/rbt_start.png" style="width: 90%;" /></a>
+</figure>
+<p>After left clicking on the image, the tracker will be turned on. Be careful, you have to do it in less than
+5 seconds, because we chose to publish the initial pose of the object to track in order to avoid the initialization
+from clicks. If you chose for instance to track the dragon, you should see something like the following image:</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="_images/rbt_dragon_init.png"><img alt="_images/rbt_dragon_init.png" src="_images/rbt_dragon_init.png" style="width: 90%;" /></a>
+</figure>
+<p>Afterwards, a left click will momentarily pause the tracker, while a right click will kill the node.</p>
+</section>
+<section id="code-explanation">
+<h3>Code explanation<a class="headerlink" href="#code-explanation" title="Link to this heading"></a></h3>
+<p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">rbt_bag_launch.py</span></code>. Because it is a fairly big file, we will study the parts
+separately. Let’s first have a look to the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method that is called
+by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> utilitary or by a call to <code class="docutils literal notranslate"><span class="pre">IncludeLaunchDescription</span></code> in another launch file:</p>
+<p>As you can see, the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method mostly declare the launch arguments and
+register an <code class="xref py py-class docutils literal notranslate"><span class="pre">OpaqueFunction</span></code> object that will be called once the context of the launch file will
+be known. However, it is important to notice that it also sets an OpenMP environment variable. It helps accelerate
+the processing of depth images when the depth stream is used too and helps accelerate the tracker.</p>
+<p>Here is a quick overview of the <code class="xref py py-func docutils literal notranslate"><span class="pre">handle_object_parameter()</span></code> function:</p>
+<p>First, we get the launch arguments values:</p>
+<p>Then, we chose the object model that will be used by the RBT node from the <code class="docutils literal notranslate"><span class="pre">object_name</span></code> launch arguments:</p>
+<p>Then, we create a node that will play the sequence, publishing the images, camera info and initial pose:</p>
+<p>Then, we instanciate the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node, using the dictionnary that we previously filled:</p>
+<p>Finally, we ask to shutdown the whole launch file when the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node dies:</p>
+</section>
+</section>
+<section id="tutorial-using-a-realsense-camera">
+<h2>Tutorial using a Realsense camera<a class="headerlink" href="#tutorial-using-a-realsense-camera" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Purpose of this tutorial<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>The purpose of this tutorial is to show how to configure a <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node when using an RGBD sensor.
+We chose to use a Realsense RGBD sensor because it makes available a topic on which the depth image is
+aligned with the color image, which is a requirement for the RBT.</p>
+</section>
+<section id="id2">
+<h3>How to launch it<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>If you compiled the packages, you have to source the workspace in which you have compiled the packages.
+Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
+file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
+<p>Then you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_live_rs2_launch.py
+</pre></div>
+</div>
+<p>The launch file accepts different arguments. To have the list and the explanations related to the
+arguments, please run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_live_rs2_launch.py<span class="w"> </span>--show-args
+</pre></div>
+</div>
+<p>If nothing appears on screen, it may mean that the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> package changed the names of
+the topic on which are published the data. Please run <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">info</span> <span class="pre">-v</span> <span class="pre">/&lt;camera_topic&gt;</span></code>
+to check if the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> publisher and the <code class="docutils literal notranslate"><span class="pre">tracker_rbt</span></code> subscriber are both listed.
+If not, please change the topic names accordingly.</p>
+</section>
+<section id="id3">
+<h3>Code explanation<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>We won’t give a detailed explanation of this launch file, because nothing of importance changed except the
+<code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> node, which goes beyond the scope of this package.</p>
+</section>
+</section>
 </section>
 
 

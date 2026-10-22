@@ -154,6 +154,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>check_require
 <tr class="memitem:abab8e48e76358f97455d49a4d32fd7cd" id="r_abab8e48e76358f97455d49a4d32fd7cd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#abab8e48e76358f97455d49a4d32fd7cd">sync_callback</a> (const sensor_msgs::msg::Image::ConstSharedPtr &amp;rgb, const sensor_msgs::msg::Image::ConstSharedPtr &amp;depth)</td></tr>
 <tr class="memdesc:abab8e48e76358f97455d49a4d32fd7cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback called when the tracker requires both a RGB stream and a depth stream.  <br /></td></tr>
 <tr class="separator:abab8e48e76358f97455d49a4d32fd7cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44352f9de8c380c47f601190ed9d227" id="r_ae44352f9de8c380c47f601190ed9d227"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#ae44352f9de8c380c47f601190ed9d227">reinit_callback</a> (const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt; request, std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt; response)</td></tr>
+<tr class="memdesc:ae44352f9de8c380c47f601190ed9d227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that is called to aks the tracker to perform once again the initialization of the tracking. <b>IMPORTANT</b>: it does not call <a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#aa5c83c92691e951a0c88e0cef2971be1" title="Initializes the node.">init()</a> or any of its sub-routines.  <br /></td></tr>
+<tr class="separator:ae44352f9de8c380c47f601190ed9d227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classvisp__tracker__common_1_1BaseTracker"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classvisp__tracker__common_1_1BaseTracker')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html">visp_tracker_common::BaseTracker</a></td></tr>
 <tr class="memitem:a6a189d6a3aa47ac31c1142e00234f559 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_a6a189d6a3aa47ac31c1142e00234f559"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a6a189d6a3aa47ac31c1142e00234f559">init_tracker</a> ()=0</td></tr>
 <tr class="memdesc:a6a189d6a3aa47ac31c1142e00234f559 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initilize the tracker.  <br /></td></tr>
@@ -183,6 +186,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init_info_str
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:a62c9dd9b4896812f2e64e959ead3163d" id="r_a62c9dd9b4896812f2e64e959ead3163d"><td class="memItemLeft" align="right" valign="top"><a id="a62c9dd9b4896812f2e64e959ead3163d" name="a62c9dd9b4896812f2e64e959ead3163d"></a>
+rclcpp::Service&lt; std_srvs::srv::Trigger &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_reinit_srv</b></td></tr>
+<tr class="memdesc:a62c9dd9b4896812f2e64e959ead3163d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Service to ask the node to reinitialize using ros2 service. <br /></td></tr>
+<tr class="separator:a62c9dd9b4896812f2e64e959ead3163d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19bc629ae09c6809b58d0ce557dbd7f4" id="r_a19bc629ae09c6809b58d0ce557dbd7f4"><td class="memItemLeft" align="right" valign="top"><a id="a19bc629ae09c6809b58d0ce557dbd7f4" name="a19bc629ae09c6809b58d0ce557dbd7f4"></a>
 rclcpp::Subscription&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_cam_info_sub</b></td></tr>
 <tr class="memdesc:a19bc629ae09c6809b58d0ce557dbd7f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depth camera parameters subscriber. <br /></td></tr>
@@ -203,6 +210,14 @@ std::shared_ptr&lt; message_filters::Synchronizer&lt; message_filters::sync_poli
 rclcpp::Subscription&lt; sensor_msgs::msg::Image &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_only_stream_sub</b></td></tr>
 <tr class="memdesc:a2cb6c71048240591c604bb27881e20cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGB stream subscriber when depth is not used. <br /></td></tr>
 <tr class="separator:a2cb6c71048240591c604bb27881e20cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa156b12372a5216c1d50944583f36d23" id="r_aa156b12372a5216c1d50944583f36d23"><td class="memItemLeft" align="right" valign="top"><a id="aa156b12372a5216c1d50944583f36d23" name="aa156b12372a5216c1d50944583f36d23"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex_initialized</b></td></tr>
+<tr class="memdesc:aa156b12372a5216c1d50944583f36d23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex to protect m_tracker_initialized from concurrent access. <br /></td></tr>
+<tr class="separator:aa156b12372a5216c1d50944583f36d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b60acddf1851c102c1acfb61fa6c853" id="r_a5b60acddf1851c102c1acfb61fa6c853"><td class="memItemLeft" align="right" valign="top"><a id="a5b60acddf1851c102c1acfb61fa6c853" name="a5b60acddf1851c102c1acfb61fa6c853"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker_initialized</b> = false</td></tr>
+<tr class="memdesc:a5b60acddf1851c102c1acfb61fa6c853"><td class="mdescLeft">&#160;</td><td class="mdescRight">True when the tracker is correctly initialized, false when the tracking was lost or never began. <br /></td></tr>
+<tr class="separator:a5b60acddf1851c102c1acfb61fa6c853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8694cb4fff8fdac19099a60a719fc71a" id="r_a8694cb4fff8fdac19099a60a719fc71a"><td class="memItemLeft" align="right" valign="top"><a id="a8694cb4fff8fdac19099a60a719fc71a" name="a8694cb4fff8fdac19099a60a719fc71a"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_cam_info_received</b> = false</td></tr>
 <tr class="memdesc:a8694cb4fff8fdac19099a60a719fc71a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true once the color camera parameters have been retrieved. <br /></td></tr>
@@ -215,10 +230,10 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_camera
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_stream_name</b></td></tr>
 <tr class="memdesc:a793dc0423fb01e8677cd10841f5d168a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the depth image topic. <br /></td></tr>
 <tr class="separator:a793dc0423fb01e8677cd10841f5d168a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c8d31ba49ce116fa8ea94ea1c1bf853" id="r_a0c8d31ba49ce116fa8ea94ea1c1bf853"><td class="memItemLeft" align="right" valign="top"><a id="a0c8d31ba49ce116fa8ea94ea1c1bf853" name="a0c8d31ba49ce116fa8ea94ea1c1bf853"></a>
-VISP_NAMESPACE_ADDRESSING vpCameraParameters&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_cam</b></td></tr>
-<tr class="memdesc:a0c8d31ba49ce116fa8ea94ea1c1bf853"><td class="mdescLeft">&#160;</td><td class="mdescRight">The depth camera parameters. <br /></td></tr>
-<tr class="separator:a0c8d31ba49ce116fa8ea94ea1c1bf853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9540e82c4d616d37ff462c9c810b81e" id="r_ac9540e82c4d616d37ff462c9c810b81e"><td class="memItemLeft" align="right" valign="top"><a id="ac9540e82c4d616d37ff462c9c810b81e" name="ac9540e82c4d616d37ff462c9c810b81e"></a>
+visp::vpCameraParameters&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_cam</b></td></tr>
+<tr class="memdesc:ac9540e82c4d616d37ff462c9c810b81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The depth camera parameters. <br /></td></tr>
+<tr class="separator:ac9540e82c4d616d37ff462c9c810b81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d4cfa6c785c7482348817d16c4d5167" id="r_a5d4cfa6c785c7482348817d16c4d5167"><td class="memItemLeft" align="right" valign="top"><a id="a5d4cfa6c785c7482348817d16c4d5167" name="a5d4cfa6c785c7482348817d16c4d5167"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_depth_is_required</b> = false</td></tr>
 <tr class="memdesc:a5d4cfa6c785c7482348817d16c4d5167"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, it means that the tracker requires a depth stream to run. <br /></td></tr>
@@ -320,10 +335,10 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_camera_i
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_stream_name</b></td></tr>
 <tr class="memdesc:ac191581077e0eb166da5d78e300bd70c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the color image topic. <br /></td></tr>
 <tr class="separator:ac191581077e0eb166da5d78e300bd70c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f27d9d04c4597e5a5d750b50a5fc93c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_a0f27d9d04c4597e5a5d750b50a5fc93c"><td class="memItemLeft" align="right" valign="top">
-VISP_NAMESPACE_ADDRESSING vpCameraParameters&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_cam</b></td></tr>
-<tr class="memdesc:a0f27d9d04c4597e5a5d750b50a5fc93c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">The color camera parameters. <br /></td></tr>
-<tr class="separator:a0f27d9d04c4597e5a5d750b50a5fc93c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a497e13c9f2c498b3dddbae6d67bbe28c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_a497e13c9f2c498b3dddbae6d67bbe28c"><td class="memItemLeft" align="right" valign="top">
+visp::vpCameraParameters&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_cam</b></td></tr>
+<tr class="memdesc:a497e13c9f2c498b3dddbae6d67bbe28c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">The color camera parameters. <br /></td></tr>
+<tr class="separator:a497e13c9f2c498b3dddbae6d67bbe28c inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76560cf4b94a892db64eceb4f3879edd inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_a76560cf4b94a892db64eceb4f3879edd"><td class="memItemLeft" align="right" valign="top">
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_config_file</b></td></tr>
 <tr class="memdesc:a76560cf4b94a892db64eceb4f3879edd inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">If set, path to the configuration file that should be used to initialize the tracker. <br /></td></tr>
@@ -459,6 +474,51 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
 false Otherwise.   </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a786ad94483c04f0c0bd60b872b810653">visp_tracker_common::BaseTracker</a>.</p>
+
+</div>
+</div>
+<a id="ae44352f9de8c380c47f601190ed9d227" name="ae44352f9de8c380c47f601190ed9d227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44352f9de8c380c47f601190ed9d227">&#9670;&#160;</a></span>reinit_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void visp_tracker_common::BaseMultiModalTracker::reinit_callback </td>
+          <td>(</td>
+          <td class="paramtype">const std::shared_ptr&lt; std_srvs::srv::Trigger::Request &gt;&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; std_srvs::srv::Trigger::Response &gt;&#160;</td>
+          <td class="paramname"><em>response</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback that is called to aks the tracker to perform once again the initialization of the tracking. <b>IMPORTANT</b>: it does not call <a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#aa5c83c92691e951a0c88e0cef2971be1" title="Initializes the node.">init()</a> or any of its sub-routines. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Trigger signal. </td></tr>
+    <tr><td class="paramname">response</td><td>Response containing the status and the message. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

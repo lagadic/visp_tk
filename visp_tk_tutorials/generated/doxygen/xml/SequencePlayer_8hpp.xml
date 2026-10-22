@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="SequencePlayer_8hpp" kind="file" language="C++">
+    <compoundname>SequencePlayer.hpp</compoundname>
+    <includes local="no">rclcpp/rclcpp.hpp</includes>
+    <includes local="no">geometry_msgs/msg/pose_stamped.hpp</includes>
+    <includes local="no">sensor_msgs/msg/camera_info.hpp</includes>
+    <includes local="no">sensor_msgs/msg/image.hpp</includes>
+    <includes local="no">visp_common/camera.hpp</includes>
+    <includes local="no">visp_common/image.hpp</includes>
+    <includes local="no">visp_common/path_retriever.hpp</includes>
+    <includes local="no">visp_common/pose.hpp</includes>
+    <includes local="no">visp3/core/vpConfig.h</includes>
+    <includes local="no">visp3/core/vpCameraParameters.h</includes>
+    <includes local="no">visp3/core/vpException.h</includes>
+    <includes local="no">visp3/core/vpHomogeneousMatrix.h</includes>
+    <includes local="no">visp3/core/vpImage.h</includes>
+    <includes local="no">visp3/core/vpImageConvert.h</includes>
+    <includes local="no">visp3/core/vpIoTools.h</includes>
+    <includes local="no">visp3/core/vpRGBa.h</includes>
+    <includes local="no">visp3/io/vpImageIo.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>visp_common/camera.hpp</label>
+        <link refid="camera_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="7">
+        <label>visp_common/image.hpp</label>
+        <link refid="image_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="8">
+        <label>visp_common/path_retriever.hpp</label>
+        <link refid="path__retriever_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="9">
+        <label>visp_common/pose.hpp</label>
+        <link refid="pose_8hpp.html" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag"/>
+      </node>
+      <node id="1">
+        <label>include/visp_tk_tutorials/SequencePlayer.hpp</label>
+        <link refid="SequencePlayer_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>geometry_msgs/msg/pose_stamped.hpp</label>
+      </node>
+      <node id="2">
+        <label>rclcpp/rclcpp.hpp</label>
+      </node>
+      <node id="4">
+        <label>sensor_msgs/msg/camera_info.hpp</label>
+      </node>
+      <node id="5">
+        <label>sensor_msgs/msg/image.hpp</label>
+      </node>
+      <node id="11">
+        <label>visp3/core/vpCameraParameters.h</label>
+      </node>
+      <node id="10">
+        <label>visp3/core/vpConfig.h</label>
+      </node>
+      <node id="12">
+        <label>visp3/core/vpException.h</label>
+      </node>
+      <node id="13">
+        <label>visp3/core/vpHomogeneousMatrix.h</label>
+      </node>
+      <node id="14">
+        <label>visp3/core/vpImage.h</label>
+      </node>
+      <node id="15">
+        <label>visp3/core/vpImageConvert.h</label>
+      </node>
+      <node id="16">
+        <label>visp3/core/vpIoTools.h</label>
+      </node>
+      <node id="17">
+        <label>visp3/core/vpRGBa.h</label>
+      </node>
+      <node id="18">
+        <label>visp3/io/vpImageIo.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classvisp__tk__tutorials_1_1SequencePlayer" prot="public">visp_tk_tutorials::SequencePlayer</innerclass>
+    <innerclass refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame" prot="private">visp_tk_tutorials::SequencePlayer::SequenceFrame</innerclass>
+    <innernamespace refid="namespacevisp__tk__tutorials">visp_tk_tutorials</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(C)<sp/>2026<sp/>by<sp/>Inria.<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>See<sp/>the<sp/>file<sp/>LICENSE.txt<sp/>at<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>source</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>distribution<sp/>for<sp/>additional<sp/>information<sp/>about<sp/>the<sp/>GNU<sp/>GPL.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>For<sp/>using<sp/>this<sp/>software<sp/>that<sp/>can<sp/>not<sp/>be<sp/>combined<sp/>with<sp/>the<sp/>GNU</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>GPL,<sp/>or<sp/>if<sp/>you<sp/>have<sp/>questions<sp/>regarding<sp/>the<sp/>use<sp/>of<sp/>this<sp/>file,</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>please<sp/>contact<sp/>Inria<sp/>at<sp/>visp@inria.fr</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>This<sp/>software<sp/>was<sp/>developed<sp/>at:</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Inria<sp/>centre<sp/>at<sp/>Rennes<sp/>University</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Campus<sp/>Universitaire<sp/>de<sp/>Beaulieu</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>35042<sp/>Rennes<sp/>Cedex</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>France</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>This<sp/>file<sp/>is<sp/>provided<sp/>AS<sp/>IS<sp/>with<sp/>NO<sp/>WARRANTY<sp/>OF<sp/>ANY<sp/>KIND,<sp/>INCLUDING<sp/>THE</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>WARRANTY<sp/>OF<sp/>DESIGN,<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SEQUENCE_PLAYER_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SEQUENCE_PLAYER_HPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/rclcpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/msg/pose_stamped.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/camera_info.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sensor_msgs/msg/image.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="camera_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/camera.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="image_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/image.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="path__retriever_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/path_retriever.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="pose_8hpp.html" kindref="compound" external="/__w/visp_tk/visp_tk/cross_reference/visp_common/visp_common.tag">visp_common/pose.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpConfig.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpCameraParameters.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpException.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpHomogeneousMatrix.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpImage.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpImageConvert.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpIoTools.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/core/vpRGBa.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;visp3/io/vpImageIo.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">visp_tk_tutorials</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME::vpCameraParameters;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">VISP_NAMESPACE_NAME::vpHomogeneousMatrix;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classvisp__tk__tutorials_1_1SequencePlayer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classvisp__tk__tutorials_1_1SequencePlayer" kindref="compound">SequencePlayer</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>rclcpp::Node</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><ref refid="classvisp__tk__tutorials_1_1SequencePlayer" kindref="compound">SequencePlayer</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;name);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>init();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>has_to_quit()</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_has_to_quit;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>stop_and_quit()</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>m_has_to_quit<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">SequenceFrame</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::msg::Image<sp/>IRGB;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>sensor_msgs::msg::Image<sp/>depth;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getImageHeight()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_h;<sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getImageWidth()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_w;<sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>vpCameraParameters<sp/>cam()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_cam;<sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numFrames()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="85"><highlight class="keyword"><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_frames.size();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>SequenceFrame<sp/>&amp;getFrame(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_frames[index];</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>loadCameraSettings();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>getColorFrame(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>getDepthFrame(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>loadFrames();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>getInitialPoses();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>periodic_publication();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>m_has_to_quit<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>std::string<sp/>m_path;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>std::string<sp/>m_object_name;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>rclcpp::Parameter<sp/>m_depth_camera_info_topic_name;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/>rclcpp::Parameter<sp/>m_depth_stream_name;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>rclcpp::Parameter<sp/>m_rgb_camera_info_topic_name;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>rclcpp::Parameter<sp/>m_rgb_stream_name;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>rclcpp::Parameter<sp/>m_init_pose_topic_name;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>vpCameraParameters<sp/>m_cam;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>sensor_msgs::msg::CameraInfo<sp/>m_cam_info;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>m_depthScale;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m_h,<sp/>m_w;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>std::vector&lt;SequenceFrame&gt;<sp/>m_frames;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>vpHomogeneousMatrix<sp/>m_initial_cMo;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>geometry_msgs::msg::PoseStamped<sp/>m_initial_pose;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr<sp/>m_depth_cam_info_pub;<sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::Image&gt;::SharedPtr<sp/>m_depth_img_pub;<sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr<sp/>m_rgb_cam_info_pub;<sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;sensor_msgs::msg::Image&gt;::SharedPtr<sp/>m_rgb_img_pub;<sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr<sp/>m_init_pose_pub;<sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>rclcpp::TimerBase::SharedPtr<sp/>m_timer;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="include/visp_tk_tutorials/SequencePlayer.hpp"/>
+  </compounddef>
+</doxygen>

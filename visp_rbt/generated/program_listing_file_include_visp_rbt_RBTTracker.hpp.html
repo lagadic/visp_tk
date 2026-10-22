@@ -79,11 +79,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-rbt-documentation"><code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-rbt">How to get and build visp_rbt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-rbt">How to get and build visp_rbt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#node-parameters">Node parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-configuration-files">Related to configuration files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
@@ -190,11 +191,11 @@
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">RBTTracker</span><span class="p">()</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Destructor called, closing Panda3D instance&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="nf">vpPanda3DFrameworkManager::getInstance</span><span class="p">().</span><span class="n">exit</span><span class="p">();</span>
+<span class="w">    </span><span class="n">visp</span><span class="o">::</span><span class="n">vpPanda3DFrameworkManager</span><span class="o">::</span><span class="n">getInstance</span><span class="p">().</span><span class="n">exit</span><span class="p">();</span>
 <span class="w">    </span><span class="n">RCLCPP_INFO</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">get_logger</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;Panda instance has been closed&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// virtual bool init() override;</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 <span class="k">protected</span><span class="o">:</span>
 
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">init_tracker</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
@@ -211,9 +212,9 @@
 
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">track</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">init_tracking</span><span class="p">(</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpHomogeneousMatrix</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cMo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">display_frame</span><span class="p">);</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">init_tracking</span><span class="p">(</span><span class="n">visp</span><span class="o">::</span><span class="n">vpHomogeneousMatrix</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cMo</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">display_frame</span><span class="p">);</span>
 
-<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">perform_tracking</span><span class="p">(</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpHomogeneousMatrix</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cMo</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vec_info</span><span class="p">);</span>
+<span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">perform_tracking</span><span class="p">(</span><span class="n">visp</span><span class="o">::</span><span class="n">vpHomogeneousMatrix</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cMo</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vec_info</span><span class="p">);</span>
 
 <span class="w">  </span><span class="c1">// ----- Services -----</span>
 
@@ -223,22 +224,22 @@
 
 <span class="w">  </span><span class="c1">// ----- Display-related attributes -----</span>
 <span class="cp">#if defined(VISP_HAVE_DISPLAY) &amp;&amp; defined(VISP_HAVE_MODULE_GUI)</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpImage</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I_depth_display</span><span class="p">;</span><span class="w"> </span><span class="c1">// Color encoded depth image</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I_depth_display</span><span class="p">;</span><span class="w"> </span><span class="c1">// Color encoded depth image</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">m_max_z_display</span><span class="p">;</span><span class="w"> </span><span class="c1">// Maximum depth we want to display</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display_uchar</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display_depth</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display_uchar</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display_depth</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_display_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="cp">#endif</span>
 
 <span class="w">  </span><span class="c1">// ----- Tracking-related attributes -----</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_tracker_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_tracker_cams_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_load_model_from_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_init_file_path</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpImage</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpImage</span><span class="o">&lt;</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpRGBa</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_Ic</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpImage</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I_depth</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpRBTracker</span><span class="w"> </span><span class="n">m_tracker</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpRGBa</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_Ic</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I_depth</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpRBTracker</span><span class="w"> </span><span class="n">m_tracker</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="p">}</span>
 

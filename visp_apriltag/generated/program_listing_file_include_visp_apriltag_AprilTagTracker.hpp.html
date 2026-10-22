@@ -79,11 +79,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-apriltag-documentation"><code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-apriltag">How to get and build visp_apriltag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-apriltag">How to get and build visp_apriltag</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#node-parameters">Node parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-tag-detection">Related to the tag detection</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-the-pose-computation">Related to the pose computation</a></li>
@@ -204,16 +205,17 @@
 <span class="w">  </span><span class="c1">// ----- Display-related attributes -----</span>
 <span class="cp">#if defined(VISP_HAVE_DISPLAY) &amp;&amp; defined(VISP_HAVE_MODULE_GUI)</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_display_initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpDisplay</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_display</span><span class="p">;</span>
 <span class="cp">#endif</span>
 
 <span class="w">  </span><span class="c1">// ----- Tracking-related attributes -----</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpDetectorAprilTag</span><span class="w"> </span><span class="n">m_tag_detector</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpDetectorAprilTag</span><span class="w"> </span><span class="n">m_tag_detector</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_family_name</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_tag_size_map</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">m_default_tag_size</span><span class="p">;</span>
-<span class="w">  </span><span class="n">VISP_NAMESPACE_ADDRESSING</span><span class="w"> </span><span class="n">vpImage</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I</span><span class="p">;</span>
+<span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_opt_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">nullopt</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_display_tag</span><span class="p">;</span>
 <span class="p">};</span>
 <span class="p">}</span>
 

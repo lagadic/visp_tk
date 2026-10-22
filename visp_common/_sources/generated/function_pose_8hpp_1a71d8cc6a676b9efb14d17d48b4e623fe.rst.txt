@@ -1,0 +1,14 @@
+.. _exhale_function_pose_8hpp_1a71d8cc6a676b9efb14d17d48b4e623fe:
+
+Function visp_common::pose::toGeometryMsgsPose
+==============================================
+
+- Defined in :ref:`file_include_visp_common_pose.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: visp_common::pose::toGeometryMsgsPose(const visp::vpHomogeneousMatrix&)
+   :project: visp_common Doxygen Project

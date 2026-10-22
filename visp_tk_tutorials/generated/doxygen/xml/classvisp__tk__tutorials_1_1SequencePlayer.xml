@@ -1,0 +1,620 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classvisp__tk__tutorials_1_1SequencePlayer" kind="class" language="C++" prot="public">
+    <compoundname>visp_tk_tutorials::SequencePlayer</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">rclcpp::Node</basecompoundref>
+    <innerclass refid="structvisp__tk__tutorials_1_1SequencePlayer_1_1SequenceFrame" prot="private">visp_tk_tutorials::SequencePlayer::SequenceFrame</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1ad855693bd95bfe6d44f8293e66d2f899" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::m_has_to_quit</definition>
+        <argsstring></argsstring>
+        <name>m_has_to_quit</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_has_to_quit</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="103" column="8" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1abdb829dd9da3ddd9b860f53467540cf6" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_tk_tutorials::SequencePlayer::m_path</definition>
+        <argsstring></argsstring>
+        <name>m_path</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_path</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="104" column="15" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a4ba5b4c740d85d636a1fe985e2f76f75" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string visp_tk_tutorials::SequencePlayer::m_object_name</definition>
+        <argsstring></argsstring>
+        <name>m_object_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_object_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="105" column="15" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a74912f7245021ee5fcd4120bafbfb64c" prot="private" static="no" mutable="no">
+        <type>rclcpp::Parameter</type>
+        <definition>rclcpp::Parameter visp_tk_tutorials::SequencePlayer::m_depth_camera_info_topic_name</definition>
+        <argsstring></argsstring>
+        <name>m_depth_camera_info_topic_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_depth_camera_info_topic_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="106" column="21" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1afaa97a9e724a224f1146f1b89110e0a6" prot="private" static="no" mutable="no">
+        <type>rclcpp::Parameter</type>
+        <definition>rclcpp::Parameter visp_tk_tutorials::SequencePlayer::m_depth_stream_name</definition>
+        <argsstring></argsstring>
+        <name>m_depth_stream_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_depth_stream_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="107" column="21" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a3445ef28a53581ca817fd7d4e77e9f97" prot="private" static="no" mutable="no">
+        <type>rclcpp::Parameter</type>
+        <definition>rclcpp::Parameter visp_tk_tutorials::SequencePlayer::m_rgb_camera_info_topic_name</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_camera_info_topic_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_rgb_camera_info_topic_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="108" column="21" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a901c4d2842f902d22a6911bb402514db" prot="private" static="no" mutable="no">
+        <type>rclcpp::Parameter</type>
+        <definition>rclcpp::Parameter visp_tk_tutorials::SequencePlayer::m_rgb_stream_name</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_stream_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_rgb_stream_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="109" column="21" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1aac1334669e7e5ea806f5e44360acac4b" prot="private" static="no" mutable="no">
+        <type>rclcpp::Parameter</type>
+        <definition>rclcpp::Parameter visp_tk_tutorials::SequencePlayer::m_init_pose_topic_name</definition>
+        <argsstring></argsstring>
+        <name>m_init_pose_topic_name</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_init_pose_topic_name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="110" column="21" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a9078a1cf5425e697945e44a3055cd368" prot="private" static="no" mutable="no">
+        <type>vpCameraParameters</type>
+        <definition>vpCameraParameters visp_tk_tutorials::SequencePlayer::m_cam</definition>
+        <argsstring></argsstring>
+        <name>m_cam</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_cam</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="112" column="22" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1aa5e51c7b1f03b6624232818d8f65fa24" prot="private" static="no" mutable="no">
+        <type>sensor_msgs::msg::CameraInfo</type>
+        <definition>sensor_msgs::msg::CameraInfo visp_tk_tutorials::SequencePlayer::m_cam_info</definition>
+        <argsstring></argsstring>
+        <name>m_cam_info</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_cam_info</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="113" column="32" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1ae60960e324b5802e4ffb3ef6ffbe2c0a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float visp_tk_tutorials::SequencePlayer::m_depthScale</definition>
+        <argsstring></argsstring>
+        <name>m_depthScale</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_depthScale</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="114" column="9" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a8b18292a925f723362b820c6997ae9a8" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tk_tutorials::SequencePlayer::m_h</definition>
+        <argsstring></argsstring>
+        <name>m_h</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_h</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="115" column="16" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1ac4f34805e1d4926dec9921ecc2f1998d" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tk_tutorials::SequencePlayer::m_w</definition>
+        <argsstring></argsstring>
+        <name>m_w</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_w</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="115" column="20" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1ad057b073d4425956e64c18058b91b934" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; SequenceFrame &gt;</type>
+        <definition>std::vector&lt;SequenceFrame&gt; visp_tk_tutorials::SequencePlayer::m_frames</definition>
+        <argsstring></argsstring>
+        <name>m_frames</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_frames</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="116" column="15" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a5abee39f5070878d3340a7a1ef7f0026" prot="private" static="no" mutable="no">
+        <type>vpHomogeneousMatrix</type>
+        <definition>vpHomogeneousMatrix visp_tk_tutorials::SequencePlayer::m_initial_cMo</definition>
+        <argsstring></argsstring>
+        <name>m_initial_cMo</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_initial_cMo</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="118" column="23" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1adcee6a48491f4ca1e2b75bf55a2717bd" prot="private" static="no" mutable="no">
+        <type>geometry_msgs::msg::PoseStamped</type>
+        <definition>geometry_msgs::msg::PoseStamped visp_tk_tutorials::SequencePlayer::m_initial_pose</definition>
+        <argsstring></argsstring>
+        <name>m_initial_pose</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_initial_pose</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="119" column="35" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a2f2c51c77bc20146aa3f653426bbcfae" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr visp_tk_tutorials::SequencePlayer::m_depth_cam_info_pub</definition>
+        <argsstring></argsstring>
+        <name>m_depth_cam_info_pub</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_depth_cam_info_pub</qualifiedname>
+        <briefdescription>
+<para>Depth camera parameters publisher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="121" column="33" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a47c60dd3594b9e54cd6b6b19fd5fae99" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::Image &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::Image&gt;::SharedPtr visp_tk_tutorials::SequencePlayer::m_depth_img_pub</definition>
+        <argsstring></argsstring>
+        <name>m_depth_img_pub</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_depth_img_pub</qualifiedname>
+        <briefdescription>
+<para>Depth camera parameters publisher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="122" column="33" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1aed5c871f1cc221ac7c15cb324445e875" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::CameraInfo&gt;::SharedPtr visp_tk_tutorials::SequencePlayer::m_rgb_cam_info_pub</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_cam_info_pub</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_rgb_cam_info_pub</qualifiedname>
+        <briefdescription>
+<para>RGB camera parameters publisher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="123" column="33" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a41e0852569884731977a4f8041060090" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; sensor_msgs::msg::Image &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;sensor_msgs::msg::Image&gt;::SharedPtr visp_tk_tutorials::SequencePlayer::m_rgb_img_pub</definition>
+        <argsstring></argsstring>
+        <name>m_rgb_img_pub</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_rgb_img_pub</qualifiedname>
+        <briefdescription>
+<para>RGB camera parameters publisher. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="124" column="33" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a198e0093f8564e7dbc809f2277b82266" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;geometry_msgs::msg::PoseStamped&gt;::SharedPtr visp_tk_tutorials::SequencePlayer::m_init_pose_pub</definition>
+        <argsstring></argsstring>
+        <name>m_init_pose_pub</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_init_pose_pub</qualifiedname>
+        <briefdescription>
+<para>Publisher of the init topic. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="125" column="33" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__tk__tutorials_1_1SequencePlayer_1a01002b907bb5b158b8bbacef62dd5173" prot="private" static="no" mutable="no">
+        <type>rclcpp::TimerBase::SharedPtr</type>
+        <definition>rclcpp::TimerBase::SharedPtr visp_tk_tutorials::SequencePlayer::m_timer</definition>
+        <argsstring></argsstring>
+        <name>m_timer</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::m_timer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="127" column="32" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="127" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a7b0f9f80c1c910b0435b2d50e68bb726" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>visp_tk_tutorials::SequencePlayer::SequencePlayer</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>SequencePlayer</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::SequencePlayer</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="59" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1ad59990d1844f4999d31f527faddeeb2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="61" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a38bbf6f5fafb10e2193aa5b183f58b4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::has_to_quit</definition>
+        <argsstring>()</argsstring>
+        <name>has_to_quit</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::has_to_quit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="63" column="8" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a1565e6e9db16fa881b677024d5aebbf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tk_tutorials::SequencePlayer::stop_and_quit</definition>
+        <argsstring>()</argsstring>
+        <name>stop_and_quit</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::stop_and_quit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="68" column="8" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a348c7af054b42af909e0d8ded95eef7a" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tk_tutorials::SequencePlayer::getImageHeight</definition>
+        <argsstring>() const</argsstring>
+        <name>getImageHeight</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getImageHeight</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="80" column="23" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a6e045720789edbc6ae21ab9cd707ee6b" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tk_tutorials::SequencePlayer::getImageWidth</definition>
+        <argsstring>() const</argsstring>
+        <name>getImageWidth</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getImageWidth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="81" column="23" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a0c3227f63aa83504e0f26e137edef17f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vpCameraParameters</type>
+        <definition>vpCameraParameters visp_tk_tutorials::SequencePlayer::cam</definition>
+        <argsstring>() const</argsstring>
+        <name>cam</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::cam</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="82" column="29" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a98c5d875622951f95c102319d34f6847" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int visp_tk_tutorials::SequencePlayer::numFrames</definition>
+        <argsstring>() const</argsstring>
+        <name>numFrames</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::numFrames</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="84" column="23" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="84" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a9343eb8fb97f90a6d45c9ef3a638dea6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SequenceFrame &amp;</type>
+        <definition>SequenceFrame &amp; visp_tk_tutorials::SequencePlayer::getFrame</definition>
+        <argsstring>(unsigned int index)</argsstring>
+        <name>getFrame</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getFrame</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="89" column="24" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="89" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a4761c3e5cdd34cebf8ca463d7aeef685" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::loadCameraSettings</definition>
+        <argsstring>()</argsstring>
+        <name>loadCameraSettings</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::loadCameraSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="94" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1acdf4767c0dc496cf34008f998d48c940" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string visp_tk_tutorials::SequencePlayer::getColorFrame</definition>
+        <argsstring>(unsigned int index)</argsstring>
+        <name>getColorFrame</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getColorFrame</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="96" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1ad982fa4ed37cb6c562abc51658a7cd37" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const std::string</type>
+        <definition>const std::string visp_tk_tutorials::SequencePlayer::getDepthFrame</definition>
+        <argsstring>(unsigned int index)</argsstring>
+        <name>getDepthFrame</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getDepthFrame</qualifiedname>
+        <param>
+          <type>unsigned int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="97" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a1fc55aa867a31505825a23abaeb33e7a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::loadFrames</definition>
+        <argsstring>()</argsstring>
+        <name>loadFrames</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::loadFrames</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="98" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1a4d18c65557eceaa7c224a5e01202af19" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool visp_tk_tutorials::SequencePlayer::getInitialPoses</definition>
+        <argsstring>()</argsstring>
+        <name>getInitialPoses</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::getInitialPoses</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="99" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__tk__tutorials_1_1SequencePlayer_1ac2dfe6aeb904d52bde4102669c87afc6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void visp_tk_tutorials::SequencePlayer::periodic_publication</definition>
+        <argsstring>()</argsstring>
+        <name>periodic_publication</name>
+        <qualifiedname>visp_tk_tutorials::SequencePlayer::periodic_publication</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="101" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>visp_tk_tutorials::SequencePlayer</label>
+        <link refid="classvisp__tk__tutorials_1_1SequencePlayer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>visp_tk_tutorials::SequencePlayer</label>
+        <link refid="classvisp__tk__tutorials_1_1SequencePlayer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/visp_tk_tutorials/SequencePlayer.hpp" line="55" column="1" bodyfile="include/visp_tk_tutorials/SequencePlayer.hpp" bodystart="56" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a0c3227f63aa83504e0f26e137edef17f" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>cam</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1acdf4767c0dc496cf34008f998d48c940" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getColorFrame</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad982fa4ed37cb6c562abc51658a7cd37" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getDepthFrame</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a9343eb8fb97f90a6d45c9ef3a638dea6" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getFrame</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a348c7af054b42af909e0d8ded95eef7a" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getImageHeight</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a6e045720789edbc6ae21ab9cd707ee6b" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getImageWidth</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4d18c65557eceaa7c224a5e01202af19" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>getInitialPoses</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a38bbf6f5fafb10e2193aa5b183f58b4d" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>has_to_quit</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad59990d1844f4999d31f527faddeeb2c" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>init</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4761c3e5cdd34cebf8ca463d7aeef685" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>loadCameraSettings</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a1fc55aa867a31505825a23abaeb33e7a" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>loadFrames</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a9078a1cf5425e697945e44a3055cd368" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_cam</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aa5e51c7b1f03b6624232818d8f65fa24" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_cam_info</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a2f2c51c77bc20146aa3f653426bbcfae" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_depth_cam_info_pub</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a74912f7245021ee5fcd4120bafbfb64c" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_depth_camera_info_topic_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a47c60dd3594b9e54cd6b6b19fd5fae99" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_depth_img_pub</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1afaa97a9e724a224f1146f1b89110e0a6" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_depth_stream_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ae60960e324b5802e4ffb3ef6ffbe2c0a" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_depthScale</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad057b073d4425956e64c18058b91b934" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_frames</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a8b18292a925f723362b820c6997ae9a8" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_h</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ad855693bd95bfe6d44f8293e66d2f899" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_has_to_quit</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a198e0093f8564e7dbc809f2277b82266" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_init_pose_pub</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aac1334669e7e5ea806f5e44360acac4b" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_init_pose_topic_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a5abee39f5070878d3340a7a1ef7f0026" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_initial_cMo</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1adcee6a48491f4ca1e2b75bf55a2717bd" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_initial_pose</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a4ba5b4c740d85d636a1fe985e2f76f75" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_object_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1abdb829dd9da3ddd9b860f53467540cf6" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_path</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1aed5c871f1cc221ac7c15cb324445e875" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_rgb_cam_info_pub</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a3445ef28a53581ca817fd7d4e77e9f97" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_rgb_camera_info_topic_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a41e0852569884731977a4f8041060090" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_rgb_img_pub</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a901c4d2842f902d22a6911bb402514db" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_rgb_stream_name</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a01002b907bb5b158b8bbacef62dd5173" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_timer</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ac4f34805e1d4926dec9921ecc2f1998d" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>m_w</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a98c5d875622951f95c102319d34f6847" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>numFrames</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1ac2dfe6aeb904d52bde4102669c87afc6" prot="private" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>periodic_publication</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a7b0f9f80c1c910b0435b2d50e68bb726" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>SequencePlayer</name></member>
+      <member refid="classvisp__tk__tutorials_1_1SequencePlayer_1a1565e6e9db16fa881b677024d5aebbf5" prot="public" virt="non-virtual"><scope>visp_tk_tutorials::SequencePlayer</scope><name>stop_and_quit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

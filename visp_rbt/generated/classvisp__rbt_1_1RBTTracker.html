@@ -79,11 +79,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#visp-rbt-documentation"><code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-rbt">How to get and build visp_rbt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#how-to-get-and-build-visp-rbt">How to get and build visp_rbt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#node-parameters">Node parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-configuration-files">Related to configuration files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#related-to-display">Related to display</a></li>
@@ -189,6 +190,11 @@
 <span id="_CPPv3N8visp_rbt10RBTTrackerD0Ev"></span><span id="_CPPv2N8visp_rbt10RBTTrackerD0Ev"></span><span id="visp_rbt::RBTTracker::~RBTTracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a36ba7acfe6adb5f0d959242f6a463ffe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~RBTTracker</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTrackerD0Ev" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker4initEv">
+<span id="_CPPv3N8visp_rbt10RBTTracker4initEv"></span><span id="_CPPv2N8visp_rbt10RBTTracker4initEv"></span><span id="visp_rbt::RBTTracker::init"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a1f5c511a5afda83200a8604d9f23c1d8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker4initEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
@@ -208,8 +214,8 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1a6b8726e1d0fc835aeff41cc911daedac"></span><span class="sig-name descname"><span class="pre">virtual</span> <span class="pre">bool</span> <span class="pre">init_tracking</span> <span class="pre">(VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpHomogeneousMatrix</span> <span class="pre">&amp;cMo,</span> <span class="pre">bool</span> <span class="pre">&amp;display_frame)</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker13init_trackingERN4visp19vpHomogeneousMatrixERb">
+<span id="_CPPv3N8visp_rbt10RBTTracker13init_trackingERN4visp19vpHomogeneousMatrixERb"></span><span id="_CPPv2N8visp_rbt10RBTTracker13init_trackingERN4visp19vpHomogeneousMatrixERb"></span><span id="visp_rbt::RBTTracker::init_tracking__visp::vpHomogeneousMatrixR.bR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a6d8e5b66a302140c3b0128dbfe2888ba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init_tracking</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpHomogeneousMatrix</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cMo</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">display_frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker13init_trackingERN4visp19vpHomogeneousMatrixERb" title="Link to this definition"></a><br /></dt>
 <dd><p>Initialize the tracker. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -225,8 +231,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1a297020573b1490bd3657210b17c3c87f"></span><span class="sig-name descname"><span class="pre">virtual</span> <span class="pre">bool</span> <span class="pre">perform_tracking</span> <span class="pre">(VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpHomogeneousMatrix</span> <span class="pre">&amp;cMo,</span> <span class="pre">std::vector&lt;</span> <span class="pre">std::string</span> <span class="pre">&gt;</span> <span class="pre">&amp;vec_info)</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker16perform_trackingERN4visp19vpHomogeneousMatrixERNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N8visp_rbt10RBTTracker16perform_trackingERN4visp19vpHomogeneousMatrixERNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N8visp_rbt10RBTTracker16perform_trackingERN4visp19vpHomogeneousMatrixERNSt6vectorINSt6stringEEE"></span><span id="visp_rbt::RBTTracker::perform_tracking__visp::vpHomogeneousMatrixR.std::vector:ss:R"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a1611d086c9fa02f5ce0c16ff3cffdb59"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">perform_tracking</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpHomogeneousMatrix</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cMo</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vec_info</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker16perform_trackingERN4visp19vpHomogeneousMatrixERNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
 <dd><p>Perform the tracking. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -248,15 +254,15 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker21m_tracker_initializedE">
-<span id="_CPPv3N8visp_rbt10RBTTracker21m_tracker_initializedE"></span><span id="_CPPv2N8visp_rbt10RBTTracker21m_tracker_initializedE"></span><span id="visp_rbt::RBTTracker::m_tracker_initialized__b"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1ae930c37bd0122022943a9a65c7195cf4"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker_initialized</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker21m_tracker_initializedE" title="Link to this definition"></a><br /></dt>
-<dd><p>True when the tracker is correctly initialized, false when the tracking was lost or never began. </p>
-</dd></dl>
-
-<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker18m_tracker_cams_setE">
 <span id="_CPPv3N8visp_rbt10RBTTracker18m_tracker_cams_setE"></span><span id="_CPPv2N8visp_rbt10RBTTracker18m_tracker_cams_setE"></span><span id="visp_rbt::RBTTracker::m_tracker_cams_set__b"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker_cams_set</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker18m_tracker_cams_setE" title="Link to this definition"></a><br /></dt>
 <dd><p>True once the camera parameters of the tracker will be set. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker24m_load_model_from_paramsE">
+<span id="_CPPv3N8visp_rbt10RBTTracker24m_load_model_from_paramsE"></span><span id="_CPPv2N8visp_rbt10RBTTracker24m_load_model_from_paramsE"></span><span id="visp_rbt::RBTTracker::m_load_model_from_params__b"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a2c76651b05153191363597a6c2dac98d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_load_model_from_params</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker24m_load_model_from_paramsE" title="Link to this definition"></a><br /></dt>
+<dd><p>If true, the model file must be read from the node parameters. </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -266,26 +272,26 @@
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1aae3e038b9ac87e4b96b863f36e60cc6f"></span><span class="sig-name descname"><span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpImage&lt;</span> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">&gt;</span> <span class="pre">m_I</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker3m_IE">
+<span id="_CPPv3N8visp_rbt10RBTTracker3m_IE"></span><span id="_CPPv2N8visp_rbt10RBTTracker3m_IE"></span><span id="visp_rbt::RBTTracker::m_I__visp::vpImage:unsigned-c:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1ab4097e9ba2d03cfa7c6d9ddf39a462ce"></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker3m_IE" title="Link to this definition"></a><br /></dt>
 <dd><p>Gray-scale image. </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1a992c592a9265d3a2b316a638547cd0a9"></span><span class="sig-name descname"><span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpImage&lt;</span> <span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpRGBa</span> <span class="pre">&gt;</span> <span class="pre">m_Ic</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker4m_IcE">
+<span id="_CPPv3N8visp_rbt10RBTTracker4m_IcE"></span><span id="_CPPv2N8visp_rbt10RBTTracker4m_IcE"></span><span id="visp_rbt::RBTTracker::m_Ic__visp::vpImage:visp::vpRGBa:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a3537d10c44b37cc5cfd34568cf596ae3"></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpRGBa</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_Ic</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker4m_IcE" title="Link to this definition"></a><br /></dt>
 <dd><p>Color image. </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1a75ed11e41ee7f8f7a498dcede4a31628"></span><span class="sig-name descname"><span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpImage&lt;</span> <span class="pre">float</span> <span class="pre">&gt;</span> <span class="pre">m_I_depth</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker9m_I_depthE">
+<span id="_CPPv3N8visp_rbt10RBTTracker9m_I_depthE"></span><span id="_CPPv2N8visp_rbt10RBTTracker9m_I_depthE"></span><span id="visp_rbt::RBTTracker::m_I_depth__visp::vpImage:float:"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a12c61e21c794d391f1ba1513c052bd4f"></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpImage</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_I_depth</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker9m_I_depthE" title="Link to this definition"></a><br /></dt>
 <dd><p>Depth image. </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp">
-<span class="target" id="classvisp__rbt_1_1RBTTracker_1aa894f7d8ac85afbbe8e3388c386877c5"></span><span class="sig-name descname"><span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpRBTracker</span> <span class="pre">m_tracker</span></span></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker9m_trackerE">
+<span id="_CPPv3N8visp_rbt10RBTTracker9m_trackerE"></span><span id="_CPPv2N8visp_rbt10RBTTracker9m_trackerE"></span><span id="visp_rbt::RBTTracker::m_tracker__visp::vpRBTracker"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a0ba6ad4450ee0aa2ac259a6175501116"></span><span class="n"><span class="pre">visp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vpRBTracker</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tracker</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker9m_trackerE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>

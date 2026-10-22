@@ -39,10 +39,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VISP_NAMESPACE_ADDRESSING vpDetectorAprilTag</type>
+      <type>visp::vpDetectorAprilTag</type>
       <name>m_tag_detector</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
-      <anchor>acf32f4d09500765e2a48a51d8f109344</anchor>
+      <anchor>aacef15e04877f9b2c00f9aee31c4cbcc</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -67,10 +67,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
-      <type>VISP_NAMESPACE_ADDRESSING vpImage&lt; unsigned char &gt;</type>
+      <type>visp::vpImage&lt; unsigned char &gt;</type>
       <name>m_I</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
-      <anchor>ab2dcf4c89bb248617ca81a9197de518e</anchor>
+      <anchor>a4f3af236545cad703634f4cbd2941a8f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -78,6 +78,13 @@
       <name>m_opt_id</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
       <anchor>a128cb923526072c874e2afc27ad47e35</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>m_display_tag</name>
+      <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
+      <anchor>ac94c0bc710b5361b6f805c20b275c896</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">

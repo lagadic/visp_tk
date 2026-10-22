@@ -65,6 +65,7 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4.html">Variable visp_tracker_common::info_strings_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html">Variable visp_tracker_common::pose_topic_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html">Variable visp_tracker_common::quit_srv_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819.html">Variable visp_tracker_common::reinit_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html">Variable visp_tracker_common::switch_tracking_srv_name</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/variable_names_8hpp_1aa50c71eacc07000e4c332016ed0a5592.html">Variable visp_tracker_common::switch_vismode_srv_name</a></li>
 </ul>
@@ -101,11 +102,12 @@
 <li class="toctree-l2"><a class="reference internal" href="standard_docs/README.html">README</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#visp-tracker-common-documentation"><code class="docutils literal notranslate"><span class="pre">visp_tracker_common</span></code> documentation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#introduction">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#installation-instructions">Installation instructions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#prerequisities">Prerequisities</a></li>
-<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#prerequisities">Prerequisities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#install-visp">Install ViSP</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#how-to-get-and-build-visp-tracker-common">How to get and build visp_tracker_common</a></li>
 <li class="toctree-l3"><a class="reference internal" href="standard_docs/README.html#basetracker-node">BaseTracker node</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-subscription-publication">Related to subscription / publication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="standard_docs/README.html#related-to-the-tracking">Related to the tracking</a></li>
@@ -175,6 +177,8 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker4initEv">visp_tracker_common::BaseMultiModalTracker::init (C++ function)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker11m_depth_camE">visp_tracker_common::BaseMultiModalTracker::m_depth_cam (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker25m_depth_cam_info_receivedE">visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_received (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker20m_depth_cam_info_subE">visp_tracker_common::BaseMultiModalTracker::m_depth_cam_info_sub (C++ member)</a>
@@ -189,13 +193,21 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_frame_idE">visp_tracker_common::BaseMultiModalTracker::m_frame_id (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker19m_mutex_initializedE">visp_tracker_common::BaseMultiModalTracker::m_mutex_initialized (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker12m_reinit_srvE">visp_tracker_common::BaseMultiModalTracker::m_reinit_srv (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_rgb_only_stream_subE">visp_tracker_common::BaseMultiModalTracker::m_rgb_only_stream_sub (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker16m_rgb_stream_subE">visp_tracker_common::BaseMultiModalTracker::m_rgb_stream_sub (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker14m_streams_syncE">visp_tracker_common::BaseMultiModalTracker::m_streams_sync (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker21m_tracker_initializedE">visp_tracker_common::BaseMultiModalTracker::m_tracker_initialized (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker10m_z_factorE">visp_tracker_common::BaseMultiModalTracker::m_z_factor (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker15reinit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE">visp_tracker_common::BaseMultiModalTracker::reinit_callback (C++ function)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html#_CPPv4N19visp_tracker_common21BaseMultiModalTracker12rgb_callbackERKN11sensor_msgs3msg5Image14ConstSharedPtrE">visp_tracker_common::BaseMultiModalTracker::rgb_callback (C++ function)</a>
 </li>
@@ -287,6 +299,8 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker10m_quit_srvE">visp_tracker_common::BaseTracker::m_quit_srv (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker9m_rgb_camE">visp_tracker_common::BaseTracker::m_rgb_cam (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker23m_rgb_cam_info_receivedE">visp_tracker_common::BaseTracker::m_rgb_cam_info_received (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker18m_rgb_cam_info_subE">visp_tracker_common::BaseTracker::m_rgb_cam_info_sub (C++ member)</a>
@@ -332,6 +346,8 @@
       <li><a href="generated/variable_names_8hpp_1abb0887289741a0f482993bf29becaf47.html#_CPPv4N19visp_tracker_common15pose_topic_nameE">visp_tracker_common::pose_topic_name (C++ member)</a>
 </li>
       <li><a href="generated/variable_names_8hpp_1af593683b0e5630a089de735702ccbaf6.html#_CPPv4N19visp_tracker_common13quit_srv_nameE">visp_tracker_common::quit_srv_name (C++ member)</a>
+</li>
+      <li><a href="generated/variable_names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819.html#_CPPv4N19visp_tracker_common15reinit_srv_nameE">visp_tracker_common::reinit_srv_name (C++ member)</a>
 </li>
       <li><a href="generated/variable_names_8hpp_1a659bc6d0d957a972f0dee01e2553d01f.html#_CPPv4N19visp_tracker_common24switch_tracking_srv_nameE">visp_tracker_common::switch_tracking_srv_name (C++ member)</a>
 </li>
@@ -381,6 +397,10 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI30m_clients_switch_visualizationE">visp_tracker_common::TrackerGUI::m_clients_switch_visualization (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI15m_display_colorE">visp_tracker_common::TrackerGUI::m_display_color (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI15m_display_depthE">visp_tracker_common::TrackerGUI::m_display_depth (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI27m_display_nb_frames_skippedE">visp_tracker_common::TrackerGUI::m_display_nb_frames_skipped (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI13m_feat_2D_subE">visp_tracker_common::TrackerGUI::m_feat_2D_sub (C++ member)</a>
@@ -396,6 +416,8 @@
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI7m_hintsE">visp_tracker_common::TrackerGUI::m_hints (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI13m_hints_depthE">visp_tracker_common::TrackerGUI::m_hints_depth (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI3m_IE">visp_tracker_common::TrackerGUI::m_I (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI18m_info_strings_subE">visp_tracker_common::TrackerGUI::m_info_strings_sub (C++ member)</a>
 </li>
@@ -415,9 +437,13 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI11m_mutex_runE">visp_tracker_common::TrackerGUI::m_mutex_run (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI8m_opt_IdE">visp_tracker_common::TrackerGUI::m_opt_Id (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_max_depthE">visp_tracker_common::TrackerGUI::m_opt_max_depth (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI15m_opt_min_depthE">visp_tracker_common::TrackerGUI::m_opt_min_depth (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI13m_opt_rgb_camE">visp_tracker_common::TrackerGUI::m_opt_rgb_cam (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1TrackerGUI.html#_CPPv4N19visp_tracker_common10TrackerGUI17m_pose_name_arrayE">visp_tracker_common::TrackerGUI::m_pose_name_array (C++ member)</a>
 </li>

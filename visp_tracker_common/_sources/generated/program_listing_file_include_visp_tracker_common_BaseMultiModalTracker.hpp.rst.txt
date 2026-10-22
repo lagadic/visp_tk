@@ -79,6 +79,8 @@ Program Listing for File BaseMultiModalTracker.hpp
      virtual void sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &rgb, const sensor_msgs::msg::Image::ConstSharedPtr &depth);
    
      // ----- Services -----
+     void reinit_callback(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                                std::shared_ptr<std_srvs::srv::Trigger::Response> response);
    
    
      virtual void treat_rgb(const sensor_msgs::msg::Image::ConstSharedPtr &rgb) = 0;
@@ -90,6 +92,7 @@ Program Listing for File BaseMultiModalTracker.hpp
      // ----- Parameters changes handling -----
    
      // ----- Services -----
+     rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr m_reinit_srv; 
    
      // ----- Subscribers -----
      rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_depth_cam_info_sub; 
@@ -104,10 +107,12 @@ Program Listing for File BaseMultiModalTracker.hpp
      // ----- Display-related attributes -----
    
      // ----- Tracking-related attributes -----
+     std::mutex m_mutex_initialized; 
+     bool m_tracker_initialized = false; 
      bool m_depth_cam_info_received = false; 
      std::string m_depth_camera_info_topic_name; 
      std::string m_depth_stream_name; 
-     VISP_NAMESPACE_ADDRESSING vpCameraParameters m_depth_cam; 
+     visp::vpCameraParameters m_depth_cam; 
      bool m_depth_is_required = false; 
      double m_z_factor; 
      std::string m_frame_id; 
