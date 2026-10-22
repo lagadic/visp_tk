@@ -26,6 +26,7 @@
 
 namespace visp_tracker_common
 {
+const std::string reinit_srv_name = "/reinit_tracking";
 const std::string quit_srv_name = "/quit";
 const std::string switch_tracking_srv_name = "/switch_tracking_status";
 const std::string switch_vismode_srv_name = "/switch_visualization_debug";

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# visp_apriltag documentation build configuration file, created by
+# visp_tk_tutorials documentation build configuration file, created by
 # sphinx-quickstart on Mon Jun  1 14:21:53 2009.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -49,7 +49,38 @@ def find_package_root() -> Path:
         f"Could not find package '{pkg_name}' under workspace '{workspace}'"
     )
 
+def find_desired_package_root(pkg_name: str) -> Path:
+    """
+    Derive package root from rosdoc2's predictable temp path structure:
+    <output>/<pkg>/<pkg>/wrapped_sphinx_directory/conf.py
+    """
+    here = Path(__file__).resolve()
+
+    # Extract package name from the temp path structure
+    # path: .../wrapped_sphinx_directory/conf.py
+    # go up: wrapped_sphinx_directory -> <pkg> -> <pkg> -> output_dir -> workspace
+    parts = here.parts
+    try:
+        idx = parts.index("wrapped_sphinx_directory")
+        # The workspace root is 3 levels above wrapped_sphinx_directory
+        # (wrapped_sphinx_directory -> <pkg> -> <pkg> -> output_dir -> workspace)
+        output_dir = Path(*parts[: idx - 2])
+        workspace = output_dir.parent
+    except (ValueError, IndexError):
+        raise RuntimeError(f"Unexpected rosdoc2 path structure: {here}")
+
+    # os.walk with followlinks=True handles symlinked package directories
+    for dirpath, dirnames, filenames in os.walk(workspace, followlinks=True):
+        # Don't descend into the rosdoc2 output directory
+        dirnames[:] = [d for d in dirnames if d != output_dir.name]
+        if ("msg" in dirnames) and ("package.xml" in filenames):
+            candidate = Path(dirpath) / "package.xml"
+            if ET.parse(candidate).getroot().findtext("name") == pkg_name:
+                return Path(dirpath)
+    return None
+
 PACKAGE_ROOT = find_package_root()
+MSG_PACKAGE_ROOT = find_desired_package_root("visp_tracker_common")
 PACKAGE_NAME = ET.parse(PACKAGE_ROOT / "package.xml").getroot().findtext("name")
 DOC_ROOT = PACKAGE_ROOT / "doc"
 SNIPPET_ROOT = DOC_ROOT / "_code"
@@ -59,13 +90,22 @@ def setup(app):
     SNIPPET_ROOT.mkdir(exist_ok=True)
 
     for d in SOURCE_DIRS:
-        src = PACKAGE_ROOT / d
-        dst = SNIPPET_ROOT / d
+      src = PACKAGE_ROOT / d
+      dst = SNIPPET_ROOT / d
 
-        if src.exists():
-            if dst.exists():
-                shutil.rmtree(dst)
-            shutil.copytree(src, dst)
+      if src.exists():
+          if dst.exists():
+              shutil.rmtree(dst)
+          shutil.copytree(src, dst)
+
+    if MSG_PACKAGE_ROOT is not None:
+      d = "msg"
+      src = MSG_PACKAGE_ROOT / d
+      dst = SNIPPET_ROOT / d
+      if src.exists():
+        if dst.exists():
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
 
 # -- General configuration -----------------------------------------------------
 

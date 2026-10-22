@@ -16,79 +16,92 @@ The node will publish a ``/<node_name>/tags_info``
 topic that will contain information about the detected tags. See `the message definition <../visp_tracker_common/interfaces/msg/AprilTagDetection.html>`__ to see which information
 are published.
 
-Installation instructions
-=========================
-
 Prerequisities
---------------
+==============
 
-Installing ViSP
-+++++++++++++++
+Install ROS 2
+-------------
 
-Install ViSP from ros2 package
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Make sure your ROS 2 core environment is installed. Refer to the official
+`ROS 2 documentation <https://docs.ros.org/>`__ to get started.
 
-First you need to install ViSP as a system dependency. This can be achived using ``ros-${ROS_DISTRO}-visp`` package available for Ubuntu. Just run:
+Install ViSP
+------------
 
-.. code-block:: shell
+Please refer to the official installation instructions from the
+`ViSP installation tutorials <https://visp-doc.inria.fr/doxygen/visp-daily/tutorial_install.html>`__.
 
-	$ sudo apt-get install ros-${ROS_DISTRO}-visp
+.. Note::
 
+  * Pre-built ViSP packages exist for Ubuntu (`libvisp-dev`) and ROS 2 (`ros2-<distro>-visp`), but they are usually
+    built against a reduced number of third-party libraries. Consequently, you might miss advanced features required
+    to control hardware (e.g., Franka robots), acquire images from RealSense cameras, or leverage the Panda3D
+    dependency needed for the `visp_apriltag` package.
+  * That's why **we strongly recommend building ViSP from source.**
+    See `tutorials <https://visp-doc.inria.fr/doxygen/visp-daily/tutorial_install_src.html>`__.
+  * After building ViSP from source, remember to set the `VISP_DIR` environment variable to your build directory,
+    for example:
 
-Install ViSP from source
-^^^^^^^^^^^^^^^^^^^^^^^^
+    .. code-block:: shell
 
-If the ros2 package is not available or if you want to use a more recent version of ViSP, you can also install ViSP from source following `ViSP Quick Installation <https://visp-doc.inria.fr/doxygen/visp-daily/tutorial-install-ubuntu.html#install_ubuntu_quick>`__. We recall here after the main steps:
-
-.. code-block:: shell
-
-    $ cd $VISP_WS
-    $ git clone https://github.com/lagadic/visp.git
-    $ mkdir -p $VISP_WS/visp-build
-    $ cd $VISP_WS/visp-build
-    $ cmake ../visp
-    $ make -j$(nproc)
-
-Then to use this version you have to setup ``VISP_DIR`` environment variable to the folder that contains the build. In our case it becomes:
-
-.. code-block:: shell
-
-	$ export VISP_DIR=$VISP_WS/visp-build
-
-Installing other dependencies
-+++++++++++++++++++++++++++++
-
-You can install the other ROS2 dependencies using system installation.
-
-.. code-block:: shell
-
-	$ sudo apt-get install ros-${ROS_DISTRO}-rclcpp \
-                         ros-${ROS_DISTRO}-sensor-msgs
-
-Alternatively, you can use the ``rosdep`` utilitary, but be sure to uninstall the
-``ros-${ROS_DISTRO}-visp`` package that will be installed if you want to use
-ViSP compiled from source. Assuming that the ``visp_tk`` repository has been
-cloned in the ``src`` directory (see `How to get and build visp_apriltag`_), run the following commands:
-
-.. code-block:: shell
-
-  $ sudo rosdep init
-  $ rosdep update
-  $ rosdep install -i --from-path src --rosdistro ${ROS_DISTRO} -y
-  $ if [ -z ${VISP_DIR+x} ]; then echo "VISP_DIR is unset, keeping ViSP system package"; else echo "VISP_DIR is set, removing system install" && sudo apt remove ros-${ROS_DISTRO}-visp; fi
+      export VISP_DIR=$VISP_WS/visp-build
 
 
 How to get and build visp_apriltag
-----------------------------------
+==================================
 
-Supposed you have a ros2 work space just run:
+Here we suppose that you have a ROS 2  workspace in ``~/colcon_ws/`` folder.
 
-.. code-block:: shell
+  * Clone the repository into your workspace source directory, checking out the branch corresponding to your
+    ROS distribution:
 
-    $ cd ~/colcon_ws/src
-    $ git clone -b humble https://github.com/lagadic/visp_tk.git
-    $ cd ..
-    $ colcon build --symlink-install --packages-up-to visp_apriltag
+    .. code-block:: shell
+
+      cd ~/colcon_ws/src
+      git clone -b $ROS_DISTRO https://github.com/lagadic/visp_tk.git
+      cd ..
+
+  * Install required ROS 2 dependencies via ``rosdep``:
+
+    .. code-block:: shell
+
+      rosdep update && rosdep install --from-paths src --ignore-src
+
+  * Build the ``visp_apriltag`` package:
+
+    .. code-block:: shell
+
+      colcon build --symlink-install --packages-up-to visp_apriltag
+
+    .. Note::
+
+      If you encounter the following issue:
+
+        .. code-block:: shell
+
+          --- stderr: visp_apriltag
+          CMake Error at CMakeLists.txt:46 (find_package):
+            By not providing "FindVISP.cmake" in CMAKE_MODULE_PATH this project has
+            asked CMake to find a package configuration file provided by "VISP", but
+            CMake did not find one.
+
+            Could not find a package configuration file provided by "VISP" (requested
+            version 3.7) with any of the following names:
+
+              VISPConfig.cmake
+              visp-config.cmake
+
+            Add the installation prefix of "VISP" to CMAKE_PREFIX_PATH or set
+            "VISP_DIR" to a directory containing one of the above files.  If "VISP"
+            provides a separate development package or SDK, be sure it has been
+            installed.
+
+      it means that ViSP is not found. Use ``VISP_DIR`` to point to ``$VISP_WS/visp-build`` folder like:
+
+        .. code-block:: shell
+
+          colcon build --symlink-install --packages-up-to visp_apriltag --cmake-args -DVISP_DIR=$VISP_WS/visp-build
+
 
 Node parameters
 ===============
@@ -108,7 +121,8 @@ Related to the tag detection
 Related to the pose computation
 -------------------------------
 
-- *OPTIONAL* ``tag_size``: if ``config_file`` is not set, this parameter becomes **REQUIRED**. It corresponds to the dimension of the tag, in meters. See `ViSP documentation <https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html>`__ for more information.
+- **REQUIRED** ``tag_size_keys``: it corresponds to the list of IDs of the tags for which ``tag_size_values`` will give the size. ``-1`` is a special key that means ``for all IDs that are not specified in this list``.
+- **REQUIRED** ``tag_size_values``: it corresponds to the list of dimension of the tag for each IDs specified in ``tag_size_keys``, in meters. The first item of ``tag_size_values`` will be associated to the first ID listed in ``tag_size_keys`` and so on. The size listed at the same position than the ID ``-1`` in ``tag_size_keys`` will be used **for all IDs that are not specified in the** ``tag_size_keys`` **list**. See `ViSP documentation <https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html>`__ for more information.
 - *OPTIONAL* ``pose_method``: if ``config_file`` is not set, this parameter becomes **REQUIRED**. It corresponds to the method to use to compute the pose of a tag. See `ViSP documentation <https://visp-doc.inria.fr/doxygen/visp-daily/classvpDetectorAprilTag.html>`__ for more information.
 - *OPTIONAL* ``align_z``: if true, the Z-axis will be aligned with the Z-axis of the camera.
 - *OPTIONAL* ``id_published``: if set, the node will publish the pose of the tag whose ID corresponds to this attribute

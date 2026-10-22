@@ -16,7 +16,6 @@
 
   <depend>rclcpp</depend>
   <depend>sensor_msgs</depend>
-  <depend version_gt="3.7.0">visp</depend>
   <depend>visp_common</depend>
   <depend>visp_tracker_common</depend>
 

@@ -43,13 +43,13 @@ namespace camera
   \param[in] cam_info Camera parameters in ROS/sensor_msgs format.
   \return camera parameters in ViSP format.
 */
-VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
+visp::vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo &cam_info);
 /*!
   \brief Converts a sensor_msgs::CameraInfo::ConstSharedPtr to ViSP camera parameters (vpCameraParameters).
   \param[in] cam_info Camera parameters in ROS/sensor_msgs format.
   \return camera parameters in ViSP format.
 */
-VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
+visp::vpCameraParameters toVispCameraParameters(const sensor_msgs::msg::CameraInfo::ConstSharedPtr &cam_info);
 /*!
   \brief Converts ViSP camera parameters (vpCameraParameters) to sensor_msgs::CameraInfo.
   \param[in] cam_info Camera parameters in ViSP format.
@@ -57,7 +57,7 @@ VISP_NAMESPACE_ADDRESSING vpCameraParameters toVispCameraParameters(const sensor
   \param[in] cam_image_height y-resolution of the camera image
   \return Camera parameters in ROS/sensor_msgs format.
 */
-sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(VISP_NAMESPACE_ADDRESSING vpCameraParameters &cam_info, unsigned int cam_image_width,
+sensor_msgs::msg::CameraInfo toSensorMsgsCameraInfo(visp::vpCameraParameters &cam_info, unsigned int cam_image_width,
                                                     unsigned int cam_image_height);
 } // namespace camera
 } // namespace visp_common
