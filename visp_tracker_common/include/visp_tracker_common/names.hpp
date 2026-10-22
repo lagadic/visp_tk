@@ -29,7 +29,8 @@
 
 namespace visp_tracker_common
 {
-extern const std::string quit_srv_name; //!< Name of the service to quit the demos
+extern const std::string reinit_srv_name; //!< Name of the service to reinitialize the tracker
+extern const std::string quit_srv_name; //!< Name of the service to kill the node
 extern const std::string switch_tracking_srv_name; //!< Name of the service to activate / deactivate the tracking.
 extern const std::string switch_vismode_srv_name; //!< Name of the service to activate / deactivate the visualization debug.
 

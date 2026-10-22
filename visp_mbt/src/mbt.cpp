@@ -22,36 +22,27 @@
  * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#include <csignal>
-
 #include <rclcpp/rclcpp.hpp>
 #include <visp_mbt/MBTTracker.hpp>
 
-std::shared_ptr<visp_mbt::MBTTracker> tracker;
-
-void signalHandler(int signum)
-{
-  // Send a quit request to the tracker
-  if (tracker) {
-    tracker->stop_and_quit();
-  }
-  RCLCPP_WARN(tracker->get_logger(), "Sent termination signal to the node due to signal %d", signum);
-}
-
 int main(int argc, char *argv[])
 {
-  signal(SIGABRT, signalHandler);
-  signal(SIGINT, signalHandler);
-  signal(SIGTERM, signalHandler);
+  rclcpp::init(argc, argv);  // installs SIGINT/SIGTERM handling
 
-  rclcpp::init(argc, argv);
-  tracker = std::make_shared<visp_mbt::MBTTracker>("tracker_mbt");
-  bool status = tracker->init();
-  if (status) {
-    while (!tracker->has_to_quit()) {
-      rclcpp::spin_some(tracker);
+  int ret = EXIT_FAILURE;
+  {
+    auto tracker = std::make_shared<visp_mbt::MBTTracker>("tracker_mbt");
+    if (tracker->init()) {
+      rclcpp::executors::SingleThreadedExecutor executor;
+      executor.add_node(tracker);
+      while (rclcpp::ok() && !tracker->has_to_quit()) {
+        executor.spin_once(std::chrono::milliseconds(30));
+      }
+      executor.remove_node(tracker);
+      ret = EXIT_SUCCESS;
     }
-  }
+  }  // tracker destroyed here, while the context is still alive
+
   rclcpp::shutdown();
-  return (status ? EXIT_SUCCESS : EXIT_FAILURE);
+  return ret;
 }
