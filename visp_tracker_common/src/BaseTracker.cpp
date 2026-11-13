@@ -35,7 +35,8 @@ const std::string BaseTracker::s_dumb_topic_name = "dumb_topic_name";
 const unsigned int BaseTracker::s_default_hor_offset = 180;
 const unsigned int BaseTracker::s_hor_offset_from_left_border = 20;
 
-BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_features) : rclcpp::Node(node_name)
+BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_features, const rclcpp::NodeOptions &options)
+  : rclcpp::Node(node_name, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //

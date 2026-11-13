@@ -55,8 +55,10 @@ public:
    *
    * @param node_name The name of the node.
    * @param does_publish_features If headless mode is active, set to true if the node must publish 2D points to have a feedback on the remote GUI.
+   * @param options The options of the node, given by the component container when the node is loaded as a component.
    */
-  BaseTracker(const std::string &node_name, const bool &does_publish_features);
+  BaseTracker(const std::string &node_name, const bool &does_publish_features,
+              const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
 
   virtual ~BaseTracker() = default;
 
