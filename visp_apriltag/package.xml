@@ -15,6 +15,7 @@
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
   <depend>sensor_msgs</depend>
   <depend>visp_common</depend>
   <depend>visp_tracker_common</depend>
