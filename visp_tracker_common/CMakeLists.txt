@@ -77,6 +77,8 @@ ament_export_dependencies(rosidl_default_runtime)
 # ############
 add_library(${PROJECT_NAME}_library src/names.cpp src/BaseTracker.cpp src/BaseMultiModalTracker.cpp)
 add_library(${PROJECT_NAME}::${PROJECT_NAME}_library ALIAS ${PROJECT_NAME}_library)
+# Linked into the shared libraries of the components, such as visp_apriltag_component
+set_target_properties(${PROJECT_NAME}_library PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 target_include_directories(${PROJECT_NAME}_library PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
