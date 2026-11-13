@@ -42,28 +42,49 @@ ament_auto_find_build_dependencies()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_components REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visp_common REQUIRED)
 find_package(visp_tracker_common REQUIRED)
 find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_detection OPTIONAL_COMPONENTS visp_gui)
 
-add_executable(${PROJECT_NAME}_node
-  src/april_tag_tracker.cpp
+# Library of the component, loaded by a component container as visp_apriltag::AprilTagTracker
+add_library(${PROJECT_NAME}_component SHARED
   src/AprilTagTracker.cpp
 )
 
-target_include_directories(${PROJECT_NAME}_node PUBLIC
+target_include_directories(${PROJECT_NAME}_component PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
 )
 
-target_link_libraries(${PROJECT_NAME}_node PUBLIC
+target_link_libraries(${PROJECT_NAME}_component PUBLIC
   ${rclcpp_TARGETS}
+  rclcpp_components::component
   ${sensor_msgs_TARGETS}
   ${visp_common_TARGETS}
   ${visp_tracker_common_TARGETS}
   ${VISP_LIBRARIES}
+)
+
+rclcpp_components_register_nodes(${PROJECT_NAME}_component "visp_apriltag::AprilTagTracker")
+
+# Standalone executable, with its own main()
+add_executable(${PROJECT_NAME}_node
+  src/april_tag_tracker.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}_node PRIVATE
+  ${PROJECT_NAME}_component
+)
+
+install(
+  TARGETS
+  ${PROJECT_NAME}_component
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 
 install(
