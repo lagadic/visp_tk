@@ -37,6 +37,7 @@
 
 #include <visp_common/camera.hpp>
 #include <visp_common/path_retriever.hpp>
+#include <visp_tracker_common/display.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
@@ -113,6 +114,47 @@ protected:
    * @return false Otherwise.
    */
   bool init_initialization_method(const rclcpp::Parameter &p);
+
+  ///@}
+
+  /** @name  Display */
+  ///@{
+
+  /**
+   * @brief Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when
+   * the node manages its own display (headless mode not active). The name of each feature is written at the bottom of
+   * the image.
+   *
+   * @tparam Type Type of the image pixels (unsigned char or vpRGBa).
+   * @param I Image in which the features are displayed. It must have a display.
+   */
+  template <typename Type>
+  void display_overlay_features(const VISP_NAMESPACE_ADDRESSING vpImage<Type> &I)
+  {
+    const VISP_NAMESPACE_ADDRESSING vpColor colors[] = { VISP_NAMESPACE_ADDRESSING vpColor::green, VISP_NAMESPACE_ADDRESSING vpColor::orange,
+                                                         VISP_NAMESPACE_ADDRESSING vpColor::cyan, VISP_NAMESPACE_ADDRESSING vpColor::purple,
+                                                         VISP_NAMESPACE_ADDRESSING vpColor::yellow };
+    const unsigned int nb_colors = sizeof(colors) / sizeof(colors[0]);
+    const unsigned int v_offset = 20;
+    const rclcpp::Time now = this->now();
+    std::scoped_lock lock(m_mutex_overlay_features);
+    unsigned int idx = 0;
+    for (const auto &overlay : m_overlay_features) {
+      // Features not received recently are not displayed anymore
+      if ((!overlay) || ((now - overlay->first).seconds() > s_overlay_features_max_age)) {
+        continue;
+      }
+      for (const auto &feature : overlay->second.features) {
+        const VISP_NAMESPACE_ADDRESSING vpColor &color = colors[idx % nb_colors];
+        display::displayNamedFeature(I, feature, color, 2, display::PointsType::CROSS);
+        if (!feature.name.empty()) {
+          VISP_NAMESPACE_ADDRESSING vpDisplay::displayText(I, static_cast<int>(I.getHeight()) - static_cast<int>(v_offset * (idx + 1)), 10,
+                                                           feature.name, color);
+        }
+        ++idx;
+      }
+    }
+  }
 
   ///@}
 
@@ -218,6 +260,7 @@ protected:
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; //!< RGB camera parameters subscriber
   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr m_init_sub; //!< Subscriber to the init topic, if the init method is set to topic.
+  std::vector<rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr> m_overlay_features_subs; //!< Subscribers to the 2D features to display over the image, when headless mode is not active
   std::shared_ptr<tf2_ros::TransformListener> m_tf_listener { nullptr }; //!< Listener in case the user wants to set the extrinsics from `tf2_static` topic
   std::unique_ptr<tf2_ros::Buffer> m_tf_buffer { nullptr }; //!< The buffer for the TF2
 
@@ -233,6 +276,9 @@ protected:
   visp_tracker_common::msg::InfoStrings m_info_strings; //!< Vector that contains strings to display on string to give the user some info.
   unsigned int m_info_nb_static; //!< Number of info strings that must be visible all the time.
   bool m_visualization_debug = false; //!< Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ
+  std::mutex m_mutex_overlay_features; //!< Mutex to protect m_overlay_features from concurrent access
+  std::vector<std::optional<std::pair<rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray>>> m_overlay_features; //!< Last 2D features received on each overlay topic, with their reception time
+  static constexpr double s_overlay_features_max_age = 0.5; //!< Overlay features older than this duration in seconds are not displayed
 
   // ----- Tracking-related attributes -----
   bool m_rgb_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.

@@ -604,6 +604,9 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if (m_display_initialized && display_frame) {
+      // 2D features published by other nodes, if any
+      display_overlay_features(m_I);
+
       unsigned int nb_infos = m_info_strings.info_strings.size();
       const unsigned int v_offset = 20;
       for (unsigned int r = 0; r < nb_infos; ++r) {

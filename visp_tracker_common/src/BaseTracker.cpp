@@ -62,6 +62,23 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("visualization_debug", vis_debug_param);
   m_visualization_debug = vis_debug_param.as_bool();
 
+  auto overlay_features_topics_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  overlay_features_topics_desc.description = "Topics of 2D features (visp_tracker_common/msg/NamedFeatureArray) published by other nodes, displayed over the image when the headless mode is not active.";
+  this->declare_parameter("overlay_features_topics", std::vector<std::string>(), overlay_features_topics_desc);
+  const std::vector<std::string> overlay_features_topics = this->get_parameter("overlay_features_topics").as_string_array();
+  if (!m_is_headless_mode) {
+    m_overlay_features.resize(overlay_features_topics.size());
+    auto qos_overlay = rclcpp::QoS(rclcpp::KeepLast(1)).best_effort().durability_volatile();
+    for (size_t i = 0; i < overlay_features_topics.size(); ++i) {
+      m_overlay_features_subs.push_back(this->create_subscription<visp_tracker_common::msg::NamedFeatureArray>(
+        overlay_features_topics[i], qos_overlay, [this, i](const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg) {
+          std::scoped_lock lock(m_mutex_overlay_features);
+          m_overlay_features[i] = std::make_pair(this->now(), *msg);
+        }));
+      RCLCPP_INFO(this->get_logger(), "2D features of topic '%s' displayed over the image", overlay_features_topics[i].c_str());
+    }
+  }
+
   auto initial_tracking_status_param = rclcpp::Parameter();
   auto initial_tracking_status_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   initial_tracking_status_param_desc.description = "When this parameter is set to true, the node will start with the tracking active.";
