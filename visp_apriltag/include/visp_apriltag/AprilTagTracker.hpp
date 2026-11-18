@@ -45,7 +45,22 @@ namespace visp_apriltag
 class AprilTagTracker : public visp_tracker_common::BaseTracker
 {
 public:
-  AprilTagTracker(const std::string &node_name);
+  /**
+   * @brief Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself.
+   *
+   * @param node_name The name of the node.
+   * @param options The options of the node.
+   */
+  AprilTagTracker(const std::string &node_name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+
+  /**
+   * @brief Constructor used by the component container. Since the container neither calls init() nor polls
+   * has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit.
+   *
+   * @param options The options of the node given by the container.
+   */
+  explicit AprilTagTracker(const rclcpp::NodeOptions &options);
+
   virtual ~AprilTagTracker() = default;
 
 protected:
@@ -87,6 +102,9 @@ protected:
 
   // ----- Publisher -----
   rclcpp::Publisher<visp_tracker_common::msg::AprilTagDetectionArray>::SharedPtr m_tags_info_pub; //!< Publisher of the tag IDs, centers and so on.
+
+  // ----- Timers -----
+  rclcpp::TimerBase::SharedPtr m_quit_timer; //!< In a container, replaces the has_to_quit() polling done by main()
 
   // ----- Display-related attributes -----
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)

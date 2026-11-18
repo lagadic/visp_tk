@@ -23,6 +23,7 @@
  */
 
 #include <visp_tracker_common/TrackerGUI.hpp>
+#include <visp_tracker_common/display.hpp>
 
 namespace visp_tracker_common
 {
@@ -452,51 +453,11 @@ void TrackerGUI::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &m
           vpColor color = vpColor::allColors[idx % vpColor::nbColors];
           vpDisplay::displayText(m_I, m_display_color->getHeight() -  v_offset * (idx + 1), left_hor_offset, named_feature.name, color);
 
-          // Displaying 2D points
-          switch (m_features_type) {
-          case FeaturesType::CROSS:
-          {
-            for (const auto &ip: named_feature.image_points) {
-              vpDisplay::displayCross(m_I, ip.y, ip.x, 10, color, m_features_thickness);
-            }
-            break;
-          }
-          case FeaturesType::POINT:
-          {
-            for (const auto &ip: named_feature.image_points) {
-              vpDisplay::displayPoint(m_I, ip.y, ip.x, color, m_features_thickness);
-            }
-            break;
-          }
-          default:
+          if ((m_features_type != FeaturesType::CROSS) && (m_features_type != FeaturesType::POINT)) {
             RCLCPP_WARN_STREAM(this->get_logger(), "Visualization type for the 2D features is unknown, available types are: " << getAvailableFeaturesType());
           }
-
-          // Displaying ellipses
-          for (const auto &ellipse: named_feature.ellipses) {
-            vpDisplay::displayEllipse(m_I, vpImagePoint(ellipse.center.y, ellipse.center.x), ellipse.n20, ellipse.n11, ellipse.n02, true, color, m_features_thickness);
-          }
-
-          // Displaying lines
-          for (const auto &line: named_feature.lines) {
-            vpDisplay::displayLine(m_I, vpImagePoint(line.start.y, line.start.x), vpImagePoint(line.end.y, line.end.x), color, m_features_thickness);
-          }
-
-          // Displaying polygons
-          for (const auto &poly: named_feature.polygons) {
-            std::vector<vpImagePoint> poly_points;
-            poly_points.push_back(vpImagePoint(poly.lines[0].start.y, poly.lines[0].start.x));
-            // Displaying each line of the polygon
-            for (const auto &line: poly.lines) {
-              poly_points.push_back(vpImagePoint(line.end.y, line.end.x));
-            }
-            vpDisplay::displayPolygon(m_I, poly_points, color, m_features_thickness);
-          }
-
-          // Displaying rectangles
-          for (const auto &rect: named_feature.rectangles) {
-            vpDisplay::displayRectangle(m_I, vpImagePoint(rect.start.y, rect.start.x), vpImagePoint(rect.end.y, rect.end.x), color, false, m_features_thickness);
-          }
+          const display::PointsType points_type = (m_features_type == FeaturesType::CROSS) ? display::PointsType::CROSS : display::PointsType::POINT;
+          display::displayNamedFeature(m_I, named_feature, color, m_features_thickness, points_type);
 
           ++idx;
         }
