@@ -104,9 +104,12 @@ Collaboration diagram for visp_apriltag::AprilTagTracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab54778e61cc4ea385b8033aa28dc089d" id="r_ab54778e61cc4ea385b8033aa28dc089d"><td class="memItemLeft" align="right" valign="top"><a id="ab54778e61cc4ea385b8033aa28dc089d" name="ab54778e61cc4ea385b8033aa28dc089d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>AprilTagTracker</b> (const std::string &amp;node_name)</td></tr>
-<tr class="separator:ab54778e61cc4ea385b8033aa28dc089d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7817664610cda7fe415b333bbace3cc3" id="r_a7817664610cda7fe415b333bbace3cc3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__apriltag_1_1AprilTagTracker.html#a7817664610cda7fe415b333bbace3cc3">AprilTagTracker</a> (const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</td></tr>
+<tr class="memdesc:a7817664610cda7fe415b333bbace3cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself.  <br /></td></tr>
+<tr class="separator:a7817664610cda7fe415b333bbace3cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afddfbbefefa69a03416ec8093cbf2aaf" id="r_afddfbbefefa69a03416ec8093cbf2aaf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__apriltag_1_1AprilTagTracker.html#afddfbbefefa69a03416ec8093cbf2aaf">AprilTagTracker</a> (const rclcpp::NodeOptions &amp;options)</td></tr>
+<tr class="memdesc:afddfbbefefa69a03416ec8093cbf2aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used by the component container. Since the container neither calls init() nor polls has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit.  <br /></td></tr>
+<tr class="separator:afddfbbefefa69a03416ec8093cbf2aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -130,6 +133,10 @@ rclcpp::Subscription&lt; sensor_msgs::msg::Image &gt;::SharedPtr&#160;</td><td c
 rclcpp::Publisher&lt; visp_tracker_common::msg::AprilTagDetectionArray &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_tags_info_pub</b></td></tr>
 <tr class="memdesc:ab452a9d56c4f5d9ac05174186cd45197"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publisher of the tag IDs, centers and so on. <br /></td></tr>
 <tr class="separator:ab452a9d56c4f5d9ac05174186cd45197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe8739e5366a68448c72bb668199156b" id="r_afe8739e5366a68448c72bb668199156b"><td class="memItemLeft" align="right" valign="top"><a id="afe8739e5366a68448c72bb668199156b" name="afe8739e5366a68448c72bb668199156b"></a>
+rclcpp::TimerBase::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_quit_timer</b></td></tr>
+<tr class="memdesc:afe8739e5366a68448c72bb668199156b"><td class="mdescLeft">&#160;</td><td class="mdescRight">In a container, replaces the has_to_quit() polling done by main() <br /></td></tr>
+<tr class="separator:afe8739e5366a68448c72bb668199156b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacef15e04877f9b2c00f9aee31c4cbcc" id="r_aacef15e04877f9b2c00f9aee31c4cbcc"><td class="memItemLeft" align="right" valign="top"><a id="aacef15e04877f9b2c00f9aee31c4cbcc" name="aacef15e04877f9b2c00f9aee31c4cbcc"></a>
 visp::vpDetectorAprilTag&#160;</td><td class="memItemRight" valign="bottom"><b>m_tag_detector</b></td></tr>
 <tr class="memdesc:aacef15e04877f9b2c00f9aee31c4cbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The detector. <br /></td></tr>
@@ -159,6 +166,78 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_display_tag</b></td
 <tr class="memdesc:ac94c0bc710b5361b6f805c20b275c896"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, the borders of the detected tags will be displayed. <br /></td></tr>
 <tr class="separator:ac94c0bc710b5361b6f805c20b275c896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7817664610cda7fe415b333bbace3cc3" name="a7817664610cda7fe415b333bbace3cc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7817664610cda7fe415b333bbace3cc3">&#9670;&#160;</a></span>AprilTagTracker() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">visp_apriltag::AprilTagTracker::AprilTagTracker </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>node_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rclcpp::NodeOptions &amp;&#160;</td>
+          <td class="paramname"><em>options</em> = <code>rclcpp::NodeOptions()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node_name</td><td>The name of the node. </td></tr>
+    <tr><td class="paramname">options</td><td>The options of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afddfbbefefa69a03416ec8093cbf2aaf" name="afddfbbefefa69a03416ec8093cbf2aaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afddfbbefefa69a03416ec8093cbf2aaf">&#9670;&#160;</a></span>AprilTagTracker() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">visp_apriltag::AprilTagTracker::AprilTagTracker </td>
+          <td>(</td>
+          <td class="paramtype">const rclcpp::NodeOptions &amp;&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor used by the component container. Since the container neither calls init() nor polls has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options of the node given by the container. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab66b0683d7e484ac5e6e1ee74fa8c32a" name="ab66b0683d7e484ac5e6e1ee74fa8c32a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab66b0683d7e484ac5e6e1ee74fa8c32a">&#9670;&#160;</a></span>image_callback()</h2>

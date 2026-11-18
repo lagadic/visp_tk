@@ -18,6 +18,7 @@ Files
 
 - :ref:`file_include_visp_tracker_common_BaseMultiModalTracker.hpp`
 - :ref:`file_include_visp_tracker_common_BaseTracker.hpp`
+- :ref:`file_include_visp_tracker_common_display.hpp`
 - :ref:`file_include_visp_tracker_common_names.hpp`
 - :ref:`file_include_visp_tracker_common_TrackerGUI.hpp`
 

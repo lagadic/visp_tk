@@ -3,6 +3,20 @@
   <compound kind="class">
     <name>visp_apriltag::AprilTagTracker</name>
     <filename>classvisp__apriltag_1_1AprilTagTracker.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>AprilTagTracker</name>
+      <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
+      <anchor>a7817664610cda7fe415b333bbace3cc3</anchor>
+      <arglist>(const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>AprilTagTracker</name>
+      <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
+      <anchor>afddfbbefefa69a03416ec8093cbf2aaf</anchor>
+      <arglist>(const rclcpp::NodeOptions &amp;options)</arglist>
+    </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual bool</type>
       <name>init_tracker</name>
@@ -36,6 +50,13 @@
       <name>m_tags_info_pub</name>
       <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
       <anchor>ab452a9d56c4f5d9ac05174186cd45197</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>rclcpp::TimerBase::SharedPtr</type>
+      <name>m_quit_timer</name>
+      <anchorfile>classvisp__apriltag_1_1AprilTagTracker.html</anchorfile>
+      <anchor>afe8739e5366a68448c72bb668199156b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">

@@ -1,0 +1,14 @@
+.. _exhale_enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc:
+
+Enum PointsType
+===============
+
+- Defined in :ref:`file_include_visp_tracker_common_display.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: visp_tracker_common::display::PointsType
+   :project: visp_tracker_common Doxygen Project

@@ -32,6 +32,7 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a6a189d6a3aa47ac31c1142e00234f559" kind="function"><name>init_tracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a3d628e39463fd27aa0c2612216fc323e" kind="function"><name>init_info_strings</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1acf50c4c5fdef39ccf2f31895c4427e14" kind="function"><name>init_initialization_method</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1ad9a3a2bb0993297d39a8da1e6102bccd" kind="function"><name>display_overlay_features</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a8f799ececfb5b8009a3dcba2079601f1" kind="function"><name>color_camera_info_callback</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a92557dd9cd27b4427076489938ac1457" kind="function"><name>init_pose_callback</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a1b54bdd3fcd13b6276e0af06428b2f96" kind="function"><name>quit_callback</name></member>
@@ -51,6 +52,7 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a61170c6360c2a92dc53e4f637148636a" kind="variable"><name>m_switch_visual_srv</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ac9f7dd0c473ef26fcbfd7e4231930236" kind="variable"><name>m_rgb_cam_info_sub</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a4cd69f9f9ca3469c64e7ca877e2cef87" kind="variable"><name>m_init_sub</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a3a2a4620145b153f50cd89196621b55f" kind="variable"><name>m_overlay_features_subs</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1af66e4c3693048c6c4cd370692fb5c550" kind="variable"><name>m_tf_listener</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a0da500e5d4abf70a7d759355117ea7a1" kind="variable"><name>m_tf_buffer</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ad0281bc3c4a051e593e7cea7e7baf1c6" kind="variable"><name>m_features_pub</name></member>
@@ -62,6 +64,8 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ac3b18a7739e1df1eff8fddf9434d0f29" kind="variable"><name>m_info_strings</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a411a6a7c29929d0d1462ce74726beea6" kind="variable"><name>m_info_nb_static</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997" kind="variable"><name>m_visualization_debug</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1ac696733f1d2961d100c1143cebb56e9c" kind="variable"><name>m_mutex_overlay_features</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a5241d28d202cb98a9742ccdf39d0d4d2" kind="variable"><name>m_overlay_features</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a82012a3da12da0a98764bcba5da18418" kind="variable"><name>m_rgb_cam_info_received</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ab1eae20fda6e63de32f2aae05948fd03" kind="variable"><name>m_rgb_camera_info_topic_name</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ac191581077e0eb166da5d78e300bd70c" kind="variable"><name>m_rgb_stream_name</name></member>
@@ -74,10 +78,11 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1abf53cddde9e1897bcbc888aa9fb957a9" kind="variable"><name>m_mutex_tracking</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1aa371c209a777603a62a45974d4b2b26e" kind="variable"><name>m_has_to_track</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a70021e81905c550c4c9d66f52f33da40" kind="variable"><name>m_mutex_visualization</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a41455115ba9dac7ff422c6c8dadef8df" kind="variable"><name>s_overlay_features_max_age</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a68eea5dbf94cf618d8d1b9c9850741b7" kind="variable"><name>s_dumb_topic_name</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a59fb6fa95492234b32e368f8a3474e5e" kind="variable"><name>s_default_hor_offset</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1af5860fc828aeb53a8c81eb997c10579a" kind="variable"><name>s_hor_offset_from_left_border</name></member>
-    <member refid="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e" kind="function"><name>BaseTracker</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a274886eceacb4cacdf25604072b5a298" kind="function"><name>BaseTracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1aebdd69964ded55d482f5d541ada3bac2" kind="function"><name>~BaseTracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" kind="function"><name>init</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a6b825aa62b87d4fe03df83808a16849a" kind="function"><name>has_to_quit</name></member>
@@ -160,9 +165,17 @@
     <member refid="names_8hpp_1a3e55872a211e904cabb63fdb40b65fb4" kind="variable"><name>info_strings_topic_name</name></member>
     <member refid="names_8hpp_1abb0887289741a0f482993bf29becaf47" kind="variable"><name>pose_topic_name</name></member>
   </compound>
+  <compound refid="namespacevisp__tracker__common_1_1display" kind="namespace"><name>visp_tracker_common::display</name>
+    <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fc" kind="enum"><name>PointsType</name></member>
+    <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fcaaebdbcb765394d25d6a604589a890f82" kind="enumvalue"><name>POINT</name></member>
+    <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fca04dd53a8e6c2306e9bbf944c1d6047f2" kind="enumvalue"><name>CROSS</name></member>
+    <member refid="display_8hpp_1a31a9205af4bf31e91062375353c1300b" kind="function"><name>displayNamedFeature</name></member>
+  </compound>
   <compound refid="BaseMultiModalTracker_8hpp" kind="file"><name>BaseMultiModalTracker.hpp</name>
   </compound>
   <compound refid="BaseTracker_8hpp" kind="file"><name>BaseTracker.hpp</name>
+  </compound>
+  <compound refid="display_8hpp" kind="file"><name>display.hpp</name>
   </compound>
   <compound refid="names_8hpp" kind="file"><name>names.hpp</name>
   </compound>

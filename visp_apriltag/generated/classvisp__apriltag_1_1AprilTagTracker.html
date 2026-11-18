@@ -174,9 +174,29 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE">
-<span id="_CPPv3N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE"></span><span id="visp_apriltag::AprilTagTracker::AprilTagTracker__ssCR"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d"></span><span class="sig-name descname"><span class="n"><span class="pre">AprilTagTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringE" title="Link to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="visp_apriltag::AprilTagTracker::AprilTagTracker__ssCR.rclcpp::NodeOptionsCR"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1a7817664610cda7fe415b333bbace3cc3"></span><span class="sig-name descname"><span class="n"><span class="pre">AprilTagTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_name</strong> – The name of the node. </p></li>
+<li><p><strong>options</strong> – The options of the node. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKN6rclcpp11NodeOptionsE"></span><span id="visp_apriltag::AprilTagTracker::AprilTagTracker__rclcpp::NodeOptionsCR"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1afddfbbefefa69a03416ec8093cbf2aaf"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AprilTagTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15AprilTagTrackerERKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor used by the component container. Since the container neither calls init() nor polls has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The options of the node given by the container. </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTrackerD0Ev">
@@ -196,6 +216,12 @@
 <dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker15m_tags_info_pubE">
 <span id="_CPPv3N13visp_apriltag15AprilTagTracker15m_tags_info_pubE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker15m_tags_info_pubE"></span><span id="visp_apriltag::AprilTagTracker::m_tags_info_pub__rclcpp::Publisher:visp_tracker_common::msg::AprilTagDetectionArray:::SharedPtr"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">AprilTagDetectionArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tags_info_pub</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker15m_tags_info_pubE" title="Link to this definition"></a><br /></dt>
 <dd><p>Publisher of the tag IDs, centers and so on. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13visp_apriltag15AprilTagTracker12m_quit_timerE">
+<span id="_CPPv3N13visp_apriltag15AprilTagTracker12m_quit_timerE"></span><span id="_CPPv2N13visp_apriltag15AprilTagTracker12m_quit_timerE"></span><span id="visp_apriltag::AprilTagTracker::m_quit_timer__rclcpp::TimerBase::SharedPtr"></span><span class="target" id="classvisp__apriltag_1_1AprilTagTracker_1afe8739e5366a68448c72bb668199156b"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TimerBase</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_quit_timer</span></span></span><a class="headerlink" href="#_CPPv4N13visp_apriltag15AprilTagTracker12m_quit_timerE" title="Link to this definition"></a><br /></dt>
+<dd><p>In a container, replaces the has_to_quit() polling done by main() </p>
 </dd></dl>
 
 <dl class="cpp var">

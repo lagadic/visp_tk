@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['track_0',['track',['../classvisp__mbt_1_1MBTTracker.html#ab6f1f668e37682326825a192adad4e82',1,'visp_mbt::MBTTracker']]],
-  ['trackertypefromstr_1',['trackerTypeFromStr',['../classvisp__mbt_1_1MBTTracker.html#ad331ae77060d9e9d67a9727a56085dec',1,'visp_mbt::MBTTracker']]],
-  ['trackertypetostr_2',['trackerTypeToStr',['../classvisp__mbt_1_1MBTTracker.html#ae3f0e5d1071402979436b25d43204b10',1,'visp_mbt::MBTTracker']]],
-  ['treat_5fdepth_3',['treat_depth',['../classvisp__mbt_1_1MBTTracker.html#ae6f41e7105936394d4cf18dafbf1af06',1,'visp_mbt::MBTTracker']]],
-  ['treat_5frgb_4',['treat_rgb',['../classvisp__mbt_1_1MBTTracker.html#a30abb8d8bb27c832d2954693331c03e8',1,'visp_mbt::MBTTracker']]]
+  ['perform_5ftracking_0',['perform_tracking',['../classvisp__mbt_1_1MBTTracker.html#ae9de2891b666b4c884a875f3844c663c',1,'visp_mbt::MBTTracker']]]
 ];

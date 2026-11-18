@@ -54,6 +54,8 @@ Includes
 
 - ``visp_common/path_retriever.hpp``
 
+- ``visp_tracker_common/display.hpp`` (:ref:`file_include_visp_tracker_common_display.hpp`)
+
 - ``visp_tracker_common/msg/info_strings.hpp``
 
 - ``visp_tracker_common/msg/named_feature_array.hpp``

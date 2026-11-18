@@ -55,12 +55,21 @@
 <li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common__display.html">Namespace visp_tracker_common::display</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html">Class BaseMultiModalTracker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseTracker.html">Class BaseTracker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html">Enum PointsType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_display_8hpp_1a31a9205af4bf31e91062375353c1300b.html">Template Function visp_tracker_common::display::displayNamedFeature</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a><ul>
@@ -81,6 +90,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#files">Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_display.hpp.html">File display.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
 </ul>
@@ -168,7 +178,7 @@
 <ul class="treeView" id="class-treeView">
   <li>
     <ul class="collapsibleList">
-      <li class="lastChild">Namespace <a href="namespace_visp_tracker_common.html#namespace-visp-tracker-common">visp_tracker_common</a><ul><li>Class <a href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#exhale-class-classvisp-tracker-common-1-1BaseMultiModalTracker">BaseMultiModalTracker</a></li><li>Class <a href="classvisp__tracker__common_1_1BaseTracker.html#exhale-class-classvisp-tracker-common-1-1BaseTracker">BaseTracker</a></li><li class="lastChild">Class <a href="classvisp__tracker__common_1_1TrackerGUI.html#exhale-class-classvisp-tracker-common-1-1TrackerGUI">TrackerGUI</a></li></ul></li>
+      <li class="lastChild">Namespace <a href="namespace_visp_tracker_common.html#namespace-visp-tracker-common">visp_tracker_common</a><ul><li>Namespace <a href="namespace_visp_tracker_common__display.html#namespace-visp-tracker-common-display">visp_tracker_common::display</a><ul><li class="lastChild">Enum <a href="enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html#exhale-enum-display-8hpp-1a428868c0160a8a615f3481d97be7e0fc">PointsType</a></li></ul></li><li>Class <a href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#exhale-class-classvisp-tracker-common-1-1BaseMultiModalTracker">BaseMultiModalTracker</a></li><li>Class <a href="classvisp__tracker__common_1_1BaseTracker.html#exhale-class-classvisp-tracker-common-1-1BaseTracker">BaseTracker</a></li><li class="lastChild">Class <a href="classvisp__tracker__common_1_1TrackerGUI.html#exhale-class-classvisp-tracker-common-1-1TrackerGUI">TrackerGUI</a></li></ul></li>
     </ul>
   </li><!-- only tree view element -->
 </ul><!-- /treeView class-treeView --></section>
@@ -177,7 +187,7 @@
 <ul class="treeView" id="file-treeView">
   <li>
     <ul class="collapsibleList">
-      <li class="lastChild">Directory <a href="dir_include.html#dir-include">include</a><ul><li class="lastChild">Directory <a href="dir_include_visp_tracker_common.html#dir-include-visp-tracker-common">visp_tracker_common</a><ul><li>File <a href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html#file-include-visp-tracker-common-BaseMultiModalTracker.hpp">BaseMultiModalTracker.hpp</a></li><li>File <a href="file_include_visp_tracker_common_BaseTracker.hpp.html#file-include-visp-tracker-common-BaseTracker.hpp">BaseTracker.hpp</a></li><li>File <a href="file_include_visp_tracker_common_names.hpp.html#file-include-visp-tracker-common-names.hpp">names.hpp</a></li><li class="lastChild">File <a href="file_include_visp_tracker_common_TrackerGUI.hpp.html#file-include-visp-tracker-common-TrackerGUI.hpp">TrackerGUI.hpp</a></li></ul></li></ul></li>
+      <li class="lastChild">Directory <a href="dir_include.html#dir-include">include</a><ul><li class="lastChild">Directory <a href="dir_include_visp_tracker_common.html#dir-include-visp-tracker-common">visp_tracker_common</a><ul><li>File <a href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html#file-include-visp-tracker-common-BaseMultiModalTracker.hpp">BaseMultiModalTracker.hpp</a></li><li>File <a href="file_include_visp_tracker_common_BaseTracker.hpp.html#file-include-visp-tracker-common-BaseTracker.hpp">BaseTracker.hpp</a></li><li>File <a href="file_include_visp_tracker_common_display.hpp.html#file-include-visp-tracker-common-display.hpp">display.hpp</a></li><li>File <a href="file_include_visp_tracker_common_names.hpp.html#file-include-visp-tracker-common-names.hpp">names.hpp</a></li><li class="lastChild">File <a href="file_include_visp_tracker_common_TrackerGUI.hpp.html#file-include-visp-tracker-common-TrackerGUI.hpp">TrackerGUI.hpp</a></li></ul></li></ul></li>
     </ul>
   </li><!-- only tree view element -->
 </ul><!-- /treeView file-treeView --></section>
@@ -193,6 +203,11 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_visp_tracker_common__display.html">Namespace visp_tracker_common::display</a></li>
 </ul>
 </div>
 </section>
@@ -211,6 +226,22 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</div>
+</section>
+<section id="enums">
+<h3>Enums<a class="headerlink" href="#enums" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html">Enum PointsType</a></li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_display_8hpp_1a31a9205af4bf31e91062375353c1300b.html">Template Function visp_tracker_common::display::displayNamedFeature</a></li>
 </ul>
 </div>
 </section>
@@ -275,6 +306,11 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file_include_visp_tracker_common_display.hpp.html">File display.hpp</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">

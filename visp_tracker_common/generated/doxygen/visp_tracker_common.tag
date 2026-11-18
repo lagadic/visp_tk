@@ -215,8 +215,8 @@
       <type></type>
       <name>BaseTracker</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
-      <anchor>a0ed6ef4cbd098ca050757c9c1bbfce7e</anchor>
-      <arglist>(const std::string &amp;node_name, const bool &amp;does_publish_features)</arglist>
+      <anchor>a274886eceacb4cacdf25604072b5a298</anchor>
+      <arglist>(const std::string &amp;node_name, const bool &amp;does_publish_features, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
@@ -321,6 +321,13 @@
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
       <anchor>acf50c4c5fdef39ccf2f31895c4427e14</anchor>
       <arglist>(const rclcpp::Parameter &amp;p)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>display_overlay_features</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>ad9a3a2bb0993297d39a8da1e6102bccd</anchor>
+      <arglist>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -435,6 +442,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>std::vector&lt; rclcpp::Subscription&lt; visp_tracker_common::msg::NamedFeatureArray &gt;::SharedPtr &gt;</type>
+      <name>m_overlay_features_subs</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>a3a2a4620145b153f50cd89196621b55f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>std::shared_ptr&lt; tf2_ros::TransformListener &gt;</type>
       <name>m_tf_listener</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
@@ -509,6 +523,20 @@
       <name>m_visualization_debug</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
       <anchor>aa90fe323829cecfb8061edbd4051a997</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::mutex</type>
+      <name>m_mutex_overlay_features</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>ac696733f1d2961d100c1143cebb56e9c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>std::vector&lt; std::optional&lt; std::pair&lt; rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray &gt; &gt; &gt;</type>
+      <name>m_overlay_features</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>a5241d28d202cb98a9742ccdf39d0d4d2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
@@ -596,6 +624,13 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected" static="yes">
+      <type>static constexpr double</type>
+      <name>s_overlay_features_max_age</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>a41455115ba9dac7ff422c6c8dadef8df</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
       <type>static const std::string</type>
       <name>s_dumb_topic_name</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
@@ -636,6 +671,13 @@
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
       <anchor>acf50c4c5fdef39ccf2f31895c4427e14</anchor>
       <arglist>(const rclcpp::Parameter &amp;p)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>display_overlay_features</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>ad9a3a2bb0993297d39a8da1e6102bccd</anchor>
+      <arglist>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>

@@ -5,6 +5,7 @@
     <innerclass refid="classvisp__tracker__common_1_1BaseMultiModalTracker" prot="public">visp_tracker_common::BaseMultiModalTracker</innerclass>
     <innerclass refid="classvisp__tracker__common_1_1BaseTracker" prot="public">visp_tracker_common::BaseTracker</innerclass>
     <innerclass refid="classvisp__tracker__common_1_1TrackerGUI" prot="public">visp_tracker_common::TrackerGUI</innerclass>
+    <innernamespace refid="namespacevisp__tracker__common_1_1display">visp_tracker_common::display</innernamespace>
     <sectiondef kind="var">
       <memberdef kind="variable" id="names_8hpp_1af3e5345ccca9a41a95f51c40edd3b819" prot="public" static="no" extern="yes" mutable="no">
         <type>const std::string</type>

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['image_5fcallback_0',['image_callback',['../classvisp__apriltag_1_1AprilTagTracker.html#ab66b0683d7e484ac5e6e1ee74fa8c32a',1,'visp_apriltag::AprilTagTracker']]],
-  ['init_5finfo_5fstrings_1',['init_info_strings',['../classvisp__apriltag_1_1AprilTagTracker.html#afab88e049d1a6abfe14b5df599bc94c0',1,'visp_apriltag::AprilTagTracker']]],
-  ['init_5ftracker_2',['init_tracker',['../classvisp__apriltag_1_1AprilTagTracker.html#ae16a962bf0c75758160546c9caa1bf6d',1,'visp_apriltag::AprilTagTracker']]]
+  ['apriltagtracker_0',['apriltagtracker',['../classvisp__apriltag_1_1AprilTagTracker.html#a7817664610cda7fe415b333bbace3cc3',1,'visp_apriltag::AprilTagTracker::AprilTagTracker(const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())'],['../classvisp__apriltag_1_1AprilTagTracker.html#afddfbbefefa69a03416ec8093cbf2aaf',1,'visp_apriltag::AprilTagTracker::AprilTagTracker(const rclcpp::NodeOptions &amp;options)']]]
 ];

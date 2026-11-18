@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacevisp__tracker__common_1_1display" kind="namespace" language="C++">
+    <compoundname>visp_tracker_common::display</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="display_8hpp_1a428868c0160a8a615f3481d97be7e0fc" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>PointsType</name>
+        <qualifiedname>visp_tracker_common::display::PointsType</qualifiedname>
+        <enumvalue id="display_8hpp_1a428868c0160a8a615f3481d97be7e0fcaaebdbcb765394d25d6a604589a890f82" prot="public">
+          <name>POINT</name>
+          <briefdescription>
+<para>A point. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="display_8hpp_1a428868c0160a8a615f3481d97be7e0fca04dd53a8e6c2306e9bbf944c1d6047f2" prot="public">
+          <name>CROSS</name>
+          <briefdescription>
+<para>A cross. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How the image points of a 2D feature are rendered. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/display.hpp" line="48" column="1" bodyfile="include/visp_tracker_common/display.hpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="display_8hpp_1a31a9205af4bf31e91062375353c1300b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Type</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void visp_tracker_common::display::displayNamedFeature</definition>
+        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I, const visp_tracker_common::msg::NamedFeature &amp;feature, const VISP_NAMESPACE_ADDRESSING vpColor &amp;color, unsigned int thickness, PointsType points_type)</argsstring>
+        <name>displayNamedFeature</name>
+        <qualifiedname>visp_tracker_common::display::displayNamedFeature</qualifiedname>
+        <param>
+          <type>const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;</type>
+          <declname>I</declname>
+        </param>
+        <param>
+          <type>const visp_tracker_common::msg::NamedFeature &amp;</type>
+          <declname>feature</declname>
+        </param>
+        <param>
+          <type>const VISP_NAMESPACE_ADDRESSING vpColor &amp;</type>
+          <declname>color</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>thickness</declname>
+        </param>
+        <param>
+          <type>PointsType</type>
+          <declname>points_type</declname>
+        </param>
+        <briefdescription>
+<para>Display a 2D feature in an image that has a display: its image points, ellipses, lines, polygons and rectangles. The name of the feature is not displayed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the image pixels (unsigned char or vpRGBa). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>I</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Image in which the feature is displayed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>feature</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Feature to display. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Color of the feature. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thickness</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Thickness of the drawings. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>points_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>How the image points are rendered. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_tracker_common/display.hpp" line="66" column="6" bodyfile="include/visp_tracker_common/display.hpp" bodystart="66" bodyend="104"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/visp_tracker_common/display.hpp" line="43" column="1"/>
+  </compounddef>
+</doxygen>

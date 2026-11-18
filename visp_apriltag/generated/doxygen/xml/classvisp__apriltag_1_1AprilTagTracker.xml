@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="58" column="16"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="73" column="16"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__apriltag_1_1AprilTagTracker_1afab88e049d1a6abfe14b5df599bc94c0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="63" column="16"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="78" column="16"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="user-defined">
@@ -63,7 +63,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="77" column="8"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="92" column="8"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-attrib">
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="86" column="36" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="86" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="101" column="36" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197" prot="protected" static="no" mutable="no">
         <type>rclcpp::Publisher&lt; visp_tracker_common::msg::AprilTagDetectionArray &gt;::SharedPtr</type>
@@ -95,7 +95,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="89" column="33" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="89" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="104" column="33" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1afe8739e5366a68448c72bb668199156b" prot="protected" static="no" mutable="no">
+        <type>rclcpp::TimerBase::SharedPtr</type>
+        <definition>rclcpp::TimerBase::SharedPtr visp_apriltag::AprilTagTracker::m_quit_timer</definition>
+        <argsstring></argsstring>
+        <name>m_quit_timer</name>
+        <qualifiedname>visp_apriltag::AprilTagTracker::m_quit_timer</qualifiedname>
+        <briefdescription>
+<para>In a container, replaces the has_to_quit() polling done by main() </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="107" column="32" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1aacef15e04877f9b2c00f9aee31c4cbcc" prot="protected" static="no" mutable="no">
         <type>visp::vpDetectorAprilTag</type>
@@ -110,7 +125,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="98" column="28" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="98" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="116" column="28" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" prot="protected" static="no" mutable="no">
         <type>std::string</type>
@@ -125,7 +140,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="99" column="15" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="99" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="117" column="15" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="117" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" prot="protected" static="no" mutable="no">
         <type>std::map&lt; int64_t, float &gt;</type>
@@ -140,7 +155,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="100" column="12" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="100" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="118" column="12" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="118" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1a73b9fc76114737b5cf55a0e0e4098ace" prot="protected" static="no" mutable="no">
         <type>float</type>
@@ -155,7 +170,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="101" column="9" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="101" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="119" column="9" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="119" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1a4f3af236545cad703634f4cbd2941a8f" prot="protected" static="no" mutable="no">
         <type>visp::vpImage&lt; unsigned char &gt;</type>
@@ -170,7 +185,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="102" column="17" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="102" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="120" column="17" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="120" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" prot="protected" static="no" mutable="no">
         <type>std::optional&lt; int &gt;</type>
@@ -186,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="103" column="17" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="103" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="121" column="17" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="121" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classvisp__apriltag_1_1AprilTagTracker_1ac94c0bc710b5361b6f805c20b275c896" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -201,27 +216,80 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="104" column="8" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="104" bodyend="-1"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="122" column="8" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="122" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classvisp__apriltag_1_1AprilTagTracker_1a7817664610cda7fe415b333bbace3cc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>visp_apriltag::AprilTagTracker::AprilTagTracker</definition>
-        <argsstring>(const std::string &amp;node_name)</argsstring>
+        <argsstring>(const std::string &amp;node_name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</argsstring>
         <name>AprilTagTracker</name>
         <qualifiedname>visp_apriltag::AprilTagTracker::AprilTagTracker</qualifiedname>
         <param>
           <type>const std::string &amp;</type>
           <declname>node_name</declname>
         </param>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+          <defval>rclcpp::NodeOptions()</defval>
+        </param>
         <briefdescription>
+<para>Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options of the node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="48" column="3"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="54" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classvisp__apriltag_1_1AprilTagTracker_1afddfbbefefa69a03416ec8093cbf2aaf" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>visp_apriltag::AprilTagTracker::AprilTagTracker</definition>
+        <argsstring>(const rclcpp::NodeOptions &amp;options)</argsstring>
+        <name>AprilTagTracker</name>
+        <qualifiedname>visp_apriltag::AprilTagTracker::AprilTagTracker</qualifiedname>
+        <param>
+          <type>const rclcpp::NodeOptions &amp;</type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+<para>Constructor used by the component container. Since the container neither calls init() nor polls has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The options of the node given by the container. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="62" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classvisp__apriltag_1_1AprilTagTracker_1ab66da88108141af4ccec02d0af7f4c73" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type></type>
@@ -235,7 +303,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="49" column="11"/>
+        <location file="include/visp_apriltag/AprilTagTracker.hpp" line="64" column="11"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -264,9 +332,10 @@
         <label>visp_tracker_common::BaseTracker</label>
       </node>
     </collaborationgraph>
-    <location file="include/visp_apriltag/AprilTagTracker.hpp" line="45" column="1" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="46" bodyend="105"/>
+    <location file="include/visp_apriltag/AprilTagTracker.hpp" line="45" column="1" bodyfile="include/visp_apriltag/AprilTagTracker.hpp" bodystart="46" bodyend="123"/>
     <listofallmembers>
-      <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d" prot="public" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>AprilTagTracker</name></member>
+      <member refid="classvisp__apriltag_1_1AprilTagTracker_1a7817664610cda7fe415b333bbace3cc3" prot="public" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>AprilTagTracker</name></member>
+      <member refid="classvisp__apriltag_1_1AprilTagTracker_1afddfbbefefa69a03416ec8093cbf2aaf" prot="public" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>AprilTagTracker</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66b0683d7e484ac5e6e1ee74fa8c32a" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>image_callback</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1afab88e049d1a6abfe14b5df599bc94c0" prot="protected" virt="virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>init_info_strings</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1ae16a962bf0c75758160546c9caa1bf6d" prot="protected" virt="virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>init_tracker</name></member>
@@ -275,6 +344,7 @@
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_family_name</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1a4f3af236545cad703634f4cbd2941a8f" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_I</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_opt_id</name></member>
+      <member refid="classvisp__apriltag_1_1AprilTagTracker_1afe8739e5366a68448c72bb668199156b" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_quit_timer</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1a43f00297c3a03afc74dfa67120bbd1d6" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_rgb_stream_sub</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1aacef15e04877f9b2c00f9aee31c4cbcc" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_tag_detector</name></member>
       <member refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" prot="protected" virt="non-virtual"><scope>visp_apriltag::AprilTagTracker</scope><name>m_tag_size_map</name></member>

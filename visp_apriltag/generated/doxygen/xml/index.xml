@@ -6,6 +6,7 @@
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66b0683d7e484ac5e6e1ee74fa8c32a" kind="function"><name>image_callback</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a43f00297c3a03afc74dfa67120bbd1d6" kind="variable"><name>m_rgb_stream_sub</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab452a9d56c4f5d9ac05174186cd45197" kind="variable"><name>m_tags_info_pub</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1afe8739e5366a68448c72bb668199156b" kind="variable"><name>m_quit_timer</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1aacef15e04877f9b2c00f9aee31c4cbcc" kind="variable"><name>m_tag_detector</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a8e72d4492a29b2f2cec117afa8655572" kind="variable"><name>m_family_name</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a9449654b452aa4654a0ae44d29f2f4fa" kind="variable"><name>m_tag_size_map</name></member>
@@ -13,7 +14,8 @@
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a4f3af236545cad703634f4cbd2941a8f" kind="variable"><name>m_I</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1a128cb923526072c874e2afc27ad47e35" kind="variable"><name>m_opt_id</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ac94c0bc710b5361b6f805c20b275c896" kind="variable"><name>m_display_tag</name></member>
-    <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab54778e61cc4ea385b8033aa28dc089d" kind="function"><name>AprilTagTracker</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1a7817664610cda7fe415b333bbace3cc3" kind="function"><name>AprilTagTracker</name></member>
+    <member refid="classvisp__apriltag_1_1AprilTagTracker_1afddfbbefefa69a03416ec8093cbf2aaf" kind="function"><name>AprilTagTracker</name></member>
     <member refid="classvisp__apriltag_1_1AprilTagTracker_1ab66da88108141af4ccec02d0af7f4c73" kind="function"><name>~AprilTagTracker</name></member>
   </compound>
   <compound refid="namespacevisp__apriltag" kind="namespace"><name>visp_apriltag</name>

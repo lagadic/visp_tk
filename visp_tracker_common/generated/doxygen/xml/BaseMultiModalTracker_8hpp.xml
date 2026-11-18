@@ -31,9 +31,9 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -61,6 +61,22 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>visp_tracker_common/display.hpp</label>
+        <link refid="display_8hpp_source"/>
+        <childnode refid="17" relation="include">
+        </childnode>
         <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
@@ -69,11 +85,15 @@
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
       </node>
-      <node id="16">
+      <node id="24">
         <label>visp_tracker_common/names.hpp</label>
         <link refid="names_8hpp_source"/>
-        <childnode refid="17" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
       <node id="7">
@@ -88,7 +108,7 @@
       <node id="4">
         <label>message_filters/synchronizer.h</label>
       </node>
-      <node id="21">
+      <node id="29">
         <label>optional</label>
       </node>
       <node id="2">
@@ -103,7 +123,7 @@
       <node id="10">
         <label>std_srvs/srv/trigger.hpp</label>
       </node>
-      <node id="17">
+      <node id="25">
         <label>string</label>
       </node>
       <node id="11">
@@ -115,16 +135,34 @@
       <node id="12">
         <label>tf2_ros/transform_listener.h</label>
       </node>
-      <node id="20">
+      <node id="23">
+        <label>vector</label>
+      </node>
+      <node id="28">
         <label>visp3/core/vpCameraParameters.h</label>
       </node>
+      <node id="19">
+        <label>visp3/core/vpColor.h</label>
+      </node>
       <node id="18">
-        <label>visp_tracker_common/msg/info_strings.hpp</label>
+        <label>visp3/core/vpConfig.h</label>
+      </node>
+      <node id="20">
+        <label>visp3/core/vpDisplay.h</label>
+      </node>
+      <node id="21">
+        <label>visp3/core/vpImage.h</label>
       </node>
       <node id="22">
+        <label>visp3/core/vpImagePoint.h</label>
+      </node>
+      <node id="26">
+        <label>visp_tracker_common/msg/info_strings.hpp</label>
+      </node>
+      <node id="17">
         <label>visp_tracker_common/msg/named_feature.hpp</label>
       </node>
-      <node id="19">
+      <node id="27">
         <label>visp_tracker_common/msg/named_feature_array.hpp</label>
       </node>
     </incdepgraph>

@@ -55,12 +55,21 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_visp_tracker_common__display.html">Namespace visp_tracker_common::display</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html">Class BaseMultiModalTracker</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Class BaseTracker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html">Enum PointsType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_display_8hpp_1a31a9205af4bf31e91062375353c1300b.html">Template Function visp_tracker_common::display::displayNamedFeature</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#variables">Variables</a><ul>
@@ -81,6 +90,7 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_display.hpp.html">File display.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
 </ul>
@@ -229,6 +239,23 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-display">Display</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="classvisp__tracker__common_1_1BaseTracker_1ad9a3a2bb0993297d39a8da1e6102bccd"></span><span class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">Type&gt;</span> <span class="pre">inline</span> <span class="pre">void</span> <span class="pre">display_overlay_features</span> <span class="pre">(const</span> <span class="pre">VISP_NAMESPACE_ADDRESSING</span> <span class="pre">vpImage&lt;</span> <span class="pre">Type</span> <span class="pre">&gt;</span> <span class="pre">&amp;I)</span></span></dt>
+<dd><p>Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Type</strong> – Type of the image pixels (unsigned char or vpRGBa). </p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>I</strong> – Image in which the features are displayed. It must have a display. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-callbacks">Callbacks</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker26color_camera_info_callbackEKN11sensor_msgs3msg10CameraInfo9SharedPtrE">
@@ -298,14 +325,15 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKb">
-<span id="_CPPv3N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKb"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKb"></span><span id="visp_tracker_common::BaseTracker::BaseTracker__ssCR.bCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a0ed6ef4cbd098ca050757c9c1bbfce7e"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">does_publish_features</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKb" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKbRKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKbRKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKbRKN6rclcpp11NodeOptionsE"></span><span id="visp_tracker_common::BaseTracker::BaseTracker__ssCR.bCR.rclcpp::NodeOptionsCR"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a274886eceacb4cacdf25604072b5a298"></span><span class="sig-name descname"><span class="n"><span class="pre">BaseTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">node_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">does_publish_features</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKbRKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
 <dd><p>Constructor of the abstract base class. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>node_name</strong> – The name of the node. </p></li>
 <li><p><strong>does_publish_features</strong> – If headless mode is active, set to true if the node must publish 2D points to have a feedback on the remote GUI. </p></li>
+<li><p><strong>options</strong> – The options of the node, given by the component container when the node is loaded as a component. </p></li>
 </ul>
 </dd>
 </dl>
@@ -442,6 +470,12 @@
 </dd></dl>
 
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker23m_overlay_features_subsE">
+<span id="_CPPv3N19visp_tracker_common11BaseTracker23m_overlay_features_subsE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker23m_overlay_features_subsE"></span><span id="visp_tracker_common::BaseTracker::m_overlay_features_subs__std::vector:rclcpp::Subscription:visp_tracker_common::msg::NamedFeatureArray:::SharedPtr:"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a3a2a4620145b153f50cd89196621b55f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Subscription</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NamedFeatureArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_overlay_features_subs</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker23m_overlay_features_subsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Subscribers to the 2D features to display over the image, when headless mode is not active. </p>
+</dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker13m_tf_listenerE">
 <span id="_CPPv3N19visp_tracker_common11BaseTracker13m_tf_listenerE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker13m_tf_listenerE"></span><span id="visp_tracker_common::BaseTracker::m_tf_listener__std::shared_ptr:tf2_ros::TransformListener:"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1af66e4c3693048c6c4cd370692fb5c550"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">tf2_ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TransformListener</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_tf_listener</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="k"><span class="pre">nullptr</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker13m_tf_listenerE" title="Link to this definition"></a><br /></dt>
 <dd><p>Listener in case the user wants to set the extrinsics from <code class="docutils literal notranslate"><span class="pre">tf2_static</span></code> topic. </p>
@@ -505,6 +539,18 @@
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker21m_visualization_debugE">
 <span id="_CPPv3N19visp_tracker_common11BaseTracker21m_visualization_debugE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker21m_visualization_debugE"></span><span id="visp_tracker_common::BaseTracker::m_visualization_debug__b"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_visualization_debug</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker21m_visualization_debugE" title="Link to this definition"></a><br /></dt>
 <dd><p>Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker24m_mutex_overlay_featuresE">
+<span id="_CPPv3N19visp_tracker_common11BaseTracker24m_mutex_overlay_featuresE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker24m_mutex_overlay_featuresE"></span><span id="visp_tracker_common::BaseTracker::m_mutex_overlay_features__std::mutex"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1ac696733f1d2961d100c1143cebb56e9c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mutex</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_mutex_overlay_features</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker24m_mutex_overlay_featuresE" title="Link to this definition"></a><br /></dt>
+<dd><p>Mutex to protect m_overlay_features from concurrent access. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker18m_overlay_featuresE">
+<span id="_CPPv3N19visp_tracker_common11BaseTracker18m_overlay_featuresE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker18m_overlay_featuresE"></span><span id="visp_tracker_common::BaseTracker::m_overlay_features__std::vector:std::optional:std::pair:rclcpp::Time.visp_tracker_common::msg::NamedFeatureArray:::"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a5241d28d202cb98a9742ccdf39d0d4d2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Time</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">visp_tracker_common</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NamedFeatureArray</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_overlay_features</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker18m_overlay_featuresE" title="Link to this definition"></a><br /></dt>
+<dd><p>Last 2D features received on each overlay topic, with their reception time. </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -631,6 +677,12 @@
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-static-attributes">Protected Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker26s_overlay_features_max_ageE">
+<span id="_CPPv3N19visp_tracker_common11BaseTracker26s_overlay_features_max_ageE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker26s_overlay_features_max_ageE"></span><span id="visp_tracker_common::BaseTracker::s_overlay_features_max_age__double"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a41455115ba9dac7ff422c6c8dadef8df"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">s_overlay_features_max_age</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.5</span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker26s_overlay_features_max_ageE" title="Link to this definition"></a><br /></dt>
+<dd><p>Overlay features older than this duration in seconds are not displayed. </p>
+</dd></dl>
+
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N19visp_tracker_common11BaseTracker17s_dumb_topic_nameE">
 <span id="_CPPv3N19visp_tracker_common11BaseTracker17s_dumb_topic_nameE"></span><span id="_CPPv2N19visp_tracker_common11BaseTracker17s_dumb_topic_nameE"></span><span id="visp_tracker_common::BaseTracker::s_dumb_topic_name__ssC"></span><span class="target" id="classvisp__tracker__common_1_1BaseTracker_1a68eea5dbf94cf618d8d1b9c9850741b7"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">s_dumb_topic_name</span></span></span><a class="headerlink" href="#_CPPv4N19visp_tracker_common11BaseTracker17s_dumb_topic_nameE" title="Link to this definition"></a><br /></dt>

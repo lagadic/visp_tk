@@ -57,7 +57,10 @@ Program Listing for File AprilTagTracker.hpp
    class AprilTagTracker : public visp_tracker_common::BaseTracker
    {
    public:
-     AprilTagTracker(const std::string &node_name);
+     AprilTagTracker(const std::string &node_name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+   
+     explicit AprilTagTracker(const rclcpp::NodeOptions &options);
+   
      virtual ~AprilTagTracker() = default;
    
    protected:
@@ -82,6 +85,9 @@ Program Listing for File AprilTagTracker.hpp
    
      // ----- Publisher -----
      rclcpp::Publisher<visp_tracker_common::msg::AprilTagDetectionArray>::SharedPtr m_tags_info_pub; 
+   
+     // ----- Timers -----
+     rclcpp::TimerBase::SharedPtr m_quit_timer; 
    
      // ----- Display-related attributes -----
    #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)

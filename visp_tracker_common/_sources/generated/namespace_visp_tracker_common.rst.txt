@@ -13,6 +13,13 @@ Namespace visp_tracker_common
 
 
 
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_tracker_common__display`
+
+
 Classes
 -------
 

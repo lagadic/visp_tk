@@ -52,12 +52,21 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/index.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/namespace_rclcpp.html">Namespace rclcpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/namespace_visp_tracker_common.html">Namespace visp_tracker_common</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/namespace_visp_tracker_common__display.html">Namespace visp_tracker_common::display</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="generated/index.html#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1BaseMultiModalTracker.html">Class BaseMultiModalTracker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1BaseTracker.html">Class BaseTracker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/classvisp__tracker__common_1_1TrackerGUI.html">Class TrackerGUI</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html">Enum PointsType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/function_display_8hpp_1a31a9205af4bf31e91062375353c1300b.html">Template Function visp_tracker_common::display::displayNamedFeature</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="generated/index.html#variables">Variables</a><ul>
@@ -78,6 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/index.html#files">Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_BaseMultiModalTracker.hpp.html">File BaseMultiModalTracker.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_BaseTracker.hpp.html">File BaseTracker.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_display.hpp.html">File display.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_names.hpp.html">File names.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/file_include_visp_tracker_common_TrackerGUI.hpp.html">File TrackerGUI.hpp</a></li>
 </ul>
@@ -223,7 +233,7 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTrackerE">visp_tracker_common::BaseTracker (C++ class)</a>
 </li>
-      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKb">visp_tracker_common::BaseTracker::BaseTracker (C++ function)</a>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker11BaseTrackerERKNSt6stringERKbRKN6rclcpp11NodeOptionsE">visp_tracker_common::BaseTracker::BaseTracker (C++ function)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker10cb_handle_E">visp_tracker_common::BaseTracker::cb_handle_ (C++ member)</a>
 </li>
@@ -285,6 +295,8 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker18m_is_headless_modeE">visp_tracker_common::BaseTracker::m_is_headless_mode (C++ member)</a>
 </li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker24m_mutex_overlay_featuresE">visp_tracker_common::BaseTracker::m_mutex_overlay_features (C++ member)</a>
+</li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker12m_mutex_quitE">visp_tracker_common::BaseTracker::m_mutex_quit (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker16m_mutex_trackingE">visp_tracker_common::BaseTracker::m_mutex_tracking (C++ member)</a>
@@ -292,6 +304,10 @@
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker21m_mutex_visualizationE">visp_tracker_common::BaseTracker::m_mutex_visualization (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker15m_opt_init_poseE">visp_tracker_common::BaseTracker::m_opt_init_pose (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker18m_overlay_featuresE">visp_tracker_common::BaseTracker::m_overlay_features (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker23m_overlay_features_subsE">visp_tracker_common::BaseTracker::m_overlay_features_subs (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker11m_poses_pubE">visp_tracker_common::BaseTracker::m_poses_pub (C++ member)</a>
 </li>
@@ -321,15 +337,17 @@
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker17param_subscriber_E">visp_tracker_common::BaseTracker::param_subscriber_ (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker13quit_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE">visp_tracker_common::BaseTracker::quit_callback (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker20s_default_hor_offsetE">visp_tracker_common::BaseTracker::s_default_hor_offset (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker17s_dumb_topic_nameE">visp_tracker_common::BaseTracker::s_dumb_topic_name (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker29s_hor_offset_from_left_borderE">visp_tracker_common::BaseTracker::s_hor_offset_from_left_border (C++ member)</a>
+</li>
+      <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker26s_overlay_features_max_ageE">visp_tracker_common::BaseTracker::s_overlay_features_max_age (C++ member)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker13stop_and_quitEv">visp_tracker_common::BaseTracker::stop_and_quit (C++ function)</a>
 </li>
@@ -338,6 +356,12 @@
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTracker29switch_visual_status_callbackEKNSt10shared_ptrIN8std_srvs3srv7Trigger7RequestEEENSt10shared_ptrIN8std_srvs3srv7Trigger8ResponseEEE">visp_tracker_common::BaseTracker::switch_visual_status_callback (C++ function)</a>
 </li>
       <li><a href="generated/classvisp__tracker__common_1_1BaseTracker.html#_CPPv4N19visp_tracker_common11BaseTrackerD0Ev">visp_tracker_common::BaseTracker::~BaseTracker (C++ function)</a>
+</li>
+      <li><a href="generated/enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html#_CPPv4N19visp_tracker_common7display10PointsTypeE">visp_tracker_common::display::PointsType (C++ enum)</a>
+</li>
+      <li><a href="generated/enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html#_CPPv4N19visp_tracker_common7display10PointsType5CROSSE">visp_tracker_common::display::PointsType::CROSS (C++ enumerator)</a>
+</li>
+      <li><a href="generated/enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc.html#_CPPv4N19visp_tracker_common7display10PointsType5POINTE">visp_tracker_common::display::PointsType::POINT (C++ enumerator)</a>
 </li>
       <li><a href="generated/variable_names_8hpp_1a342371e6ff9a218d49041debd62fdfa8.html#_CPPv4N19visp_tracker_common21features2D_topic_nameE">visp_tracker_common::features2D_topic_name (C++ member)</a>
 </li>

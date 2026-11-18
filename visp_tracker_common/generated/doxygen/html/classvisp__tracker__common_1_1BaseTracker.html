@@ -109,9 +109,9 @@ Collaboration diagram for visp_tracker_common::BaseTracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0ed6ef4cbd098ca050757c9c1bbfce7e" id="r_a0ed6ef4cbd098ca050757c9c1bbfce7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0ed6ef4cbd098ca050757c9c1bbfce7e">BaseTracker</a> (const std::string &amp;node_name, const bool &amp;does_publish_features)</td></tr>
-<tr class="memdesc:a0ed6ef4cbd098ca050757c9c1bbfce7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the abstract base class.  <br /></td></tr>
-<tr class="separator:a0ed6ef4cbd098ca050757c9c1bbfce7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a274886eceacb4cacdf25604072b5a298" id="r_a274886eceacb4cacdf25604072b5a298"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a274886eceacb4cacdf25604072b5a298">BaseTracker</a> (const std::string &amp;node_name, const bool &amp;does_publish_features, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</td></tr>
+<tr class="memdesc:a274886eceacb4cacdf25604072b5a298"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the abstract base class.  <br /></td></tr>
+<tr class="separator:a274886eceacb4cacdf25604072b5a298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a786ad94483c04f0c0bd60b872b810653" id="r_a786ad94483c04f0c0bd60b872b810653"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a786ad94483c04f0c0bd60b872b810653">init</a> ()</td></tr>
 <tr class="memdesc:a786ad94483c04f0c0bd60b872b810653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the node.  <br /></td></tr>
 <tr class="separator:a786ad94483c04f0c0bd60b872b810653"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +150,11 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init_info_str
 <tr class="memitem:acf50c4c5fdef39ccf2f31895c4427e14" id="r_acf50c4c5fdef39ccf2f31895c4427e14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#acf50c4c5fdef39ccf2f31895c4427e14">init_initialization_method</a> (const rclcpp::Parameter &amp;p)</td></tr>
 <tr class="memdesc:acf50c4c5fdef39ccf2f31895c4427e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the m_init_attribute from the associated ROS2 parameter.  <br /></td></tr>
 <tr class="separator:acf50c4c5fdef39ccf2f31895c4427e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Display</div></td></tr>
+<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd" id="r_ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
+<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#ad9a3a2bb0993297d39a8da1e6102bccd">display_overlay_features</a> (const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</td></tr>
+<tr class="memdesc:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image.  <br /></td></tr>
+<tr class="separator:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Callbacks</div></td></tr>
 <tr class="memitem:a8f799ececfb5b8009a3dcba2079601f1" id="r_a8f799ececfb5b8009a3dcba2079601f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a8f799ececfb5b8009a3dcba2079601f1">color_camera_info_callback</a> (const sensor_msgs::msg::CameraInfo::SharedPtr msg)</td></tr>
 <tr class="memdesc:a8f799ececfb5b8009a3dcba2079601f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color camera parameters callback that is called only once to initialize the node internal parameters.  <br /></td></tr>
@@ -213,6 +218,10 @@ rclcpp::Subscription&lt; sensor_msgs::msg::CameraInfo &gt;::SharedPtr&#160;</td>
 rclcpp::Subscription&lt; geometry_msgs::msg::PoseStamped &gt;::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_init_sub</b></td></tr>
 <tr class="memdesc:a4cd69f9f9ca3469c64e7ca877e2cef87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscriber to the init topic, if the init method is set to topic. <br /></td></tr>
 <tr class="separator:a4cd69f9f9ca3469c64e7ca877e2cef87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a2a4620145b153f50cd89196621b55f" id="r_a3a2a4620145b153f50cd89196621b55f"><td class="memItemLeft" align="right" valign="top"><a id="a3a2a4620145b153f50cd89196621b55f" name="a3a2a4620145b153f50cd89196621b55f"></a>
+std::vector&lt; rclcpp::Subscription&lt; visp_tracker_common::msg::NamedFeatureArray &gt;::SharedPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_overlay_features_subs</b></td></tr>
+<tr class="memdesc:a3a2a4620145b153f50cd89196621b55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribers to the 2D features to display over the image, when headless mode is not active. <br /></td></tr>
+<tr class="separator:a3a2a4620145b153f50cd89196621b55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af66e4c3693048c6c4cd370692fb5c550" id="r_af66e4c3693048c6c4cd370692fb5c550"><td class="memItemLeft" align="right" valign="top"><a id="af66e4c3693048c6c4cd370692fb5c550" name="af66e4c3693048c6c4cd370692fb5c550"></a>
 std::shared_ptr&lt; tf2_ros::TransformListener &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_tf_listener</b> { nullptr }</td></tr>
 <tr class="memdesc:af66e4c3693048c6c4cd370692fb5c550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listener in case the user wants to set the extrinsics from <code>tf2_static</code> topic. <br /></td></tr>
@@ -257,6 +266,14 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_info_nb_sta
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_visualization_debug</b> = false</td></tr>
 <tr class="memdesc:aa90fe323829cecfb8061edbd4051a997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ. <br /></td></tr>
 <tr class="separator:aa90fe323829cecfb8061edbd4051a997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac696733f1d2961d100c1143cebb56e9c" id="r_ac696733f1d2961d100c1143cebb56e9c"><td class="memItemLeft" align="right" valign="top"><a id="ac696733f1d2961d100c1143cebb56e9c" name="ac696733f1d2961d100c1143cebb56e9c"></a>
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex_overlay_features</b></td></tr>
+<tr class="memdesc:ac696733f1d2961d100c1143cebb56e9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex to protect m_overlay_features from concurrent access. <br /></td></tr>
+<tr class="separator:ac696733f1d2961d100c1143cebb56e9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5241d28d202cb98a9742ccdf39d0d4d2" id="r_a5241d28d202cb98a9742ccdf39d0d4d2"><td class="memItemLeft" align="right" valign="top"><a id="a5241d28d202cb98a9742ccdf39d0d4d2" name="a5241d28d202cb98a9742ccdf39d0d4d2"></a>
+std::vector&lt; std::optional&lt; std::pair&lt; rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_overlay_features</b></td></tr>
+<tr class="memdesc:a5241d28d202cb98a9742ccdf39d0d4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last 2D features received on each overlay topic, with their reception time. <br /></td></tr>
+<tr class="separator:a5241d28d202cb98a9742ccdf39d0d4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82012a3da12da0a98764bcba5da18418" id="r_a82012a3da12da0a98764bcba5da18418"><td class="memItemLeft" align="right" valign="top"><a id="a82012a3da12da0a98764bcba5da18418" name="a82012a3da12da0a98764bcba5da18418"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_rgb_cam_info_received</b> = false</td></tr>
 <tr class="memdesc:a82012a3da12da0a98764bcba5da18418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true once the color camera parameters have been retrieved. <br /></td></tr>
@@ -308,6 +325,10 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex_visuali
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
+<tr class="memitem:a41455115ba9dac7ff422c6c8dadef8df" id="r_a41455115ba9dac7ff422c6c8dadef8df"><td class="memItemLeft" align="right" valign="top"><a id="a41455115ba9dac7ff422c6c8dadef8df" name="a41455115ba9dac7ff422c6c8dadef8df"></a>
+static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>s_overlay_features_max_age</b> = 0.5</td></tr>
+<tr class="memdesc:a41455115ba9dac7ff422c6c8dadef8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overlay features older than this duration in seconds are not displayed. <br /></td></tr>
+<tr class="separator:a41455115ba9dac7ff422c6c8dadef8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68eea5dbf94cf618d8d1b9c9850741b7" id="r_a68eea5dbf94cf618d8d1b9c9850741b7"><td class="memItemLeft" align="right" valign="top"><a id="a68eea5dbf94cf618d8d1b9c9850741b7" name="a68eea5dbf94cf618d8d1b9c9850741b7"></a>
 static const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>s_dumb_topic_name</b></td></tr>
 <tr class="memdesc:a68eea5dbf94cf618d8d1b9c9850741b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumb name to avoid error when a topic name has not been given. The error will be handled in the <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a786ad94483c04f0c0bd60b872b810653" title="Initializes the node.">init()</a> method. <br /></td></tr>
@@ -357,8 +378,8 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0ed6ef4cbd098ca050757c9c1bbfce7e" name="a0ed6ef4cbd098ca050757c9c1bbfce7e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ed6ef4cbd098ca050757c9c1bbfce7e">&#9670;&#160;</a></span>BaseTracker()</h2>
+<a id="a274886eceacb4cacdf25604072b5a298" name="a274886eceacb4cacdf25604072b5a298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a274886eceacb4cacdf25604072b5a298">&#9670;&#160;</a></span>BaseTracker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -373,7 +394,13 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>does_publish_features</em>&#160;</td>
+          <td class="paramname"><em>does_publish_features</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rclcpp::NodeOptions &amp;&#160;</td>
+          <td class="paramname"><em>options</em> = <code>rclcpp::NodeOptions()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -388,6 +415,7 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
   <table class="params">
     <tr><td class="paramname">node_name</td><td>The name of the node. </td></tr>
     <tr><td class="paramname">does_publish_features</td><td>If headless mode is active, set to true if the node must publish 2D points to have a feedback on the remote GUI. </td></tr>
+    <tr><td class="paramname">options</td><td>The options of the node, given by the component container when the node is loaded as a component. </td></tr>
   </table>
   </dd>
 </dl>
@@ -423,6 +451,48 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">msg</td><td>Color camera parameters message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad9a3a2bb0993297d39a8da1e6102bccd" name="ad9a3a2bb0993297d39a8da1e6102bccd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a3a2bb0993297d39a8da1e6102bccd">&#9670;&#160;</a></span>display_overlay_features()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Type &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void visp_tracker_common::BaseTracker::display_overlay_features </td>
+          <td>(</td>
+          <td class="paramtype">const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;&#160;</td>
+          <td class="paramname"><em>I</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Type</td><td>Type of the image pixels (unsigned char or vpRGBa). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">I</td><td>Image in which the features are displayed. It must have a display. </td></tr>
   </table>
   </dd>
 </dl>

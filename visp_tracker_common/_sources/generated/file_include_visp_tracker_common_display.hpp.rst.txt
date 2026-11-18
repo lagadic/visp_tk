@@ -1,0 +1,79 @@
+
+.. _file_include_visp_tracker_common_display.hpp:
+
+File display.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_visp_tracker_common>` (``include/visp_tracker_common``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/visp_tracker_common/display.hpp``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_visp_tracker_common_display.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``vector``
+
+- ``visp3/core/vpColor.h``
+
+- ``visp3/core/vpConfig.h``
+
+- ``visp3/core/vpDisplay.h``
+
+- ``visp3/core/vpImage.h``
+
+- ``visp3/core/vpImagePoint.h``
+
+- ``visp_tracker_common/msg/named_feature.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_visp_tracker_common_BaseTracker.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_visp_tracker_common`
+
+- :ref:`namespace_visp_tracker_common__display`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_display_8hpp_1a428868c0160a8a615f3481d97be7e0fc`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_display_8hpp_1a31a9205af4bf31e91062375353c1300b`
+
