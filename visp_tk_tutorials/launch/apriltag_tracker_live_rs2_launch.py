@@ -1,12 +1,12 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, EmitEvent, LogInfo
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler, EmitEvent, LogInfo
 from launch.events import Shutdown
 from launch.event_handlers import (
     OnProcessExit
 )
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
 
 def generate_launch_description():
 
@@ -49,35 +49,44 @@ def generate_launch_description():
     ]
 
     ## [Realsense camera]
-    realsense = IncludeLaunchDescription(
-        PathJoinSubstitution(
-              [
-                FindPackageShare('realsense2_camera'),
-                'launch',
-                'rs_launch.py'
-              ]),
-        launch_arguments={
-            "enable_rgbd": "false",
-            "enable_sync": "false",
-            "enable_color": "true",
-            "enable_depth": "false",
-            "align_depth.enable": "false",
-            "publish_tf": "true",# publish_tf permits to have the extrinsincs expressed as a TF2
-            "rgb_camera.color_profile": "640,480,30",
-            "depth_module.depth_profile": "0,0,0",
-        }.items()
+    # Same settings as rs_launch.py would get, the node being loaded as a component instead
+    realsense = ComposableNode(
+        package="realsense2_camera",
+        plugin="realsense2_camera::RealSenseNodeFactory",
+        name="camera",
+        namespace="camera",
+        parameters=[
+            {
+                "camera_name": "camera",
+                "enable_rgbd": False,
+                "enable_sync": False,
+                "enable_color": True,
+                "enable_depth": False,
+                "enable_infra1": False,
+                "enable_infra2": False,
+                "enable_gyro": False,
+                "enable_accel": False,
+                "align_depth.enable": False,
+                "publish_tf": True,  # publish_tf permits to have the extrinsincs expressed as a TF2
+                "rgb_camera.color_profile": "640,480,30",
+                "depth_module.depth_profile": "0,0,0",
+            }
+        ],
+        # The images are passed to the tracker without going through DDS
+        extra_arguments=[{"use_intra_process_comms": True}],
     )
 
     # ------------------------------------------------------------------ #
-    #  AprilTag tracker node                                               #
+    #  AprilTag tracker component                                          #
     # ------------------------------------------------------------------ #
     # BEGIN_APRILTAG_NODE
     # The BaseTracker of visp_tracker_common use its own parameters for some topics
     # rgb_camera_info_topic_name  <=> camera_info topic
     # rgb_image_topic_name  <=> image topic
-    apriltag_tracker_node = Node(
+    # The tracker enables intra-process communication on its image subscription by itself
+    apriltag_tracker_node = ComposableNode(
         package="visp_apriltag",
-        executable="visp_apriltag_node",
+        plugin="visp_apriltag::AprilTagTracker",
         name="tracker_apriltag",
         parameters=[
             {
@@ -92,21 +101,38 @@ def generate_launch_description():
                 "initial_tracking_status": True
             }
         ],
-        output="screen",
     )
     # END_APRILTAG_NODE
+
+    # ------------------------------------------------------------------ #
+    #  Component container                                                 #
+    # ------------------------------------------------------------------ #
+    # BEGIN_CONTAINER
+    # Both components are loaded in the same process, so that the images (640x480 RGB, about 1 MB each)
+    # do not go through DDS. The container must be single-threaded: the ViSP displays used by the tracker
+    # must always be used from the thread that created them.
+    container = ComposableNodeContainer(
+        name="apriltag_container",
+        namespace="",
+        package="rclcpp_components",
+        executable="component_container",
+        composable_node_descriptions=[realsense, apriltag_tracker_node],
+        output="screen",
+        emulate_tty=True,
+    )
+    # END_CONTAINER
 
     # BEGIN_SHUTDOWN
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
-                target_action=apriltag_tracker_node,
+                target_action=container,
                 on_exit=[
-                    LogInfo(msg=("The tracking node was closed, turning off the launch file")),
+                    LogInfo(msg=("The container was closed, turning off the launch file")),
                     EmitEvent(event=Shutdown(
-                        reason="tracking node closed"))
+                        reason="container closed"))
                 ]
             )
         )
     # END_SHUTDOWN
 
-    return LaunchDescription(declared_args + [realsense, apriltag_tracker_node, shutdown_handler])
+    return LaunchDescription(declared_args + [container, shutdown_handler])
