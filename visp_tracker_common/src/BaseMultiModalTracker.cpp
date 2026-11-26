@@ -28,7 +28,8 @@
 
 namespace visp_tracker_common
 {
-BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool &does_publish_features) : BaseTracker(name, does_publish_features)
+BaseMultiModalTracker::BaseMultiModalTracker(const std::string &name, const bool &does_publish_features, const rclcpp::NodeOptions &options)
+  : BaseTracker(name, does_publish_features, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -170,8 +171,12 @@ bool BaseMultiModalTracker::init()
     streams_qos.depth = this->get_parameter("stream_qos_depth").as_int();
 #endif
 
-    m_rgb_stream_sub.subscribe(this, m_rgb_stream_name, streams_qos);
-    m_depth_stream_sub.subscribe(this, m_depth_stream_name, streams_qos);
+    // Zero-copy when the camera publishes from the same component container, still works through the rmw otherwise.
+    // Enabled on the image subscriptions only, not on the whole node (see visp_apriltag::AprilTagTracker)
+    rclcpp::SubscriptionOptions streams_sub_options;
+    streams_sub_options.use_intra_process_comm = rclcpp::IntraProcessSetting::Enable;
+    m_rgb_stream_sub.subscribe(this, m_rgb_stream_name, streams_qos, streams_sub_options);
+    m_depth_stream_sub.subscribe(this, m_depth_stream_name, streams_qos, streams_sub_options);
 
     uint32_t queue_size = 10;
     m_streams_sync = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::
@@ -192,12 +197,18 @@ bool BaseMultiModalTracker::init()
     rclcpp::QoS qos(streams_qos.depth);
     qos.durability(streams_qos.durability);
     qos.reliability(streams_qos.reliability);
-    m_rgb_only_stream_sub = this->create_subscription<sensor_msgs::msg::Image>(m_rgb_stream_name, qos, std::bind(&BaseMultiModalTracker::rgb_callback, this, std::placeholders::_1));
+    // Zero-copy when the camera publishes from the same component container, see above
+    rclcpp::SubscriptionOptions rgb_sub_options;
+    rgb_sub_options.use_intra_process_comm = rclcpp::IntraProcessSetting::Enable;
+    m_rgb_only_stream_sub = this->create_subscription<sensor_msgs::msg::Image>(m_rgb_stream_name, qos, std::bind(&BaseMultiModalTracker::rgb_callback, this, std::placeholders::_1), rgb_sub_options);
   }
 
   if (!m_is_headless_mode) {
     m_info_strings.info_strings.push_back(std::string("Requires depth : ") + (m_depth_is_required ? std::string("true") : std::string("false")));
     m_info_strings.hor_offset_right_border.push_back(s_default_hor_offset);
+    // BaseTracker::init() already counted the static info strings before this one was added: count them again,
+    // otherwise "Requires depth" is overwritten by the tracking info strings as soon as the tracking starts
+    this->init_info_strings();
   }
 
   return true;

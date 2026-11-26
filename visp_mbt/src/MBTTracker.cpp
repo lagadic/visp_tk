@@ -24,13 +24,19 @@
 
 #include <visp_mbt/MBTTracker.hpp>
 
+#include <chrono>
+#include <stdexcept>
+
+#include <rclcpp_components/register_node_macro.hpp>
+
 namespace visp_mbt
 {
 #ifdef ENABLE_VISP_NAMESPACE
 using namespace VISP_NAMESPACE_NAME;
 #endif
 
-MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMultiModalTracker(name, true)
+MBTTracker::MBTTracker(const std::string &name, const rclcpp::NodeOptions &options)
+  : visp_tracker_common::BaseMultiModalTracker(name, true, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -823,9 +829,13 @@ void MBTTracker::track()
     vpDisplay::display(m_Ic);
     vpDisplay::display(m_I_depth_display);
     {
-      std::stringstream ss;
-      ss << "Left click to " << (m_has_to_track ? "stop" : "start") << " the tracking, middle click to reinitialize the tracking, right click to quit.";
-      vpDisplay::displayText(m_Ic, 20, 20, ss.str(), vpColor::red);
+      // One short line per action, so that the help stays on the left and does not overlap
+      // the info strings displayed on the right of the image.
+      const unsigned int v_offset = 20, h_offset = 20;
+      vpDisplay::displayText(m_Ic, v_offset, h_offset,
+                             std::string("Left click to ") + (m_has_to_track ? "stop" : "start") + " the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 2 * v_offset, h_offset, "Middle click to reinitialize the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 3 * v_offset, h_offset, "Right click to quit.", vpColor::red);
     }
   }
 #endif
@@ -908,8 +918,16 @@ void MBTTracker::track()
       }
       case vpMouseButton::button2:
       {
-        std::scoped_lock lock(m_mutex_initialized);
-        m_tracker_initialized = false;
+        // Reinitialization also (re)starts the tracking: init_tracking() is only called when m_has_to_track is true,
+        // so without this a middle click while the tracking is stopped (e.g. at startup) would have no visible effect
+        {
+          std::scoped_lock lock(m_mutex_initialized);
+          m_tracker_initialized = false;
+        }
+        {
+          std::scoped_lock lock(m_mutex_tracking);
+          m_has_to_track = true;
+        }
         break;
       }
       case vpMouseButton::button3:
@@ -1044,4 +1062,25 @@ std::string MBTTracker::getAvailableTrackerType(const std::string &prefix, const
   list += name + suffix;
   return list;
 }
+
+MBTTracker::MBTTracker(const rclcpp::NodeOptions &options)
+  : MBTTracker("tracker_mbt", options) // The name is overridden by the launch file
+{
+  // In a container, nobody calls init(): call it here. Calling the virtual methods is safe since the most derived
+  // object is fully constructed. An exception is reported by the container as a failure to load the component.
+  if (!init()) {
+    throw std::runtime_error("MBTTracker initialization failed");
+  }
+  // In a container, nobody polls has_to_quit(): quitting the tracker shuts down the container, which ends the demo
+  m_quit_timer = this->create_wall_timer(std::chrono::milliseconds(100), [this]() {
+    if (has_to_quit()) {
+      RCLCPP_INFO(this->get_logger(), "Quit requested, shutting down the container");
+      m_quit_timer->cancel();
+      rclcpp::shutdown();
+    }
+  });
 }
+
+}
+
+RCLCPP_COMPONENTS_REGISTER_NODE(visp_mbt::MBTTracker)

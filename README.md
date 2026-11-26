@@ -135,7 +135,7 @@ Please refer to the official installation instructions from the
   - Model-Based Tracker using a rosbag
 
     ```bash
-    ros2 launch visp_tk_tutorials mbt_json_launch.py
+    ros2 launch visp_tk_tutorials mbt_box_bag_json_launch.py
     ```
 
 - Running individual nodes

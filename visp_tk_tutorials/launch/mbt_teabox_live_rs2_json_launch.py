@@ -1,12 +1,13 @@
 import yaml
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable, GroupAction, EmitEvent, LogInfo, OpaqueFunction
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler, SetEnvironmentVariable, EmitEvent, LogInfo, OpaqueFunction
 from launch.events import Shutdown
 from launch.event_handlers import (
     OnProcessExit
 )
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-from launch_ros.actions import Node
+from launch_ros.actions import ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
 
 def prepare_parameters(context):
@@ -93,52 +94,61 @@ def prepare_parameters(context):
 
     if len(reference_tracker_parsed ) > 0:
         parameters.append({'reference_tracker': reference_tracker_parsed})
-    ## [Instanciating the node]
-    mbt_node = Node(
+    ## [MBT tracker component]
+    mbt_node = ComposableNode(
         package="visp_mbt",
-        executable="visp_mbt_node",
+        plugin="visp_mbt::MBTTracker",
         name="mbt_node",
-        output="screen",
-        emulate_tty=True,
         parameters=parameters,
     )
-    ## [Realsense camera]
-    realsense = IncludeLaunchDescription(
-        PathJoinSubstitution(
-              [
-                FindPackageShare('realsense2_camera'),
-                'launch',
-                'rs_launch.py'
-              ]),
-        launch_arguments={
-            "enable_rgbd": "false",
-            "enable_sync": "true",
-            "enable_color": "true",
-            "enable_depth": "true",
-            "align_depth.enable": "false",
-            "publish_tf": "true",# publish_tf permits to have the extrinsincs expressed as a TF2
+    ## [Realsense camera component]
+    # Same parameters as when using realsense2_camera/launch/rs_launch.py, topics are published under /camera/camera
+    realsense = ComposableNode(
+        package="realsense2_camera",
+        plugin="realsense2_camera::RealSenseNodeFactory",
+        namespace="camera",
+        name="camera",
+        parameters=[{
+            "enable_rgbd": False,
+            "enable_sync": True,
+            "enable_color": True,
+            "enable_depth": True,
+            "enable_accel": False,
+            "enable_gyro": False,
+            "align_depth.enable": False,
+            "publish_tf": True, # publish_tf permits to have the extrinsincs expressed as a TF2
             "rgb_camera.color_profile": "640,480,30",
             "depth_module.depth_profile": "640,480,30",
-        }.items()
+        }],
+        # The images are passed to the tracker without going through DDS
+        extra_arguments=[{"use_intra_process_comms": True}],
     )
-    ## [Launching nodes]
-    spawn_process = GroupAction([
-      realsense,
-      mbt_node
-      ])
+    ## [Component container]
+    # Both components are loaded in the same process, so that the images (640x480 RGB, about 1 MB each, and depth)
+    # do not go through DDS, which drops many of these large messages. The container must be single-threaded:
+    # the ViSP displays used by the tracker must always be used from the thread that created them.
+    container = ComposableNodeContainer(
+        name="mbt_container",
+        namespace="",
+        package="rclcpp_components",
+        executable="component_container",
+        composable_node_descriptions=[realsense, mbt_node],
+        output="screen",
+        emulate_tty=True,
+    )
     ## [Handling shutdown]
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
-                target_action=mbt_node,
+                target_action=container,
                 on_exit=[
-                    LogInfo(msg=("The tracking node was closed, turning off the launch file")),
+                    LogInfo(msg=("The container was closed, turning off the launch file")),
                     EmitEvent(event=Shutdown(
-                        reason="tracking node closed"))
+                        reason="container closed"))
                 ]
             )
         )
 
-    return [spawn_process, shutdown_handler]
+    return [container, shutdown_handler]
 
 def generate_launch_description():
     ld = LaunchDescription([
@@ -258,7 +268,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "stream_qos_reliability",
             description="The reliability of both the RGB and depth image streams (they need to be the same) if depth is required.",
-            default_value="best_effort"
+            default_value="reliable"
         ),
         DeclareLaunchArgument(
             "tracker_names",

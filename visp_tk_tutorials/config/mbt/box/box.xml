@@ -1,44 +1,81 @@
 <?xml version="1.0"?>
+<!--
+  Configuration of the ViSP model-based tracker (vpMbGenericTracker) used to track the box
+  described in box.cao, with edges and KLT keypoints as visual features.
+  Used by launch/mbt_box_bag_xml_launch.py. The JSON equivalent of this file is box.json.
+
+  Distances are in meters, angles in degrees, image quantities in pixels.
+-->
 <conf>
+  <!-- Moving edges (ecm): tracking of the model contours, used when the tracker type contains "edge". -->
   <ecm>
     <mask>
+      <!-- Size, in pixels, of the convolution masks used to detect the edges. -->
       <size>5</size>
+      <!-- Number of masks, i.e. of quantized edge orientations (180 = one mask per degree). -->
       <nb_mask>180</nb_mask>
     </mask>
     <range>
+      <!-- Search range, in pixels, on each side of a sample along the normal to the projected edge. -->
       <tracking>10</tracking>
     </range>
     <contrast>
+      <!-- Type of edge threshold: 0 = old (absolute) threshold, 1 = normalized threshold (recommended). -->
       <edge_threshold_type>1</edge_threshold_type>
+      <!-- Minimal likelihood for a point to be considered as an edge. With the normalized type, it is
+           a gray level difference (0-255): the lower, the more (but less reliable) edge points. -->
       <edge_threshold>10</edge_threshold>
+      <!-- Contrast tolerances: a new point is rejected if its contrast differs from the contrast of
+           the previous one by more than mu1 (lower bound) or mu2 (upper bound), as a ratio. -->
       <mu1>0.5</mu1>
       <mu2>0.5</mu2>
     </contrast>
     <sample>
+      <!-- Distance, in pixels, between two consecutive samples along a projected edge. -->
       <step>3</step>
     </sample>
   </ecm>
+
+  <!-- KLT keypoints: tracking of points inside the visible faces, used when the tracker type contains "klt". -->
   <klt>
+    <!-- Margin, in pixels, from the borders of a face in which no keypoint is detected. -->
     <mask_border>5</mask_border>
+    <!-- Maximal number of keypoints tracked. -->
     <max_features>300</max_features>
+    <!-- Size, in pixels, of the window used by the KLT tracker around each keypoint. -->
     <window_size>5</window_size>
+    <!-- Minimal accepted quality of a corner, relative to the best corner of the image. -->
     <quality>0.015</quality>
+    <!-- Minimal distance, in pixels, between two detected keypoints. -->
     <min_distance>8</min_distance>
+    <!-- Free parameter k of the Harris corner detector. -->
     <harris>0.01</harris>
+    <!-- Size of the averaging block used to compute the corner score. -->
     <size_block>3</size_block>
+    <!-- Number of pyramid levels used by the KLT tracker (helps for large motions). -->
     <pyramid_lvl>3</pyramid_lvl>
   </klt>
+
+  <!-- Intrinsic parameters of the camera, perspective model without distortion
+       (u0, v0: principal point; px, py: focal lengths, in pixels).
+       Note: the visp_mbt node overrides them with the intrinsics received on the camera_info topic. -->
   <camera>
     <u0>325.66776</u0>
     <v0>243.69727</v0>
     <px>839.21470</px>
     <py>839.44555</py>
   </camera>
+
+  <!-- Visibility of the faces of the model. -->
   <face>
+    <!-- A face becomes visible when the angle between its normal and the line of sight is lower than angle_appear... -->
     <angle_appear>70</angle_appear>
+    <!-- ... and stops being visible when this angle is greater than angle_disappear (hysteresis). -->
     <angle_disappear>80</angle_disappear>
+    <!-- Parts of the model closer than near_clipping or farther than far_clipping (meters) are ignored. -->
     <near_clipping>0.1</near_clipping>
     <far_clipping>100</far_clipping>
+    <!-- 1: also clip the parts of the model that are outside of the camera field of view. -->
     <fov_clipping>1</fov_clipping>
   </face>
 </conf>
