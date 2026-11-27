@@ -232,6 +232,7 @@ protected:
   bool m_extrinsics_set = false; //!< If initializing extrinsics from TF2 topic, set to true once the extrinsics have been received.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
   bool m_must_detect_failure = false; //!< If true, the tracker must monitor the projection error to invalidate the tracking if needed.
+  double m_object_diameter = 0.; //!< Diagonal of the bounding box of the model, computed once to size the displayed object frame
   double m_projection_error_thresh = 30.; //!< If m_must_detect_failure , maximum tolerated projection error.
   visp::vpImage<unsigned char> m_I; //!< Gray-scale image.
   visp::vpImage<visp::vpRGBa> m_Ic; //!< RGB image.

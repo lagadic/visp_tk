@@ -1,4 +1,7 @@
+import os
+
 import yaml
+from ament_index_python.packages import get_package_share_directory, PackageNotFoundError
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, RegisterEventHandler, SetEnvironmentVariable, EmitEvent, LogInfo, OpaqueFunction
 from launch.events import Shutdown
@@ -9,8 +12,37 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
+
+
+def check_files_exist(context, *arg_names):
+    """
+    Check that the files given by the launch arguments arg_names exist, before anything is started.
+
+    In a component container, a tracker that fails to load its files is only reported as a component that could not
+    be loaded: the container and the camera keep running, nothing is displayed and the launch does not end.
+    ``package://<package>/<path>`` is resolved to the share directory of the package, as done by the trackers.
+    """
+    for name in arg_names:
+        path = LaunchConfiguration(name).perform(context)
+        if not path:
+            continue
+        resolved = path
+        if path.startswith("package://"):
+            package, _, relative = path[len("package://"):].partition("/")
+            try:
+                resolved = os.path.join(get_package_share_directory(package), relative)
+            except PackageNotFoundError:
+                raise RuntimeError(f"Launch argument '{name}': package '{package}' of '{path}' not found")
+        if not os.path.isfile(resolved):
+            raise RuntimeError(f"Launch argument '{name}': file '{resolved}' does not exist")
+    return []
+
 
 def prepare_parameters(context):
+    # Fail early, with an explicit message, if a file given as launch argument does not exist
+    check_files_exist(context, "config_file", "init_file", "rgb_model_file", "depth_model_file")
+
     ## [Getting the launch arguments values]
     config_file = LaunchConfiguration("config_file")
     depth_camera_info_topic_name = LaunchConfiguration("depth_camera_info_topic_name")
@@ -55,7 +87,9 @@ def prepare_parameters(context):
                 {'stream_qos_reliability': stream_qos_reliability},
                 {'tracker_names': tracker_names},
                 {'tracker_types': tracker_types},
-                {'z_factor': z_factor}
+                {'z_factor': z_factor},
+                {'frame_size_ratio': ParameterValue(LaunchConfiguration('frame_size_ratio'), value_type=float)},
+                {'frame_thickness': ParameterValue(LaunchConfiguration('frame_thickness'), value_type=int)}
                 ]
 
     ## [Checking the validity of some launch arguments]
@@ -284,6 +318,16 @@ def generate_launch_description():
             "z_factor",
             description="Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.",
             default_value="0.001"
+        ),
+        DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
         ),
         SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'), # To enable OpenMP acceleration
         SetEnvironmentVariable(name='RMW_FASTRTPS_PUBLICATION_MODE', value='ASYNCHRONOUS') # To avoid laggy rosbag

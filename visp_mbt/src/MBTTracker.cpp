@@ -25,6 +25,7 @@
 #include <visp_mbt/MBTTracker.hpp>
 
 #include <chrono>
+#include <limits>
 #include <stdexcept>
 
 #include <rclcpp_components/register_node_macro.hpp>
@@ -500,7 +501,12 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
       // Initialize depth display
       m_I_depth_display.resize(I_depth_raw.getHeight(), I_depth_raw.getWidth());
-      m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display);
+      // Below the color image window (see track()). The margin leaves room for the title bar and the borders that
+      // the window manager adds around each window, so that they do not overlap.
+      const int margin = 80;
+      const unsigned int color_height = (m_I.getHeight() > 0) ? m_I.getHeight() : I_depth_raw.getHeight();
+      m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display, 0, static_cast<int>(color_height) + margin,
+                                                        "MBT - Depth image");
 #endif
     }
 
@@ -822,7 +828,8 @@ void MBTTracker::track()
   if (display_frame) {
 
     if (!m_display_initialized) {
-      m_display = vpDisplayFactory::createDisplay(m_Ic);
+      // Top left corner, the depth image window being below it (see treat_depth())
+      m_display = vpDisplayFactory::createDisplay(m_Ic, 0, 0, "MBT - Color image (click here)");
       m_display_initialized = true;
     }
 
@@ -895,7 +902,23 @@ void MBTTracker::track()
   if (display_frame) {
     if (tracking_successful) {
       m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
-      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
+      if (m_object_diameter <= 0.) {
+        // Diagonal of the bounding box of the model, as done by the RBT to compute the object diameter
+        vpColVector pmin(3, std::numeric_limits<double>::max()), pmax(3, -std::numeric_limits<double>::max());
+        for (vpMbtPolygon *polygon : m_tracker->getFaces().getPolygon()) {
+          for (unsigned int i = 0; i < polygon->getNbPoint(); ++i) {
+            const vpPoint &point = polygon->getPoint(i);
+            const double X[3] = { point.get_oX(), point.get_oY(), point.get_oZ() };
+            for (unsigned int k = 0; k < 3; ++k) {
+              pmin[k] = std::min(pmin[k], X[k]);
+              pmax[k] = std::max(pmax[k], X[k]);
+            }
+          }
+        }
+        m_object_diameter = (pmin[0] <= pmax[0]) ? (pmax - pmin).frobeniusNorm() : 0.;
+      }
+      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, compute_frame_size(m_object_diameter, cMo), vpColor::none,
+                              m_frame_thickness);
     }
     unsigned int nb_infos = m_info_strings.info_strings.size();
     const unsigned int v_offset = 20;
