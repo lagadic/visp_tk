@@ -17,8 +17,10 @@
       "reusePreviousPoints": true
     }
   },
+  "drift": {
+    "type": "probabilistic"
+  },
   "features": [
-    
     {
       "type": "depth",
       "weight": 1,
