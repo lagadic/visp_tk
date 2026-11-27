@@ -98,7 +98,8 @@ The important thing to notice is that the behavior of the ``visp_apriltag`` node
 without any arguments is to consider that all the tags have a size of ``0.1`` meter and that the node will not publish
 any messages on the ``pose`` topic.
 
-Then, we create the ``v4l2_camera`` node, using some launch arguments and some hard-coded values for its parameters:
+Then, we create the ``v4l2_camera`` node as a component, using some launch arguments and some hard-coded values
+for its parameters. ``use_intra_process_comms`` permits to pass the images to the tracker without going through DDS:
 
 .. literalinclude:: /_code/launch/apriltag_tracker_live_v4l_launch.py
   :language: python
@@ -106,7 +107,8 @@ Then, we create the ``v4l2_camera`` node, using some launch arguments and some h
   :start-after: BEGIN_V4L2_NODE
   :end-before: END_V4L2_NODE
 
-Then, we create the ``visp_apriltag`` node, using some launch arguments and some hard-coded values for its parameters:
+Then, we create the ``visp_apriltag`` node as a component, using some launch arguments and some hard-coded values
+for its parameters:
 
 .. literalinclude:: /_code/launch/apriltag_tracker_live_v4l_launch.py
   :language: python
@@ -114,7 +116,17 @@ Then, we create the ``visp_apriltag`` node, using some launch arguments and some
   :start-after: BEGIN_APRILTAG_NODE
   :end-before: END_APRILTAG_NODE
 
-Finally, we ask to stop all the nodes once the ``visp_apriltag`` is killed by a right click on the window.
+Both components are loaded in the same component container, i.e. in the same process. The container must be
+single-threaded since the ViSP displays used by the tracker must always be used from the thread that created them:
+
+.. literalinclude:: /_code/launch/apriltag_tracker_live_v4l_launch.py
+  :language: python
+  :lineno-match:
+  :start-after: BEGIN_CONTAINER
+  :end-before: END_CONTAINER
+
+Finally, we ask to stop all the nodes once the container is closed, which happens when the ``visp_apriltag``
+tracker is killed by a right click on the window.
 
 .. literalinclude:: /_code/launch/apriltag_tracker_live_v4l_launch.py
   :language: python
@@ -211,7 +223,7 @@ topic:
 The ``AprilTagDetectionArray`` has one such element for each detected tag.
 
 Tips and Tricks: Tag pose not published
---------------------------------------
+---------------------------------------
 
 Several clues can show that the poses are not computed:
 
@@ -291,3 +303,33 @@ Code explanation
 
 We won't give a detailed explanation of this launch file, because nothing of importance changed except the
 ``realsense_camera`` node, which goes beyond the scope of this package.
+
+Display of the object frame
+---------------------------
+
+When the tracking succeeds, the frame of the tag is displayed on the image, with its X, Y and Z axes in red,
+green and blue. Its size and thickness can be changed with two launch arguments, accepted by all the launch files of
+this package:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 15 60
+
+   * - Launch argument
+     - Default
+     - Meaning
+   * - ``frame_size_ratio``
+     - ``0.3``
+     - | Length of the axes, as a fraction of the diagonal of the tag
+       | (its size given by ``tag_size_values`` times the square root of 2).
+       | The axes are never shorter than 30 pixels, so that they stay
+       | readable when the tag is far from the camera.
+   * - ``frame_thickness``
+     - ``2``
+     - | Thickness of the axes, in pixels.
+
+For instance:
+
+.. code-block:: shell
+
+  ros2 launch visp_tk_tutorials apriltag_tracker_bag_launch.py frame_size_ratio:=0.2 frame_thickness:=3

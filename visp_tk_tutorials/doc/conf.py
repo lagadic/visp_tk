@@ -83,10 +83,13 @@ PACKAGE_ROOT = find_package_root()
 MSG_PACKAGE_ROOT = find_desired_package_root("visp_tracker_common")
 PACKAGE_NAME = ET.parse(PACKAGE_ROOT / "package.xml").getroot().findtext("name")
 DOC_ROOT = PACKAGE_ROOT / "doc"
-SNIPPET_ROOT = DOC_ROOT / "_code"
 SOURCE_DIRS = ["config", "launch"]
 
 def setup(app):
+    # Copy the snippets into the source directory Sphinx is building (rosdoc2's
+    # wrapped copy of doc/), so that the literalinclude always use up-to-date files
+    # and nothing is written into the package source tree.
+    SNIPPET_ROOT = Path(app.srcdir) / "_code"
     SNIPPET_ROOT.mkdir(exist_ok=True)
 
     for d in SOURCE_DIRS:
@@ -124,7 +127,7 @@ extensions = [
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = ['.rst', '.md', '.py']
+source_suffix = ['.rst', '.md']
 
 # The encoding of source files.
 #source_encoding = 'utf-8'
@@ -154,7 +157,14 @@ release = '0.1.0'
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = ['_build']
+exclude_patterns = [
+    '_build',
+    '_code',             # snippets only used through literalinclude
+    '__readme_include.rst',  # only used through an include directive in standards.rst
+    # rosdoc2 also copies doc/ into user_docs/: the tutorials are already built from the root
+    'user_docs',
+    'user_docs.rst',
+]
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -279,6 +289,6 @@ htmlhelp_basename = 'visp_tk_tutorials_doc'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'python': ('http://docs.python.org/', None),
-    'numpy': ('http://docs.scipy.org/doc/numpy', None)
+    'python': ('https://docs.python.org/3', None),
+    'numpy': ('https://numpy.org/doc/stable', None)
 }

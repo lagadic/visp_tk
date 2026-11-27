@@ -7,6 +7,7 @@ from launch.event_handlers import (
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 init_pose_topic_name = "/other_tracker/pose"
 
@@ -80,7 +81,9 @@ def handle_object_parameter(context):
           {'stream_qos_depth' : stream_qos_depth},
           {'stream_qos_durability' : stream_qos_durability},
           {'stream_qos_reliability' : stream_qos_reliability},
-          {'z_factor' : z_factor}
+          {'z_factor' : z_factor},
+          {'frame_size_ratio': ParameterValue(LaunchConfiguration('frame_size_ratio'), value_type=float)},
+          {'frame_thickness': ParameterValue(LaunchConfiguration('frame_thickness'), value_type=int)}
       ]
   )
   ## [Shutdown-event handler]
@@ -179,12 +182,22 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "stream_qos_reliability",
             description="The reliability of both the RGB and depth image streams (they need to be the same) if depth is required.",
-            default_value="best_effort"
+            default_value="reliable"
         ),
         DeclareLaunchArgument(
             "z_factor",
             description="Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.",
             default_value="0.001"
+        ),
+        DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
         ),
       ## [Sequence-player arguments]
       DeclareLaunchArgument(

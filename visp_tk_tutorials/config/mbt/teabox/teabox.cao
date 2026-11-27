@@ -1,3 +1,6 @@
+# Model of the object called teabox, used by the model-based tracker (vpMbGenericTracker).
+# The teabox is a rectangular parallelepiped of 0.165 x 0.068 m, and 0.08 m high.
+# Coordinates are in meters: X in [0, 0.165], Y in [0, 0.068], Z in [-0.08, 0] (height).
 V1
 # 3D Points
 8                  # Number of points

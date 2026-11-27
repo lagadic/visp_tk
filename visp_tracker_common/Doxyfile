@@ -1,0 +1,22 @@
+# Doxygen configuration used by rosdoc2 (picked up automatically because it is at the package root).
+# It reproduces rosdoc2's default Doxyfile, plus the definition of the ViSP namespace macros.
+# Paths are relative to this directory: rosdoc2 runs doxygen from here.
+# OUTPUT_DIRECTORY, GENERATE_XML, GENERATE_TAGFILE and TAGFILES are appended by rosdoc2.
+
+PROJECT_NAME           = visp_tracker_common
+PROJECT_BRIEF          = "Base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results."
+
+INPUT                  = include
+RECURSIVE              = YES
+
+GENERATE_LATEX         = NO
+
+STRIP_FROM_PATH        = .
+STRIP_FROM_INC_PATH    = include
+
+# ViSP namespace macros (see visp3/core/vpConfig.h). Without these definitions, the signatures
+# containing e.g. "const VISP_NAMESPACE_ADDRESSING vpImage<Type> &" cannot be parsed by Sphinx/breathe.
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = "VISP_NAMESPACE_ADDRESSING=visp::" \
+                         "VISP_NAMESPACE_NAME=visp"

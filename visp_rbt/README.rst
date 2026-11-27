@@ -21,15 +21,17 @@ same computer than the one you are running the ``visp_rbt_node``, please run it 
 `BaseTracker documentation <../visp_tracker_common/index.html#related-to-the-display>`__ for more information).
 
 **IMPORTANT**: the ``visp_rbt_node`` can be really slow when OpenMP is ill-configured. Two solutions exist:
+
   - run ``export GOMP_SPINCOUNT=0`` in the terminal in which you will run the ``visp_rbt_node``,
   - insert the following piece of code in your Python launch file:
-  .. code-block:: Python
 
-    from launch.actions import SetEnvironmentVariable
-    def generate_launch_description():
-      ld = LaunchDescription()
-      ...
-      ld.add_action(SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'))
+    .. code-block:: Python
+
+      from launch.actions import SetEnvironmentVariable
+      def generate_launch_description():
+        ld = LaunchDescription()
+        ...
+        ld.add_action(SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'))
 
 Prerequisities
 ==============
@@ -130,15 +132,15 @@ See `visp_tracker_common`_ documentation.
 Related to configuration files
 ------------------------------
 
-- *OPIONAL* ``init_file``: if the initialization method is set to initialization by click, this parameter becomes **REQUIRED**.
+- *OPTIONAL* ``init_file``: if the initialization method is set to initialization by click, this parameter becomes **REQUIRED**.
   See `the documentation of BaseTracker <../visp_tracker_common/index.html#basetracker-node>`__ for more information.
   Path towards the file that contains the init points. ``package://`` will be replaced by
   the path to the share folder of the corresponding package.
 
 - *OPTIONAL* ``"package://visp_tk_tutorials/config/rbt/models/dragon/dragon.obj"``: if the JSON configuration file
-does not contain the keyword ``model``, this parameter becomes **REQUIRED**. In this case, this parameter must be set to
-the path towards the model file of the object to track. Note that if the keyword ``model`` is set in the JSON
-configuration file, this parameter is **ignored**.
+  does not contain the keyword ``model``, this parameter becomes **REQUIRED**. In this case, this parameter must be set to
+  the path towards the model file of the object to track. Note that if the keyword ``model`` is set in the JSON
+  configuration file, this parameter is **ignored**.
 
 Related to display
 ------------------

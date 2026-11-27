@@ -1,2 +1,4 @@
 doc/html
 */doc/_code/
+__pycache__
+*.0.pos

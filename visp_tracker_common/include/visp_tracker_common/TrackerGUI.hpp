@@ -244,6 +244,7 @@ protected:
   int m_frame_cnt = 0; //!< Counter if not all the frames must be displayed.
   unsigned int m_features_thickness = 1; //!< Thickness of the 2D features.
   FeaturesType m_features_type = FeaturesType::POINT; //!< How to render 2D points on screen.
+
   std::optional<visp::vpCameraParameters> m_opt_rgb_cam = std::nullopt; //!< To display the poses.
 
   // ----- Others -----

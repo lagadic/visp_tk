@@ -52,31 +52,49 @@ find_package(visp_tracker_common REQUIRED)
 find_package(VISP 3.7 REQUIRED COMPONENTS visp_core visp_ar OPTIONAL_COMPONENTS visp_rbt visp_gui)
 
 if(VISP_RBT_FOUND)
-  add_executable(${PROJECT_NAME}_node
-    src/rbt.cpp
+  find_package(rclcpp_components REQUIRED)
+
+  # Library of the component, loaded by a component container as visp_rbt::RBTTracker
+  add_library(${PROJECT_NAME}_component SHARED
     src/RBTTracker.cpp
   )
 
-  target_include_directories(${PROJECT_NAME}_node PUBLIC
+  target_include_directories(${PROJECT_NAME}_component PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
   )
 
-target_link_libraries(${PROJECT_NAME}_node PUBLIC
-  ${geometry_msgs_TARGETS}
-  ${message_filters_TARGETS}
-  ${rclcpp_TARGETS}
-  ${sensor_msgs_TARGETS}
-  ${visp_common_TARGETS}
-  ${visp_tracker_common_TARGETS}
-  ${VISP_LIBRARIES}
-)
+  target_link_libraries(${PROJECT_NAME}_component PUBLIC
+    ${geometry_msgs_TARGETS}
+    ${message_filters_TARGETS}
+    ${rclcpp_TARGETS}
+    ${sensor_msgs_TARGETS}
+    ${visp_common_TARGETS}
+    ${visp_tracker_common_TARGETS}
+    ${VISP_LIBRARIES}
+    rclcpp_components::component
+  )
 
-install(
-  TARGETS
-  ${PROJECT_NAME}_node
-  DESTINATION lib/${PROJECT_NAME}
-)
+  rclcpp_components_register_nodes(${PROJECT_NAME}_component "visp_rbt::RBTTracker")
+
+  # Standalone executable, with its own main()
+  add_executable(${PROJECT_NAME}_node
+    src/rbt.cpp
+  )
+  target_link_libraries(${PROJECT_NAME}_node PRIVATE ${PROJECT_NAME}_component)
+
+  install(
+    TARGETS ${PROJECT_NAME}_component
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
+  )
+
+  install(
+    TARGETS
+    ${PROJECT_NAME}_node
+    DESTINATION lib/${PROJECT_NAME}
+  )
 
 endif()
 ament_package()

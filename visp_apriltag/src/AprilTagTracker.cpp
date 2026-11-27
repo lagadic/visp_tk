@@ -24,6 +24,8 @@
 
 #include <visp_apriltag/AprilTagTracker.hpp>
 
+#include <cmath>
+
 #include <chrono>
 #include <stdexcept>
 
@@ -507,8 +509,12 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
           if (m_display_initialized && display_frame) {
             if (is_pose_available) {
-              unsigned int thickness = 2;
-              vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1, vpColor::none, thickness);
+              // The "diameter" of the tag is its diagonal, as the diagonal of the bounding box of the model is used
+              // by the MBT and RBT trackers: the frame size follows the frame_size_ratio parameter, and the frame is
+              // never shorter than BaseTracker::s_frame_min_size_px pixels
+              const double tag_diameter = std::sqrt(2.) * tag_size;
+              vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, compute_frame_size(tag_diameter, c_M_o), vpColor::none,
+                                      m_frame_thickness);
             }
           }
 #endif

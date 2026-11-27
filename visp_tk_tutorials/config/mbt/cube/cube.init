@@ -1,0 +1,7 @@
+# 3D coordinates, in meters, of the points to click to initialize the tracking of the cube.
+# Same points as config/rbt/models/cube/cube.init, shown on cube.jpg.
+4                             # Number of points
+ 0.04225  0.04225  0.04225    # Point 1
+-0.04225  0.04225  0.04225    # Point 2
+-0.04225 -0.04225  0.04225    # Point 3
+-0.04225 -0.04225 -0.04225    # Point 4
