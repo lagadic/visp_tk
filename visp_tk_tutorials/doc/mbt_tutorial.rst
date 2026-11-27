@@ -85,6 +85,8 @@ The configuration files provided with the package are described in a ``README.md
   (see `Tutorial using a Realsense camera`_). It requires a depth stream, which the recorded sequence of this
   tutorial does not provide;
 - ``config/mbt/cube/``: ``cube.json``, to track the textured cube with a RealSense color and depth camera
+  (see `Tracking another object with the camera`_);
+- ``config/mbt/castle/``: ``castle.json``, to track the castle with a RealSense color and depth camera
   (see `Tracking another object with the camera`_).
 
 When the tracked object changes, the 3D model and the initialization points must change too: in a JSON file, the
@@ -340,6 +342,21 @@ same as for the RBT model of the cube (``config/rbt/models/cube``).
 .. code-block:: shell
 
   ros2 launch visp_tk_tutorials mbt_cube_live_rs2_json_launch.py
+
+``mbt_castle_live_rs2_json_launch.py`` tracks the castle with ``config/mbt/castle/castle.json``. Its ``Color`` tracker
+has the same settings as ``teabox.json``, but its ``Depth`` tracker uses ``depthDense`` features instead of
+``depthNormal``: the castle has few planar faces, partly occluded, and the many depth points sampled on them constrain
+the pose better when the object moves.
+The RBT model of the castle is a scanned mesh of about 36 000 triangles, which the MBT cannot use. ``castle.cao`` is
+a simplified model made of the planar parts of the castle seen from the front: the floor, the walls of the tower, the
+front wall with the door and the slope. Each part is described in its own file of ``config/mbt/castle/castle_parts/``,
+that ``castle.cao`` includes with ``load()``. The initialization points (``castle.init``) are shown on ``castle.jpg``,
+the same image as for the RBT, but their coordinates are expressed in the object frame of this model, which is not the
+one of the RBT model.
+
+.. code-block:: shell
+
+  ros2 launch visp_tk_tutorials mbt_castle_live_rs2_json_launch.py
 
 If nothing appears on screen, it may mean that the ``realsense_camera`` package changed the names of
 the topic on which are published the data. Please run ``ros2 topic list`` and ``ros2 topic info -v /<camera_topic>``
