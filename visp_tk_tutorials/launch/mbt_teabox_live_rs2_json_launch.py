@@ -152,7 +152,9 @@ def prepare_parameters(context):
             "align_depth.enable": False,
             "publish_tf": True, # publish_tf permits to have the extrinsincs expressed as a TF2
             "rgb_camera.color_profile": "640,480,30",
+            "rgb_camera.profile": "640,480,30",  # name used by realsense2_camera <= 4.54
             "depth_module.depth_profile": "640,480,30",
+            "depth_module.profile": "640,480,30",  # name used by realsense2_camera <= 4.54
         }],
         # The images are passed to the tracker without going through DDS
         extra_arguments=[{"use_intra_process_comms": True}],

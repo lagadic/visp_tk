@@ -80,7 +80,9 @@ def generate_launch_description():
                 "align_depth.enable": False,
                 "publish_tf": True,  # publish_tf permits to have the extrinsincs expressed as a TF2
                 "rgb_camera.color_profile": "640,480,30",
+                "rgb_camera.profile": "640,480,30",  # name used by realsense2_camera <= 4.54
                 "depth_module.depth_profile": "0,0,0",
+                "depth_module.profile": "0,0,0",  # name used by realsense2_camera <= 4.54
             }
         ],
         # The images are passed to the tracker without going through DDS
