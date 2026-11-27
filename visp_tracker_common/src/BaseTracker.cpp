@@ -24,6 +24,8 @@
 
 #include <visp_tracker_common/BaseTracker.hpp>
 
+#include <algorithm>
+
 namespace visp_tracker_common
 {
 #ifdef ENABLE_VISP_NAMESPACE
@@ -54,6 +56,16 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->declare_parameter("display_nb_frames_skipped", -1, display_nb_frames_skipped_param_desc);
   this->get_parameter("display_nb_frames_skipped", display_nb_frames_skipped_param);
   m_display_nb_frames_skipped = display_nb_frames_skipped_param.as_int();
+
+  auto frame_size_ratio_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  frame_size_ratio_param_desc.description = "Length of the axes of the object frame displayed on the image, as a fraction of the object diameter. The axes are never shorter than 30 pixels.";
+  this->declare_parameter("frame_size_ratio", m_frame_size_ratio, frame_size_ratio_param_desc);
+  m_frame_size_ratio = this->get_parameter("frame_size_ratio").as_double();
+
+  auto frame_thickness_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  frame_thickness_param_desc.description = "Thickness, in pixels, of the axes of the object frame displayed on the image.";
+  this->declare_parameter("frame_thickness", static_cast<int>(m_frame_thickness), frame_thickness_param_desc);
+  m_frame_thickness = static_cast<unsigned int>(std::max<int64_t>(1, this->get_parameter("frame_thickness").as_int()));
 
   auto vis_debug_param = rclcpp::Parameter();
   auto vis_debug_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -386,4 +398,12 @@ std::string BaseTracker::getAvailableInitializationMethod(const std::string &pre
   list += suffix;
   return list;
 }
+
+double BaseTracker::compute_frame_size(double object_diameter, const visp::vpHomogeneousMatrix &cMo) const
+{
+  const double Z = cMo[2][3];
+  const double min_size = ((Z > 0.) && (m_rgb_cam.get_px() > 0.)) ? s_frame_min_size_px * Z / m_rgb_cam.get_px() : 0.;
+  return std::max(m_frame_size_ratio * object_diameter, min_size);
+}
+
 }

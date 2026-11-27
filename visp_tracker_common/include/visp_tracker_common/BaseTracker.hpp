@@ -43,6 +43,7 @@
 #include <visp_tracker_common/msg/named_feature_array.hpp>
 
 #include <visp3/core/vpCameraParameters.h>
+#include <visp3/core/vpHomogeneousMatrix.h>
 
 #include <optional>
 
@@ -89,6 +90,19 @@ public:
   virtual void stop_and_quit();
 
 protected:
+  /**
+   * @brief Length of the axes of the object frame displayed with vpDisplay::displayFrame().
+   *
+   * The length is a fraction (frame_size_ratio parameter) of the object diameter, so that the frame scales with
+   * the object, as any other 3D element of the scene. It is however never shorter than s_frame_min_size_px pixels
+   * in the color image, so that it stays readable when the object is far from the camera.
+   *
+   * @param object_diameter Diameter of the object, in meters.
+   * @param cMo Pose of the object in the color camera frame.
+   * @return The length of the axes, in meters.
+   */
+  double compute_frame_size(double object_diameter, const visp::vpHomogeneousMatrix &cMo) const;
+
   /** @name  Initialization */
   ///@{
 
@@ -275,6 +289,9 @@ protected:
   unsigned int m_frame_cnt = 0; //!< Counter for the display frame skip
   visp_tracker_common::msg::InfoStrings m_info_strings; //!< Vector that contains strings to display on string to give the user some info.
   unsigned int m_info_nb_static; //!< Number of info strings that must be visible all the time.
+  double m_frame_size_ratio = 0.3; //!< Length of the axes of the displayed object frame, as a fraction of the object diameter
+  unsigned int m_frame_thickness = 2; //!< Thickness, in pixels, of the axes of the displayed object frame
+  static constexpr double s_frame_min_size_px = 30.; //!< Minimum length, in pixels, of the axes of the displayed object frame
   bool m_visualization_debug = false; //!< Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ
   std::mutex m_mutex_overlay_features; //!< Mutex to protect m_overlay_features from concurrent access
   std::vector<std::optional<std::pair<rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray>>> m_overlay_features; //!< Last 2D features received on each overlay topic, with their reception time
