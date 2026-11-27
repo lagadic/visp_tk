@@ -56,7 +56,24 @@ namespace visp_rbt
 class RBTTracker : public visp_tracker_common::BaseMultiModalTracker
 {
 public:
-  RBTTracker(const std::string &name);
+  /**
+   * @brief Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself.
+   *
+   * @param name The name of the node.
+   * @param options The options of the node.
+   */
+  RBTTracker(const std::string &name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+
+  /**
+   * @brief Constructor used by the component container. Since the container neither calls init() nor polls
+   * has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit.
+   *
+   * The container must be single-threaded (component_container): the Panda3D OpenGL context and the X11 displays
+   * must always be used from the thread that created them, which component_container_mt does not guarantee.
+   *
+   * @param options The options of the node given by the container.
+   */
+  explicit RBTTracker(const rclcpp::NodeOptions &options);
 
   virtual ~RBTTracker()
   {
@@ -151,6 +168,9 @@ protected:
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
   bool m_load_model_from_params = false; //!< If true, the model file must be read from the node parameters.
   std::string m_init_file_path; //!< Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker.
+
+  // ----- Timers -----
+  rclcpp::TimerBase::SharedPtr m_quit_timer; //!< In a container, replaces the has_to_quit() polling done by main()
   visp::vpImage<unsigned char> m_I; //!< Gray-scale image
   visp::vpImage<visp::vpRGBa> m_Ic; //!< Color image
   visp::vpImage <float> m_I_depth; //!< Depth image

@@ -24,13 +24,50 @@
 
 #include <visp_rbt/RBTTracker.hpp>
 
+#include <chrono>
+#include <sstream>
+#include <stdexcept>
+
+#include <rclcpp_components/register_node_macro.hpp>
+
+#include <visp3/rbt/vpRBDenseDepthTracker.h>
+#include <visp3/rbt/vpRBKltTracker.h>
+#include <visp3/rbt/vpRBSilhouetteCCDTracker.h>
+#include <visp3/rbt/vpRBSilhouetteMeTracker.h>
+
 namespace visp_rbt
 {
 #ifdef ENABLE_VISP_NAMESPACE
 using namespace VISP_NAMESPACE_NAME;
 #endif
 
-RBTTracker::RBTTracker(const std::string &name) : visp_tracker_common::BaseMultiModalTracker(name, true)
+namespace
+{
+/**
+ * @brief Name of a feature tracker, as given by the "type" key of the JSON configuration file.
+ */
+std::string feature_tracker_name(const vpRBFeatureTracker &tracker)
+{
+  if (dynamic_cast<const vpRBSilhouetteCCDTracker *>(&tracker)) {
+    return "silhouetteColor";
+  }
+  if (dynamic_cast<const vpRBSilhouetteMeTracker *>(&tracker)) {
+    return "silhouetteMe";
+  }
+  if (dynamic_cast<const vpRBDenseDepthTracker *>(&tracker)) {
+    return "depth";
+  }
+#if defined(VP_HAVE_RB_KLT_TRACKER)
+  if (dynamic_cast<const vpRBKltTracker *>(&tracker)) {
+    return "klt";
+  }
+#endif
+  return "unknown";
+}
+}
+
+RBTTracker::RBTTracker(const std::string &name, const rclcpp::NodeOptions &options)
+  : visp_tracker_common::BaseMultiModalTracker(name, true, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -169,7 +206,8 @@ bool RBTTracker::init_from_json(const std::string &config_file_path)
   }
   json global_settings;
   try {
-    global_settings = json::parse(file);
+    // Allow comments in the JSON file, as vpRBTracker::loadConfigurationFile() does
+    global_settings = json::parse(file, nullptr, /*allow_exceptions=*/true, /*ignore_comments=*/true);
   }
   catch (json::parse_error &e) {
     RCLCPP_ERROR_STREAM(this->get_logger(), "Could not parse JSON file '" << config_file_path << "' .");
@@ -346,11 +384,16 @@ void RBTTracker::track()
   if (display_frame) {
 
     if (!m_display_initialized) {
-      m_display_uchar = vpDisplayFactory::createDisplay(m_I);
-      m_display = vpDisplayFactory::createDisplay(m_Ic, m_I.getWidth() + 20);
+      // Gray image on the top left, color image on its right, depth image below it. The margin leaves room for
+      // the title bar and the borders that the window manager adds around each window, so that they do not overlap.
+      const int margin = 80;
+      const int x_right = static_cast<int>(m_I.getWidth()) + margin;
+      const int y_below = static_cast<int>(m_I.getHeight()) + margin;
+      m_display_uchar = vpDisplayFactory::createDisplay(m_I, 0, 0, "RBT - Tracking info");
+      m_display = vpDisplayFactory::createDisplay(m_Ic, x_right, 0, "RBT - Color image (click here)");
       if ((!m_is_headless_mode) && m_depth_is_required) {
         // The depth display is not used for the initialization, only for display when not using the remote GUI
-        m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display, -1, m_I.getHeight() + 20);
+        m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display, 0, y_below, "RBT - Depth image");
       }
       m_display_initialized = true;
     }
@@ -359,9 +402,13 @@ void RBTTracker::track()
     vpDisplay::display(m_Ic);
     vpDisplay::display(m_I_depth_display);
     {
-      std::stringstream ss;
-      ss << "Left click to " << (m_has_to_track ? "stop" : "start") << " the tracking, middle click to reinitialize the tracking, right click to quit.";
-      vpDisplay::displayText(m_Ic, 20, 20, ss.str(), vpColor::red);
+      // One short line per action, so that the help stays on the left and does not overlap
+      // the info strings displayed on the right of the image.
+      const unsigned int v_offset = 20, h_offset = 20;
+      vpDisplay::displayText(m_Ic, v_offset, h_offset,
+                             std::string("Left click to ") + (m_has_to_track ? "stop" : "start") + " the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 2 * v_offset, h_offset, "Middle click to reinitialize the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 3 * v_offset, h_offset, "Right click to quit.", vpColor::red);
     }
   }
 #endif
@@ -402,7 +449,8 @@ void RBTTracker::track()
           m_info_strings.info_strings[m_info_nb_static + i] = vec_info[i];
         }
       }
-      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), 1.5 * BaseTracker::s_default_hor_offset);
+      // Same offset as the static info strings (e.g. "Requires depth"), so that all the lines are left-aligned
+      m_info_strings.hor_offset_right_border.resize(m_info_strings.info_strings.size(), BaseTracker::s_default_hor_offset);
       m_info_strings_pub->publish(m_info_strings);
 
       // Publish the model
@@ -424,7 +472,10 @@ void RBTTracker::track()
   if (display_frame) {
     if (tracking_successful) {
       m_tracker.display(m_I, m_Ic, m_I_depth_display);
-      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
+      // Object diameter computed by the RBT from the 3D extents of the model (diagonal of its bounding box)
+      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam,
+                              compute_frame_size(m_tracker.getMostRecentFrame().renders.objectDiameter, cMo),
+                              vpColor::none, m_frame_thickness);
     }
     unsigned int nb_infos = m_info_strings.info_strings.size();
     const unsigned int v_offset = 20;
@@ -448,8 +499,16 @@ void RBTTracker::track()
       }
       case vpMouseButton::button2:
       {
-        std::scoped_lock lock(m_mutex_initialized);
-        m_tracker_initialized = false;
+        // Reinitialization also (re)starts the tracking: init_tracking() is only called when m_has_to_track is true,
+        // so without this a middle click while the tracking is stopped (e.g. at startup) would have no visible effect
+        {
+          std::scoped_lock lock(m_mutex_initialized);
+          m_tracker_initialized = false;
+        }
+        {
+          std::scoped_lock lock(m_mutex_tracking);
+          m_has_to_track = true;
+        }
         break;
       }
       case vpMouseButton::button3:
@@ -479,10 +538,8 @@ bool RBTTracker::init_tracking(vpHomogeneousMatrix &cMo, bool &display_frame)
     RCLCPP_DEBUG(this->get_logger(), "Initializing tracker by click...");
     m_tracker.initClick(m_Ic, m_init_file_path, true);
     m_tracker.getPose(cMo);
-    {
-      std::scoped_lock sl(m_mutex_initialized);
-      m_tracker_initialized = true;
-    }
+    // Note: m_mutex_initialized is already locked by the caller, which sets
+    // m_tracker_initialized from the returned value. Locking it again here would deadlock.
     if (m_is_headless_mode) {
       vpDisplay::close(m_I);
       vpDisplay::close(m_Ic);
@@ -558,17 +615,36 @@ bool RBTTracker::perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::str
     switch (result.getStoppingReason()) {
     case vpRBTrackingStoppingReason::EXCEPTION:
     {
-      RCLCPP_WARN_STREAM(this->get_logger(), "Encountered an exception during tracking, pose was not updated!" << std::endl);
+      RCLCPP_WARN_STREAM(this->get_logger(), "Tracking lost: the pose update could not be computed (the optimization "
+                         "system could not be inverted). The tracking must be reinitialized.");
       break;
     }
     case vpRBTrackingStoppingReason::NOT_ENOUGH_FEATURES:
     {
-      RCLCPP_WARN_STREAM(this->get_logger(), "There were not enough feature to perform tracking!" << std::endl);
+      // The pose has 6 degrees of freedom: vpRBTracker gives up when all the feature trackers together
+      // provide less than 6 features. Give the number of features of each tracker to know which one failed.
+      unsigned int nb_features = 0;
+      std::stringstream ss_per_tracker;
+      const auto trackers = m_tracker.getFeatureTrackers();
+      for (size_t i = 0; i < trackers.size(); ++i) {
+        if (!trackers[i]) {
+          continue;
+        }
+        nb_features += trackers[i]->getNumFeatures();
+        ss_per_tracker << (i > 0 ? ", " : "") << feature_tracker_name(*trackers[i]) << ": " << trackers[i]->getNumFeatures();
+      }
+      RCLCPP_WARN_STREAM(this->get_logger(), "Tracking lost: not enough features to estimate the pose ("
+                         << nb_features << " found, at least 6 needed). Features per tracker: " << ss_per_tracker.str()
+                         << ". The object may be occluded, moving too fast, too small in the image"
+                         << (m_depth_is_required ? ", or out of the depth range" : "")
+                         << ". The tracking must be reinitialized.");
       break;
     }
     case vpRBTrackingStoppingReason::OBJECT_NOT_IN_IMAGE:
     {
-      RCLCPP_WARN_STREAM(this->get_logger(), "Object is not in image!" << std::endl);
+      RCLCPP_WARN_STREAM(this->get_logger(), "Tracking lost: rendered with the current pose estimate, the object has no "
+                         "silhouette in the image (out of the field of view or of the clipping range). "
+                         "The tracking must be reinitialized.");
       break;
     }
     default:
@@ -589,8 +665,37 @@ bool RBTTracker::perform_tracking(vpHomogeneousMatrix &cMo, std::vector<std::str
       vec_info.push_back(ss.str());
     }
   }
+  // Number of features of each feature tracker, named as the "type" key of the JSON configuration file.
+  // Same format as the visp_mbt node, e.g. "Features: silhouetteColor 523"
+  for (const auto &tracker : m_tracker.getFeatureTrackers()) {
+    if (tracker) {
+      std::stringstream ss;
+      ss << "Features: " << feature_tracker_name(*tracker) << " " << tracker->getNumFeatures();
+      vec_info.push_back(ss.str());
+    }
+  }
   RCLCPP_DEBUG_STREAM(this->get_logger(), "c_M_o:= [ " << cMo.getTranslationVector().t() << " ] m [ " << vpThetaUVector(cMo.getRotationMatrix()).t() << " ] rad");
   return true;
 }
 
+RBTTracker::RBTTracker(const rclcpp::NodeOptions &options)
+  : RBTTracker("tracker_rbt", options) // The name is overridden by the launch file
+{
+  // In a container, nobody calls init(): call it here. Calling the virtual methods is safe since the most derived
+  // object is fully constructed. An exception is reported by the container as a failure to load the component.
+  if (!init()) {
+    throw std::runtime_error("RBTTracker initialization failed");
+  }
+  // In a container, nobody polls has_to_quit(): quitting the tracker shuts down the container, which ends the demo
+  m_quit_timer = this->create_wall_timer(std::chrono::milliseconds(100), [this]() {
+    if (has_to_quit()) {
+      RCLCPP_INFO(this->get_logger(), "Quit requested, shutting down the container");
+      m_quit_timer->cancel();
+      rclcpp::shutdown();
+    }
+  });
 }
+
+}
+
+RCLCPP_COMPONENTS_REGISTER_NODE(visp_rbt::RBTTracker)

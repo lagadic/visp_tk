@@ -6,10 +6,18 @@ Please select in the Table of Content below which tutorial you want to have a lo
 
 .. toctree::
    :maxdepth: 2
+   :caption: Tutorials
 
-   user_docs
+   apriltag_tutorial
+   mbt_tutorial
+   rbt_tutorial
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference
+
+   C++ API <generated/index>
    standards
-   modules
 
 Indices and tables
 ==================

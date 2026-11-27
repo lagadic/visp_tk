@@ -49,7 +49,24 @@ namespace visp_mbt
 class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
 {
 public:
-  MBTTracker(const std::string &name);
+  /**
+   * @brief Constructor used by the standalone executable, that calls init() and polls has_to_quit() itself.
+   *
+   * @param name The name of the node.
+   * @param options The options of the node.
+   */
+  MBTTracker(const std::string &name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+
+  /**
+   * @brief Constructor used by the component container. Since the container neither calls init() nor polls
+   * has_to_quit(), init() is called here and a timer shuts down the container when the user asks to quit.
+   *
+   * The container must be single-threaded (component_container): the X11 displays must always be used from
+   * the thread that created them, which component_container_mt does not guarantee.
+   *
+   * @param options The options of the node given by the container.
+   */
+  explicit MBTTracker(const rclcpp::NodeOptions &options);
   virtual ~MBTTracker() = default;
 
   /**
@@ -215,6 +232,7 @@ protected:
   bool m_extrinsics_set = false; //!< If initializing extrinsics from TF2 topic, set to true once the extrinsics have been received.
   bool m_tracker_cams_set = false; //!< True once the camera parameters of the tracker will be set.
   bool m_must_detect_failure = false; //!< If true, the tracker must monitor the projection error to invalidate the tracking if needed.
+  double m_object_diameter = 0.; //!< Diagonal of the bounding box of the model, computed once to size the displayed object frame
   double m_projection_error_thresh = 30.; //!< If m_must_detect_failure , maximum tolerated projection error.
   visp::vpImage<unsigned char> m_I; //!< Gray-scale image.
   visp::vpImage<visp::vpRGBa> m_Ic; //!< RGB image.
@@ -223,6 +241,9 @@ protected:
   std::map<std::string, const std::vector<visp::vpColVector> *> m_map_pc; //!< Map that contains the name(s) of the depth tracker(s) and a pointer towards the current depth information.
   std::map<std::string, unsigned int> m_map_pcw; //!< Map that contains the width of the depth information.
   std::map<std::string, unsigned int> m_map_pch; //!< Map that contains the height of the depth information.
+
+  // ----- Timers -----
+  rclcpp::TimerBase::SharedPtr m_quit_timer; //!< In a container, replaces the has_to_quit() polling done by main()
 };
 }
 

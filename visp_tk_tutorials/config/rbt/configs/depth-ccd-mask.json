@@ -32,6 +32,9 @@
       "computeOnlyOnBoundingBox": false
     }
   },
+  "drift": {
+    "type": "probabilistic"
+  },
   "features": [
     {
       "type": "depth",
