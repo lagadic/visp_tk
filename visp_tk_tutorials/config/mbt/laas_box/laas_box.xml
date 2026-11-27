@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!--
   Configuration of the ViSP model-based tracker (vpMbGenericTracker) used to track the box
-  described in box.cao, with edges and KLT keypoints as visual features.
-  Used by launch/mbt_box_bag_xml_launch.py. The JSON equivalent of this file is box.json.
+  described in laas_box.cao, with edges and KLT keypoints as visual features.
+  Used by launch/mbt_laas_box_bag_xml_launch.py. The JSON equivalent of this file is laas_box.json.
 
   Distances are in meters, angles in degrees, image quantities in pixels.
 -->

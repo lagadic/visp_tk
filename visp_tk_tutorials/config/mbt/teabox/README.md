@@ -8,7 +8,7 @@ Files used by the model-based tracker (`vpMbGenericTracker`) tutorials to track 
 |---------------|-----------------------------------------------------------------------------------------------|
 | `teabox.cao`  | 3D model of the teabox (8 points, 6 faces, 0.165 x 0.068 x 0.08 m), in meters                 |
 | `teabox.init` | 3D coordinates of the 4 points to click to initialize the tracking                            |
-| `teabox.png`  | Image showing where to click the initialization points                                        |
+| `teabox.jpg`  | Image showing where to click the initialization points                                        |
 | `teabox.json` | Tracker settings, JSON format (used by `launch/mbt_teabox_live_rs2_json_launch.py`, described below) |
 | `teabox.xml`  | Color tracker settings, XML format (not used by the launch files of this package)             |
 
@@ -23,7 +23,7 @@ make the loading of the configuration fail. Comments will be introduced in `teab
 
 Distances are in meters, angles in degrees, image quantities in pixels.
 
-Unlike `box.json`, which only uses the color camera, `teabox.json` combines two cameras of a RealSense:
+Unlike `laas_box.json`, which only uses the color camera, `teabox.json` combines two cameras of a RealSense:
 
 - `Color`: the color camera, tracked with moving edges and keypoints;
 - `Depth`: the depth camera, tracked by fitting the planes of the model faces to the point cloud.
@@ -37,7 +37,7 @@ When tracking, the node displays `Requires depth : true` and the number of featu
 |-----------------------|-----------|--------------------------------------------------------------------------------------------------------|
 | `version`             | `"1.0"`   | Version of the settings format, required by ViSP.                                                      |
 | `referenceCameraName` | `"Color"` | Camera in which the pose is expressed. Must be one of the keys of `trackers`.                         |
-| `model`               | path      | 3D model shared by all the cameras. `package://` is replaced by the share directory of the package. Unlike `box.json`, the model is given once here and not per camera; setting both is an error. |
+| `model`               | path      | 3D model shared by all the cameras. `package://` is replaced by the share directory of the package. Unlike `laas_box.json`, the model is given once here and not per camera; setting both is an error. |
 | `trackers`            | object    | One entry per camera: `Color` and `Depth`.                                                             |
 | `vvs`                 | object    | Settings of the virtual visual servoing that computes the pose (see below).                           |
 
@@ -57,15 +57,15 @@ When tracking, the node displays `Requires depth : true` and the number of featu
 
 ### `trackers.Color`
 
-Same keys and meaning as `trackers.Color` in [`../box/README.md`](../box/README.md), which also gives the XML equivalent of each key.
-The values that differ from `box.json` are:
+Same keys and meaning as `trackers.Color` in [`../laas_box/README.md`](../laas_box/README.md), which also gives the XML equivalent of each key.
+The values that differ from `laas_box.json` are:
 
-| Key                | `teabox.json` | `box.json` | Effect                                                                         |
-|--------------------|---------------|------------|--------------------------------------------------------------------------------|
-| `clipping.far`     | 0.9           | 10.0       | The teabox is no longer tracked when it is more than 0.9 m from the camera.    |
-| `edge.range`       | 8             | 10         | Smaller search range along the normal to the edges: faster, but supports smaller motions. |
-| `edge.sampleStep`  | 4.0           | 3.0        | Fewer edge samples.                                                            |
-| `edge.threshold`   | 20.0          | 10.0       | Only stronger edges are kept: fewer but more reliable points.                  |
+| Key               | `teabox.json` | `laas_box.json` | Effect                                                                                    |
+|-------------------|---------------|-----------------|-------------------------------------------------------------------------------------------|
+| `clipping.far`    | 0.9           | 10.0            | The teabox is no longer tracked when it is more than 0.9 m from the camera.               |
+| `edge.range`      | 8             | 10              | Smaller search range along the normal to the edges: faster, but supports smaller motions. |
+| `edge.sampleStep` | 4.0           | 3.0             | Fewer edge samples.                                                                       |
+| `edge.threshold`  | 20.0          | 10.0            | Only stronger edges are kept: fewer but more reliable points.                             |
 
 `lod.useLod` is `false`: all the edges and faces are tracked, whatever their size in the image.
 

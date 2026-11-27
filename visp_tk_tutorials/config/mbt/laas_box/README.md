@@ -1,24 +1,24 @@
-# Box tracking configuration
+# LAAS box tracking configuration
 
-The object to track is called box. It is a rectangular parallelepiped of 0.35 x 0.35 m, and 0.312 m high.
+The object to track is called laas_box. It is a rectangular parallelepiped of 0.35 x 0.35 m, and 0.312 m high.
 
 Files used by the model-based tracker (`vpMbGenericTracker`) tutorials to track a box:
 
-| File       | Content                                                                         |
-|------------|---------------------------------------------------------------------------------|
-| `box.cao`  | 3D model of the box (8 points, 6 faces, 0.35 x 0.35 x 0.312 m), in meters       |
-| `box.init` | 3D coordinates of the 4 points to click to initialize the tracking              |
-| `box.ppm`  | Image showing where to click the initialization points                          |
-| `box.xml`  | Tracker settings, XML format (used by `launch/mbt_box_bag_xml_launch.py`, commented inline) |
-| `box.json` | Tracker settings, JSON format (used by `launch/mbt_box_bag_json_launch.py`, described below) |
+| File            | Content                                                                                                                                             |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `laas_box.cao`  | 3D model of the box (8 points, 6 faces, 0.35 x 0.35 x 0.312 m), in meters                                                                           |
+| `laas_box.init` | 3D coordinates of the 4 points to click to initialize the tracking                                                                                  |
+| `laas_box.jpg`  | Image showing where to click the initialization points                                                                                              |
+| `laas_box.xml`  | Tracker settings, XML format (used by `launch/mbt_laas_box_bag_xml_launch.py`, commented inline)                                                    |
+| `laas_box.json` | Tracker settings, JSON format (used by `launch/mbt_laas_box_bag_json_launch.py`, described below) |
 
-`box.json` cannot contain comments: ViSP 3.7.0 parses it with a strict JSON parser, and a comment would
-make the loading of the configuration fail. Comments will be introduced in `box.json` with ViSP > 3.7.0
+`laas_box.json` cannot contain comments: ViSP 3.7.0 parses it with a strict JSON parser, and a comment would
+make the loading of the configuration fail. Comments will be introduced in `laas_box.json` with ViSP > 3.7.0
 
-## `box.json` keys
+## `laas_box.json` keys
 
 Distances are in meters, angles in degrees, image quantities in pixels.
-The equivalent `box.xml` tag is given when there is one.
+The equivalent `laas_box.xml` tag is given when there is one.
 
 ### Top level
 
@@ -109,7 +109,7 @@ The `visp_mbt` node overrides these values with the intrinsics received on the `
 | `maxIter`   | Maximal number of iterations per image.                                      |
 | `initialMu` | Initial damping factor of the Levenberg-Marquardt optimization.              |
 
-## Differences between `box.xml` and `box.json`
+## Differences between `laas_box.xml` and `laas_box.json`
 
 The two files do not use the same values for:
 

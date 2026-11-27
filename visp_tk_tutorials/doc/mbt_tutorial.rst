@@ -35,14 +35,14 @@ Then you can run:
 
 .. code-block:: shell
 
-  ros2 launch visp_tk_tutorials mbt_box_bag_json_launch.py
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_json_launch.py
 
 The launch file accepts different arguments. To have the list and the explanations related to the
 arguments, please run:
 
 .. code-block:: shell
 
-  ros2 launch visp_tk_tutorials mbt_box_bag_json_launch.py --show-args
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_json_launch.py --show-args
 
 When you first start the launch file, you should see something similar to the following image:
 
@@ -70,20 +70,22 @@ Using another configuration file
 The settings of the tracker (visual features, moving edges and KLT parameters, camera, clipping...) are given by
 the configuration file passed with the ``config_file`` launch argument. It must be an absolute path. To use a file
 installed with the package, you can build this path with ``ros2 pkg prefix``. For instance, to run the same
-tutorial with a copy of ``box.json`` that you modified:
+tutorial with a copy of ``laas_box.json`` that you modified:
 
 .. code-block:: shell
 
-  cp $(ros2 pkg prefix visp_tk_tutorials)/share/visp_tk_tutorials/config/mbt/box/box.json /tmp/my_box.json
+  cp $(ros2 pkg prefix visp_tk_tutorials)/share/visp_tk_tutorials/config/mbt/laas_box/laas_box.json /tmp/my_box.json
   # Edit /tmp/my_box.json, then:
-  ros2 launch visp_tk_tutorials mbt_box_bag_json_launch.py config_file:=/tmp/my_box.json
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_json_launch.py config_file:=/tmp/my_box.json
 
 The configuration files provided with the package are described in a ``README.md`` file next to them:
 
-- ``config/mbt/box/``: ``box.json`` and ``box.xml``, to track the box of this tutorial with the color camera;
+- ``config/mbt/laas_box/``: ``laas_box.json`` and ``laas_box.xml``, to track the box of this tutorial with the color camera;
 - ``config/mbt/teabox/``: ``teabox.json``, to track a teabox with a RealSense color and depth camera
   (see `Tutorial using a Realsense camera`_). It requires a depth stream, which the recorded sequence of this
-  tutorial does not provide.
+  tutorial does not provide;
+- ``config/mbt/cube/``: ``cube.json``, to track the textured cube with a RealSense color and depth camera
+  (see `Tracking another object with the camera`_).
 
 When the tracked object changes, the 3D model and the initialization points must change too: in a JSON file, the
 model is given by the ``model`` key, and the file giving the points to click at initialization by the ``init_file``
@@ -95,11 +97,11 @@ file ends.
 Code explanation
 ++++++++++++++++
 
-Let's have a look at ``mbt_box_bag_json_launch.py``. Because it is a fairly big file, we will study the parts
+Let's have a look at ``mbt_laas_box_bag_json_launch.py``. Because it is a fairly big file, we will study the parts
 separately. Let's first have a look to the :py:func:`generate_launch_description` method that is called
 by the ``ros2 launch`` utilitary or by a call to ``IncludeLaunchDescription`` in another launch file:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: def generate_launch_description():
@@ -112,7 +114,7 @@ the processing of depth images when the depth stream is used too.
 
 Here is a quick overview of the :py:func:`prepare_parameters` function:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: def prepare_parameters(context):
@@ -121,7 +123,7 @@ Here is a quick overview of the :py:func:`prepare_parameters` function:
 First, we get the launch arguments values and store them in a dictionnary that will serve
 at initializing the node:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Getting the launch arguments values]
@@ -130,7 +132,7 @@ at initializing the node:
 Then, we check the validity of some launch arguments. The parsing of empty lists in ROS2 can
 be problematic, so we have to use a small trick to handle that case:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Checking the validity of some launch arguments]
@@ -138,7 +140,7 @@ be problematic, so we have to use a small trick to handle that case:
 
 Then, we instanciate the ``visp_mbt`` node, using the dictionnary that we previously filled:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Instanciating the node]
@@ -146,7 +148,7 @@ Then, we instanciate the ``visp_mbt`` node, using the dictionnary that we previo
 
 Then, we create a process that will play the rosbag:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Rosbag player]
@@ -154,7 +156,7 @@ Then, we create a process that will play the rosbag:
 
 Then, we group the spawning of the node and of the process into a :py:class:`GroupAction` object:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Launching nodes]
@@ -162,7 +164,7 @@ Then, we group the spawning of the node and of the process into a :py:class:`Gro
 
 Finally, we ask to shutdown the whole launch file when the ``visp_mbt`` node dies:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_json_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_json_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Handling shutdown]
@@ -191,14 +193,14 @@ Then you can run:
 
 .. code-block:: shell
 
-  ros2 launch visp_tk_tutorials mbt_box_bag_xml_launch.py
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_xml_launch.py
 
 The launch file accepts different arguments. To have the list and the explanations related to the
 arguments, please run:
 
 .. code-block:: shell
 
-  ros2 launch visp_tk_tutorials mbt_box_bag_xml_launch.py --show-args
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_xml_launch.py --show-args
 
 When you first start the launch file, you should see something similar to the following image:
 
@@ -223,11 +225,11 @@ the tracker, while a right click will kill the node.
 Code explanation
 ++++++++++++++++
 
-Let's have a look at ``mbt_box_bag_xml_launch.py``. Because it is a fairly big file, we will study the parts
+Let's have a look at ``mbt_laas_box_bag_xml_launch.py``. Because it is a fairly big file, we will study the parts
 separately. Let's first have a look to the :py:func:`generate_launch_description` method that is called
 by the ``ros2 launch`` utilitary or by a call to ``IncludeLaunchDescription`` in another launch file:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: def generate_launch_description():
@@ -241,7 +243,7 @@ of using an XML configuration file, the parameters ``rgb_model_file``, ``tracker
 
 Here is a quick overview of the :py:func:`prepare_parameters` function:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: def prepare_parameters(context):
@@ -250,7 +252,7 @@ Here is a quick overview of the :py:func:`prepare_parameters` function:
 First, we get the launch arguments values and store them in a dictionnary that will serve
 at initializing the node:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Getting the launch arguments values]
@@ -259,7 +261,7 @@ at initializing the node:
 Then, we check the validity of some launch arguments. The parsing of empty lists in ROS2 can
 be problematic, so we have to use a small trick to handle that case:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Checking the validity of some launch arguments]
@@ -267,7 +269,7 @@ be problematic, so we have to use a small trick to handle that case:
 
 Then, we instanciate the ``visp_mbt`` node, using the dictionnary that we previously filled:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Instanciating the node]
@@ -275,7 +277,7 @@ Then, we instanciate the ``visp_mbt`` node, using the dictionnary that we previo
 
 Then, we create a process that will play the rosbag:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Rosbag player]
@@ -283,7 +285,7 @@ Then, we create a process that will play the rosbag:
 
 Then, we group the spawning of the node and of the process into a :py:class:`GroupAction` object:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Launching nodes]
@@ -291,7 +293,7 @@ Then, we group the spawning of the node and of the process into a :py:class:`Gro
 
 Finally, we ask to shutdown the whole launch file when the ``visp_mbt`` node dies:
 
-.. literalinclude:: /_code/launch/mbt_box_bag_xml_launch.py
+.. literalinclude:: /_code/launch/mbt_laas_box_bag_xml_launch.py
   :language: python
   :lineno-match:
   :start-at: ## [Handling shutdown]
@@ -325,6 +327,19 @@ arguments, please run:
 .. code-block:: shell
 
   ros2 launch visp_tk_tutorials mbt_teabox_live_rs2_json_launch.py --show-args
+
+Tracking another object with the camera
++++++++++++++++++++++++++++++++++++++++
+
+``mbt_cube_live_rs2_json_launch.py`` tracks the textured cube (0.085 m edges) instead of the teabox, with the same
+camera setup. It uses ``config/mbt/cube/cube.json``, which has the same settings as ``teabox.json`` with the model
+of the cube: moving edges and KLT keypoints, tracked on the drawings of the faces, for the ``Color`` tracker, and
+``depthNormal`` for the ``Depth`` tracker. The object frame and the initialization points (``cube.init``) are the
+same as for the RBT model of the cube (``config/rbt/models/cube``).
+
+.. code-block:: shell
+
+  ros2 launch visp_tk_tutorials mbt_cube_live_rs2_json_launch.py
 
 If nothing appears on screen, it may mean that the ``realsense_camera`` package changed the names of
 the topic on which are published the data. Please run ``ros2 topic list`` and ``ros2 topic info -v /<camera_topic>``
@@ -422,4 +437,4 @@ For instance:
 
 .. code-block:: shell
 
-  ros2 launch visp_tk_tutorials mbt_box_bag_json_launch.py frame_size_ratio:=0.2 frame_thickness:=3
+  ros2 launch visp_tk_tutorials mbt_laas_box_bag_json_launch.py frame_size_ratio:=0.2 frame_thickness:=3

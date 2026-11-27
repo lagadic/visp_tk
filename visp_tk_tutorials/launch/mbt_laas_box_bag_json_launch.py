@@ -153,8 +153,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'box',
-                'box.xml'
+                'laas_box',
+                'laas_box.json'
               ])
         ),
        DeclareLaunchArgument(
@@ -200,8 +200,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'box',
-                'box.init'
+                'laas_box',
+                'laas_box.init'
               ])
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
@@ -237,7 +237,7 @@ def generate_launch_description():
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_model_file",
             description="When using an XML file or not configuring the model for all trackers using a JSON file, this parameter becomes **REQUIRED** and must be set to the path towards the model file for the RGB tracker. ``package://`` will be replaced by the path to the share folder of the corresponding package.",
-            default_value="package://visp_tk_tutorials/config/mbt/box/box.cao"
+            default_value=""
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_image_topic_name",
@@ -262,12 +262,12 @@ def generate_launch_description():
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "tracker_names",
             description="When using an XML file, this parameter becomes **REQUIRED**. It consists in an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter ``tracker_types``.",
-            default_value="['Color']"
+            default_value="['']"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "tracker_types",
             description="When using an XML file, this parameter becomes **REQUIRED**. It consists in an array of types of trackers to use and must be of the same size than the parameter ``tracker_names``. If a tracker must have several types (e.g. edge tracker + klt), the types name must be separated by a ``+`` (e.g. ``edge+klt`` is a valid value). RGB types cannot be mixed with depth types (e.g. ``edge+depthDense`` is not valid), they must be separated.",
-            default_value="['edge+klt']"
+            default_value="['']"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "z_factor",
