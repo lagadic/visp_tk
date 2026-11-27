@@ -158,8 +158,12 @@ def prepare_parameters(context):
             "enable_gyro": False,
             "align_depth.enable": False,
             "publish_tf": True, # publish_tf permits to have the extrinsincs expressed as a TF2
+            # realsense2_camera >= 4.55 names
             "rgb_camera.color_profile": "640,480,30",
             "depth_module.depth_profile": "640,480,30",
+            # realsense2_camera <= 4.54 names (e.g. 4.54.1 on TIAGo Pro), ignored by newer versions
+            "rgb_camera.profile": "640,480,30",
+            "depth_module.profile": "640,480,30",
         }],
         # The images are passed to the tracker without going through DDS
         extra_arguments=[{"use_intra_process_comms": True}],

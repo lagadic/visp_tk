@@ -194,7 +194,9 @@ def generate_launch_description():
             "align_depth.enable": True,
             "publish_tf": True,  # publish_tf permits to have the extrinsics expressed as a TF2
             "rgb_camera.color_profile": rs_profile,
+            "rgb_camera.profile": rs_profile,  # name used by realsense2_camera <= 4.54
             "depth_module.depth_profile": rs_profile,
+            "depth_module.profile": rs_profile,  # name used by realsense2_camera <= 4.54
         }],
         extra_arguments=[{'use_intra_process_comms': intra_process}],
     )
