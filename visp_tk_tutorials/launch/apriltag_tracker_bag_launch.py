@@ -17,10 +17,12 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
     declared_args = [
+        # BEGIN_APRILTAG_ARGUMENTS
         DeclareLaunchArgument(
             "tag_family",
             default_value="36h11",
@@ -68,6 +70,16 @@ def generate_launch_description():
             description="If true, the detected tags are displayed.",
         ),
         DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
+        ),
+        DeclareLaunchArgument(
             "headless_mode",
             default_value="false",
             description="If true, the tracker does not display anything.",
@@ -77,8 +89,10 @@ def generate_launch_description():
             default_value="info",
             description="Log level of the tracker (debug, info, warn, error).",
         ),
+        # END_APRILTAG_ARGUMENTS
     ]
 
+    # BEGIN_ROSBAG_PLAYER
     bag_folder = PathJoinSubstitution(
         [FindPackageShare("visp_tk_tutorials"), "bag", "apriltag", "tutorial-apriltag"]
     )
@@ -95,6 +109,9 @@ def generate_launch_description():
         }],
     )
 
+    # END_ROSBAG_PLAYER
+
+    # BEGIN_APRILTAG_NODE
     apriltag_tracker = ComposableNode(
         package="visp_apriltag",
         plugin="visp_apriltag::AprilTagTracker",
@@ -108,12 +125,17 @@ def generate_launch_description():
             "id_published": LaunchConfiguration("id_published"),
             "pose_method": LaunchConfiguration("pose_method"),
             "display_tag": LaunchConfiguration("display_tag"),
+            "frame_size_ratio": ParameterValue(LaunchConfiguration("frame_size_ratio"), value_type=float),
+            "frame_thickness": ParameterValue(LaunchConfiguration("frame_thickness"), value_type=int),
             "headless_mode": LaunchConfiguration("headless_mode"),
             "stream_qos_reliability": LaunchConfiguration("stream_qos_reliability"),
             "initial_tracking_status": True,
         }],
     )
 
+    # END_APRILTAG_NODE
+
+    # BEGIN_CONTAINER
     container = ComposableNodeContainer(
         name="apriltag_container",
         namespace="",
@@ -125,6 +147,9 @@ def generate_launch_description():
         emulate_tty=True,
     )
 
+    # END_CONTAINER
+
+    # BEGIN_SHUTDOWN
     shutdown_handler = RegisterEventHandler(
         OnProcessExit(
             target_action=container,
@@ -134,5 +159,7 @@ def generate_launch_description():
             ]
         )
     )
+
+    # END_SHUTDOWN
 
     return LaunchDescription(declared_args + [container, shutdown_handler])

@@ -223,7 +223,7 @@ topic:
 The ``AprilTagDetectionArray`` has one such element for each detected tag.
 
 Tips and Tricks: Tag pose not published
---------------------------------------
+---------------------------------------
 
 Several clues can show that the poses are not computed:
 
@@ -303,3 +303,33 @@ Code explanation
 
 We won't give a detailed explanation of this launch file, because nothing of importance changed except the
 ``realsense_camera`` node, which goes beyond the scope of this package.
+
+Display of the object frame
+---------------------------
+
+When the tracking succeeds, the frame of the tag is displayed on the image, with its X, Y and Z axes in red,
+green and blue. Its size and thickness can be changed with two launch arguments, accepted by all the launch files of
+this package:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 15 60
+
+   * - Launch argument
+     - Default
+     - Meaning
+   * - ``frame_size_ratio``
+     - ``0.3``
+     - | Length of the axes, as a fraction of the diagonal of the tag
+       | (its size given by ``tag_size_values`` times the square root of 2).
+       | The axes are never shorter than 30 pixels, so that they stay
+       | readable when the tag is far from the camera.
+   * - ``frame_thickness``
+     - ``2``
+     - | Thickness of the axes, in pixels.
+
+For instance:
+
+.. code-block:: shell
+
+  ros2 launch visp_tk_tutorials apriltag_tracker_bag_launch.py frame_size_ratio:=0.2 frame_thickness:=3

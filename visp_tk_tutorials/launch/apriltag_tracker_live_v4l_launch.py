@@ -7,6 +7,7 @@ from launch.event_handlers import (
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -63,6 +64,16 @@ def generate_launch_description():
             default_value="true",
             description="Display the detected tags in a ViSP window",
         ),
+        DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
+        ),
         # END_APRILTAG_ARGUMENTS
     ]
 
@@ -112,6 +123,8 @@ def generate_launch_description():
                 "id_published": LaunchConfiguration("id_published"),
                 "pose_method": LaunchConfiguration("pose_method"),
                 "display_tag": LaunchConfiguration("display_tag"),
+                "frame_size_ratio": ParameterValue(LaunchConfiguration("frame_size_ratio"), value_type=float),
+                "frame_thickness": ParameterValue(LaunchConfiguration("frame_thickness"), value_type=int),
                 "initial_tracking_status": True
             }
         ],
