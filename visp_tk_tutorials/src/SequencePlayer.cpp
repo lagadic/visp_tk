@@ -122,10 +122,15 @@ bool SequencePlayer::init()
   auto qos_poses_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
   m_init_pose_pub = this->create_publisher<geometry_msgs::msg::PoseStamped>(m_init_pose_topic_name.as_string(), qos_poses_pub);
 
+  // The images (640x480 RGBA, about 1.2 MB each) are fragmented by DDS: with best_effort, an image is dropped as soon as
+  // one of its fragments is lost, and only a few depth images per second were received. With reliable, the lost
+  // fragments are sent again. A reliable publisher is still compatible with best_effort subscribers.
+  auto qos_images_pub = rclcpp::QoS(rclcpp::KeepLast(5)).reliable().durability_volatile();
+
   m_depth_cam_info_pub = this->create_publisher<sensor_msgs::msg::CameraInfo>(m_depth_camera_info_topic_name.as_string(), qos_poses_pub);
-  m_depth_img_pub = this->create_publisher<sensor_msgs::msg::Image>(m_depth_stream_name.as_string(), qos_poses_pub);
+  m_depth_img_pub = this->create_publisher<sensor_msgs::msg::Image>(m_depth_stream_name.as_string(), qos_images_pub);
   m_rgb_cam_info_pub = this->create_publisher<sensor_msgs::msg::CameraInfo>(m_rgb_camera_info_topic_name.as_string(), qos_poses_pub);
-  m_rgb_img_pub = this->create_publisher<sensor_msgs::msg::Image>(m_rgb_stream_name.as_string(), qos_poses_pub);
+  m_rgb_img_pub = this->create_publisher<sensor_msgs::msg::Image>(m_rgb_stream_name.as_string(), qos_images_pub);
   return true;
 }
 

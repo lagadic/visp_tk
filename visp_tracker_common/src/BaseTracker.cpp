@@ -24,6 +24,8 @@
 
 #include <visp_tracker_common/BaseTracker.hpp>
 
+#include <algorithm>
+
 namespace visp_tracker_common
 {
 #ifdef ENABLE_VISP_NAMESPACE
@@ -35,7 +37,8 @@ const std::string BaseTracker::s_dumb_topic_name = "dumb_topic_name";
 const unsigned int BaseTracker::s_default_hor_offset = 180;
 const unsigned int BaseTracker::s_hor_offset_from_left_border = 20;
 
-BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_features) : rclcpp::Node(node_name)
+BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_features, const rclcpp::NodeOptions &options)
+  : rclcpp::Node(node_name, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -54,12 +57,39 @@ BaseTracker::BaseTracker(const std::string &node_name, const bool &does_publish_
   this->get_parameter("display_nb_frames_skipped", display_nb_frames_skipped_param);
   m_display_nb_frames_skipped = display_nb_frames_skipped_param.as_int();
 
+  auto frame_size_ratio_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  frame_size_ratio_param_desc.description = "Length of the axes of the object frame displayed on the image, as a fraction of the object diameter. The axes are never shorter than 30 pixels.";
+  this->declare_parameter("frame_size_ratio", m_frame_size_ratio, frame_size_ratio_param_desc);
+  m_frame_size_ratio = this->get_parameter("frame_size_ratio").as_double();
+
+  auto frame_thickness_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  frame_thickness_param_desc.description = "Thickness, in pixels, of the axes of the object frame displayed on the image.";
+  this->declare_parameter("frame_thickness", static_cast<int>(m_frame_thickness), frame_thickness_param_desc);
+  m_frame_thickness = static_cast<unsigned int>(std::max<int64_t>(1, this->get_parameter("frame_thickness").as_int()));
+
   auto vis_debug_param = rclcpp::Parameter();
   auto vis_debug_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
   vis_debug_param_desc.description = "When this parameter is set to true, the node will publish the 3D position of the joints and of the desired 3D position as MarkerArray message.";
   this->declare_parameter("visualization_debug", false, vis_debug_param_desc);
   this->get_parameter("visualization_debug", vis_debug_param);
   m_visualization_debug = vis_debug_param.as_bool();
+
+  auto overlay_features_topics_desc = rcl_interfaces::msg::ParameterDescriptor {};
+  overlay_features_topics_desc.description = "Topics of 2D features (visp_tracker_common/msg/NamedFeatureArray) published by other nodes, displayed over the image when the headless mode is not active.";
+  this->declare_parameter("overlay_features_topics", std::vector<std::string>(), overlay_features_topics_desc);
+  const std::vector<std::string> overlay_features_topics = this->get_parameter("overlay_features_topics").as_string_array();
+  if (!m_is_headless_mode) {
+    m_overlay_features.resize(overlay_features_topics.size());
+    auto qos_overlay = rclcpp::QoS(rclcpp::KeepLast(1)).best_effort().durability_volatile();
+    for (size_t i = 0; i < overlay_features_topics.size(); ++i) {
+      m_overlay_features_subs.push_back(this->create_subscription<visp_tracker_common::msg::NamedFeatureArray>(
+        overlay_features_topics[i], qos_overlay, [this, i](const visp_tracker_common::msg::NamedFeatureArray::ConstSharedPtr msg) {
+          std::scoped_lock lock(m_mutex_overlay_features);
+          m_overlay_features[i] = std::make_pair(this->now(), *msg);
+        }));
+      RCLCPP_INFO(this->get_logger(), "2D features of topic '%s' displayed over the image", overlay_features_topics[i].c_str());
+    }
+  }
 
   auto initial_tracking_status_param = rclcpp::Parameter();
   auto initial_tracking_status_param_desc = rcl_interfaces::msg::ParameterDescriptor {};
@@ -368,4 +398,12 @@ std::string BaseTracker::getAvailableInitializationMethod(const std::string &pre
   list += suffix;
   return list;
 }
+
+double BaseTracker::compute_frame_size(double object_diameter, const visp::vpHomogeneousMatrix &cMo) const
+{
+  const double Z = cMo[2][3];
+  const double min_size = ((Z > 0.) && (m_rgb_cam.get_px() > 0.)) ? s_frame_min_size_px * Z / m_rgb_cam.get_px() : 0.;
+  return std::max(m_frame_size_ratio * object_diameter, min_size);
+}
+
 }

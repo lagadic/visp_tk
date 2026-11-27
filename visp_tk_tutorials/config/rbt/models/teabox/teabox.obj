@@ -1,0 +1,29 @@
+# Model of the object called teabox, for the Render-Based Tracker (vpRBTracker).
+# Generated from config/mbt/teabox/teabox.cao: rectangular parallelepiped of 0.165 x 0.068 m, and 0.08 m high.
+# The vertices are written Y-up, as expected by the OBJ loader of Panda3D, which converts them to Z-up:
+# the object frame is then the one of teabox.cao (X in [0, 0.165], Y in [0, 0.068], Z in [-0.08, 0]),
+# in which the points of teabox.init are expressed.
+mtllib teabox.mtl
+o teabox
+v 0.000000 0.000000 0.000000
+v 0.000000 -0.080000 0.000000
+v 0.165000 -0.080000 0.000000
+v 0.165000 0.000000 0.000000
+v 0.165000 0.000000 -0.068000
+v 0.165000 -0.080000 -0.068000
+v 0.000000 -0.080000 -0.068000
+v 0.000000 0.000000 -0.068000
+vn 0.0000 0.0000 1.0000
+vn 0.0000 -1.0000 0.0000
+vn 0.0000 0.0000 -1.0000
+vn 0.0000 1.0000 0.0000
+vn 1.0000 0.0000 0.0000
+vn -1.0000 0.0000 0.0000
+usemtl teabox
+s off
+f 1//1 2//1 3//1 4//1
+f 2//2 7//2 6//2 3//2
+f 5//3 6//3 7//3 8//3
+f 1//4 4//4 5//4 8//4
+f 6//5 5//5 4//5 3//5
+f 1//6 8//6 7//6 2//6

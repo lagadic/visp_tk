@@ -24,6 +24,13 @@
 
 #include <visp_apriltag/AprilTagTracker.hpp>
 
+#include <cmath>
+
+#include <chrono>
+#include <stdexcept>
+
+#include <rclcpp_components/register_node_macro.hpp>
+
 #if VISP_VERSION_INT <= VP_VERSION_INT(3, 7, 0)
 namespace
 {
@@ -156,8 +163,8 @@ void fromImagePoint(const vpImagePoint &ip, vision_msgs::msg::Point2D &out)
   out.y = ip.get_v();
 }
 
-AprilTagTracker::AprilTagTracker(const std::string &node_name)
-  : visp_tracker_common::BaseTracker(node_name, true)
+AprilTagTracker::AprilTagTracker(const std::string &node_name, const rclcpp::NodeOptions &options)
+  : visp_tracker_common::BaseTracker(node_name, true, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -207,17 +214,40 @@ AprilTagTracker::AprilTagTracker(const std::string &node_name)
   //////////////////////////////////////////////////////////////////////
 
   // ---- Subscribing to the different topics
-  auto n = 10;
-  auto qos = rclcpp::QoS(rclcpp::KeepLast(n)).best_effort().durability_volatile();
+  // Only the last image is useful: a deeper queue adds latency when the detection is slower than the camera
+  auto qos = rclcpp::QoS(rclcpp::KeepLast(1)).best_effort().durability_volatile();
+  rclcpp::SubscriptionOptions sub_options;
+  // Zero-copy when the camera publishes from the same component container, still works through the rmw otherwise.
+  // Enabled on this subscription only, not on the whole node: on Humble the intra-process communication is not
+  // compatible with the transient_local publishers of the node
+  sub_options.use_intra_process_comm = rclcpp::IntraProcessSetting::Enable;
   m_rgb_stream_sub = this->create_subscription<sensor_msgs::msg::Image>(
     m_rgb_stream_name, qos,
-    std::bind(&AprilTagTracker::image_callback, this, std::placeholders::_1));
+    std::bind(&AprilTagTracker::image_callback, this, std::placeholders::_1), sub_options);
   RCLCPP_INFO(this->get_logger(), "Subscribed to image topic '%s'", m_rgb_stream_name.c_str());
 
   // ---- Publishing on different topics
   auto qos_tag_info_pub = rclcpp::QoS(rclcpp::KeepLast(5)).best_effort().transient_local();
   std::string tag_info_name = std::string(this->get_name()) + "/tags_info";
   m_tags_info_pub = this->create_publisher<visp_tracker_common::msg::AprilTagDetectionArray>(tag_info_name, qos_tag_info_pub);
+}
+
+AprilTagTracker::AprilTagTracker(const rclcpp::NodeOptions &options)
+  : AprilTagTracker("tracker_apriltag", options) // The name is overridden by the launch file
+{
+  // In a container, nobody calls init(): call it here. Calling the virtual methods is safe since the most derived
+  // object is fully constructed. An exception is reported by the container as a failure to load the component.
+  if (!init()) {
+    throw std::runtime_error("AprilTagTracker initialization failed");
+  }
+  // In a container, nobody polls has_to_quit(): quitting the tracker shuts down the container, which ends the demo
+  m_quit_timer = this->create_wall_timer(std::chrono::milliseconds(100), [this]() {
+    if (has_to_quit()) {
+      RCLCPP_INFO(this->get_logger(), "Quit requested, shutting down the container");
+      m_quit_timer->cancel();
+      rclcpp::shutdown();
+    }
+  });
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -383,7 +413,7 @@ void AprilTagTracker::init_info_strings()
 
 void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedPtr &msg)
 {
-  RCLCPP_INFO(this->get_logger(), "Receive image");
+  RCLCPP_DEBUG(this->get_logger(), "Receive image");
   try {
     bool quit = false;
     {
@@ -479,8 +509,12 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
           if (m_display_initialized && display_frame) {
             if (is_pose_available) {
-              unsigned int thickness = 2;
-              vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, 0.1, vpColor::none, thickness);
+              // The "diameter" of the tag is its diagonal, as the diagonal of the bounding box of the model is used
+              // by the MBT and RBT trackers: the frame size follows the frame_size_ratio parameter, and the frame is
+              // never shorter than BaseTracker::s_frame_min_size_px pixels
+              const double tag_diameter = std::sqrt(2.) * tag_size;
+              vpDisplay::displayFrame(m_I, c_M_o, m_rgb_cam, compute_frame_size(tag_diameter, c_M_o), vpColor::none,
+                                      m_frame_thickness);
             }
           }
 #endif
@@ -576,6 +610,9 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
     if (m_display_initialized && display_frame) {
+      // 2D features published by other nodes, if any
+      display_overlay_features(m_I);
+
       unsigned int nb_infos = m_info_strings.info_strings.size();
       const unsigned int v_offset = 20;
       for (unsigned int r = 0; r < nb_infos; ++r) {
@@ -624,3 +661,5 @@ void AprilTagTracker::image_callback(const sensor_msgs::msg::Image::ConstSharedP
 //////////////////////////////////////////////////////////////////////
 
 }
+
+RCLCPP_COMPONENTS_REGISTER_NODE(visp_apriltag::AprilTagTracker)

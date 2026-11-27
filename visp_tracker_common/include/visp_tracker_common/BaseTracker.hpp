@@ -37,11 +37,13 @@
 
 #include <visp_common/camera.hpp>
 #include <visp_common/path_retriever.hpp>
+#include <visp_tracker_common/display.hpp>
 #include <visp_tracker_common/names.hpp>
 #include <visp_tracker_common/msg/info_strings.hpp>
 #include <visp_tracker_common/msg/named_feature_array.hpp>
 
 #include <visp3/core/vpCameraParameters.h>
+#include <visp3/core/vpHomogeneousMatrix.h>
 
 #include <optional>
 
@@ -55,8 +57,10 @@ public:
    *
    * @param node_name The name of the node.
    * @param does_publish_features If headless mode is active, set to true if the node must publish 2D points to have a feedback on the remote GUI.
+   * @param options The options of the node, given by the component container when the node is loaded as a component.
    */
-  BaseTracker(const std::string &node_name, const bool &does_publish_features);
+  BaseTracker(const std::string &node_name, const bool &does_publish_features,
+              const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
 
   virtual ~BaseTracker() = default;
 
@@ -86,6 +90,19 @@ public:
   virtual void stop_and_quit();
 
 protected:
+  /**
+   * @brief Length of the axes of the object frame displayed with vpDisplay::displayFrame().
+   *
+   * The length is a fraction (frame_size_ratio parameter) of the object diameter, so that the frame scales with
+   * the object, as any other 3D element of the scene. It is however never shorter than s_frame_min_size_px pixels
+   * in the color image, so that it stays readable when the object is far from the camera.
+   *
+   * @param object_diameter Diameter of the object, in meters.
+   * @param cMo Pose of the object in the color camera frame.
+   * @return The length of the axes, in meters.
+   */
+  double compute_frame_size(double object_diameter, const visp::vpHomogeneousMatrix &cMo) const;
+
   /** @name  Initialization */
   ///@{
 
@@ -111,6 +128,47 @@ protected:
    * @return false Otherwise.
    */
   bool init_initialization_method(const rclcpp::Parameter &p);
+
+  ///@}
+
+  /** @name  Display */
+  ///@{
+
+  /**
+   * @brief Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when
+   * the node manages its own display (headless mode not active). The name of each feature is written at the bottom of
+   * the image.
+   *
+   * @tparam Type Type of the image pixels (unsigned char or vpRGBa).
+   * @param I Image in which the features are displayed. It must have a display.
+   */
+  template <typename Type>
+  void display_overlay_features(const VISP_NAMESPACE_ADDRESSING vpImage<Type> &I)
+  {
+    const VISP_NAMESPACE_ADDRESSING vpColor colors[] = { VISP_NAMESPACE_ADDRESSING vpColor::green, VISP_NAMESPACE_ADDRESSING vpColor::orange,
+                                                         VISP_NAMESPACE_ADDRESSING vpColor::cyan, VISP_NAMESPACE_ADDRESSING vpColor::purple,
+                                                         VISP_NAMESPACE_ADDRESSING vpColor::yellow };
+    const unsigned int nb_colors = sizeof(colors) / sizeof(colors[0]);
+    const unsigned int v_offset = 20;
+    const rclcpp::Time now = this->now();
+    std::scoped_lock lock(m_mutex_overlay_features);
+    unsigned int idx = 0;
+    for (const auto &overlay : m_overlay_features) {
+      // Features not received recently are not displayed anymore
+      if ((!overlay) || ((now - overlay->first).seconds() > s_overlay_features_max_age)) {
+        continue;
+      }
+      for (const auto &feature : overlay->second.features) {
+        const VISP_NAMESPACE_ADDRESSING vpColor &color = colors[idx % nb_colors];
+        display::displayNamedFeature(I, feature, color, 2, display::PointsType::CROSS);
+        if (!feature.name.empty()) {
+          VISP_NAMESPACE_ADDRESSING vpDisplay::displayText(I, static_cast<int>(I.getHeight()) - static_cast<int>(v_offset * (idx + 1)), 10,
+                                                           feature.name, color);
+        }
+        ++idx;
+      }
+    }
+  }
 
   ///@}
 
@@ -216,6 +274,7 @@ protected:
   // ----- Subscribers -----
   rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr m_rgb_cam_info_sub; //!< RGB camera parameters subscriber
   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr m_init_sub; //!< Subscriber to the init topic, if the init method is set to topic.
+  std::vector<rclcpp::Subscription<visp_tracker_common::msg::NamedFeatureArray>::SharedPtr> m_overlay_features_subs; //!< Subscribers to the 2D features to display over the image, when headless mode is not active
   std::shared_ptr<tf2_ros::TransformListener> m_tf_listener { nullptr }; //!< Listener in case the user wants to set the extrinsics from `tf2_static` topic
   std::unique_ptr<tf2_ros::Buffer> m_tf_buffer { nullptr }; //!< The buffer for the TF2
 
@@ -230,7 +289,13 @@ protected:
   unsigned int m_frame_cnt = 0; //!< Counter for the display frame skip
   visp_tracker_common::msg::InfoStrings m_info_strings; //!< Vector that contains strings to display on string to give the user some info.
   unsigned int m_info_nb_static; //!< Number of info strings that must be visible all the time.
+  double m_frame_size_ratio = 0.3; //!< Length of the axes of the displayed object frame, as a fraction of the object diameter
+  unsigned int m_frame_thickness = 2; //!< Thickness, in pixels, of the axes of the displayed object frame
+  static constexpr double s_frame_min_size_px = 30.; //!< Minimum length, in pixels, of the axes of the displayed object frame
   bool m_visualization_debug = false; //!< Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ
+  std::mutex m_mutex_overlay_features; //!< Mutex to protect m_overlay_features from concurrent access
+  std::vector<std::optional<std::pair<rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray>>> m_overlay_features; //!< Last 2D features received on each overlay topic, with their reception time
+  static constexpr double s_overlay_features_max_age = 0.5; //!< Overlay features older than this duration in seconds are not displayed
 
   // ----- Tracking-related attributes -----
   bool m_rgb_cam_info_received = false; //!< Set to true once the color camera parameters have been retrieved.

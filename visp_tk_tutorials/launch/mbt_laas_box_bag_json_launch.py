@@ -8,6 +8,7 @@ from launch.event_handlers import (
 from launch.substitutions import LaunchConfiguration, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 def prepare_parameters(context):
     ## [Getting the launch arguments values]
@@ -54,7 +55,9 @@ def prepare_parameters(context):
                 {'stream_qos_reliability': stream_qos_reliability},
                 {'tracker_names': tracker_names},
                 {'tracker_types': tracker_types},
-                {'z_factor': z_factor}
+                {'z_factor': z_factor},
+                {'frame_size_ratio': ParameterValue(LaunchConfiguration('frame_size_ratio'), value_type=float)},
+                {'frame_thickness': ParameterValue(LaunchConfiguration('frame_thickness'), value_type=int)}
                 ]
 
     ## [Checking the validity of some launch arguments]
@@ -150,8 +153,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'box',
-                'box.xml'
+                'laas_box',
+                'laas_box.json'
               ])
         ),
        DeclareLaunchArgument(
@@ -197,8 +200,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'box',
-                'box.init'
+                'laas_box',
+                'laas_box.init'
               ])
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
@@ -234,7 +237,7 @@ def generate_launch_description():
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_model_file",
             description="When using an XML file or not configuring the model for all trackers using a JSON file, this parameter becomes **REQUIRED** and must be set to the path towards the model file for the RGB tracker. ``package://`` will be replaced by the path to the share folder of the corresponding package.",
-            default_value="package://visp_tk_tutorials/config/mbt/box/box.cao"
+            default_value=""
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "rgb_image_topic_name",
@@ -259,17 +262,27 @@ def generate_launch_description():
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "tracker_names",
             description="When using an XML file, this parameter becomes **REQUIRED**. It consists in an array of names for the different trackers (RGB and potentially depth) to use and must be of the same size than the parameter ``tracker_types``.",
-            default_value="['Color']"
+            default_value="['']"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "tracker_types",
             description="When using an XML file, this parameter becomes **REQUIRED**. It consists in an array of types of trackers to use and must be of the same size than the parameter ``tracker_names``. If a tracker must have several types (e.g. edge tracker + klt), the types name must be separated by a ``+`` (e.g. ``edge+klt`` is a valid value). RGB types cannot be mixed with depth types (e.g. ``edge+depthDense`` is not valid), they must be separated.",
-            default_value="['edge+klt']"
+            default_value="['']"
         ),
         DeclareLaunchArgument( # used to define the launch argument that can be passed from another launch file or from the console.
             "z_factor",
             description="Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.",
             default_value="0.001"
+        ),
+        DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
         ),
         SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'), # To enable OpenMP acceleration
         SetEnvironmentVariable(name='RMW_FASTRTPS_PUBLICATION_MODE', value='ASYNCHRONOUS') # To avoid laggy rosbag

@@ -1,3 +1,6 @@
+# Model of the object called laas_box, used by the model-based tracker (vpMbGenericTracker).
+# The box is a rectangular parallelepiped of 0.35 x 0.35 m, and 0.312 m high, centered on the origin of the object frame.
+# Coordinates are in meters: X in [-0.175, 0.175], Y in [-0.175, 0.175], Z in [-0.156, 0.156] (height).
 V1
 # 3D Points
 8                  # Number of points

@@ -24,13 +24,20 @@
 
 #include <visp_mbt/MBTTracker.hpp>
 
+#include <chrono>
+#include <limits>
+#include <stdexcept>
+
+#include <rclcpp_components/register_node_macro.hpp>
+
 namespace visp_mbt
 {
 #ifdef ENABLE_VISP_NAMESPACE
 using namespace VISP_NAMESPACE_NAME;
 #endif
 
-MBTTracker::MBTTracker(const std::string &name) : visp_tracker_common::BaseMultiModalTracker(name, true)
+MBTTracker::MBTTracker(const std::string &name, const rclcpp::NodeOptions &options)
+  : visp_tracker_common::BaseMultiModalTracker(name, true, options)
 {
   //////////////////////////////////////////////////////////////////////
   //                        ROS2 PARAMETERS                           //
@@ -494,7 +501,12 @@ void MBTTracker::treat_depth(const sensor_msgs::msg::Image::ConstSharedPtr &dept
 #if defined(VISP_HAVE_DISPLAY) && defined(VISP_HAVE_MODULE_GUI)
       // Initialize depth display
       m_I_depth_display.resize(I_depth_raw.getHeight(), I_depth_raw.getWidth());
-      m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display);
+      // Below the color image window (see track()). The margin leaves room for the title bar and the borders that
+      // the window manager adds around each window, so that they do not overlap.
+      const int margin = 80;
+      const unsigned int color_height = (m_I.getHeight() > 0) ? m_I.getHeight() : I_depth_raw.getHeight();
+      m_display_depth = vpDisplayFactory::createDisplay(m_I_depth_display, 0, static_cast<int>(color_height) + margin,
+                                                        "MBT - Depth image");
 #endif
     }
 
@@ -816,16 +828,21 @@ void MBTTracker::track()
   if (display_frame) {
 
     if (!m_display_initialized) {
-      m_display = vpDisplayFactory::createDisplay(m_Ic);
+      // Top left corner, the depth image window being below it (see treat_depth())
+      m_display = vpDisplayFactory::createDisplay(m_Ic, 0, 0, "MBT - Color image (click here)");
       m_display_initialized = true;
     }
 
     vpDisplay::display(m_Ic);
     vpDisplay::display(m_I_depth_display);
     {
-      std::stringstream ss;
-      ss << "Left click to " << (m_has_to_track ? "stop" : "start") << " the tracking, middle click to reinitialize the tracking, right click to quit.";
-      vpDisplay::displayText(m_Ic, 20, 20, ss.str(), vpColor::red);
+      // One short line per action, so that the help stays on the left and does not overlap
+      // the info strings displayed on the right of the image.
+      const unsigned int v_offset = 20, h_offset = 20;
+      vpDisplay::displayText(m_Ic, v_offset, h_offset,
+                             std::string("Left click to ") + (m_has_to_track ? "stop" : "start") + " the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 2 * v_offset, h_offset, "Middle click to reinitialize the tracking.", vpColor::red);
+      vpDisplay::displayText(m_Ic, 3 * v_offset, h_offset, "Right click to quit.", vpColor::red);
     }
   }
 #endif
@@ -885,7 +902,23 @@ void MBTTracker::track()
   if (display_frame) {
     if (tracking_successful) {
       m_tracker->display(m_Ic, cMo, m_rgb_cam, vpColor::red, 1, false);
-      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, 0.01);
+      if (m_object_diameter <= 0.) {
+        // Diagonal of the bounding box of the model, as done by the RBT to compute the object diameter
+        vpColVector pmin(3, std::numeric_limits<double>::max()), pmax(3, -std::numeric_limits<double>::max());
+        for (vpMbtPolygon *polygon : m_tracker->getFaces().getPolygon()) {
+          for (unsigned int i = 0; i < polygon->getNbPoint(); ++i) {
+            const vpPoint &point = polygon->getPoint(i);
+            const double X[3] = { point.get_oX(), point.get_oY(), point.get_oZ() };
+            for (unsigned int k = 0; k < 3; ++k) {
+              pmin[k] = std::min(pmin[k], X[k]);
+              pmax[k] = std::max(pmax[k], X[k]);
+            }
+          }
+        }
+        m_object_diameter = (pmin[0] <= pmax[0]) ? (pmax - pmin).frobeniusNorm() : 0.;
+      }
+      vpDisplay::displayFrame(m_Ic, cMo, m_rgb_cam, compute_frame_size(m_object_diameter, cMo), vpColor::none,
+                              m_frame_thickness);
     }
     unsigned int nb_infos = m_info_strings.info_strings.size();
     const unsigned int v_offset = 20;
@@ -908,8 +941,16 @@ void MBTTracker::track()
       }
       case vpMouseButton::button2:
       {
-        std::scoped_lock lock(m_mutex_initialized);
-        m_tracker_initialized = false;
+        // Reinitialization also (re)starts the tracking: init_tracking() is only called when m_has_to_track is true,
+        // so without this a middle click while the tracking is stopped (e.g. at startup) would have no visible effect
+        {
+          std::scoped_lock lock(m_mutex_initialized);
+          m_tracker_initialized = false;
+        }
+        {
+          std::scoped_lock lock(m_mutex_tracking);
+          m_has_to_track = true;
+        }
         break;
       }
       case vpMouseButton::button3:
@@ -1044,4 +1085,25 @@ std::string MBTTracker::getAvailableTrackerType(const std::string &prefix, const
   list += name + suffix;
   return list;
 }
+
+MBTTracker::MBTTracker(const rclcpp::NodeOptions &options)
+  : MBTTracker("tracker_mbt", options) // The name is overridden by the launch file
+{
+  // In a container, nobody calls init(): call it here. Calling the virtual methods is safe since the most derived
+  // object is fully constructed. An exception is reported by the container as a failure to load the component.
+  if (!init()) {
+    throw std::runtime_error("MBTTracker initialization failed");
+  }
+  // In a container, nobody polls has_to_quit(): quitting the tracker shuts down the container, which ends the demo
+  m_quit_timer = this->create_wall_timer(std::chrono::milliseconds(100), [this]() {
+    if (has_to_quit()) {
+      RCLCPP_INFO(this->get_logger(), "Quit requested, shutting down the container");
+      m_quit_timer->cancel();
+      rclcpp::shutdown();
+    }
+  });
 }
+
+}
+
+RCLCPP_COMPONENTS_REGISTER_NODE(visp_mbt::MBTTracker)

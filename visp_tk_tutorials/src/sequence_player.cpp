@@ -22,37 +22,34 @@
  * WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#include <csignal>
+#include <chrono>
 
 #include <rclcpp/rclcpp.hpp>
 #include <visp_tk_tutorials/SequencePlayer.hpp>
 
-std::shared_ptr<visp_tk_tutorials::SequencePlayer> player;
-
-void signalHandler(int signum)
-{
-  // Send a quit request to the player
-  if (player) {
-    player->stop_and_quit();
-  }
-  RCLCPP_WARN(player->get_logger(), "Sent termination signal to the node due to signal %d", signum);
-}
-
 int main(int argc, char *argv[])
 {
-  signal(SIGABRT, signalHandler);
-  signal(SIGINT, signalHandler);
-  signal(SIGTERM, signalHandler);
-
+  // rclcpp::init() installs the SIGINT/SIGTERM handling: on Ctrl-C, rclcpp::ok() becomes false.
+  // A handler installed with signal() before rclcpp::init() would be replaced, and the loop below would then go on
+  // spinning a shut down context, which crashed the node when stopping the launch file.
   rclcpp::init(argc, argv);
-  player = std::make_shared<visp_tk_tutorials::SequencePlayer>("player_rbt");
-  bool status = player->init();
-  if (status) {
-    while (!player->has_to_quit()) {
-      rclcpp::spin_some(player);
+
+  bool status = false;
+  {
+    auto player = std::make_shared<visp_tk_tutorials::SequencePlayer>("player_rbt");
+    status = player->init();
+    if (status) {
+      rclcpp::executors::SingleThreadedExecutor executor;
+      executor.add_node(player);
+      // spin_once() waits for the next event (e.g. the publication timer), whereas spin_some() returns immediately
+      // when there is nothing to do, which made this loop use a whole CPU core
+      while (rclcpp::ok() && !player->has_to_quit()) {
+        executor.spin_once(std::chrono::milliseconds(30));
+      }
+      executor.remove_node(player);
     }
-  }
-  player.reset();
+  }  // player destroyed here, while the context is still alive
+
   rclcpp::shutdown();
   return (status ? EXIT_SUCCESS : EXIT_FAILURE);
 }

@@ -15,6 +15,7 @@
   <buildtool_depend>rosidl_default_generators</buildtool_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclcpp_components</depend>
   <depend>geometry_msgs</depend>
   <depend>message_filters</depend>
   <depend>sensor_msgs</depend>

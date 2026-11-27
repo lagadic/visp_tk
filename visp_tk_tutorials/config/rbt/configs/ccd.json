@@ -17,6 +17,9 @@
       "reusePreviousPoints": false
     }
   },
+  "drift": {
+    "type": "probabilistic"
+  },
   "features": [
     {
       "type": "silhouetteColor",

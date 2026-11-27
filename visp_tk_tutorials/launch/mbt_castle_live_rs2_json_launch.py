@@ -1,15 +1,56 @@
+"""
+Track the castle with the MBT and a RealSense camera, the RealSense driver and the tracker being loaded as
+components in the same (single-threaded) container with intra-process communication enabled.
+
+castle.cao is a simplified model of the castle (the tower and the low building next to it). castle.json combines a
+color tracker (moving edges and KLT keypoints, tracked on the textured walls) and a depth tracker (planes of the
+faces fitted to the point cloud), as teabox.json does for the teabox.
+"""
+import os
+
 import yaml
+from ament_index_python.packages import get_package_share_directory, PackageNotFoundError
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable, GroupAction, EmitEvent, LogInfo, OpaqueFunction
+from launch.actions import DeclareLaunchArgument, RegisterEventHandler, SetEnvironmentVariable, EmitEvent, LogInfo, OpaqueFunction
 from launch.events import Shutdown
 from launch.event_handlers import (
     OnProcessExit
 )
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
-from launch_ros.actions import Node
+from launch_ros.actions import ComposableNodeContainer
+from launch_ros.descriptions import ComposableNode
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
+
+
+def check_files_exist(context, *arg_names):
+    """
+    Check that the files given by the launch arguments arg_names exist, before anything is started.
+
+    In a component container, a tracker that fails to load its files is only reported as a component that could not
+    be loaded: the container and the camera keep running, nothing is displayed and the launch does not end.
+    ``package://<package>/<path>`` is resolved to the share directory of the package, as done by the trackers.
+    """
+    for name in arg_names:
+        path = LaunchConfiguration(name).perform(context)
+        if not path:
+            continue
+        resolved = path
+        if path.startswith("package://"):
+            package, _, relative = path[len("package://"):].partition("/")
+            try:
+                resolved = os.path.join(get_package_share_directory(package), relative)
+            except PackageNotFoundError:
+                raise RuntimeError(f"Launch argument '{name}': package '{package}' of '{path}' not found")
+        if not os.path.isfile(resolved):
+            raise RuntimeError(f"Launch argument '{name}': file '{resolved}' does not exist")
+    return []
+
 
 def prepare_parameters(context):
+    # Fail early, with an explicit message, if a file given as launch argument does not exist
+    check_files_exist(context, "config_file", "init_file", "rgb_model_file", "depth_model_file")
+
     ## [Getting the launch arguments values]
     config_file = LaunchConfiguration("config_file")
     depth_camera_info_topic_name = LaunchConfiguration("depth_camera_info_topic_name")
@@ -54,7 +95,9 @@ def prepare_parameters(context):
                 {'stream_qos_reliability': stream_qos_reliability},
                 {'tracker_names': tracker_names},
                 {'tracker_types': tracker_types},
-                {'z_factor': z_factor}
+                {'z_factor': z_factor},
+                {'frame_size_ratio': ParameterValue(LaunchConfiguration('frame_size_ratio'), value_type=float)},
+                {'frame_thickness': ParameterValue(LaunchConfiguration('frame_thickness'), value_type=int)}
                 ]
 
     ## [Checking the validity of some launch arguments]
@@ -93,52 +136,61 @@ def prepare_parameters(context):
 
     if len(reference_tracker_parsed ) > 0:
         parameters.append({'reference_tracker': reference_tracker_parsed})
-    ## [Instanciating the node]
-    mbt_node = Node(
+    ## [MBT tracker component]
+    mbt_node = ComposableNode(
         package="visp_mbt",
-        executable="visp_mbt_node",
+        plugin="visp_mbt::MBTTracker",
         name="mbt_node",
-        output="screen",
-        emulate_tty=True,
         parameters=parameters,
     )
-    ## [Realsense camera]
-    realsense = IncludeLaunchDescription(
-        PathJoinSubstitution(
-              [
-                FindPackageShare('realsense2_camera'),
-                'launch',
-                'rs_launch.py'
-              ]),
-        launch_arguments={
-            "enable_rgbd": "false",
-            "enable_sync": "true",
-            "enable_color": "true",
-            "enable_depth": "true",
-            "align_depth.enable": "false",
-            "publish_tf": "true",# publish_tf permits to have the extrinsincs expressed as a TF2
+    ## [Realsense camera component]
+    # Same parameters as when using realsense2_camera/launch/rs_launch.py, topics are published under /camera/camera
+    realsense = ComposableNode(
+        package="realsense2_camera",
+        plugin="realsense2_camera::RealSenseNodeFactory",
+        namespace="camera",
+        name="camera",
+        parameters=[{
+            "enable_rgbd": False,
+            "enable_sync": True,
+            "enable_color": True,
+            "enable_depth": True,
+            "enable_accel": False,
+            "enable_gyro": False,
+            "align_depth.enable": False,
+            "publish_tf": True, # publish_tf permits to have the extrinsincs expressed as a TF2
             "rgb_camera.color_profile": "640,480,30",
             "depth_module.depth_profile": "640,480,30",
-        }.items()
+        }],
+        # The images are passed to the tracker without going through DDS
+        extra_arguments=[{"use_intra_process_comms": True}],
     )
-    ## [Launching nodes]
-    spawn_process = GroupAction([
-      realsense,
-      mbt_node
-      ])
+    ## [Component container]
+    # Both components are loaded in the same process, so that the images (640x480 RGB, about 1 MB each, and depth)
+    # do not go through DDS, which drops many of these large messages. The container must be single-threaded:
+    # the ViSP displays used by the tracker must always be used from the thread that created them.
+    container = ComposableNodeContainer(
+        name="mbt_container",
+        namespace="",
+        package="rclcpp_components",
+        executable="component_container",
+        composable_node_descriptions=[realsense, mbt_node],
+        output="screen",
+        emulate_tty=True,
+    )
     ## [Handling shutdown]
     shutdown_handler = RegisterEventHandler(
             OnProcessExit(
-                target_action=mbt_node,
+                target_action=container,
                 on_exit=[
-                    LogInfo(msg=("The tracking node was closed, turning off the launch file")),
+                    LogInfo(msg=("The container was closed, turning off the launch file")),
                     EmitEvent(event=Shutdown(
-                        reason="tracking node closed"))
+                        reason="container closed"))
                 ]
             )
         )
 
-    return [spawn_process, shutdown_handler]
+    return [container, shutdown_handler]
 
 def generate_launch_description():
     ld = LaunchDescription([
@@ -150,8 +202,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'teabox',
-                'teabox.json'
+                'castle',
+                'castle.json'
               ])
         ),
        DeclareLaunchArgument(
@@ -197,8 +249,8 @@ def generate_launch_description():
                 FindPackageShare('visp_tk_tutorials'),
                 'config',
                 'mbt',
-                'teabox',
-                'teabox.init'
+                'castle',
+                'castle.init'
               ])
         ),
         DeclareLaunchArgument(
@@ -220,8 +272,8 @@ def generate_launch_description():
         ## [End launch argument for aligning streams, depth stream]
         DeclareLaunchArgument(
             "projection_error_threshold",
-            description="Maximum tolerated projection error, if ``detect_failure`` is set to true.",
-            default_value="30.0"
+            description="Maximum tolerated projection error, if ``detect_failure`` is set to true. Higher than for the other objects (30), since the battlements and the rocks of the castle are not modeled.",
+            default_value="45.0"
         ),
         ## [Launch argument for aligning streams, color stream]
         DeclareLaunchArgument(
@@ -258,7 +310,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "stream_qos_reliability",
             description="The reliability of both the RGB and depth image streams (they need to be the same) if depth is required.",
-            default_value="best_effort"
+            default_value="reliable"
         ),
         DeclareLaunchArgument(
             "tracker_names",
@@ -274,6 +326,16 @@ def generate_launch_description():
             "z_factor",
             description="Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.",
             default_value="0.001"
+        ),
+        DeclareLaunchArgument(
+            "frame_size_ratio",
+            description="Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.",
+            default_value="0.3"
+        ),
+        DeclareLaunchArgument(
+            "frame_thickness",
+            description="Thickness, in pixels, of the axes of the displayed object frame.",
+            default_value="2"
         ),
         SetEnvironmentVariable(name='GOMP_SPINCOUNT', value='0'), # To enable OpenMP acceleration
         SetEnvironmentVariable(name='RMW_FASTRTPS_PUBLICATION_MODE', value='ASYNCHRONOUS') # To avoid laggy rosbag

@@ -46,7 +46,8 @@ namespace visp_tracker_common
 class BaseMultiModalTracker : public BaseTracker
 {
 public:
-  BaseMultiModalTracker(const std::string &name, const bool &does_publish_features);
+  BaseMultiModalTracker(const std::string &name, const bool &does_publish_features,
+                        const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
   virtual ~BaseMultiModalTracker() = default;
 
   /**
