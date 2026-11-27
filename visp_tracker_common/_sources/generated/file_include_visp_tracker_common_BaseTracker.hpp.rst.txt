@@ -50,6 +50,8 @@ Includes
 
 - ``visp3/core/vpCameraParameters.h``
 
+- ``visp3/core/vpHomogeneousMatrix.h``
+
 - ``visp_common/camera.hpp``
 
 - ``visp_common/path_retriever.hpp``

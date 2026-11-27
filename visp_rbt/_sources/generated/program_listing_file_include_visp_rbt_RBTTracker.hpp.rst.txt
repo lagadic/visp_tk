@@ -68,7 +68,9 @@ Program Listing for File RBTTracker.hpp
    class RBTTracker : public visp_tracker_common::BaseMultiModalTracker
    {
    public:
-     RBTTracker(const std::string &name);
+     RBTTracker(const std::string &name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+   
+     explicit RBTTracker(const rclcpp::NodeOptions &options);
    
      virtual ~RBTTracker()
      {
@@ -118,6 +120,9 @@ Program Listing for File RBTTracker.hpp
      bool m_tracker_cams_set = false; 
      bool m_load_model_from_params = false; 
      std::string m_init_file_path; 
+   
+     // ----- Timers -----
+     rclcpp::TimerBase::SharedPtr m_quit_timer; 
      visp::vpImage<unsigned char> m_I; 
      visp::vpImage<visp::vpRGBa> m_Ic; 
      visp::vpImage <float> m_I_depth; 

@@ -105,9 +105,12 @@ Collaboration diagram for visp_rbt::RBTTracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15eb38152a17650eee397c29a8146b78" id="r_a15eb38152a17650eee397c29a8146b78"><td class="memItemLeft" align="right" valign="top"><a id="a15eb38152a17650eee397c29a8146b78" name="a15eb38152a17650eee397c29a8146b78"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RBTTracker</b> (const std::string &amp;name)</td></tr>
-<tr class="separator:a15eb38152a17650eee397c29a8146b78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bc0b60ade632739487e5f880b66faea" id="r_a7bc0b60ade632739487e5f880b66faea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a7bc0b60ade632739487e5f880b66faea">RBTTracker</a> (const std::string &amp;name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</td></tr>
+<tr class="memdesc:a7bc0b60ade632739487e5f880b66faea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used by the standalone executable, that calls <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> and polls has_to_quit() itself.  <br /></td></tr>
+<tr class="separator:a7bc0b60ade632739487e5f880b66faea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc70747c50b4bab66b255e924f8308d" id="r_a3fc70747c50b4bab66b255e924f8308d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a3fc70747c50b4bab66b255e924f8308d">RBTTracker</a> (const rclcpp::NodeOptions &amp;options)</td></tr>
+<tr class="memdesc:a3fc70747c50b4bab66b255e924f8308d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor used by the component container. Since the container neither calls <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> nor polls has_to_quit(), <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> is called here and a timer shuts down the container when the user asks to quit.  <br /></td></tr>
+<tr class="separator:a3fc70747c50b4bab66b255e924f8308d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f5c511a5afda83200a8604d9f23c1d8" id="r_a1f5c511a5afda83200a8604d9f23c1d8"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init</a> () override</td></tr>
 <tr class="separator:a1f5c511a5afda83200a8604d9f23c1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -150,6 +153,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_load_model_from_par
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_init_file_path</b></td></tr>
 <tr class="memdesc:a939618c2feb8a76da73cd25a608aa8bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. <br /></td></tr>
 <tr class="separator:a939618c2feb8a76da73cd25a608aa8bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e279f9c16785b1fdc0925bc1d5b650" id="r_a36e279f9c16785b1fdc0925bc1d5b650"><td class="memItemLeft" align="right" valign="top"><a id="a36e279f9c16785b1fdc0925bc1d5b650" name="a36e279f9c16785b1fdc0925bc1d5b650"></a>
+rclcpp::TimerBase::SharedPtr&#160;</td><td class="memItemRight" valign="bottom"><b>m_quit_timer</b></td></tr>
+<tr class="memdesc:a36e279f9c16785b1fdc0925bc1d5b650"><td class="mdescLeft">&#160;</td><td class="mdescRight">In a container, replaces the has_to_quit() polling done by main() <br /></td></tr>
+<tr class="separator:a36e279f9c16785b1fdc0925bc1d5b650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4097e9ba2d03cfa7c6d9ddf39a462ce" id="r_ab4097e9ba2d03cfa7c6d9ddf39a462ce"><td class="memItemLeft" align="right" valign="top"><a id="ab4097e9ba2d03cfa7c6d9ddf39a462ce" name="ab4097e9ba2d03cfa7c6d9ddf39a462ce"></a>
 visp::vpImage&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_I</b></td></tr>
 <tr class="memdesc:ab4097e9ba2d03cfa7c6d9ddf39a462ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gray-scale image. <br /></td></tr>
@@ -166,6 +173,79 @@ visp::vpImage&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom">
 visp::vpRBTracker&#160;</td><td class="memItemRight" valign="bottom"><b>m_tracker</b></td></tr>
 <tr class="separator:a0ba6ad4450ee0aa2ac259a6175501116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7bc0b60ade632739487e5f880b66faea" name="a7bc0b60ade632739487e5f880b66faea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bc0b60ade632739487e5f880b66faea">&#9670;&#160;</a></span>RBTTracker() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">visp_rbt::RBTTracker::RBTTracker </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const rclcpp::NodeOptions &amp;&#160;</td>
+          <td class="paramname"><em>options</em> = <code>rclcpp::NodeOptions()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor used by the standalone executable, that calls <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> and polls has_to_quit() itself. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the node. </td></tr>
+    <tr><td class="paramname">options</td><td>The options of the node. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3fc70747c50b4bab66b255e924f8308d" name="a3fc70747c50b4bab66b255e924f8308d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fc70747c50b4bab66b255e924f8308d">&#9670;&#160;</a></span>RBTTracker() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">visp_rbt::RBTTracker::RBTTracker </td>
+          <td>(</td>
+          <td class="paramtype">const rclcpp::NodeOptions &amp;&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor used by the component container. Since the container neither calls <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> nor polls has_to_quit(), <a class="el" href="classvisp__rbt_1_1RBTTracker.html#a1f5c511a5afda83200a8604d9f23c1d8">init()</a> is called here and a timer shuts down the container when the user asks to quit. </p>
+<p>The container must be single-threaded (component_container): the Panda3D OpenGL context and the X11 displays must always be used from the thread that created them, which component_container_mt does not guarantee.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">options</td><td>The options of the node given by the container. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a305370e14f4c5e271911b9dcfb31edbd" name="a305370e14f4c5e271911b9dcfb31edbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a305370e14f4c5e271911b9dcfb31edbd">&#9670;&#160;</a></span>check_requires_depth()</h2>

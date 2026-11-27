@@ -1,0 +1,14 @@
+.. _exhale_function_display_8hpp_1acb728264d2c25482be9e4f86a14cd47d:
+
+Template Function visp_tracker_common::display::displayNamedFeature
+===================================================================
+
+- Defined in :ref:`file_include_visp_tracker_common_display.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: visp_tracker_common::display::displayNamedFeature(const visp::vpImage<Type>&, const visp_tracker_common::msg::NamedFeature&, const visp::vpColor&, unsigned int, PointsType)
+   :project: visp_tracker_common Doxygen Project

@@ -3,6 +3,20 @@
   <compound kind="class">
     <name>visp_rbt::RBTTracker</name>
     <filename>classvisp__rbt_1_1RBTTracker.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>RBTTracker</name>
+      <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
+      <anchor>a7bc0b60ade632739487e5f880b66faea</anchor>
+      <arglist>(const std::string &amp;name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>RBTTracker</name>
+      <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
+      <anchor>a3fc70747c50b4bab66b255e924f8308d</anchor>
+      <arglist>(const rclcpp::NodeOptions &amp;options)</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>init</name>
@@ -92,6 +106,13 @@
       <name>m_init_file_path</name>
       <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
       <anchor>a939618c2feb8a76da73cd25a608aa8bd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>rclcpp::TimerBase::SharedPtr</type>
+      <name>m_quit_timer</name>
+      <anchorfile>classvisp__rbt_1_1RBTTracker.html</anchorfile>
+      <anchor>a36e279f9c16785b1fdc0925bc1d5b650</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">

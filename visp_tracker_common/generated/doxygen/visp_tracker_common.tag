@@ -301,6 +301,13 @@
       <anchor>a6ea659bd327687a484e630f8f70eef3fad9f53d49420e7116defdc9cf7b50c026</anchor>
       <arglist></arglist>
     </member>
+    <member kind="function" protection="protected">
+      <type>double</type>
+      <name>compute_frame_size</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>a0f10b0cf3b7cfe79f2ad5580a72affb7</anchor>
+      <arglist>(double object_diameter, const visp::vpHomogeneousMatrix &amp;cMo) const</arglist>
+    </member>
     <member kind="function" protection="protected" virtualness="pure">
       <type>virtual bool</type>
       <name>init_tracker</name>
@@ -326,8 +333,8 @@
       <type>void</type>
       <name>display_overlay_features</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
-      <anchor>ad9a3a2bb0993297d39a8da1e6102bccd</anchor>
-      <arglist>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</arglist>
+      <anchor>a0e5f422937cd9b5a2e09df929fa0d53d</anchor>
+      <arglist>(const visp::vpImage&lt; Type &gt; &amp;I)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
@@ -519,6 +526,20 @@
       <arglist></arglist>
     </member>
     <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>m_frame_size_ratio</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>afbd2c5291872980a7d8511242fee08d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>unsigned int</type>
+      <name>m_frame_thickness</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>a21f5964d2d3c01b3e0fc4e2ecf3a447b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
       <type>bool</type>
       <name>m_visualization_debug</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
@@ -625,6 +646,13 @@
     </member>
     <member kind="variable" protection="protected" static="yes">
       <type>static constexpr double</type>
+      <name>s_frame_min_size_px</name>
+      <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
+      <anchor>af3849b90de3333ed4e6e92ed1ecc056d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected" static="yes">
+      <type>static constexpr double</type>
       <name>s_overlay_features_max_age</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
       <anchor>a41455115ba9dac7ff422c6c8dadef8df</anchor>
@@ -676,8 +704,8 @@
       <type>void</type>
       <name>display_overlay_features</name>
       <anchorfile>classvisp__tracker__common_1_1BaseTracker.html</anchorfile>
-      <anchor>ad9a3a2bb0993297d39a8da1e6102bccd</anchor>
-      <arglist>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</arglist>
+      <anchor>a0e5f422937cd9b5a2e09df929fa0d53d</anchor>
+      <arglist>(const visp::vpImage&lt; Type &gt; &amp;I)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>

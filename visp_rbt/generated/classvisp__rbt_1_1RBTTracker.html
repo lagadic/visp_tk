@@ -181,9 +181,30 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE">
-<span id="_CPPv3N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE"></span><span id="_CPPv2N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE"></span><span id="visp_rbt::RBTTracker::RBTTracker__ssCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a15eb38152a17650eee397c29a8146b78"></span><span class="sig-name descname"><span class="n"><span class="pre">RBTTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringE" title="Link to this definition"></a><br /></dt>
-<dd></dd></dl>
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE"></span><span id="visp_rbt::RBTTracker::RBTTracker__ssCR.rclcpp::NodeOptionsCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a7bc0b60ade632739487e5f880b66faea"></span><span class="sig-name descname"><span class="n"><span class="pre">RBTTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKNSt6stringERKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor used by the standalone executable, that calls <a class="reference internal" href="#classvisp__rbt_1_1RBTTracker_1a1f5c511a5afda83200a8604d9f23c1d8"><span class="std std-ref">init()</span></a> and polls has_to_quit() itself. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – The name of the node. </p></li>
+<li><p><strong>options</strong> – The options of the node. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N8visp_rbt10RBTTracker10RBTTrackerERKN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N8visp_rbt10RBTTracker10RBTTrackerERKN6rclcpp11NodeOptionsE"></span><span id="visp_rbt::RBTTracker::RBTTracker__rclcpp::NodeOptionsCR"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a3fc70747c50b4bab66b255e924f8308d"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RBTTracker</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker10RBTTrackerERKN6rclcpp11NodeOptionsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor used by the component container. Since the container neither calls <a class="reference internal" href="#classvisp__rbt_1_1RBTTracker_1a1f5c511a5afda83200a8604d9f23c1d8"><span class="std std-ref">init()</span></a> nor polls has_to_quit(), <a class="reference internal" href="#classvisp__rbt_1_1RBTTracker_1a1f5c511a5afda83200a8604d9f23c1d8"><span class="std std-ref">init()</span></a> is called here and a timer shuts down the container when the user asks to quit. </p>
+<p>The container must be single-threaded (component_container): the Panda3D OpenGL context and the X11 displays must always be used from the thread that created them, which component_container_mt does not guarantee.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>options</strong> – The options of the node given by the container. </p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTrackerD0Ev">
@@ -269,6 +290,12 @@
 <dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker16m_init_file_pathE">
 <span id="_CPPv3N8visp_rbt10RBTTracker16m_init_file_pathE"></span><span id="_CPPv2N8visp_rbt10RBTTracker16m_init_file_pathE"></span><span id="visp_rbt::RBTTracker::m_init_file_path__ss"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_init_file_path</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker16m_init_file_pathE" title="Link to this definition"></a><br /></dt>
 <dd><p>Path towards the init file that contains the 3D coordinates of the points to click to initialize the tracker. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8visp_rbt10RBTTracker12m_quit_timerE">
+<span id="_CPPv3N8visp_rbt10RBTTracker12m_quit_timerE"></span><span id="_CPPv2N8visp_rbt10RBTTracker12m_quit_timerE"></span><span id="visp_rbt::RBTTracker::m_quit_timer__rclcpp::TimerBase::SharedPtr"></span><span class="target" id="classvisp__rbt_1_1RBTTracker_1a36e279f9c16785b1fdc0925bc1d5b650"></span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">TimerBase</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m_quit_timer</span></span></span><a class="headerlink" href="#_CPPv4N8visp_rbt10RBTTracker12m_quit_timerE" title="Link to this definition"></a><br /></dt>
+<dd><p>In a container, replaces the has_to_quit() polling done by main() </p>
 </dd></dl>
 
 <dl class="cpp var">

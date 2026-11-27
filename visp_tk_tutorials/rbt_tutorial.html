@@ -20,7 +20,9 @@
         <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C++ API" href="generated/index.html" />
+    <link rel="prev" title="Model-Based Tracker (MBT) tutorial" href="mbt_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,8 +47,32 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="user_docs.html">Documentation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apriltag_tutorial.html">AprilTag tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbt_tutorial.html">Model-Based Tracker (MBT) tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Render-Based Tracker (RBT) tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-using-a-recorded-sequence">Tutorial using a recorded sequence</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#purpose-of-this-tutorial">Purpose of this tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-launch-it">How to launch it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-another-configuration-file">Using another configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Purpose of this tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">How to launch it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-another-object-or-configuration-file">Using another object or configuration file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#display-of-the-object-frame">Display of the object frame</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/index.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a></li>
 </ul>
 
@@ -104,6 +130,48 @@ arguments, please run:</p>
 </pre></div>
 </div>
 <p>You can for instance easily switch between the object to track thanks to the <code class="docutils literal notranslate"><span class="pre">object_name</span></code> launch argument.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">object_name</span></code></p></th>
+<th class="head"><p>Tracked features</p></th>
+<th class="head"><p>Configuration file</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dragon</span></code> (default)</p></td>
+<td><div class="line-block">
+<div class="line">Dense depth (<code class="docutils literal notranslate"><span class="pre">depth</span></code>) and color silhouette</div>
+<div class="line">(<code class="docutils literal notranslate"><span class="pre">silhouetteColor</span></code>, CCD), with an object mask</div>
+</div>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cube</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Dense depth (<code class="docutils literal notranslate"><span class="pre">depth</span></code>) and color silhouette</div>
+<div class="line">(<code class="docutils literal notranslate"><span class="pre">silhouetteColor</span></code>, CCD), with an object mask</div>
+</div>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stomach</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Dense depth (<code class="docutils literal notranslate"><span class="pre">depth</span></code>) and color silhouette</div>
+<div class="line">(<code class="docutils literal notranslate"><span class="pre">silhouetteColor</span></code>, CCD), with an object mask</div>
+</div>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">object_name</span></code> only selects the 3D model and the initial pose of the object: the three objects use the same
+default configuration file, which can be changed with the <code class="docutils literal notranslate"><span class="pre">config_file</span></code> launch argument
+(see <a class="reference internal" href="#using-another-configuration-file">Using another configuration file</a> below).</p>
 <p>When you first start the launch file, you should see something similar to the following image:</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/rbt_start.png"><img alt="_images/rbt_start.png" src="_images/rbt_start.png" style="width: 90%;" /></a>
@@ -116,21 +184,421 @@ from clicks. If you chose for instance to track the dragon, you should see somet
 </figure>
 <p>Afterwards, a left click will momentarily pause the tracker, while a right click will kill the node.</p>
 </section>
+<section id="using-another-configuration-file">
+<h3>Using another configuration file<a class="headerlink" href="#using-another-configuration-file" title="Link to this heading"></a></h3>
+<p>The features used by the RBT and their settings are given by a JSON configuration file, passed with the
+<code class="docutils literal notranslate"><span class="pre">config_file</span></code> launch argument. It must be an absolute path. To use one of the configuration files installed
+with the package, you can build this path with <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_bag_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>config_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>visp_tk_tutorials<span class="k">)</span>/share/visp_tk_tutorials/config/rbt/configs/depth-klt.json
+</pre></div>
+</div>
+<p>The following configuration files are provided in <code class="docutils literal notranslate"><span class="pre">config/rbt/configs</span></code>. The features are named after the
+<code class="docutils literal notranslate"><span class="pre">type</span></code> key of the file, which is also the name displayed by the tracker in the <code class="docutils literal notranslate"><span class="pre">Features:</span></code> lines.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Default. Depth (<code class="docutils literal notranslate"><span class="pre">depth</span></code>) and color silhouette</div>
+<div class="line">(<code class="docutils literal notranslate"><span class="pre">silhouetteColor</span></code>, CCD), with an object segmentation</div>
+<div class="line">mask that rejects the features lying on the background.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">depth-ccd.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Same features as <code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code>,</div>
+<div class="line">without mask.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">depth-klt-ccd-mask.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code> with KLT keypoints (<code class="docutils literal notranslate"><span class="pre">klt</span></code>)</div>
+<div class="line">tracked on the object texture.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">depth-klt.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Depth and KLT keypoints only, no silhouette.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">depth-klt-me-single.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Depth, KLT and moving edges along the silhouette</div>
+<div class="line">(<code class="docutils literal notranslate"><span class="pre">silhouetteMe</span></code>), keeping one edge candidate per point.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">depth-klt-me-multi.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Same as <code class="docutils literal notranslate"><span class="pre">depth-klt-me-single.json</span></code>,</div>
+<div class="line">keeping 3 edge candidates per silhouette point.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ccd.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Color silhouette (CCD) only:</div>
+<div class="line">does not require a depth stream.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ccd-temporal-smoothing.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Same as <code class="docutils literal notranslate"><span class="pre">ccd.json</span></code>, with the color statistics</div>
+<div class="line">smoothed over time.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">orangina-depth-klt-ccd-mask.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Tuned for the Orangina can,</div>
+<div class="line">see <a class="reference internal" href="#rbt-live-other-config"><span class="std std-ref">Using another object or configuration file</span></a> below.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">castle-depth-klt-ccd-mask.json</span></code></p></td>
+<td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">depth-klt-ccd-mask.json</span></code> tuned to reduce</div>
+<div class="line">the tracking time on the castle.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The parameters of these files, and the values that differ between them, are described in
+<code class="docutils literal notranslate"><span class="pre">config/rbt/configs/README.md</span></code>.</p>
+<p>If the file does not exist, the tracker cannot be initialized: the error <code class="docutils literal notranslate"><span class="pre">config</span> <span class="pre">file</span> <span class="pre">...</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">exist</span></code>
+is displayed, the node stops and the launch file ends.</p>
+</section>
 <section id="code-explanation">
 <h3>Code explanation<a class="headerlink" href="#code-explanation" title="Link to this heading"></a></h3>
 <p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">rbt_bag_launch.py</span></code>. Because it is a fairly big file, we will study the parts
 separately. Let’s first have a look to the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method that is called
 by the <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">launch</span></code> utilitary or by a call to <code class="docutils literal notranslate"><span class="pre">IncludeLaunchDescription</span></code> in another launch file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">103</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos">104</span>    <span class="c1">## [Declaring launch arguments]</span>
+<span class="linenos">105</span>    <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">(</span> <span class="p">[</span>
+<span class="linenos">106</span>       <span class="c1">## [RBT arguments]</span>
+<span class="linenos">107</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">108</span>            <span class="s1">&#39;config_file&#39;</span><span class="p">,</span>
+<span class="linenos">109</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Absolute path towards the JSON config file for the RBT&quot;</span><span class="p">,</span>
+<span class="linenos">110</span>            <span class="n">default_value</span><span class="o">=</span><span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">111</span>              <span class="p">[</span>
+<span class="linenos">112</span>                <span class="n">FindPackageShare</span><span class="p">(</span><span class="s1">&#39;visp_tk_tutorials&#39;</span><span class="p">),</span>
+<span class="linenos">113</span>                <span class="s1">&#39;config&#39;</span><span class="p">,</span>
+<span class="linenos">114</span>                <span class="s1">&#39;rbt&#39;</span><span class="p">,</span>
+<span class="linenos">115</span>                <span class="s1">&#39;configs&#39;</span><span class="p">,</span>
+<span class="linenos">116</span>                <span class="s1">&#39;depth-ccd-mask.json&#39;</span>
+<span class="linenos">117</span>              <span class="p">])</span>
+<span class="linenos">118</span>        <span class="p">),</span>
+<span class="linenos">119</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">120</span>            <span class="s2">&quot;depth_camera_info_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">121</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the depth camera topic.&quot;</span><span class="p">,</span>
+<span class="linenos">122</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/camera_rgb/depth/camera_info&quot;</span>
+<span class="linenos">123</span>        <span class="p">),</span>
+<span class="linenos">124</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">125</span>            <span class="s2">&quot;depth_image_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">126</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the depth stream topic.&quot;</span><span class="p">,</span>
+<span class="linenos">127</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/camera_rgb/depth/image_raw&quot;</span>
+<span class="linenos">128</span>        <span class="p">),</span>
+<span class="linenos">129</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">130</span>            <span class="s2">&quot;display_nb_frames_skipped&quot;</span><span class="p">,</span>
+<span class="linenos">131</span>            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;This parameter indicates the number of frames skipped during display&quot;</span><span class="p">,</span>
+<span class="linenos">132</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;-1&quot;</span>
+<span class="linenos">133</span>        <span class="p">),</span>
+<span class="linenos">134</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">135</span>            <span class="s2">&quot;headless_mode&quot;</span><span class="p">,</span>
+<span class="linenos">136</span>            <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;If True, the node will not display anything, expecting that another takes in charge the GUI.&quot;</span><span class="p">,</span>
+<span class="linenos">137</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;False&quot;</span>
+<span class="linenos">138</span>        <span class="p">),</span>
+<span class="linenos">139</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">140</span>            <span class="s1">&#39;init_file&#39;</span><span class="p">,</span>
+<span class="linenos">141</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Absolute path towards the `.init` file that indicates the clicks location to initialize the RBT&quot;</span><span class="p">,</span>
+<span class="linenos">142</span>            <span class="n">default_value</span><span class="o">=</span><span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">143</span>              <span class="p">[</span>
+<span class="linenos">144</span>                <span class="n">FindPackageShare</span><span class="p">(</span><span class="s1">&#39;visp_tk_tutorials&#39;</span><span class="p">),</span>
+<span class="linenos">145</span>                <span class="s1">&#39;config&#39;</span><span class="p">,</span>
+<span class="linenos">146</span>                <span class="s1">&#39;rbt&#39;</span><span class="p">,</span>
+<span class="linenos">147</span>                <span class="s1">&#39;models&#39;</span><span class="p">,</span>
+<span class="linenos">148</span>                <span class="s1">&#39;dragon&#39;</span><span class="p">,</span>
+<span class="linenos">149</span>                <span class="s1">&#39;dragon.init&#39;</span>
+<span class="linenos">150</span>              <span class="p">])</span>
+<span class="linenos">151</span>        <span class="p">),</span>
+<span class="linenos">152</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">153</span>            <span class="s2">&quot;init_method&quot;</span><span class="p">,</span>
+<span class="linenos">154</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Initialization method to initialize the tracker. Default method is initialization by click.&quot;</span><span class="p">,</span>
+<span class="linenos">155</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;topic&quot;</span>
+<span class="linenos">156</span>        <span class="p">),</span>
+<span class="linenos">157</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">158</span>            <span class="s2">&quot;init_topic&quot;</span><span class="p">,</span>
+<span class="linenos">159</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If the ``init_method`` is set to topic, this parameter becomes **REQUIRED** and must be set to the topic of type ``geometry_msgs:msg::PoseStamped`` the tracker must use to get the init pose.&quot;</span><span class="p">,</span>
+<span class="linenos">160</span>            <span class="n">default_value</span><span class="o">=</span><span class="n">init_pose_topic_name</span>
+<span class="linenos">161</span>        <span class="p">),</span>
+<span class="linenos">162</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">163</span>            <span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">164</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the color camera topic.&quot;</span><span class="p">,</span>
+<span class="linenos">165</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/camera_rgb/color/camera_info&quot;</span>
+<span class="linenos">166</span>        <span class="p">),</span>
+<span class="linenos">167</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">168</span>            <span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">169</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the color image topic.&quot;</span><span class="p">,</span>
+<span class="linenos">170</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/camera_rgb/color/image_raw&quot;</span>
+<span class="linenos">171</span>        <span class="p">),</span>
+<span class="linenos">172</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">173</span>            <span class="s2">&quot;stream_qos_depth&quot;</span><span class="p">,</span>
+<span class="linenos">174</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The depth of the queue of both the RGB and depth image streams (they need to be the same) if depth is required.&quot;</span><span class="p">,</span>
+<span class="linenos">175</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;5&quot;</span>
+<span class="linenos">176</span>        <span class="p">),</span>
+<span class="linenos">177</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">178</span>            <span class="s2">&quot;stream_qos_durability&quot;</span><span class="p">,</span>
+<span class="linenos">179</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The durability of both the RGB and depth image streams (they need to be the same) if depth is required.&quot;</span><span class="p">,</span>
+<span class="linenos">180</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;volatile&quot;</span>
+<span class="linenos">181</span>        <span class="p">),</span>
+<span class="linenos">182</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">183</span>            <span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">,</span>
+<span class="linenos">184</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The reliability of both the RGB and depth image streams (they need to be the same) if depth is required.&quot;</span><span class="p">,</span>
+<span class="linenos">185</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;reliable&quot;</span>
+<span class="linenos">186</span>        <span class="p">),</span>
+<span class="linenos">187</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">188</span>            <span class="s2">&quot;z_factor&quot;</span><span class="p">,</span>
+<span class="linenos">189</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Factor to convert the depth image expressed as uint16_t into meters. For instance, if a value of ``1000`` in the raw depth image corresponds to ``1 meter``, the ``z_factor`` must be set to ``0.001``.&quot;</span><span class="p">,</span>
+<span class="linenos">190</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;0.001&quot;</span>
+<span class="linenos">191</span>        <span class="p">),</span>
+<span class="linenos">192</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">193</span>            <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">,</span>
+<span class="linenos">194</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.&quot;</span><span class="p">,</span>
+<span class="linenos">195</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;0.3&quot;</span>
+<span class="linenos">196</span>        <span class="p">),</span>
+<span class="linenos">197</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">198</span>            <span class="s2">&quot;frame_thickness&quot;</span><span class="p">,</span>
+<span class="linenos">199</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Thickness, in pixels, of the axes of the displayed object frame.&quot;</span><span class="p">,</span>
+<span class="linenos">200</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;2&quot;</span>
+<span class="linenos">201</span>        <span class="p">),</span>
+<span class="linenos">202</span>      <span class="c1">## [Sequence-player arguments]</span>
+<span class="linenos">203</span>      <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">204</span>          <span class="s2">&quot;object_name&quot;</span><span class="p">,</span>
+<span class="linenos">205</span>          <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the object to track in the sequence.&quot;</span><span class="p">,</span>
+<span class="linenos">206</span>          <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;dragon&quot;</span><span class="p">,</span>
+<span class="linenos">207</span>          <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dragon&quot;</span><span class="p">,</span><span class="s2">&quot;cube&quot;</span><span class="p">,</span><span class="s2">&quot;stomach&quot;</span><span class="p">]</span>
+<span class="linenos">208</span>      <span class="p">),</span>
+<span class="linenos">209</span>      <span class="c1">## [Setting OpenMP environment variables]</span>
+<span class="linenos">210</span>        <span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;GOMP_SPINCOUNT&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">),</span> <span class="c1"># To enable OpenMP acceleration</span>
+<span class="linenos">211</span>    <span class="p">])</span>
+<span class="linenos">212</span>
+<span class="linenos">213</span>    <span class="n">ld</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">OpaqueFunction</span><span class="p">(</span><span class="n">function</span><span class="o">=</span><span class="n">handle_object_parameter</span><span class="p">))</span>
+<span class="linenos">214</span>
+<span class="linenos">215</span>    <span class="k">return</span> <span class="n">ld</span>
+</pre></div>
+</div>
 <p>As you can see, the <code class="xref py py-func docutils literal notranslate"><span class="pre">generate_launch_description()</span></code> method mostly declare the launch arguments and
 register an <code class="xref py py-class docutils literal notranslate"><span class="pre">OpaqueFunction</span></code> object that will be called once the context of the launch file will
 be known. However, it is important to notice that it also sets an OpenMP environment variable. It helps accelerate
 the processing of depth images when the depth stream is used too and helps accelerate the tracker.</p>
 <p>Here is a quick overview of the <code class="xref py py-func docutils literal notranslate"><span class="pre">handle_object_parameter()</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 14</span><span class="k">def</span> <span class="nf">handle_object_parameter</span><span class="p">(</span><span class="n">context</span><span class="p">):</span>
+<span class="linenos"> 15</span>  <span class="c1">## [Getting the values of the tracker-related launch arguments]</span>
+<span class="linenos"> 16</span>  <span class="n">config_file</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;config_file&quot;</span><span class="p">)</span>
+<span class="linenos"> 17</span>  <span class="n">depth_camera_info_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;depth_camera_info_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos"> 18</span>  <span class="n">depth_image_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;depth_image_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos"> 19</span>  <span class="n">display_nb_frames_skipped</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;display_nb_frames_skipped&quot;</span><span class="p">)</span>
+<span class="linenos"> 20</span>  <span class="n">headless_mode</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;headless_mode&quot;</span><span class="p">)</span>
+<span class="linenos"> 21</span>  <span class="n">init_file</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_file&quot;</span><span class="p">)</span>
+<span class="linenos"> 22</span>  <span class="n">init_method</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_method&quot;</span><span class="p">)</span>
+<span class="linenos"> 23</span>  <span class="n">init_topic</span>  <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_topic&quot;</span><span class="p">)</span>
+<span class="linenos"> 24</span>  <span class="n">rgb_camera_info_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos"> 25</span>  <span class="n">rgb_image_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos"> 26</span>  <span class="n">stream_qos_depth</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_depth&quot;</span><span class="p">)</span>
+<span class="linenos"> 27</span>  <span class="n">stream_qos_durability</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_durability&quot;</span><span class="p">)</span>
+<span class="linenos"> 28</span>  <span class="n">stream_qos_reliability</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">)</span>
+<span class="linenos"> 29</span>  <span class="n">z_factor</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;z_factor&quot;</span><span class="p">)</span>
+<span class="linenos"> 30</span>  <span class="c1">## [Handling tracked object]</span>
+<span class="linenos"> 31</span>  <span class="n">object_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;object_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="linenos"> 32</span>  <span class="k">if</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;dragon&quot;</span><span class="p">:</span>
+<span class="linenos"> 33</span>    <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/dragon/dragon.obj&quot;</span>
+<span class="linenos"> 34</span>  <span class="k">elif</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;cube&quot;</span><span class="p">:</span>
+<span class="linenos"> 35</span>     <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/cube/cube.obj&quot;</span>
+<span class="linenos"> 36</span>  <span class="k">elif</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;stomach&quot;</span><span class="p">:</span>
+<span class="linenos"> 37</span>       <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/stomach/stomach.obj&quot;</span>
+<span class="linenos"> 38</span>  <span class="k">else</span><span class="p">:</span>
+<span class="linenos"> 39</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected object_name </span><span class="si">{</span><span class="n">object_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos"> 40</span>  <span class="c1">## [Sequence player]</span>
+<span class="linenos"> 41</span>  <span class="n">sequence_folder</span> <span class="o">=</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos"> 42</span>      <span class="p">[</span><span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;visp_tk_tutorials&quot;</span><span class="p">),</span> <span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+<span class="linenos"> 43</span>  <span class="p">)</span>
+<span class="linenos"> 44</span>  <span class="n">sequence_player</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+<span class="linenos"> 45</span>      <span class="n">package</span><span class="o">=</span><span class="s1">&#39;visp_tk_tutorials&#39;</span><span class="p">,</span>
+<span class="linenos"> 46</span>      <span class="c1"># namespace=&quot;rbt_ns&quot;,</span>
+<span class="linenos"> 47</span>      <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;sequence_player_node&#39;</span><span class="p">,</span>
+<span class="linenos"> 48</span>      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sequence_player&#39;</span><span class="p">,</span>
+<span class="linenos"> 49</span>      <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
+<span class="linenos"> 50</span>      <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 51</span>      <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 52</span>          <span class="p">{</span><span class="s1">&#39;sequence_path&#39;</span> <span class="p">:</span> <span class="n">sequence_folder</span><span class="p">},</span>
+<span class="linenos"> 53</span>          <span class="p">{</span><span class="s1">&#39;object_name&#39;</span><span class="p">:</span> <span class="n">object_name</span><span class="p">},</span>
+<span class="linenos"> 54</span>          <span class="p">{</span><span class="s1">&#39;depth_image_topic_name&#39;</span><span class="p">:</span> <span class="n">depth_image_topic_name</span><span class="p">},</span>
+<span class="linenos"> 55</span>          <span class="p">{</span><span class="s1">&#39;depth_camera_info_topic_name&#39;</span><span class="p">:</span><span class="n">depth_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos"> 56</span>          <span class="p">{</span><span class="s1">&#39;rgb_image_topic_name&#39;</span><span class="p">:</span><span class="n">rgb_image_topic_name</span><span class="p">},</span>
+<span class="linenos"> 57</span>          <span class="p">{</span><span class="s1">&#39;rgb_camera_info_topic_name&#39;</span><span class="p">:</span><span class="n">rgb_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos"> 58</span>          <span class="p">{</span><span class="s1">&#39;init_pose_topic_name&#39;</span><span class="p">:</span> <span class="n">init_pose_topic_name</span><span class="p">}</span>
+<span class="linenos"> 59</span>      <span class="p">]</span>
+<span class="linenos"> 60</span>    <span class="p">)</span>
+<span class="linenos"> 61</span>  <span class="c1">## [RBT tracker node]</span>
+<span class="linenos"> 62</span>  <span class="n">rbt_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+<span class="linenos"> 63</span>      <span class="n">package</span><span class="o">=</span><span class="s1">&#39;visp_rbt&#39;</span><span class="p">,</span>
+<span class="linenos"> 64</span>      <span class="c1"># namespace=&quot;rbt_ns&quot;,</span>
+<span class="linenos"> 65</span>      <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;visp_rbt_node&#39;</span><span class="p">,</span>
+<span class="linenos"> 66</span>      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tracker_rbt&#39;</span><span class="p">,</span>
+<span class="linenos"> 67</span>      <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
+<span class="linenos"> 68</span>      <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos"> 69</span>      <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 70</span>          <span class="p">{</span><span class="s1">&#39;config_file&#39;</span> <span class="p">:</span> <span class="n">config_file</span><span class="p">},</span>
+<span class="linenos"> 71</span>          <span class="p">{</span><span class="s1">&#39;depth_camera_info_topic_name&#39;</span> <span class="p">:</span> <span class="n">depth_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos"> 72</span>          <span class="p">{</span><span class="s1">&#39;depth_image_topic_name&#39;</span> <span class="p">:</span> <span class="n">depth_image_topic_name</span><span class="p">},</span>
+<span class="linenos"> 73</span>          <span class="p">{</span><span class="s1">&#39;display_nb_frames_skipped&#39;</span> <span class="p">:</span> <span class="n">display_nb_frames_skipped</span><span class="p">},</span>
+<span class="linenos"> 74</span>          <span class="p">{</span><span class="s1">&#39;headless_mode&#39;</span> <span class="p">:</span> <span class="n">headless_mode</span><span class="p">},</span>
+<span class="linenos"> 75</span>          <span class="p">{</span><span class="s1">&#39;init_file&#39;</span> <span class="p">:</span> <span class="n">init_file</span><span class="p">},</span>
+<span class="linenos"> 76</span>          <span class="p">{</span><span class="s1">&#39;init_method&#39;</span> <span class="p">:</span> <span class="n">init_method</span><span class="p">},</span>
+<span class="linenos"> 77</span>          <span class="p">{</span><span class="s1">&#39;init_topic&#39;</span> <span class="p">:</span> <span class="n">init_topic</span><span class="p">},</span>
+<span class="linenos"> 78</span>          <span class="p">{</span><span class="s1">&#39;model_file&#39;</span><span class="p">:</span> <span class="n">model_file</span><span class="p">},</span>
+<span class="linenos"> 79</span>          <span class="p">{</span><span class="s1">&#39;rgb_camera_info_topic_name&#39;</span> <span class="p">:</span> <span class="n">rgb_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos"> 80</span>          <span class="p">{</span><span class="s1">&#39;rgb_image_topic_name&#39;</span> <span class="p">:</span> <span class="n">rgb_image_topic_name</span><span class="p">},</span>
+<span class="linenos"> 81</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_depth&#39;</span> <span class="p">:</span> <span class="n">stream_qos_depth</span><span class="p">},</span>
+<span class="linenos"> 82</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_durability&#39;</span> <span class="p">:</span> <span class="n">stream_qos_durability</span><span class="p">},</span>
+<span class="linenos"> 83</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_reliability&#39;</span> <span class="p">:</span> <span class="n">stream_qos_reliability</span><span class="p">},</span>
+<span class="linenos"> 84</span>          <span class="p">{</span><span class="s1">&#39;z_factor&#39;</span> <span class="p">:</span> <span class="n">z_factor</span><span class="p">},</span>
+<span class="linenos"> 85</span>          <span class="p">{</span><span class="s1">&#39;frame_size_ratio&#39;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s1">&#39;frame_size_ratio&#39;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">float</span><span class="p">)},</span>
+<span class="linenos"> 86</span>          <span class="p">{</span><span class="s1">&#39;frame_thickness&#39;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s1">&#39;frame_thickness&#39;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">)}</span>
+<span class="linenos"> 87</span>      <span class="p">]</span>
+<span class="linenos"> 88</span>  <span class="p">)</span>
+<span class="linenos"> 89</span>  <span class="c1">## [Shutdown-event handler]</span>
+<span class="linenos"> 90</span>  <span class="n">shutdown_handler</span> <span class="o">=</span> <span class="n">RegisterEventHandler</span><span class="p">(</span>
+<span class="linenos"> 91</span>          <span class="n">OnProcessExit</span><span class="p">(</span>
+<span class="linenos"> 92</span>              <span class="n">target_action</span><span class="o">=</span><span class="n">rbt_node</span><span class="p">,</span>
+<span class="linenos"> 93</span>              <span class="n">on_exit</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 94</span>                  <span class="n">LogInfo</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;The tracking node was closed, turning off the launch file&quot;</span><span class="p">)),</span>
+<span class="linenos"> 95</span>                  <span class="n">EmitEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">Shutdown</span><span class="p">(</span>
+<span class="linenos"> 96</span>                      <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;tracking node closed&quot;</span><span class="p">))</span>
+<span class="linenos"> 97</span>              <span class="p">]</span>
+<span class="linenos"> 98</span>          <span class="p">)</span>
+<span class="linenos"> 99</span>      <span class="p">)</span>
+<span class="linenos">100</span>  <span class="c1">## [Returning launch description items]</span>
+<span class="linenos">101</span>  <span class="k">return</span> <span class="p">[</span><span class="n">sequence_player</span><span class="p">,</span> <span class="n">rbt_node</span><span class="p">,</span> <span class="n">shutdown_handler</span><span class="p">]</span>
+<span class="linenos">102</span>
+</pre></div>
+</div>
 <p>First, we get the launch arguments values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">15</span>  <span class="c1">## [Getting the values of the tracker-related launch arguments]</span>
+<span class="linenos">16</span>  <span class="n">config_file</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;config_file&quot;</span><span class="p">)</span>
+<span class="linenos">17</span>  <span class="n">depth_camera_info_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;depth_camera_info_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos">18</span>  <span class="n">depth_image_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;depth_image_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos">19</span>  <span class="n">display_nb_frames_skipped</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;display_nb_frames_skipped&quot;</span><span class="p">)</span>
+<span class="linenos">20</span>  <span class="n">headless_mode</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;headless_mode&quot;</span><span class="p">)</span>
+<span class="linenos">21</span>  <span class="n">init_file</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_file&quot;</span><span class="p">)</span>
+<span class="linenos">22</span>  <span class="n">init_method</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_method&quot;</span><span class="p">)</span>
+<span class="linenos">23</span>  <span class="n">init_topic</span>  <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;init_topic&quot;</span><span class="p">)</span>
+<span class="linenos">24</span>  <span class="n">rgb_camera_info_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>  <span class="n">rgb_image_topic_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">)</span>
+<span class="linenos">26</span>  <span class="n">stream_qos_depth</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_depth&quot;</span><span class="p">)</span>
+<span class="linenos">27</span>  <span class="n">stream_qos_durability</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_durability&quot;</span><span class="p">)</span>
+<span class="linenos">28</span>  <span class="n">stream_qos_reliability</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">)</span>
+<span class="linenos">29</span>  <span class="n">z_factor</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;z_factor&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Then, we chose the object model that will be used by the RBT node from the <code class="docutils literal notranslate"><span class="pre">object_name</span></code> launch arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">30</span>  <span class="c1">## [Handling tracked object]</span>
+<span class="linenos">31</span>  <span class="n">object_name</span> <span class="o">=</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;object_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="linenos">32</span>  <span class="k">if</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;dragon&quot;</span><span class="p">:</span>
+<span class="linenos">33</span>    <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/dragon/dragon.obj&quot;</span>
+<span class="linenos">34</span>  <span class="k">elif</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;cube&quot;</span><span class="p">:</span>
+<span class="linenos">35</span>     <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/cube/cube.obj&quot;</span>
+<span class="linenos">36</span>  <span class="k">elif</span> <span class="n">object_name</span> <span class="o">==</span> <span class="s2">&quot;stomach&quot;</span><span class="p">:</span>
+<span class="linenos">37</span>       <span class="n">model_file</span> <span class="o">=</span> <span class="s2">&quot;package://visp_tk_tutorials/config/rbt/models/stomach/stomach.obj&quot;</span>
+<span class="linenos">38</span>  <span class="k">else</span><span class="p">:</span>
+<span class="linenos">39</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected object_name </span><span class="si">{</span><span class="n">object_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Then, we create a node that will play the sequence, publishing the images, camera info and initial pose:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">40</span>  <span class="c1">## [Sequence player]</span>
+<span class="linenos">41</span>  <span class="n">sequence_folder</span> <span class="o">=</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos">42</span>      <span class="p">[</span><span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;visp_tk_tutorials&quot;</span><span class="p">),</span> <span class="s2">&quot;sequence&quot;</span><span class="p">]</span>
+<span class="linenos">43</span>  <span class="p">)</span>
+<span class="linenos">44</span>  <span class="n">sequence_player</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+<span class="linenos">45</span>      <span class="n">package</span><span class="o">=</span><span class="s1">&#39;visp_tk_tutorials&#39;</span><span class="p">,</span>
+<span class="linenos">46</span>      <span class="c1"># namespace=&quot;rbt_ns&quot;,</span>
+<span class="linenos">47</span>      <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;sequence_player_node&#39;</span><span class="p">,</span>
+<span class="linenos">48</span>      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sequence_player&#39;</span><span class="p">,</span>
+<span class="linenos">49</span>      <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
+<span class="linenos">50</span>      <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">51</span>      <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">52</span>          <span class="p">{</span><span class="s1">&#39;sequence_path&#39;</span> <span class="p">:</span> <span class="n">sequence_folder</span><span class="p">},</span>
+<span class="linenos">53</span>          <span class="p">{</span><span class="s1">&#39;object_name&#39;</span><span class="p">:</span> <span class="n">object_name</span><span class="p">},</span>
+<span class="linenos">54</span>          <span class="p">{</span><span class="s1">&#39;depth_image_topic_name&#39;</span><span class="p">:</span> <span class="n">depth_image_topic_name</span><span class="p">},</span>
+<span class="linenos">55</span>          <span class="p">{</span><span class="s1">&#39;depth_camera_info_topic_name&#39;</span><span class="p">:</span><span class="n">depth_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos">56</span>          <span class="p">{</span><span class="s1">&#39;rgb_image_topic_name&#39;</span><span class="p">:</span><span class="n">rgb_image_topic_name</span><span class="p">},</span>
+<span class="linenos">57</span>          <span class="p">{</span><span class="s1">&#39;rgb_camera_info_topic_name&#39;</span><span class="p">:</span><span class="n">rgb_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos">58</span>          <span class="p">{</span><span class="s1">&#39;init_pose_topic_name&#39;</span><span class="p">:</span> <span class="n">init_pose_topic_name</span><span class="p">}</span>
+<span class="linenos">59</span>      <span class="p">]</span>
+<span class="linenos">60</span>    <span class="p">)</span>
+</pre></div>
+</div>
 <p>Then, we instanciate the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node, using the dictionnary that we previously filled:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">61</span>  <span class="c1">## [RBT tracker node]</span>
+<span class="linenos">62</span>  <span class="n">rbt_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+<span class="linenos">63</span>      <span class="n">package</span><span class="o">=</span><span class="s1">&#39;visp_rbt&#39;</span><span class="p">,</span>
+<span class="linenos">64</span>      <span class="c1"># namespace=&quot;rbt_ns&quot;,</span>
+<span class="linenos">65</span>      <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;visp_rbt_node&#39;</span><span class="p">,</span>
+<span class="linenos">66</span>      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tracker_rbt&#39;</span><span class="p">,</span>
+<span class="linenos">67</span>      <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
+<span class="linenos">68</span>      <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">69</span>      <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">70</span>          <span class="p">{</span><span class="s1">&#39;config_file&#39;</span> <span class="p">:</span> <span class="n">config_file</span><span class="p">},</span>
+<span class="linenos">71</span>          <span class="p">{</span><span class="s1">&#39;depth_camera_info_topic_name&#39;</span> <span class="p">:</span> <span class="n">depth_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos">72</span>          <span class="p">{</span><span class="s1">&#39;depth_image_topic_name&#39;</span> <span class="p">:</span> <span class="n">depth_image_topic_name</span><span class="p">},</span>
+<span class="linenos">73</span>          <span class="p">{</span><span class="s1">&#39;display_nb_frames_skipped&#39;</span> <span class="p">:</span> <span class="n">display_nb_frames_skipped</span><span class="p">},</span>
+<span class="linenos">74</span>          <span class="p">{</span><span class="s1">&#39;headless_mode&#39;</span> <span class="p">:</span> <span class="n">headless_mode</span><span class="p">},</span>
+<span class="linenos">75</span>          <span class="p">{</span><span class="s1">&#39;init_file&#39;</span> <span class="p">:</span> <span class="n">init_file</span><span class="p">},</span>
+<span class="linenos">76</span>          <span class="p">{</span><span class="s1">&#39;init_method&#39;</span> <span class="p">:</span> <span class="n">init_method</span><span class="p">},</span>
+<span class="linenos">77</span>          <span class="p">{</span><span class="s1">&#39;init_topic&#39;</span> <span class="p">:</span> <span class="n">init_topic</span><span class="p">},</span>
+<span class="linenos">78</span>          <span class="p">{</span><span class="s1">&#39;model_file&#39;</span><span class="p">:</span> <span class="n">model_file</span><span class="p">},</span>
+<span class="linenos">79</span>          <span class="p">{</span><span class="s1">&#39;rgb_camera_info_topic_name&#39;</span> <span class="p">:</span> <span class="n">rgb_camera_info_topic_name</span><span class="p">},</span>
+<span class="linenos">80</span>          <span class="p">{</span><span class="s1">&#39;rgb_image_topic_name&#39;</span> <span class="p">:</span> <span class="n">rgb_image_topic_name</span><span class="p">},</span>
+<span class="linenos">81</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_depth&#39;</span> <span class="p">:</span> <span class="n">stream_qos_depth</span><span class="p">},</span>
+<span class="linenos">82</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_durability&#39;</span> <span class="p">:</span> <span class="n">stream_qos_durability</span><span class="p">},</span>
+<span class="linenos">83</span>          <span class="p">{</span><span class="s1">&#39;stream_qos_reliability&#39;</span> <span class="p">:</span> <span class="n">stream_qos_reliability</span><span class="p">},</span>
+<span class="linenos">84</span>          <span class="p">{</span><span class="s1">&#39;z_factor&#39;</span> <span class="p">:</span> <span class="n">z_factor</span><span class="p">},</span>
+<span class="linenos">85</span>          <span class="p">{</span><span class="s1">&#39;frame_size_ratio&#39;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s1">&#39;frame_size_ratio&#39;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">float</span><span class="p">)},</span>
+<span class="linenos">86</span>          <span class="p">{</span><span class="s1">&#39;frame_thickness&#39;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s1">&#39;frame_thickness&#39;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">)}</span>
+<span class="linenos">87</span>      <span class="p">]</span>
+<span class="linenos">88</span>  <span class="p">)</span>
+</pre></div>
+</div>
 <p>Finally, we ask to shutdown the whole launch file when the <code class="docutils literal notranslate"><span class="pre">visp_rbt</span></code> node dies:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">89</span>  <span class="c1">## [Shutdown-event handler]</span>
+<span class="linenos">90</span>  <span class="n">shutdown_handler</span> <span class="o">=</span> <span class="n">RegisterEventHandler</span><span class="p">(</span>
+<span class="linenos">91</span>          <span class="n">OnProcessExit</span><span class="p">(</span>
+<span class="linenos">92</span>              <span class="n">target_action</span><span class="o">=</span><span class="n">rbt_node</span><span class="p">,</span>
+<span class="linenos">93</span>              <span class="n">on_exit</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">94</span>                  <span class="n">LogInfo</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;The tracking node was closed, turning off the launch file&quot;</span><span class="p">)),</span>
+<span class="linenos">95</span>                  <span class="n">EmitEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">Shutdown</span><span class="p">(</span>
+<span class="linenos">96</span>                      <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;tracking node closed&quot;</span><span class="p">))</span>
+<span class="linenos">97</span>              <span class="p">]</span>
+<span class="linenos">98</span>          <span class="p">)</span>
+<span class="linenos">99</span>      <span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="tutorial-using-a-realsense-camera">
@@ -147,12 +615,12 @@ aligned with the color image, which is a requirement for the RBT.</p>
 Otherwise, if you installed the packages using the package manager, you only have to source the <code class="docutils literal notranslate"><span class="pre">/opt/ros/${ROS_DISTRO}/setup.bash</span></code>
 file (or one of the other <code class="docutils literal notranslate"><span class="pre">setup</span></code> files if you are not using bash).</p>
 <p>Then you can run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_live_rs2_launch.py
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_dragon_live_rs2_launch.py
 </pre></div>
 </div>
 <p>The launch file accepts different arguments. To have the list and the explanations related to the
 arguments, please run:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_live_rs2_launch.py<span class="w"> </span>--show-args
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_dragon_live_rs2_launch.py<span class="w"> </span>--show-args
 </pre></div>
 </div>
 <p>If nothing appears on screen, it may mean that the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> package changed the names of
@@ -160,18 +628,127 @@ the topic on which are published the data. Please run <code class="docutils lite
 to check if the <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> publisher and the <code class="docutils literal notranslate"><span class="pre">tracker_rbt</span></code> subscriber are both listed.
 If not, please change the topic names accordingly.</p>
 </section>
+<section id="using-another-object-or-configuration-file">
+<span id="rbt-live-other-config"></span><h3>Using another object or configuration file<a class="headerlink" href="#using-another-object-or-configuration-file" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_orangina_live_rs2_launch.py</span></code> tracks an Orangina can instead of the dragon. By default, it uses
+<code class="docutils literal notranslate"><span class="pre">orangina-depth-klt-ccd-mask.json</span></code>, a configuration tuned for this object: since the can is symmetric around its
+axis, the depth and silhouette features do not estimate the rotation around this axis, which is only given by the
+KLT keypoints tracked on the label.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_orangina_live_rs2_launch.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_teabox_live_rs2_launch.py</span></code> tracks the teabox also used by the MBT tutorial, a box of
+0.165 x 0.068 m and 0.08 m high. Its model <code class="docutils literal notranslate"><span class="pre">config/rbt/models/teabox/teabox.obj</span></code> is generated from the MBT model
+<code class="docutils literal notranslate"><span class="pre">teabox.cao</span></code>, so that the same <code class="docutils literal notranslate"><span class="pre">teabox.init</span></code> file can be used. Since the box has no symmetry, it uses the default
+configuration <code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_teabox_live_rs2_launch.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_stomach_live_rs2_launch.py</span></code> tracks the anatomical model of the stomach and intestines, standing on its base,
+which is also tracked in the recorded sequence of <code class="docutils literal notranslate"><span class="pre">rbt_bag_launch.py</span></code> (<code class="docutils literal notranslate"><span class="pre">object_name:=stomach</span></code>). It also uses the
+default configuration <code class="docutils literal notranslate"><span class="pre">depth-ccd-mask.json</span></code>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_stomach_live_rs2_launch.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_cube_live_rs2_launch.py</span></code> tracks the textured cube, also tracked in the recorded sequence of
+<code class="docutils literal notranslate"><span class="pre">rbt_bag_launch.py</span></code> (<code class="docutils literal notranslate"><span class="pre">object_name:=cube</span></code>). Since its faces are covered with drawings, it uses
+<code class="docutils literal notranslate"><span class="pre">depth-klt-ccd-mask.json</span></code>, which adds KLT keypoints tracked on these textures to the depth and silhouette features.
+The number of silhouette points is limited to 512, which keeps the tracking time at about 20 ms.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_cube_live_rs2_launch.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_castle_live_rs2_launch.py</span></code> tracks a textured model of a castle (<code class="docutils literal notranslate"><span class="pre">config/rbt/models/castle/castle_rework.obj</span></code>).
+It uses <code class="docutils literal notranslate"><span class="pre">castle-depth-klt-ccd-mask.json</span></code>: the same features as for the cube, KLT keypoints being tracked on its
+textured walls, but with fewer depth points and the color mask only computed around the object. With its long and very
+jagged silhouette (battlements, towers), the tracking time is about 50 ms.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_castle_live_rs2_launch.py
+</pre></div>
+</div>
+<p>As with <code class="docutils literal notranslate"><span class="pre">rbt_bag_launch.py</span></code>, the JSON configuration file is given by the <code class="docutils literal notranslate"><span class="pre">config_file</span></code> launch argument.
+It must be an absolute path, which can be built with
+<code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">pkg</span> <span class="pre">prefix</span></code> for the files installed with the package, for example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_orangina_live_rs2_launch.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>config_file:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>visp_tk_tutorials<span class="k">)</span>/share/visp_tk_tutorials/config/rbt/configs/orangina-depth-klt-ccd-mask.json
+</pre></div>
+</div>
+<p>The other provided configuration files are listed in <a class="reference internal" href="#using-another-configuration-file">Using another configuration file</a> above. The 3D model and the
+file giving the points to click at initialization can be changed in the same way, with the <code class="docutils literal notranslate"><span class="pre">model_file</span></code> and
+<code class="docutils literal notranslate"><span class="pre">init_file</span></code> launch arguments.</p>
+<p>Before starting the camera and the tracker, the live launch files check that the files given by
+<code class="docutils literal notranslate"><span class="pre">config_file</span></code>, <code class="docutils literal notranslate"><span class="pre">init_file</span></code> and <code class="docutils literal notranslate"><span class="pre">model_file</span></code> exist. If one of them does not, the launch file ends
+immediately with an explicit error, for example:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>ERROR<span class="o">]</span><span class="w"> </span><span class="o">[</span>launch<span class="o">]</span>:<span class="w"> </span>Caught<span class="w"> </span>exception<span class="w"> </span><span class="k">in</span><span class="w"> </span>launch<span class="w"> </span><span class="o">(</span>see<span class="w"> </span>debug<span class="w"> </span><span class="k">for</span><span class="w"> </span>traceback<span class="o">)</span>:<span class="w"> </span>Launch<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;config_file&#39;</span>:<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;/path/to/file.json&#39;</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist
+</pre></div>
+</div>
+</section>
 <section id="id3">
 <h3>Code explanation<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
-<p>We won’t give a detailed explanation of this launch file, because nothing of importance changed except the
-<code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> node, which goes beyond the scope of this package.</p>
+<p>We won’t give a detailed explanation of the tracker parameters, because nothing of importance changed compared
+to the previous launch file.</p>
+<p>The main difference is that the RealSense driver (<code class="docutils literal notranslate"><span class="pre">realsense2_camera::RealSenseNodeFactory</span></code>) and the tracker
+(<code class="docutils literal notranslate"><span class="pre">visp_rbt::RBTTracker</span></code>) are not started as two separate nodes, but loaded as components in the same
+container, with intra-process communication enabled. The color and depth images (640x480, about 1 MB each)
+are thus passed from the driver to the tracker without going through DDS, which would otherwise drop many of
+these large messages and make the display jerky.</p>
+<p>The container must be single-threaded (<code class="docutils literal notranslate"><span class="pre">component_container</span></code>, not <code class="docutils literal notranslate"><span class="pre">component_container_mt</span></code>): the Panda3D
+OpenGL context and the ViSP displays used by the tracker must always be used from the thread that created them.</p>
+<p>The same approach is used by <code class="docutils literal notranslate"><span class="pre">rbt_orangina_live_rs2_launch.py</span></code>, which tracks an Orangina can instead of the dragon.</p>
 </section>
+</section>
+<section id="display-of-the-object-frame">
+<h2>Display of the object frame<a class="headerlink" href="#display-of-the-object-frame" title="Link to this heading"></a></h2>
+<p>When the tracking succeeds, the frame of the object is displayed on the image, with its X, Y and Z axes in red,
+green and blue. Its size and thickness can be changed with two launch arguments, accepted by all the launch files of
+this package:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Launch argument</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">frame_size_ratio</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.3</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Length of the axes, as a fraction of the object diameter,</div>
+<div class="line">i.e. the diagonal of the bounding box of the 3D model.</div>
+<div class="line">The axes are never shorter than 30 pixels, so that they stay</div>
+<div class="line">readable when the object is far from the camera.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">frame_thickness</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Thickness of the axes, in pixels.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">rbt_stomach_live_rs2_launch.py</span></code> and <code class="docutils literal notranslate"><span class="pre">rbt_castle_live_rs2_launch.py</span></code> set <code class="docutils literal notranslate"><span class="pre">frame_size_ratio</span></code> to <code class="docutils literal notranslate"><span class="pre">0.15</span></code>:
+the diagonal of the bounding box of these objects (about 35 cm for the stomach, 54 cm for the castle) overestimates
+their apparent size.</p>
+<p>For instance:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>rbt_bag_launch.py<span class="w"> </span>frame_size_ratio:<span class="o">=</span><span class="m">0</span>.2<span class="w"> </span>frame_thickness:<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mbt_tutorial.html" class="btn btn-neutral float-left" title="Model-Based Tracker (MBT) tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/index.html" class="btn btn-neutral float-right" title="C++ API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

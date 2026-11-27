@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">visp_tracker_common<span id="projectnumber">&#160;0.1.0</span>
+   <div id="projectname">visp_tracker_common
    </div>
-   <div id="projectbrief">Package that contains the base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
+   <div id="projectbrief">Base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
   </td>
  </tr>
  </tbody>
@@ -77,6 +77,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-types">Protected Types</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pro-static-attribs">Static Protected Attributes</a> &#124;
@@ -139,6 +140,9 @@ typedef enum <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr class="memitem:a0f10b0cf3b7cfe79f2ad5580a72affb7" id="r_a0f10b0cf3b7cfe79f2ad5580a72affb7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0f10b0cf3b7cfe79f2ad5580a72affb7">compute_frame_size</a> (double object_diameter, const visp::vpHomogeneousMatrix &amp;cMo) const</td></tr>
+<tr class="memdesc:a0f10b0cf3b7cfe79f2ad5580a72affb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the axes of the object frame displayed with vpDisplay::displayFrame().  <br /></td></tr>
+<tr class="separator:a0f10b0cf3b7cfe79f2ad5580a72affb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Initialization</div></td></tr>
 <tr class="memitem:a6a189d6a3aa47ac31c1142e00234f559" id="r_a6a189d6a3aa47ac31c1142e00234f559"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a6a189d6a3aa47ac31c1142e00234f559">init_tracker</a> ()=0</td></tr>
 <tr class="memdesc:a6a189d6a3aa47ac31c1142e00234f559"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initilize the tracker.  <br /></td></tr>
@@ -151,10 +155,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init_info_str
 <tr class="memdesc:acf50c4c5fdef39ccf2f31895c4427e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the m_init_attribute from the associated ROS2 parameter.  <br /></td></tr>
 <tr class="separator:acf50c4c5fdef39ccf2f31895c4427e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Display</div></td></tr>
-<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd" id="r_ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
-<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#ad9a3a2bb0993297d39a8da1e6102bccd">display_overlay_features</a> (const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</td></tr>
-<tr class="memdesc:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image.  <br /></td></tr>
-<tr class="separator:ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5f422937cd9b5a2e09df929fa0d53d" id="r_a0e5f422937cd9b5a2e09df929fa0d53d"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
+<tr class="memitem:a0e5f422937cd9b5a2e09df929fa0d53d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0e5f422937cd9b5a2e09df929fa0d53d">display_overlay_features</a> (const visp::vpImage&lt; Type &gt; &amp;I)</td></tr>
+<tr class="memdesc:a0e5f422937cd9b5a2e09df929fa0d53d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image.  <br /></td></tr>
+<tr class="separator:a0e5f422937cd9b5a2e09df929fa0d53d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Callbacks</div></td></tr>
 <tr class="memitem:a8f799ececfb5b8009a3dcba2079601f1" id="r_a8f799ececfb5b8009a3dcba2079601f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a8f799ececfb5b8009a3dcba2079601f1">color_camera_info_callback</a> (const sensor_msgs::msg::CameraInfo::SharedPtr msg)</td></tr>
 <tr class="memdesc:a8f799ececfb5b8009a3dcba2079601f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color camera parameters callback that is called only once to initialize the node internal parameters.  <br /></td></tr>
@@ -262,6 +266,14 @@ visp_tracker_common::msg::InfoStrings&#160;</td><td class="memItemRight" valign=
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_info_nb_static</b></td></tr>
 <tr class="memdesc:a411a6a7c29929d0d1462ce74726beea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of info strings that must be visible all the time. <br /></td></tr>
 <tr class="separator:a411a6a7c29929d0d1462ce74726beea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd2c5291872980a7d8511242fee08d0" id="r_afbd2c5291872980a7d8511242fee08d0"><td class="memItemLeft" align="right" valign="top"><a id="afbd2c5291872980a7d8511242fee08d0" name="afbd2c5291872980a7d8511242fee08d0"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>m_frame_size_ratio</b> = 0.3</td></tr>
+<tr class="memdesc:afbd2c5291872980a7d8511242fee08d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the axes of the displayed object frame, as a fraction of the object diameter. <br /></td></tr>
+<tr class="separator:afbd2c5291872980a7d8511242fee08d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f5964d2d3c01b3e0fc4e2ecf3a447b" id="r_a21f5964d2d3c01b3e0fc4e2ecf3a447b"><td class="memItemLeft" align="right" valign="top"><a id="a21f5964d2d3c01b3e0fc4e2ecf3a447b" name="a21f5964d2d3c01b3e0fc4e2ecf3a447b"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_frame_thickness</b> = 2</td></tr>
+<tr class="memdesc:a21f5964d2d3c01b3e0fc4e2ecf3a447b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thickness, in pixels, of the axes of the displayed object frame. <br /></td></tr>
+<tr class="separator:a21f5964d2d3c01b3e0fc4e2ecf3a447b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa90fe323829cecfb8061edbd4051a997" id="r_aa90fe323829cecfb8061edbd4051a997"><td class="memItemLeft" align="right" valign="top"><a id="aa90fe323829cecfb8061edbd4051a997" name="aa90fe323829cecfb8061edbd4051a997"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_visualization_debug</b> = false</td></tr>
 <tr class="memdesc:aa90fe323829cecfb8061edbd4051a997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ. <br /></td></tr>
@@ -325,6 +337,10 @@ std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex_visuali
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
+<tr class="memitem:af3849b90de3333ed4e6e92ed1ecc056d" id="r_af3849b90de3333ed4e6e92ed1ecc056d"><td class="memItemLeft" align="right" valign="top"><a id="af3849b90de3333ed4e6e92ed1ecc056d" name="af3849b90de3333ed4e6e92ed1ecc056d"></a>
+static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>s_frame_min_size_px</b> = 30.</td></tr>
+<tr class="memdesc:af3849b90de3333ed4e6e92ed1ecc056d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum length, in pixels, of the axes of the displayed object frame. <br /></td></tr>
+<tr class="separator:af3849b90de3333ed4e6e92ed1ecc056d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41455115ba9dac7ff422c6c8dadef8df" id="r_a41455115ba9dac7ff422c6c8dadef8df"><td class="memItemLeft" align="right" valign="top"><a id="a41455115ba9dac7ff422c6c8dadef8df" name="a41455115ba9dac7ff422c6c8dadef8df"></a>
 static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>s_overlay_features_max_age</b> = 0.5</td></tr>
 <tr class="memdesc:a41455115ba9dac7ff422c6c8dadef8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overlay features older than this duration in seconds are not displayed. <br /></td></tr>
@@ -457,8 +473,55 @@ static const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>
 
 </div>
 </div>
-<a id="ad9a3a2bb0993297d39a8da1e6102bccd" name="ad9a3a2bb0993297d39a8da1e6102bccd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9a3a2bb0993297d39a8da1e6102bccd">&#9670;&#160;</a></span>display_overlay_features()</h2>
+<a id="a0f10b0cf3b7cfe79f2ad5580a72affb7" name="a0f10b0cf3b7cfe79f2ad5580a72affb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f10b0cf3b7cfe79f2ad5580a72affb7">&#9670;&#160;</a></span>compute_frame_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double visp_tracker_common::BaseTracker::compute_frame_size </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>object_diameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const visp::vpHomogeneousMatrix &amp;&#160;</td>
+          <td class="paramname"><em>cMo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Length of the axes of the object frame displayed with vpDisplay::displayFrame(). </p>
+<p>The length is a fraction (frame_size_ratio parameter) of the object diameter, so that the frame scales with the object, as any other 3D element of the scene. It is however never shorter than s_frame_min_size_px pixels in the color image, so that it stays readable when the object is far from the camera.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object_diameter</td><td>Diameter of the object, in meters. </td></tr>
+    <tr><td class="paramname">cMo</td><td>Pose of the object in the color camera frame. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the axes, in meters. </dd></dl>
+
+</div>
+</div>
+<a id="a0e5f422937cd9b5a2e09df929fa0d53d" name="a0e5f422937cd9b5a2e09df929fa0d53d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5f422937cd9b5a2e09df929fa0d53d">&#9670;&#160;</a></span>display_overlay_features()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -471,7 +534,7 @@ template&lt;typename Type &gt; </div>
         <tr>
           <td class="memname">void visp_tracker_common::BaseTracker::display_overlay_features </td>
           <td>(</td>
-          <td class="paramtype">const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;&#160;</td>
+          <td class="paramtype">const visp::vpImage&lt; Type &gt; &amp;&#160;</td>
           <td class="paramname"><em>I</em></td><td>)</td>
           <td></td>
         </tr>

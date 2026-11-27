@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">visp_tracker_common<span id="projectnumber">&#160;0.1.0</span>
+   <div id="projectname">visp_tracker_common
    </div>
-   <div id="projectbrief">Package that contains the base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
+   <div id="projectbrief">Base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
   </td>
  </tr>
  </tbody>
@@ -109,9 +109,9 @@ Collaboration diagram for visp_tracker_common::BaseMultiModalTracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab2e6376d9dba6101546324dc16d20e00" id="r_ab2e6376d9dba6101546324dc16d20e00"><td class="memItemLeft" align="right" valign="top"><a id="ab2e6376d9dba6101546324dc16d20e00" name="ab2e6376d9dba6101546324dc16d20e00"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>BaseMultiModalTracker</b> (const std::string &amp;name, const bool &amp;does_publish_features)</td></tr>
-<tr class="separator:ab2e6376d9dba6101546324dc16d20e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8575b3eba68b0b650a57218864f24486" id="r_a8575b3eba68b0b650a57218864f24486"><td class="memItemLeft" align="right" valign="top"><a id="a8575b3eba68b0b650a57218864f24486" name="a8575b3eba68b0b650a57218864f24486"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>BaseMultiModalTracker</b> (const std::string &amp;name, const bool &amp;does_publish_features, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</td></tr>
+<tr class="separator:a8575b3eba68b0b650a57218864f24486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5c83c92691e951a0c88e0cef2971be1" id="r_aa5c83c92691e951a0c88e0cef2971be1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#aa5c83c92691e951a0c88e0cef2971be1">init</a> () override</td></tr>
 <tr class="memdesc:aa5c83c92691e951a0c88e0cef2971be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the node.    <br /></td></tr>
 <tr class="separator:aa5c83c92691e951a0c88e0cef2971be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,6 +158,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>check_require
 <tr class="memdesc:ae44352f9de8c380c47f601190ed9d227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that is called to aks the tracker to perform once again the initialization of the tracking. <b>IMPORTANT</b>: it does not call <a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#aa5c83c92691e951a0c88e0cef2971be1" title="Initializes the node.">init()</a> or any of its sub-routines.  <br /></td></tr>
 <tr class="separator:ae44352f9de8c380c47f601190ed9d227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classvisp__tracker__common_1_1BaseTracker"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classvisp__tracker__common_1_1BaseTracker')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html">visp_tracker_common::BaseTracker</a></td></tr>
+<tr class="memitem:a0f10b0cf3b7cfe79f2ad5580a72affb7 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_a0f10b0cf3b7cfe79f2ad5580a72affb7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0f10b0cf3b7cfe79f2ad5580a72affb7">compute_frame_size</a> (double object_diameter, const visp::vpHomogeneousMatrix &amp;cMo) const</td></tr>
+<tr class="memdesc:a0f10b0cf3b7cfe79f2ad5580a72affb7 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the axes of the object frame displayed with vpDisplay::displayFrame().  <br /></td></tr>
+<tr class="separator:a0f10b0cf3b7cfe79f2ad5580a72affb7 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a189d6a3aa47ac31c1142e00234f559 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_a6a189d6a3aa47ac31c1142e00234f559"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a6a189d6a3aa47ac31c1142e00234f559">init_tracker</a> ()=0</td></tr>
 <tr class="memdesc:a6a189d6a3aa47ac31c1142e00234f559 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initilize the tracker.  <br /></td></tr>
 <tr class="separator:a6a189d6a3aa47ac31c1142e00234f559 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,10 +171,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init_info_str
 <tr class="memitem:acf50c4c5fdef39ccf2f31895c4427e14 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_acf50c4c5fdef39ccf2f31895c4427e14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#acf50c4c5fdef39ccf2f31895c4427e14">init_initialization_method</a> (const rclcpp::Parameter &amp;p)</td></tr>
 <tr class="memdesc:acf50c4c5fdef39ccf2f31895c4427e14 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the m_init_attribute from the associated ROS2 parameter.  <br /></td></tr>
 <tr class="separator:acf50c4c5fdef39ccf2f31895c4427e14 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_ad9a3a2bb0993297d39a8da1e6102bccd"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
-<tr class="memitem:ad9a3a2bb0993297d39a8da1e6102bccd inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#ad9a3a2bb0993297d39a8da1e6102bccd">display_overlay_features</a> (const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I)</td></tr>
-<tr class="memdesc:ad9a3a2bb0993297d39a8da1e6102bccd inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image.  <br /></td></tr>
-<tr class="separator:ad9a3a2bb0993297d39a8da1e6102bccd inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5f422937cd9b5a2e09df929fa0d53d inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_a0e5f422937cd9b5a2e09df929fa0d53d"><td class="memTemplParams" colspan="2">template&lt;typename Type &gt; </td></tr>
+<tr class="memitem:a0e5f422937cd9b5a2e09df929fa0d53d inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0e5f422937cd9b5a2e09df929fa0d53d">display_overlay_features</a> (const visp::vpImage&lt; Type &gt; &amp;I)</td></tr>
+<tr class="memdesc:a0e5f422937cd9b5a2e09df929fa0d53d inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display the 2D features recently received on the topics of the overlay_features_topics parameter, used when the node manages its own display (headless mode not active). The name of each feature is written at the bottom of the image.  <br /></td></tr>
+<tr class="separator:a0e5f422937cd9b5a2e09df929fa0d53d inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f799ececfb5b8009a3dcba2079601f1 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker" id="r_a8f799ececfb5b8009a3dcba2079601f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a8f799ececfb5b8009a3dcba2079601f1">color_camera_info_callback</a> (const sensor_msgs::msg::CameraInfo::SharedPtr msg)</td></tr>
 <tr class="memdesc:a8f799ececfb5b8009a3dcba2079601f1 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Color camera parameters callback that is called only once to initialize the node internal parameters.  <br /></td></tr>
 <tr class="separator:a8f799ececfb5b8009a3dcba2079601f1 inherit pro_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -327,6 +330,14 @@ visp_tracker_common::msg::InfoStrings&#160;</td><td class="memItemRight" valign=
 unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_info_nb_static</b></td></tr>
 <tr class="memdesc:a411a6a7c29929d0d1462ce74726beea6 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of info strings that must be visible all the time. <br /></td></tr>
 <tr class="separator:a411a6a7c29929d0d1462ce74726beea6 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd2c5291872980a7d8511242fee08d0 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_afbd2c5291872980a7d8511242fee08d0"><td class="memItemLeft" align="right" valign="top">
+double&#160;</td><td class="memItemRight" valign="bottom"><b>m_frame_size_ratio</b> = 0.3</td></tr>
+<tr class="memdesc:afbd2c5291872980a7d8511242fee08d0 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the axes of the displayed object frame, as a fraction of the object diameter. <br /></td></tr>
+<tr class="separator:afbd2c5291872980a7d8511242fee08d0 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f5964d2d3c01b3e0fc4e2ecf3a447b inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_a21f5964d2d3c01b3e0fc4e2ecf3a447b"><td class="memItemLeft" align="right" valign="top">
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>m_frame_thickness</b> = 2</td></tr>
+<tr class="memdesc:a21f5964d2d3c01b3e0fc4e2ecf3a447b inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thickness, in pixels, of the axes of the displayed object frame. <br /></td></tr>
+<tr class="separator:a21f5964d2d3c01b3e0fc4e2ecf3a447b inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa90fe323829cecfb8061edbd4051a997 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_aa90fe323829cecfb8061edbd4051a997"><td class="memItemLeft" align="right" valign="top">
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_visualization_debug</b> = false</td></tr>
 <tr class="memdesc:aa90fe323829cecfb8061edbd4051a997 inherit pro_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true if the node must publish 3D markers to visualize some points of interest in RVIZ. <br /></td></tr>
@@ -413,6 +424,10 @@ typedef enum <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#
 <tr class="memdesc:a7845c65b2ce5c0fc0d8f94e0b092e2c5 inherit pro_static_methods_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the list of available InitializationMethod.  <br /></td></tr>
 <tr class="separator:a7845c65b2ce5c0fc0d8f94e0b092e2c5 inherit pro_static_methods_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classvisp__tracker__common_1_1BaseTracker"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classvisp__tracker__common_1_1BaseTracker')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classvisp__tracker__common_1_1BaseTracker.html">visp_tracker_common::BaseTracker</a></td></tr>
+<tr class="memitem:af3849b90de3333ed4e6e92ed1ecc056d inherit pro_static_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_af3849b90de3333ed4e6e92ed1ecc056d"><td class="memItemLeft" align="right" valign="top">
+static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>s_frame_min_size_px</b> = 30.</td></tr>
+<tr class="memdesc:af3849b90de3333ed4e6e92ed1ecc056d inherit pro_static_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum length, in pixels, of the axes of the displayed object frame. <br /></td></tr>
+<tr class="separator:af3849b90de3333ed4e6e92ed1ecc056d inherit pro_static_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41455115ba9dac7ff422c6c8dadef8df inherit pro_static_attribs_classvisp__tracker__common_1_1BaseTracker" id="r_a41455115ba9dac7ff422c6c8dadef8df"><td class="memItemLeft" align="right" valign="top">
 static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>s_overlay_features_max_age</b> = 0.5</td></tr>
 <tr class="memdesc:a41455115ba9dac7ff422c6c8dadef8df inherit pro_static_attribs_classvisp__tracker__common_1_1BaseTracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overlay features older than this duration in seconds are not displayed. <br /></td></tr>

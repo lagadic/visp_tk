@@ -26,6 +26,7 @@
     <member refid="classvisp__mbt_1_1MBTTracker_1a530e1ef054c0a01d755576b5e94f7ca2" kind="variable"><name>m_extrinsics_set</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1aea00d8ee88540d31ccf8502b1b056d09" kind="variable"><name>m_tracker_cams_set</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1ab4c5f17c979aecbf4c3689549759f8bd" kind="variable"><name>m_must_detect_failure</name></member>
+    <member refid="classvisp__mbt_1_1MBTTracker_1a3c7ef7ac16788baf2b5121b5ae9aee3d" kind="variable"><name>m_object_diameter</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a3969552d75edc42a435f1b1b70ed1fdb" kind="variable"><name>m_projection_error_thresh</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a9735e12197ba477d3e170dbfa30b9698" kind="variable"><name>m_I</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1acd79b17f30d44c3ce57579c3d39a8fc9" kind="variable"><name>m_Ic</name></member>
@@ -34,7 +35,9 @@
     <member refid="classvisp__mbt_1_1MBTTracker_1afbd1dcc6c73a5758e9f1597a3276a1ad" kind="variable"><name>m_map_pc</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1aac6ce37f701c6737695311f8f0534ea4" kind="variable"><name>m_map_pcw</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a8a069a2125b68b2ec363e39ef187a3b7" kind="variable"><name>m_map_pch</name></member>
-    <member refid="classvisp__mbt_1_1MBTTracker_1a67e5f30b169dd70ab20929123f808c5a" kind="function"><name>MBTTracker</name></member>
+    <member refid="classvisp__mbt_1_1MBTTracker_1a6baa83324e279e7f83b2d025f266e70d" kind="variable"><name>m_quit_timer</name></member>
+    <member refid="classvisp__mbt_1_1MBTTracker_1a101114611cd4bb0d8865039eff13be12" kind="function"><name>MBTTracker</name></member>
+    <member refid="classvisp__mbt_1_1MBTTracker_1a1ec8ed3daf9718d7e6ac5c11c221e8a1" kind="function"><name>MBTTracker</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a530bf8f43ac945dc49826d5815f0036b" kind="function"><name>~MBTTracker</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a83816df458f570939c42e7c71b50f29d" kind="function"><name>init</name></member>
     <member refid="classvisp__mbt_1_1MBTTracker_1a30abb8d8bb27c832d2954693331c03e8" kind="function"><name>treat_rgb</name></member>

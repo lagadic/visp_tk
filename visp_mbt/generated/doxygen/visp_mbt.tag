@@ -22,6 +22,20 @@
     <name>visp_mbt::MBTTracker</name>
     <filename>classvisp__mbt_1_1MBTTracker.html</filename>
     <class kind="struct">visp_mbt::MBTTracker::ExtrinsicsHelper</class>
+    <member kind="function">
+      <type></type>
+      <name>MBTTracker</name>
+      <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
+      <anchor>a101114611cd4bb0d8865039eff13be12</anchor>
+      <arglist>(const std::string &amp;name, const rclcpp::NodeOptions &amp;options=rclcpp::NodeOptions())</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>MBTTracker</name>
+      <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
+      <anchor>a1ec8ed3daf9718d7e6ac5c11c221e8a1</anchor>
+      <arglist>(const rclcpp::NodeOptions &amp;options)</arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual bool</type>
       <name>init</name>
@@ -220,6 +234,13 @@
     </member>
     <member kind="variable" protection="protected">
       <type>double</type>
+      <name>m_object_diameter</name>
+      <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
+      <anchor>a3c7ef7ac16788baf2b5121b5ae9aee3d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
       <name>m_projection_error_thresh</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
       <anchor>a3969552d75edc42a435f1b1b70ed1fdb</anchor>
@@ -272,6 +293,13 @@
       <name>m_map_pch</name>
       <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
       <anchor>a8a069a2125b68b2ec363e39ef187a3b7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>rclcpp::TimerBase::SharedPtr</type>
+      <name>m_quit_timer</name>
+      <anchorfile>classvisp__mbt_1_1MBTTracker.html</anchorfile>
+      <anchor>a6baa83324e279e7f83b2d025f266e70d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">

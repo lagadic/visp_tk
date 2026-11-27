@@ -61,7 +61,9 @@ Program Listing for File MBTTracker.hpp
    class MBTTracker : public visp_tracker_common::BaseMultiModalTracker
    {
    public:
-     MBTTracker(const std::string &name);
+     MBTTracker(const std::string &name, const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
+   
+     explicit MBTTracker(const rclcpp::NodeOptions &options);
      virtual ~MBTTracker() = default;
    
      virtual bool init() override;
@@ -133,6 +135,7 @@ Program Listing for File MBTTracker.hpp
      bool m_extrinsics_set = false; 
      bool m_tracker_cams_set = false; 
      bool m_must_detect_failure = false; 
+     double m_object_diameter = 0.; 
      double m_projection_error_thresh = 30.; 
      visp::vpImage<unsigned char> m_I; 
      visp::vpImage<visp::vpRGBa> m_Ic; 
@@ -141,6 +144,9 @@ Program Listing for File MBTTracker.hpp
      std::map<std::string, const std::vector<visp::vpColVector> *> m_map_pc; 
      std::map<std::string, unsigned int> m_map_pcw; 
      std::map<std::string, unsigned int> m_map_pch; 
+   
+     // ----- Timers -----
+     rclcpp::TimerBase::SharedPtr m_quit_timer; 
    };
    }
    

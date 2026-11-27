@@ -21,9 +21,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">visp_tracker_common<span id="projectnumber">&#160;0.1.0</span>
+   <div id="projectname">visp_tracker_common
    </div>
-   <div id="projectbrief">Package that contains the base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
+   <div id="projectbrief">Base classes and interfaces for the ViSP trackers packages + a GUI to display tracking results.</div>
   </td>
  </tr>
  </tbody>
@@ -84,6 +84,7 @@ $(function() {
 <li>check_requires_depth()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#aac59cab8d53f65b4929615c4e0852c72">visp_tracker_common::BaseMultiModalTracker</a></li>
 <li>CLICK&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a6ea659bd327687a484e630f8f70eef3fa0e860a3de06962192ec746b62353f1eb">visp_tracker_common::BaseTracker</a></li>
 <li>color_camera_info_callback()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a8f799ececfb5b8009a3dcba2079601f1">visp_tracker_common::BaseTracker</a></li>
+<li>compute_frame_size()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0f10b0cf3b7cfe79f2ad5580a72affb7">visp_tracker_common::BaseTracker</a></li>
 <li>CROSS&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1TrackerGUI.html#a7c196dd620fac2496c38a1f84b6e8f98a1608db77b8b911a3aa3aefc77df1af49">visp_tracker_common::TrackerGUI</a></li>
 </ul>
 
@@ -91,7 +92,7 @@ $(function() {
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>depth_callback()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1TrackerGUI.html#a196ba4e2c609d93c0c11863a9f17560e">visp_tracker_common::TrackerGUI</a></li>
 <li>depth_camera_info_callback()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#a3e38402fb061e3bcceb627552805f855">visp_tracker_common::BaseMultiModalTracker</a></li>
-<li>display_overlay_features()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#ad9a3a2bb0993297d39a8da1e6102bccd">visp_tracker_common::BaseTracker</a></li>
+<li>display_overlay_features()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a0e5f422937cd9b5a2e09df929fa0d53d">visp_tracker_common::BaseTracker</a></li>
 </ul>
 
 
@@ -155,6 +156,8 @@ $(function() {
 <li>m_features_type&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1TrackerGUI.html#a86314a6022493e53123271b820402437">visp_tracker_common::TrackerGUI</a></li>
 <li>m_frame_cnt&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a84633646ed112b6a10363c80d285d9f3">visp_tracker_common::BaseTracker</a>, <a class="el" href="classvisp__tracker__common_1_1TrackerGUI.html#a50adefa6f01edddb230f4150e26a48fd">visp_tracker_common::TrackerGUI</a></li>
 <li>m_frame_id&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseMultiModalTracker.html#a0f3d32d7c030fcb708f8b7efd09caf8c">visp_tracker_common::BaseMultiModalTracker</a></li>
+<li>m_frame_size_ratio&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#afbd2c5291872980a7d8511242fee08d0">visp_tracker_common::BaseTracker</a></li>
+<li>m_frame_thickness&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a21f5964d2d3c01b3e0fc4e2ecf3a447b">visp_tracker_common::BaseTracker</a></li>
 <li>m_has_to_track&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#aa371c209a777603a62a45974d4b2b26e">visp_tracker_common::BaseTracker</a></li>
 <li>m_I&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1TrackerGUI.html#afd7cd11931c1468b8b07e90866f0e746">visp_tracker_common::TrackerGUI</a></li>
 <li>m_info_nb_static&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a411a6a7c29929d0d1462ce74726beea6">visp_tracker_common::BaseTracker</a></li>
@@ -235,6 +238,7 @@ $(function() {
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>s_default_hor_offset&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a59fb6fa95492234b32e368f8a3474e5e">visp_tracker_common::BaseTracker</a></li>
 <li>s_dumb_topic_name&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a68eea5dbf94cf618d8d1b9c9850741b7">visp_tracker_common::BaseTracker</a></li>
+<li>s_frame_min_size_px&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#af3849b90de3333ed4e6e92ed1ecc056d">visp_tracker_common::BaseTracker</a></li>
 <li>s_hor_offset_from_left_border&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#af5860fc828aeb53a8c81eb997c10579a">visp_tracker_common::BaseTracker</a></li>
 <li>s_overlay_features_max_age&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#a41455115ba9dac7ff422c6c8dadef8df">visp_tracker_common::BaseTracker</a></li>
 <li>stop_and_quit()&#160;:&#160;<a class="el" href="classvisp__tracker__common_1_1BaseTracker.html#abdf8048c41dd61112e2d5703ddca55fc">visp_tracker_common::BaseTracker</a></li>

@@ -55,6 +55,7 @@ Program Listing for File BaseTracker.hpp
    #include <visp_tracker_common/msg/named_feature_array.hpp>
    
    #include <visp3/core/vpCameraParameters.h>
+   #include <visp3/core/vpHomogeneousMatrix.h>
    
    #include <optional>
    
@@ -78,6 +79,8 @@ Program Listing for File BaseTracker.hpp
      virtual void stop_and_quit();
    
    protected:
+     double compute_frame_size(double object_diameter, const visp::vpHomogeneousMatrix &cMo) const;
+   
    
      virtual bool init_tracker() = 0;
    
@@ -178,6 +181,9 @@ Program Listing for File BaseTracker.hpp
      unsigned int m_frame_cnt = 0; 
      visp_tracker_common::msg::InfoStrings m_info_strings; 
      unsigned int m_info_nb_static; 
+     double m_frame_size_ratio = 0.3; 
+     unsigned int m_frame_thickness = 2; 
+     static constexpr double s_frame_min_size_px = 30.; 
      bool m_visualization_debug = false; 
      std::mutex m_mutex_overlay_features; 
      std::vector<std::optional<std::pair<rclcpp::Time, visp_tracker_common::msg::NamedFeatureArray>>> m_overlay_features; 

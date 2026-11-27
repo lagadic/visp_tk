@@ -156,11 +156,11 @@ the tracker node has been seen freezing. It is probably due to the fact that the
 streams out of synchronization. The <code class="docutils literal notranslate"><span class="pre">visp_rbt_node</span></code> having display capabilities, if you want a visual feedback on the
 same computer than the one you are running the <code class="docutils literal notranslate"><span class="pre">visp_rbt_node</span></code>, please run it activating the display. (Please refer to
 <a class="reference external" href="../visp_tracker_common/index.html#related-to-the-display">BaseTracker documentation</a> for more information).</p>
-<dl>
-<dt><strong>IMPORTANT</strong>: the <code class="docutils literal notranslate"><span class="pre">visp_rbt_node</span></code> can be really slow when OpenMP is ill-configured. Two solutions exist:</dt><dd><ul class="simple">
+<p><strong>IMPORTANT</strong>: the <code class="docutils literal notranslate"><span class="pre">visp_rbt_node</span></code> can be really slow when OpenMP is ill-configured. Two solutions exist:</p>
+<blockquote>
+<div><ul>
 <li><p>run <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">GOMP_SPINCOUNT=0</span></code> in the terminal in which you will run the <code class="docutils literal notranslate"><span class="pre">visp_rbt_node</span></code>,</p></li>
-<li><p>insert the following piece of code in your Python launch file:</p></li>
-</ul>
+<li><p>insert the following piece of code in your Python launch file:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">SetEnvironmentVariable</span>
 <span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
   <span class="n">ld</span> <span class="o">=</span> <span class="n">LaunchDescription</span><span class="p">()</span>
@@ -168,8 +168,9 @@ same computer than the one you are running the <code class="docutils literal not
   <span class="n">ld</span><span class="o">.</span><span class="n">add_action</span><span class="p">(</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;GOMP_SPINCOUNT&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</li>
+</ul>
+</div></blockquote>
 </section>
 <section id="prerequisities">
 <h1><a class="toc-backref" href="#id3" role="doc-backlink">Prerequisities</a><a class="headerlink" href="#prerequisities" title="Link to this heading"></a></h1>
@@ -265,15 +266,15 @@ See <a class="reference external" href="../visp_tracker_common/index.html#basemu
 <section id="related-to-configuration-files">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Related to configuration files</a><a class="headerlink" href="#related-to-configuration-files" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><em>OPIONAL</em> <code class="docutils literal notranslate"><span class="pre">init_file</span></code>: if the initialization method is set to initialization by click, this parameter becomes <strong>REQUIRED</strong>.
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">init_file</span></code>: if the initialization method is set to initialization by click, this parameter becomes <strong>REQUIRED</strong>.
 See <a class="reference external" href="../visp_tracker_common/index.html#basetracker-node">the documentation of BaseTracker</a> for more information.
 Path towards the file that contains the init points. <code class="docutils literal notranslate"><span class="pre">package://</span></code> will be replaced by
 the path to the share folder of the corresponding package.</p></li>
-<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">&quot;package://visp_tk_tutorials/config/rbt/models/dragon/dragon.obj&quot;</span></code>: if the JSON configuration file</p></li>
-</ul>
-<p>does not contain the keyword <code class="docutils literal notranslate"><span class="pre">model</span></code>, this parameter becomes <strong>REQUIRED</strong>. In this case, this parameter must be set to
+<li><p><em>OPTIONAL</em> <code class="docutils literal notranslate"><span class="pre">&quot;package://visp_tk_tutorials/config/rbt/models/dragon/dragon.obj&quot;</span></code>: if the JSON configuration file
+does not contain the keyword <code class="docutils literal notranslate"><span class="pre">model</span></code>, this parameter becomes <strong>REQUIRED</strong>. In this case, this parameter must be set to
 the path towards the model file of the object to track. Note that if the keyword <code class="docutils literal notranslate"><span class="pre">model</span></code> is set in the JSON
-configuration file, this parameter is <strong>ignored</strong>.</p>
+configuration file, this parameter is <strong>ignored</strong>.</p></li>
+</ul>
 </section>
 <section id="related-to-display">
 <h2><a class="toc-backref" href="#id9" role="doc-backlink">Related to display</a><a class="headerlink" href="#related-to-display" title="Link to this heading"></a></h2>

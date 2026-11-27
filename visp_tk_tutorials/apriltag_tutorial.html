@@ -20,7 +20,9 @@
         <script src="_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model-Based Tracker (MBT) tutorial" href="mbt_tutorial.html" />
+    <link rel="prev" title="Overview" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,8 +47,38 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="user_docs.html">Documentation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AprilTag tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-using-a-live-camera">Tutorial using a live camera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#purpose-of-this-tutorial">Purpose of this tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-launch-it">How to launch it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-explanation">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-using-a-rosbag">Tutorial using a rosbag</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Purpose of this tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">How to launch it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-exploit-the-apriltag-detection">How to exploit the AprilTag detection?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tips-and-tricks-tag-pose-not-published">Tips and Tricks: Tag pose not published</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Purpose of this tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">How to launch it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Code explanation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#display-of-the-object-frame">Display of the object frame</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mbt_tutorial.html">Model-Based Tracker (MBT) tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbt_tutorial.html">Render-Based Tracker (RBT) tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/index.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a></li>
 </ul>
 
@@ -128,19 +160,322 @@ family than the one set as the launch argument <code class="docutils literal not
 <section id="code-explanation">
 <h3>Code explanation<a class="headerlink" href="#code-explanation" title="Link to this heading"></a></h3>
 <p>Let’s have a look at <code class="docutils literal notranslate"><span class="pre">apriltag_tracker_live_v4l_launch.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="kn">from</span> <span class="nn">launch</span> <span class="kn">import</span> <span class="n">LaunchDescription</span>
+<span class="linenos">  2</span><span class="kn">from</span> <span class="nn">launch.actions</span> <span class="kn">import</span> <span class="n">DeclareLaunchArgument</span><span class="p">,</span> <span class="n">RegisterEventHandler</span><span class="p">,</span> <span class="n">EmitEvent</span><span class="p">,</span> <span class="n">LogInfo</span>
+<span class="linenos">  3</span><span class="kn">from</span> <span class="nn">launch.events</span> <span class="kn">import</span> <span class="n">Shutdown</span>
+<span class="linenos">  4</span><span class="kn">from</span> <span class="nn">launch.event_handlers</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="linenos">  5</span>    <span class="n">OnProcessExit</span>
+<span class="linenos">  6</span><span class="p">)</span>
+<span class="linenos">  7</span><span class="kn">from</span> <span class="nn">launch.substitutions</span> <span class="kn">import</span> <span class="n">LaunchConfiguration</span>
+<span class="linenos">  8</span><span class="kn">from</span> <span class="nn">launch_ros.actions</span> <span class="kn">import</span> <span class="n">ComposableNodeContainer</span>
+<span class="linenos">  9</span><span class="kn">from</span> <span class="nn">launch_ros.descriptions</span> <span class="kn">import</span> <span class="n">ComposableNode</span>
+<span class="linenos"> 10</span><span class="kn">from</span> <span class="nn">launch_ros.parameter_descriptions</span> <span class="kn">import</span> <span class="n">ParameterValue</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="k">def</span> <span class="nf">generate_launch_description</span><span class="p">():</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos"> 16</span>    <span class="c1">#  Launch arguments                                                    #</span>
+<span class="linenos"> 17</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos"> 18</span>    <span class="n">declared_args</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos"> 19</span>        <span class="c1"># BEGIN_V4L2_ARGUMENTS</span>
+<span class="linenos"> 20</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 21</span>            <span class="s2">&quot;video_device&quot;</span><span class="p">,</span>
+<span class="linenos"> 22</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/dev/video0&quot;</span><span class="p">,</span>
+<span class="linenos"> 23</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Video device path (e.g. /dev/video0, /dev/video2 ...)&quot;</span><span class="p">,</span>
+<span class="linenos"> 24</span>        <span class="p">),</span>
+<span class="linenos"> 25</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 26</span>            <span class="s2">&quot;camera_namespace&quot;</span><span class="p">,</span>
+<span class="linenos"> 27</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 28</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Namespace for the v4l2_camera node&quot;</span><span class="p">,</span>
+<span class="linenos"> 29</span>        <span class="p">),</span>
+<span class="linenos"> 30</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 31</span>            <span class="s2">&quot;camera_info_url&quot;</span><span class="p">,</span>
+<span class="linenos"> 32</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos"> 33</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;URL to the camera calibration file (e.g. file:///path/to/camera.yaml).&quot;</span><span class="p">,</span>
+<span class="linenos"> 34</span>        <span class="p">),</span>
+<span class="linenos"> 35</span>        <span class="c1"># END_V4L2_ARGUMENTS</span>
+<span class="linenos"> 36</span>        <span class="c1"># BEGIN_APRILTAG_ARGUMENTS</span>
+<span class="linenos"> 37</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 38</span>            <span class="s2">&quot;tag_family&quot;</span><span class="p">,</span>
+<span class="linenos"> 39</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;36h11&quot;</span><span class="p">,</span>
+<span class="linenos"> 40</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;AprilTag family (e.g. 36h11, 25h9, 16h5, circle21h7 ...)&quot;</span><span class="p">,</span>
+<span class="linenos"> 41</span>        <span class="p">),</span>
+<span class="linenos"> 42</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 43</span>            <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">,</span>
+<span class="linenos"> 44</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[-1]&quot;</span><span class="p">,</span>
+<span class="linenos"> 45</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of tag IDs for which a size is specified. -1 = default for all.&quot;</span><span class="p">,</span>
+<span class="linenos"> 46</span>        <span class="p">),</span>
+<span class="linenos"> 47</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 48</span>            <span class="s2">&quot;tag_size_values&quot;</span><span class="p">,</span>
+<span class="linenos"> 49</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[0.1]&quot;</span><span class="p">,</span>
+<span class="linenos"> 50</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tag sizes in meters, matched by index with tag_size_keys.&quot;</span><span class="p">,</span>
+<span class="linenos"> 51</span>        <span class="p">),</span>
+<span class="linenos"> 52</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 53</span>            <span class="s2">&quot;id_published&quot;</span><span class="p">,</span>
+<span class="linenos"> 54</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+<span class="linenos"> 55</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the tag whose pose is forwarded on /pose (-1 = none).&quot;</span><span class="p">,</span>
+<span class="linenos"> 56</span>        <span class="p">),</span>
+<span class="linenos"> 57</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 58</span>            <span class="s2">&quot;pose_method&quot;</span><span class="p">,</span>
+<span class="linenos"> 59</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;best_residual_virtual_vs&quot;</span><span class="p">,</span>
+<span class="linenos"> 60</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pose estimation method&quot;</span><span class="p">,</span>
+<span class="linenos"> 61</span>        <span class="p">),</span>
+<span class="linenos"> 62</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 63</span>            <span class="s2">&quot;display_tag&quot;</span><span class="p">,</span>
+<span class="linenos"> 64</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="linenos"> 65</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Display the detected tags in a ViSP window&quot;</span><span class="p">,</span>
+<span class="linenos"> 66</span>        <span class="p">),</span>
+<span class="linenos"> 67</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 68</span>            <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">,</span>
+<span class="linenos"> 69</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.&quot;</span><span class="p">,</span>
+<span class="linenos"> 70</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;0.3&quot;</span>
+<span class="linenos"> 71</span>        <span class="p">),</span>
+<span class="linenos"> 72</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos"> 73</span>            <span class="s2">&quot;frame_thickness&quot;</span><span class="p">,</span>
+<span class="linenos"> 74</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Thickness, in pixels, of the axes of the displayed object frame.&quot;</span><span class="p">,</span>
+<span class="linenos"> 75</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;2&quot;</span>
+<span class="linenos"> 76</span>        <span class="p">),</span>
+<span class="linenos"> 77</span>        <span class="c1"># END_APRILTAG_ARGUMENTS</span>
+<span class="linenos"> 78</span>    <span class="p">]</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos"> 81</span>    <span class="c1">#  v4l2_camera component                                               #</span>
+<span class="linenos"> 82</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos"> 83</span>    <span class="c1"># BEGIN_V4L2_NODE</span>
+<span class="linenos"> 84</span>    <span class="c1"># image_size must be a list of Python integers, this no LaunchConfiguration</span>
+<span class="linenos"> 85</span>    <span class="c1"># for this parameter (the integer_array type is strict in ROS 2)</span>
+<span class="linenos"> 86</span>    <span class="n">v4l2_camera_node</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos"> 87</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;v4l2_camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 88</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;v4l2_camera::V4L2Camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 89</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v4l2_camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 90</span>        <span class="n">namespace</span><span class="o">=</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span>
+<span class="linenos"> 91</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 92</span>            <span class="p">{</span>
+<span class="linenos"> 93</span>                <span class="s2">&quot;video_device&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;video_device&quot;</span><span class="p">),</span>
+<span class="linenos"> 94</span>                <span class="s2">&quot;image_size&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">],</span>   <span class="c1"># native integers, no substitution</span>
+<span class="linenos"> 95</span>                <span class="s2">&quot;time_per_frame&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>   <span class="c1"># idem : 1/30 s &lt;=&gt; 30 fps</span>
+<span class="linenos"> 96</span>                <span class="s2">&quot;camera_info_url&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_info_url&quot;</span><span class="p">),</span>
+<span class="linenos"> 97</span>            <span class="p">}</span>
+<span class="linenos"> 98</span>        <span class="p">],</span>
+<span class="linenos"> 99</span>        <span class="c1"># The images are passed to the tracker without going through DDS</span>
+<span class="linenos">100</span>        <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;use_intra_process_comms&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}],</span>
+<span class="linenos">101</span>    <span class="p">)</span>
+<span class="linenos">102</span>    <span class="c1"># END_V4L2_NODE</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos">105</span>    <span class="c1">#  AprilTag tracker component                                          #</span>
+<span class="linenos">106</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos">107</span>    <span class="c1"># BEGIN_APRILTAG_NODE</span>
+<span class="linenos">108</span>    <span class="c1"># The BaseTracker of visp_tracker_common use its own parameters for some topics</span>
+<span class="linenos">109</span>    <span class="c1"># rgb_camera_info_topic_name  &lt;=&gt; camera_info topic</span>
+<span class="linenos">110</span>    <span class="c1"># rgb_image_topic_name  &lt;=&gt; image topic</span>
+<span class="linenos">111</span>    <span class="c1"># The tracker enables intra-process communication on its image subscription by itself</span>
+<span class="linenos">112</span>    <span class="n">apriltag_tracker_node</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos">113</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;visp_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">114</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;visp_apriltag::AprilTagTracker&quot;</span><span class="p">,</span>
+<span class="linenos">115</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tracker_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">116</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">117</span>            <span class="p">{</span>
+<span class="linenos">118</span>                <span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span> <span class="s2">&quot;/image_raw&quot;</span><span class="p">],</span>
+<span class="linenos">119</span>                <span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span> <span class="s2">&quot;/camera_info&quot;</span><span class="p">],</span>
+<span class="linenos">120</span>                <span class="s2">&quot;tag_family&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_family&quot;</span><span class="p">),</span>
+<span class="linenos">121</span>                <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_keys&quot;</span><span class="p">),</span>
+<span class="linenos">122</span>                <span class="s2">&quot;tag_size_values&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_values&quot;</span><span class="p">),</span>
+<span class="linenos">123</span>                <span class="s2">&quot;id_published&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;id_published&quot;</span><span class="p">),</span>
+<span class="linenos">124</span>                <span class="s2">&quot;pose_method&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;pose_method&quot;</span><span class="p">),</span>
+<span class="linenos">125</span>                <span class="s2">&quot;display_tag&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;display_tag&quot;</span><span class="p">),</span>
+<span class="linenos">126</span>                <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+<span class="linenos">127</span>                <span class="s2">&quot;frame_thickness&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_thickness&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+<span class="linenos">128</span>                <span class="s2">&quot;initial_tracking_status&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="linenos">129</span>            <span class="p">}</span>
+<span class="linenos">130</span>        <span class="p">],</span>
+<span class="linenos">131</span>    <span class="p">)</span>
+<span class="linenos">132</span>    <span class="c1"># END_APRILTAG_NODE</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos">135</span>    <span class="c1">#  Component container                                                 #</span>
+<span class="linenos">136</span>    <span class="c1"># ------------------------------------------------------------------ #</span>
+<span class="linenos">137</span>    <span class="c1"># BEGIN_CONTAINER</span>
+<span class="linenos">138</span>    <span class="c1"># Both components are loaded in the same process, so that the images (640x480 RGB, about 1 MB each)</span>
+<span class="linenos">139</span>    <span class="c1"># do not go through DDS. The container must be single-threaded: the ViSP displays used by the tracker</span>
+<span class="linenos">140</span>    <span class="c1"># must always be used from the thread that created them.</span>
+<span class="linenos">141</span>    <span class="n">container</span> <span class="o">=</span> <span class="n">ComposableNodeContainer</span><span class="p">(</span>
+<span class="linenos">142</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;apriltag_container&quot;</span><span class="p">,</span>
+<span class="linenos">143</span>        <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos">144</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;rclcpp_components&quot;</span><span class="p">,</span>
+<span class="linenos">145</span>        <span class="n">executable</span><span class="o">=</span><span class="s2">&quot;component_container&quot;</span><span class="p">,</span>
+<span class="linenos">146</span>        <span class="n">composable_node_descriptions</span><span class="o">=</span><span class="p">[</span><span class="n">v4l2_camera_node</span><span class="p">,</span> <span class="n">apriltag_tracker_node</span><span class="p">],</span>
+<span class="linenos">147</span>        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span><span class="p">,</span>
+<span class="linenos">148</span>        <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">149</span>    <span class="p">)</span>
+<span class="linenos">150</span>    <span class="c1"># END_CONTAINER</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span>    <span class="c1"># BEGIN_SHUTDOWN</span>
+<span class="linenos">153</span>    <span class="n">shutdown_handler</span> <span class="o">=</span> <span class="n">RegisterEventHandler</span><span class="p">(</span>
+<span class="linenos">154</span>            <span class="n">OnProcessExit</span><span class="p">(</span>
+<span class="linenos">155</span>                <span class="n">target_action</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
+<span class="linenos">156</span>                <span class="n">on_exit</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">157</span>                    <span class="n">LogInfo</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;The container was closed, turning off the launch file&quot;</span><span class="p">)),</span>
+<span class="linenos">158</span>                    <span class="n">EmitEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">Shutdown</span><span class="p">(</span>
+<span class="linenos">159</span>                        <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;container closed&quot;</span><span class="p">))</span>
+<span class="linenos">160</span>                <span class="p">]</span>
+<span class="linenos">161</span>            <span class="p">)</span>
+<span class="linenos">162</span>        <span class="p">)</span>
+<span class="linenos">163</span>    <span class="c1"># END_SHUTDOWN</span>
+<span class="linenos">164</span>
+<span class="linenos">165</span>    <span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">(</span><span class="n">declared_args</span> <span class="o">+</span> <span class="p">[</span><span class="n">container</span><span class="p">,</span> <span class="n">shutdown_handler</span><span class="p">])</span>
+</pre></div>
+</div>
 <p>We will break it down to better understand it.</p>
 <p>First, we begin by declaring the parameters that will be needed by the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> node. See the
 <a class="reference external" href="https://gitlab.com/boldhearts/ros2_v4l2_camera/#nodes">v4l2_camera documentation</a> for
 more details on these parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">20</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">21</span>            <span class="s2">&quot;video_device&quot;</span><span class="p">,</span>
+<span class="linenos">22</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/dev/video0&quot;</span><span class="p">,</span>
+<span class="linenos">23</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Video device path (e.g. /dev/video0, /dev/video2 ...)&quot;</span><span class="p">,</span>
+<span class="linenos">24</span>        <span class="p">),</span>
+<span class="linenos">25</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">26</span>            <span class="s2">&quot;camera_namespace&quot;</span><span class="p">,</span>
+<span class="linenos">27</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Namespace for the v4l2_camera node&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>        <span class="p">),</span>
+<span class="linenos">30</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">31</span>            <span class="s2">&quot;camera_info_url&quot;</span><span class="p">,</span>
+<span class="linenos">32</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;URL to the camera calibration file (e.g. file:///path/to/camera.yaml).&quot;</span><span class="p">,</span>
+<span class="linenos">34</span>        <span class="p">),</span>
+</pre></div>
+</div>
 <p>Then, we declare the parameters of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node. See
 <a class="reference external" href="../visp_apriltag/index.html#node-parameters">visp_apriltag documentation</a>
 for a detailed explanation of its parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">37</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">38</span>            <span class="s2">&quot;tag_family&quot;</span><span class="p">,</span>
+<span class="linenos">39</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;36h11&quot;</span><span class="p">,</span>
+<span class="linenos">40</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;AprilTag family (e.g. 36h11, 25h9, 16h5, circle21h7 ...)&quot;</span><span class="p">,</span>
+<span class="linenos">41</span>        <span class="p">),</span>
+<span class="linenos">42</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">43</span>            <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">,</span>
+<span class="linenos">44</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[-1]&quot;</span><span class="p">,</span>
+<span class="linenos">45</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of tag IDs for which a size is specified. -1 = default for all.&quot;</span><span class="p">,</span>
+<span class="linenos">46</span>        <span class="p">),</span>
+<span class="linenos">47</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">48</span>            <span class="s2">&quot;tag_size_values&quot;</span><span class="p">,</span>
+<span class="linenos">49</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[0.1]&quot;</span><span class="p">,</span>
+<span class="linenos">50</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tag sizes in meters, matched by index with tag_size_keys.&quot;</span><span class="p">,</span>
+<span class="linenos">51</span>        <span class="p">),</span>
+<span class="linenos">52</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">53</span>            <span class="s2">&quot;id_published&quot;</span><span class="p">,</span>
+<span class="linenos">54</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+<span class="linenos">55</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the tag whose pose is forwarded on /pose (-1 = none).&quot;</span><span class="p">,</span>
+<span class="linenos">56</span>        <span class="p">),</span>
+<span class="linenos">57</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">58</span>            <span class="s2">&quot;pose_method&quot;</span><span class="p">,</span>
+<span class="linenos">59</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;best_residual_virtual_vs&quot;</span><span class="p">,</span>
+<span class="linenos">60</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Pose estimation method&quot;</span><span class="p">,</span>
+<span class="linenos">61</span>        <span class="p">),</span>
+<span class="linenos">62</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">63</span>            <span class="s2">&quot;display_tag&quot;</span><span class="p">,</span>
+<span class="linenos">64</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="linenos">65</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Display the detected tags in a ViSP window&quot;</span><span class="p">,</span>
+<span class="linenos">66</span>        <span class="p">),</span>
+<span class="linenos">67</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">68</span>            <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">,</span>
+<span class="linenos">69</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.&quot;</span><span class="p">,</span>
+<span class="linenos">70</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;0.3&quot;</span>
+<span class="linenos">71</span>        <span class="p">),</span>
+<span class="linenos">72</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">73</span>            <span class="s2">&quot;frame_thickness&quot;</span><span class="p">,</span>
+<span class="linenos">74</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Thickness, in pixels, of the axes of the displayed object frame.&quot;</span><span class="p">,</span>
+<span class="linenos">75</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;2&quot;</span>
+<span class="linenos">76</span>        <span class="p">),</span>
+</pre></div>
+</div>
 <p>The important thing to notice is that the behavior of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node if the launch file is launched
 without any arguments is to consider that all the tags have a size of <code class="docutils literal notranslate"><span class="pre">0.1</span></code> meter and that the node will not publish
 any messages on the <code class="docutils literal notranslate"><span class="pre">pose</span></code> topic.</p>
-<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> node, using some launch arguments and some hard-coded values for its parameters:</p>
-<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node, using some launch arguments and some hard-coded values for its parameters:</p>
-<p>Finally, we ask to stop all the nodes once the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> is killed by a right click on the window.</p>
+<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">v4l2_camera</span></code> node as a component, using some launch arguments and some hard-coded values
+for its parameters. <code class="docutils literal notranslate"><span class="pre">use_intra_process_comms</span></code> permits to pass the images to the tracker without going through DDS:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 84</span>    <span class="c1"># image_size must be a list of Python integers, this no LaunchConfiguration</span>
+<span class="linenos"> 85</span>    <span class="c1"># for this parameter (the integer_array type is strict in ROS 2)</span>
+<span class="linenos"> 86</span>    <span class="n">v4l2_camera_node</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos"> 87</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;v4l2_camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 88</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;v4l2_camera::V4L2Camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 89</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v4l2_camera&quot;</span><span class="p">,</span>
+<span class="linenos"> 90</span>        <span class="n">namespace</span><span class="o">=</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span>
+<span class="linenos"> 91</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos"> 92</span>            <span class="p">{</span>
+<span class="linenos"> 93</span>                <span class="s2">&quot;video_device&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;video_device&quot;</span><span class="p">),</span>
+<span class="linenos"> 94</span>                <span class="s2">&quot;image_size&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">],</span>   <span class="c1"># native integers, no substitution</span>
+<span class="linenos"> 95</span>                <span class="s2">&quot;time_per_frame&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>   <span class="c1"># idem : 1/30 s &lt;=&gt; 30 fps</span>
+<span class="linenos"> 96</span>                <span class="s2">&quot;camera_info_url&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_info_url&quot;</span><span class="p">),</span>
+<span class="linenos"> 97</span>            <span class="p">}</span>
+<span class="linenos"> 98</span>        <span class="p">],</span>
+<span class="linenos"> 99</span>        <span class="c1"># The images are passed to the tracker without going through DDS</span>
+<span class="linenos">100</span>        <span class="n">extra_arguments</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;use_intra_process_comms&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}],</span>
+<span class="linenos">101</span>    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, we create the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node as a component, using some launch arguments and some hard-coded values
+for its parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">108</span>    <span class="c1"># The BaseTracker of visp_tracker_common use its own parameters for some topics</span>
+<span class="linenos">109</span>    <span class="c1"># rgb_camera_info_topic_name  &lt;=&gt; camera_info topic</span>
+<span class="linenos">110</span>    <span class="c1"># rgb_image_topic_name  &lt;=&gt; image topic</span>
+<span class="linenos">111</span>    <span class="c1"># The tracker enables intra-process communication on its image subscription by itself</span>
+<span class="linenos">112</span>    <span class="n">apriltag_tracker_node</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos">113</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;visp_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">114</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;visp_apriltag::AprilTagTracker&quot;</span><span class="p">,</span>
+<span class="linenos">115</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tracker_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">116</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">117</span>            <span class="p">{</span>
+<span class="linenos">118</span>                <span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span> <span class="s2">&quot;/image_raw&quot;</span><span class="p">],</span>
+<span class="linenos">119</span>                <span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;camera_namespace&quot;</span><span class="p">),</span> <span class="s2">&quot;/camera_info&quot;</span><span class="p">],</span>
+<span class="linenos">120</span>                <span class="s2">&quot;tag_family&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_family&quot;</span><span class="p">),</span>
+<span class="linenos">121</span>                <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_keys&quot;</span><span class="p">),</span>
+<span class="linenos">122</span>                <span class="s2">&quot;tag_size_values&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_values&quot;</span><span class="p">),</span>
+<span class="linenos">123</span>                <span class="s2">&quot;id_published&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;id_published&quot;</span><span class="p">),</span>
+<span class="linenos">124</span>                <span class="s2">&quot;pose_method&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;pose_method&quot;</span><span class="p">),</span>
+<span class="linenos">125</span>                <span class="s2">&quot;display_tag&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;display_tag&quot;</span><span class="p">),</span>
+<span class="linenos">126</span>                <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+<span class="linenos">127</span>                <span class="s2">&quot;frame_thickness&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_thickness&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+<span class="linenos">128</span>                <span class="s2">&quot;initial_tracking_status&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="linenos">129</span>            <span class="p">}</span>
+<span class="linenos">130</span>        <span class="p">],</span>
+<span class="linenos">131</span>    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Both components are loaded in the same component container, i.e. in the same process. The container must be
+single-threaded since the ViSP displays used by the tracker must always be used from the thread that created them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">138</span>    <span class="c1"># Both components are loaded in the same process, so that the images (640x480 RGB, about 1 MB each)</span>
+<span class="linenos">139</span>    <span class="c1"># do not go through DDS. The container must be single-threaded: the ViSP displays used by the tracker</span>
+<span class="linenos">140</span>    <span class="c1"># must always be used from the thread that created them.</span>
+<span class="linenos">141</span>    <span class="n">container</span> <span class="o">=</span> <span class="n">ComposableNodeContainer</span><span class="p">(</span>
+<span class="linenos">142</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;apriltag_container&quot;</span><span class="p">,</span>
+<span class="linenos">143</span>        <span class="n">namespace</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="linenos">144</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;rclcpp_components&quot;</span><span class="p">,</span>
+<span class="linenos">145</span>        <span class="n">executable</span><span class="o">=</span><span class="s2">&quot;component_container&quot;</span><span class="p">,</span>
+<span class="linenos">146</span>        <span class="n">composable_node_descriptions</span><span class="o">=</span><span class="p">[</span><span class="n">v4l2_camera_node</span><span class="p">,</span> <span class="n">apriltag_tracker_node</span><span class="p">],</span>
+<span class="linenos">147</span>        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;screen&quot;</span><span class="p">,</span>
+<span class="linenos">148</span>        <span class="n">emulate_tty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">149</span>    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we ask to stop all the nodes once the container is closed, which happens when the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code>
+tracker is killed by a right click on the window.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">153</span>    <span class="n">shutdown_handler</span> <span class="o">=</span> <span class="n">RegisterEventHandler</span><span class="p">(</span>
+<span class="linenos">154</span>            <span class="n">OnProcessExit</span><span class="p">(</span>
+<span class="linenos">155</span>                <span class="n">target_action</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
+<span class="linenos">156</span>                <span class="n">on_exit</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">157</span>                    <span class="n">LogInfo</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;The container was closed, turning off the launch file&quot;</span><span class="p">)),</span>
+<span class="linenos">158</span>                    <span class="n">EmitEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">Shutdown</span><span class="p">(</span>
+<span class="linenos">159</span>                        <span class="n">reason</span><span class="o">=</span><span class="s2">&quot;container closed&quot;</span><span class="p">))</span>
+<span class="linenos">160</span>                <span class="p">]</span>
+<span class="linenos">161</span>            <span class="p">)</span>
+<span class="linenos">162</span>        <span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="tutorial-using-a-rosbag">
@@ -170,19 +505,152 @@ the detection on screen, which sould look like the following image:</p>
 <p>First, we declare the parameters of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node. See
 <a class="reference external" href="../visp_apriltag/index.html#node-parameters">visp_apriltag documentation</a>
 for a detailed explanation of its parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">26</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">27</span>            <span class="s2">&quot;tag_family&quot;</span><span class="p">,</span>
+<span class="linenos">28</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;36h11&quot;</span><span class="p">,</span>
+<span class="linenos">29</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;AprilTag family (e.g. 36h11, 25h9, 16h5, circle21h7 ...)&quot;</span><span class="p">,</span>
+<span class="linenos">30</span>        <span class="p">),</span>
+<span class="linenos">31</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">32</span>            <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">,</span>
+<span class="linenos">33</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[-1,0,1]&quot;</span><span class="p">,</span>
+<span class="linenos">34</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of tag IDs for which a size is specified. -1 = default for all.&quot;</span><span class="p">,</span>
+<span class="linenos">35</span>        <span class="p">),</span>
+<span class="linenos">36</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">37</span>            <span class="s2">&quot;tag_size_values&quot;</span><span class="p">,</span>
+<span class="linenos">38</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;[0.2315,0.2315,0.064]&quot;</span><span class="p">,</span>
+<span class="linenos">39</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tag sizes in meters, in the same order as tag_size_keys.&quot;</span><span class="p">,</span>
+<span class="linenos">40</span>        <span class="p">),</span>
+<span class="linenos">41</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">42</span>            <span class="s2">&quot;id_published&quot;</span><span class="p">,</span>
+<span class="linenos">43</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+<span class="linenos">44</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID of the tag whose pose is published, -1 to publish all of them.&quot;</span><span class="p">,</span>
+<span class="linenos">45</span>        <span class="p">),</span>
+<span class="linenos">46</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">47</span>            <span class="s2">&quot;pose_method&quot;</span><span class="p">,</span>
+<span class="linenos">48</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;best_residual_virtual_vs&quot;</span><span class="p">,</span>
+<span class="linenos">49</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Method used to compute the pose of the tags.&quot;</span><span class="p">,</span>
+<span class="linenos">50</span>        <span class="p">),</span>
+<span class="linenos">51</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">52</span>            <span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">53</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/head_arm_rgbd/color/image_raw&quot;</span><span class="p">,</span>
+<span class="linenos">54</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the color image topic.&quot;</span><span class="p">,</span>
+<span class="linenos">55</span>        <span class="p">),</span>
+<span class="linenos">56</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">57</span>            <span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">,</span>
+<span class="linenos">58</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;/head_arm_rgbd/color/camera_info&quot;</span><span class="p">,</span>
+<span class="linenos">59</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Name of the color camera info topic.&quot;</span><span class="p">,</span>
+<span class="linenos">60</span>        <span class="p">),</span>
+<span class="linenos">61</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">62</span>            <span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">,</span>
+<span class="linenos">63</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;best_effort&quot;</span><span class="p">,</span>
+<span class="linenos">64</span>            <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;best_effort&quot;</span><span class="p">,</span> <span class="s2">&quot;reliable&quot;</span><span class="p">],</span>
+<span class="linenos">65</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Reliability of the image stream subscription.&quot;</span><span class="p">,</span>
+<span class="linenos">66</span>        <span class="p">),</span>
+<span class="linenos">67</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">68</span>            <span class="s2">&quot;display_tag&quot;</span><span class="p">,</span>
+<span class="linenos">69</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">,</span>
+<span class="linenos">70</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If true, the detected tags are displayed.&quot;</span><span class="p">,</span>
+<span class="linenos">71</span>        <span class="p">),</span>
+<span class="linenos">72</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">73</span>            <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">,</span>
+<span class="linenos">74</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Length of the axes of the displayed object frame, as a fraction of the object diameter (diagonal of the bounding box of the model, or of the tag). The axes are never shorter than 30 pixels.&quot;</span><span class="p">,</span>
+<span class="linenos">75</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;0.3&quot;</span>
+<span class="linenos">76</span>        <span class="p">),</span>
+<span class="linenos">77</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">78</span>            <span class="s2">&quot;frame_thickness&quot;</span><span class="p">,</span>
+<span class="linenos">79</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Thickness, in pixels, of the axes of the displayed object frame.&quot;</span><span class="p">,</span>
+<span class="linenos">80</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;2&quot;</span>
+<span class="linenos">81</span>        <span class="p">),</span>
+<span class="linenos">82</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">83</span>            <span class="s2">&quot;headless_mode&quot;</span><span class="p">,</span>
+<span class="linenos">84</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="p">,</span>
+<span class="linenos">85</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;If true, the tracker does not display anything.&quot;</span><span class="p">,</span>
+<span class="linenos">86</span>        <span class="p">),</span>
+<span class="linenos">87</span>        <span class="n">DeclareLaunchArgument</span><span class="p">(</span>
+<span class="linenos">88</span>            <span class="s2">&quot;log_level&quot;</span><span class="p">,</span>
+<span class="linenos">89</span>            <span class="n">default_value</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">,</span>
+<span class="linenos">90</span>            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Log level of the tracker (debug, info, warn, error).&quot;</span><span class="p">,</span>
+<span class="linenos">91</span>        <span class="p">),</span>
+</pre></div>
+</div>
 <p>The important thing to notice is that the behavior of the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node if the launch file is launched
 without any arguments is to consider that all the tags whose ID is <code class="docutils literal notranslate"><span class="pre">0</span></code> have a size of <code class="docutils literal notranslate"><span class="pre">0.2315</span></code> meter,
 all the tags whose ID is <code class="docutils literal notranslate"><span class="pre">1</span></code> have a size of <code class="docutils literal notranslate"><span class="pre">0.064</span></code> meter and all the other tags have a size of <code class="docutils literal notranslate"><span class="pre">0.2315</span></code> meter.
 Additionally, that the node will not publish any messages on the <code class="docutils literal notranslate"><span class="pre">pose</span></code> topic.</p>
 <p>Then, we create the process that will read the rosbag in a loop manner:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 96</span>    <span class="n">bag_folder</span> <span class="o">=</span> <span class="n">PathJoinSubstitution</span><span class="p">(</span>
+<span class="linenos"> 97</span>        <span class="p">[</span><span class="n">FindPackageShare</span><span class="p">(</span><span class="s2">&quot;visp_tk_tutorials&quot;</span><span class="p">),</span> <span class="s2">&quot;bag&quot;</span><span class="p">,</span> <span class="s2">&quot;apriltag&quot;</span><span class="p">,</span> <span class="s2">&quot;tutorial-apriltag&quot;</span><span class="p">]</span>
+<span class="linenos"> 98</span>    <span class="p">)</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span>    <span class="c1"># rosbag2 player as a component, equivalent to `ros2 bag play --loop &lt;bag_folder&gt;`</span>
+<span class="linenos">101</span>    <span class="n">bag_player</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos">102</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;rosbag2_transport&quot;</span><span class="p">,</span>
+<span class="linenos">103</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;rosbag2_transport::Player&quot;</span><span class="p">,</span>
+<span class="linenos">104</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="linenos">105</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span>
+<span class="linenos">106</span>            <span class="s2">&quot;storage.uri&quot;</span><span class="p">:</span> <span class="n">bag_folder</span><span class="p">,</span>
+<span class="linenos">107</span>            <span class="s2">&quot;play.loop&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">108</span>            <span class="s2">&quot;play.disable_keyboard_controls&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">109</span>        <span class="p">}],</span>
+<span class="linenos">110</span>    <span class="p">)</span>
+<span class="linenos">111</span>
+</pre></div>
+</div>
 <p>Then, we create the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> node, using the values of the launch arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">115</span>    <span class="n">apriltag_tracker</span> <span class="o">=</span> <span class="n">ComposableNode</span><span class="p">(</span>
+<span class="linenos">116</span>        <span class="n">package</span><span class="o">=</span><span class="s2">&quot;visp_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">117</span>        <span class="n">plugin</span><span class="o">=</span><span class="s2">&quot;visp_apriltag::AprilTagTracker&quot;</span><span class="p">,</span>
+<span class="linenos">118</span>        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tracker_apriltag&quot;</span><span class="p">,</span>
+<span class="linenos">119</span>        <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span>
+<span class="linenos">120</span>            <span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_camera_info_topic_name&quot;</span><span class="p">),</span>
+<span class="linenos">121</span>            <span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;rgb_image_topic_name&quot;</span><span class="p">),</span>
+<span class="linenos">122</span>            <span class="s2">&quot;tag_family&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_family&quot;</span><span class="p">),</span>
+<span class="linenos">123</span>            <span class="s2">&quot;tag_size_keys&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_keys&quot;</span><span class="p">),</span>
+<span class="linenos">124</span>            <span class="s2">&quot;tag_size_values&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;tag_size_values&quot;</span><span class="p">),</span>
+<span class="linenos">125</span>            <span class="s2">&quot;id_published&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;id_published&quot;</span><span class="p">),</span>
+<span class="linenos">126</span>            <span class="s2">&quot;pose_method&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;pose_method&quot;</span><span class="p">),</span>
+<span class="linenos">127</span>            <span class="s2">&quot;display_tag&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;display_tag&quot;</span><span class="p">),</span>
+<span class="linenos">128</span>            <span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_size_ratio&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">float</span><span class="p">),</span>
+<span class="linenos">129</span>            <span class="s2">&quot;frame_thickness&quot;</span><span class="p">:</span> <span class="n">ParameterValue</span><span class="p">(</span><span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;frame_thickness&quot;</span><span class="p">),</span> <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+<span class="linenos">130</span>            <span class="s2">&quot;headless_mode&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;headless_mode&quot;</span><span class="p">),</span>
+<span class="linenos">131</span>            <span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">:</span> <span class="n">LaunchConfiguration</span><span class="p">(</span><span class="s2">&quot;stream_qos_reliability&quot;</span><span class="p">),</span>
+<span class="linenos">132</span>            <span class="s2">&quot;initial_tracking_status&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="linenos">133</span>        <span class="p">}],</span>
+<span class="linenos">134</span>    <span class="p">)</span>
+<span class="linenos">135</span>
+</pre></div>
+</div>
 <p>Finally, we ask to stop all the nodes once the <code class="docutils literal notranslate"><span class="pre">visp_apriltag</span></code> is killed by a right click on the window.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">153</span>    <span class="n">shutdown_handler</span> <span class="o">=</span> <span class="n">RegisterEventHandler</span><span class="p">(</span>
+<span class="linenos">154</span>        <span class="n">OnProcessExit</span><span class="p">(</span>
+<span class="linenos">155</span>            <span class="n">target_action</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
+<span class="linenos">156</span>            <span class="n">on_exit</span><span class="o">=</span><span class="p">[</span>
+<span class="linenos">157</span>                <span class="n">LogInfo</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;The container was closed, turning off the launch file&quot;</span><span class="p">),</span>
+<span class="linenos">158</span>                <span class="n">EmitEvent</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">Shutdown</span><span class="p">(</span><span class="n">reason</span><span class="o">=</span><span class="s2">&quot;container closed&quot;</span><span class="p">)),</span>
+<span class="linenos">159</span>            <span class="p">]</span>
+<span class="linenos">160</span>        <span class="p">)</span>
+<span class="linenos">161</span>    <span class="p">)</span>
+<span class="linenos">162</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="how-to-exploit-the-apriltag-detection">
 <h2>How to exploit the AprilTag detection?<a class="headerlink" href="#how-to-exploit-the-apriltag-detection" title="Link to this heading"></a></h2>
 <p>When tags are detected in the image, an array of the <code class="docutils literal notranslate"><span class="pre">AprilTagDetection</span></code> message is published on the <code class="docutils literal notranslate"><span class="pre">/&lt;node_name&gt;/tags_info</span></code>
 topic:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="n">std_msgs</span><span class="o">/</span><span class="n">Header</span> <span class="n">header</span>
+<span class="linenos"> 2</span><span class="n">string</span> <span class="n">family</span>                        <span class="c1"># Tag family (36h11, 25h9, 16h5...)</span>
+<span class="linenos"> 3</span><span class="n">int32</span> <span class="nb">id</span>                             <span class="c1"># Tag id</span>
+<span class="linenos"> 4</span><span class="n">float32</span> <span class="n">size</span>                         <span class="c1"># Size of the black tag border, in meters</span>
+<span class="linenos"> 5</span><span class="nb">bool</span> <span class="n">z_axis_aligned_with_camera_axis</span> <span class="c1"># If true, the z-axis of the tag frame is aligned with the camera frame</span>
+<span class="linenos"> 6</span><span class="nb">bool</span> <span class="n">is_pose_valid</span>                   <span class="c1"># True if the pose could be computed, false otherwise</span>
+<span class="linenos"> 7</span><span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span> <span class="n">center</span>           <span class="c1"># Tag center of gravity pixel coordinates (x,y)</span>
+<span class="linenos"> 8</span><span class="n">vision_msgs</span><span class="o">/</span><span class="n">Point2D</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners</span>       <span class="c1"># Tag corners pixel coordinates ((x1,y1),(x2,y2),...)</span>
+<span class="linenos"> 9</span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Point</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="n">corners_3d</span>    <span class="c1"># Tag corners 3D coordinates in the object frame ((x1,y1,z1),(x2,y2,z2),...)</span>
+<span class="linenos">10</span><span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Pose</span> <span class="n">pose</span>              <span class="c1"># Tag pose (3D position and orientation)</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If the message is not displayed, please refer to <a class="reference external" href="../visp_tracker_common/interfaces/msg/AprilTagDetection.html">the definition of the message present here.</a></p>
@@ -263,12 +731,57 @@ If not, please change the topic names accordingly.</p>
 <code class="docutils literal notranslate"><span class="pre">realsense_camera</span></code> node, which goes beyond the scope of this package.</p>
 </section>
 </section>
+<section id="display-of-the-object-frame">
+<h2>Display of the object frame<a class="headerlink" href="#display-of-the-object-frame" title="Link to this heading"></a></h2>
+<p>When the tracking succeeds, the frame of the tag is displayed on the image, with its X, Y and Z axes in red,
+green and blue. Its size and thickness can be changed with two launch arguments, accepted by all the launch files of
+this package:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Launch argument</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">frame_size_ratio</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.3</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Length of the axes, as a fraction of the diagonal of the tag</div>
+<div class="line">(its size given by <code class="docutils literal notranslate"><span class="pre">tag_size_values</span></code> times the square root of 2).</div>
+<div class="line">The axes are never shorter than 30 pixels, so that they stay</div>
+<div class="line">readable when the tag is far from the camera.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">frame_thickness</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><div class="line-block">
+<div class="line">Thickness of the axes, in pixels.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For instance:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>visp_tk_tutorials<span class="w"> </span>apriltag_tracker_bag_launch.py<span class="w"> </span>frame_size_ratio:<span class="o">=</span><span class="m">0</span>.2<span class="w"> </span>frame_thickness:<span class="o">=</span><span class="m">3</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mbt_tutorial.html" class="btn btn-neutral float-right" title="Model-Based Tracker (MBT) tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

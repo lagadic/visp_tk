@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Documentation" href="user_docs.html" /> 
+    <link rel="next" title="AprilTag tutorial" href="apriltag_tutorial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,8 +46,15 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="user_docs.html">Documentation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apriltag_tutorial.html">AprilTag tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbt_tutorial.html">Model-Based Tracker (MBT) tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rbt_tutorial.html">Render-Based Tracker (RBT) tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/index.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a></li>
 </ul>
 
@@ -80,20 +87,37 @@
 <p>This package contains tutorials for the packages provided by the metapackage <code class="docutils literal notranslate"><span class="pre">visp_tk</span></code>.
 Please select in the Table of Content below which tutorial you want to have a look at.</p>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="user_docs.html">Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_docs/apriltag_tutorial.html">AprilTag tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_docs/index.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_docs/index.html#indices-and-tables">Indices and tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_docs/mbt_tutorial.html">Model-Based Tracker (MBT) tutorial</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_docs/rbt_tutorial.html">Render-Based Tracker (RBT) tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apriltag_tutorial.html">AprilTag tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#tutorial-using-a-live-camera">Tutorial using a live camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#tutorial-using-a-rosbag">Tutorial using a rosbag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#how-to-exploit-the-apriltag-detection">How to exploit the AprilTag detection?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#tips-and-tricks-tag-pose-not-published">Tips and Tricks: Tag pose not published</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apriltag_tutorial.html#display-of-the-object-frame">Display of the object frame</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="standard_docs/PACKAGE.html">PACKAGE</a></li>
-<li class="toctree-l2"><a class="reference internal" href="standard_docs/README.html">README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mbt_tutorial.html">Model-Based Tracker (MBT) tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mbt_tutorial.html#tutorial-using-a-json-file">Tutorial using a JSON file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbt_tutorial.html#tutorial-using-an-xml-file">Tutorial using an XML file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbt_tutorial.html#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mbt_tutorial.html#display-of-the-object-frame">Display of the object frame</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="rbt_tutorial.html">Render-Based Tracker (RBT) tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rbt_tutorial.html#tutorial-using-a-recorded-sequence">Tutorial using a recorded sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbt_tutorial.html#tutorial-using-a-realsense-camera">Tutorial using a Realsense camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rbt_tutorial.html#display-of-the-object-frame">Display of the object frame</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/index.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standards.html">Standard Documents</a></li>
 </ul>
 </div>
 </section>
@@ -109,7 +133,7 @@ Please select in the Table of Content below which tutorial you want to have a lo
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="user_docs.html" class="btn btn-neutral float-right" title="Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="apriltag_tutorial.html" class="btn btn-neutral float-right" title="AprilTag tutorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

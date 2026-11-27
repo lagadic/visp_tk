@@ -186,7 +186,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">RBTTracker</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">visp_tracker_common</span><span class="o">::</span><span class="n">BaseMultiModalTracker</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">RBTTracker</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">);</span>
+<span class="w">  </span><span class="n">RBTTracker</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="o">&amp;</span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="p">());</span>
+
+<span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">RBTTracker</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">NodeOptions</span><span class="w"> </span><span class="o">&amp;</span><span class="n">options</span><span class="p">);</span>
 
 <span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">RBTTracker</span><span class="p">()</span>
 <span class="w">  </span><span class="p">{</span>
@@ -236,6 +238,9 @@
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_tracker_cams_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_load_model_from_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 <span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">m_init_file_path</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// ----- Timers -----</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">TimerBase</span><span class="o">::</span><span class="n">SharedPtr</span><span class="w"> </span><span class="n">m_quit_timer</span><span class="p">;</span>
 <span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I</span><span class="p">;</span>
 <span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="o">&lt;</span><span class="n">visp</span><span class="o">::</span><span class="n">vpRGBa</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_Ic</span><span class="p">;</span>
 <span class="w">  </span><span class="n">visp</span><span class="o">::</span><span class="n">vpImage</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_I_depth</span><span class="p">;</span>

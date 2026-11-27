@@ -34,7 +34,7 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
-      <memberdef kind="function" id="display_8hpp_1a31a9205af4bf31e91062375353c1300b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="display_8hpp_1acb728264d2c25482be9e4f86a14cd47d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename Type</type>
@@ -42,11 +42,11 @@
         </templateparamlist>
         <type>void</type>
         <definition>void visp_tracker_common::display::displayNamedFeature</definition>
-        <argsstring>(const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;I, const visp_tracker_common::msg::NamedFeature &amp;feature, const VISP_NAMESPACE_ADDRESSING vpColor &amp;color, unsigned int thickness, PointsType points_type)</argsstring>
+        <argsstring>(const visp::vpImage&lt; Type &gt; &amp;I, const visp_tracker_common::msg::NamedFeature &amp;feature, const visp::vpColor &amp;color, unsigned int thickness, PointsType points_type)</argsstring>
         <name>displayNamedFeature</name>
         <qualifiedname>visp_tracker_common::display::displayNamedFeature</qualifiedname>
         <param>
-          <type>const VISP_NAMESPACE_ADDRESSING vpImage&lt; Type &gt; &amp;</type>
+          <type>const visp::vpImage&lt; Type &gt; &amp;</type>
           <declname>I</declname>
         </param>
         <param>
@@ -54,7 +54,7 @@
           <declname>feature</declname>
         </param>
         <param>
-          <type>const VISP_NAMESPACE_ADDRESSING vpColor &amp;</type>
+          <type>const visp::vpColor &amp;</type>
           <declname>color</declname>
         </param>
         <param>

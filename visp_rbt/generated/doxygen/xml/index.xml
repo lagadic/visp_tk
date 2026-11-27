@@ -8,11 +8,13 @@
     <member refid="classvisp__rbt_1_1RBTTracker_1a40690ca7adde61a11dbd3562b2ccf40b" kind="variable"><name>m_tracker_cams_set</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a2c76651b05153191363597a6c2dac98d" kind="variable"><name>m_load_model_from_params</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a939618c2feb8a76da73cd25a608aa8bd" kind="variable"><name>m_init_file_path</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a36e279f9c16785b1fdc0925bc1d5b650" kind="variable"><name>m_quit_timer</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1ab4097e9ba2d03cfa7c6d9ddf39a462ce" kind="variable"><name>m_I</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a3537d10c44b37cc5cfd34568cf596ae3" kind="variable"><name>m_Ic</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a12c61e21c794d391f1ba1513c052bd4f" kind="variable"><name>m_I_depth</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a0ba6ad4450ee0aa2ac259a6175501116" kind="variable"><name>m_tracker</name></member>
-    <member refid="classvisp__rbt_1_1RBTTracker_1a15eb38152a17650eee397c29a8146b78" kind="function"><name>RBTTracker</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a7bc0b60ade632739487e5f880b66faea" kind="function"><name>RBTTracker</name></member>
+    <member refid="classvisp__rbt_1_1RBTTracker_1a3fc70747c50b4bab66b255e924f8308d" kind="function"><name>RBTTracker</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a36ba7acfe6adb5f0d959242f6a463ffe" kind="function"><name>~RBTTracker</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1a1f5c511a5afda83200a8604d9f23c1d8" kind="function"><name>init</name></member>
     <member refid="classvisp__rbt_1_1RBTTracker_1af20405d3ac422bf3b8b59f811fa47b9c" kind="function"><name>treat_rgb</name></member>

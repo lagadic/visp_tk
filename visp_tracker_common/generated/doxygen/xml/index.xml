@@ -21,7 +21,7 @@
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a5d4cfa6c785c7482348817d16c4d5167" kind="variable"><name>m_depth_is_required</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a2425af3b39bc3658b8f95ce106be437c" kind="variable"><name>m_z_factor</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a0f3d32d7c030fcb708f8b7efd09caf8c" kind="variable"><name>m_frame_id</name></member>
-    <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab2e6376d9dba6101546324dc16d20e00" kind="function"><name>BaseMultiModalTracker</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a8575b3eba68b0b650a57218864f24486" kind="function"><name>BaseMultiModalTracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1a766db9af3d0ce2fedd965ec4aebfb0a4" kind="function"><name>~BaseMultiModalTracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1aa5c83c92691e951a0c88e0cef2971be1" kind="function"><name>init</name></member>
     <member refid="classvisp__tracker__common_1_1BaseMultiModalTracker_1ab9f7cd8a51546266495bae8b1b2fe8d3" kind="function"><name>treat_rgb</name></member>
@@ -32,7 +32,7 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a6a189d6a3aa47ac31c1142e00234f559" kind="function"><name>init_tracker</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a3d628e39463fd27aa0c2612216fc323e" kind="function"><name>init_info_strings</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1acf50c4c5fdef39ccf2f31895c4427e14" kind="function"><name>init_initialization_method</name></member>
-    <member refid="classvisp__tracker__common_1_1BaseTracker_1ad9a3a2bb0993297d39a8da1e6102bccd" kind="function"><name>display_overlay_features</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a0e5f422937cd9b5a2e09df929fa0d53d" kind="function"><name>display_overlay_features</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a8f799ececfb5b8009a3dcba2079601f1" kind="function"><name>color_camera_info_callback</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a92557dd9cd27b4427076489938ac1457" kind="function"><name>init_pose_callback</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a1b54bdd3fcd13b6276e0af06428b2f96" kind="function"><name>quit_callback</name></member>
@@ -63,6 +63,8 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a84633646ed112b6a10363c80d285d9f3" kind="variable"><name>m_frame_cnt</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ac3b18a7739e1df1eff8fddf9434d0f29" kind="variable"><name>m_info_strings</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a411a6a7c29929d0d1462ce74726beea6" kind="variable"><name>m_info_nb_static</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1afbd2c5291872980a7d8511242fee08d0" kind="variable"><name>m_frame_size_ratio</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a21f5964d2d3c01b3e0fc4e2ecf3a447b" kind="variable"><name>m_frame_thickness</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1aa90fe323829cecfb8061edbd4051a997" kind="variable"><name>m_visualization_debug</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ac696733f1d2961d100c1143cebb56e9c" kind="variable"><name>m_mutex_overlay_features</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a5241d28d202cb98a9742ccdf39d0d4d2" kind="variable"><name>m_overlay_features</name></member>
@@ -78,6 +80,7 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1abf53cddde9e1897bcbc888aa9fb957a9" kind="variable"><name>m_mutex_tracking</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1aa371c209a777603a62a45974d4b2b26e" kind="variable"><name>m_has_to_track</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a70021e81905c550c4c9d66f52f33da40" kind="variable"><name>m_mutex_visualization</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1af3849b90de3333ed4e6e92ed1ecc056d" kind="variable"><name>s_frame_min_size_px</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a41455115ba9dac7ff422c6c8dadef8df" kind="variable"><name>s_overlay_features_max_age</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a68eea5dbf94cf618d8d1b9c9850741b7" kind="variable"><name>s_dumb_topic_name</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a59fb6fa95492234b32e368f8a3474e5e" kind="variable"><name>s_default_hor_offset</name></member>
@@ -87,6 +90,7 @@
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a786ad94483c04f0c0bd60b872b810653" kind="function"><name>init</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a6b825aa62b87d4fe03df83808a16849a" kind="function"><name>has_to_quit</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1abdf8048c41dd61112e2d5703ddca55fc" kind="function"><name>stop_and_quit</name></member>
+    <member refid="classvisp__tracker__common_1_1BaseTracker_1a0f10b0cf3b7cfe79f2ad5580a72affb7" kind="function"><name>compute_frame_size</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1abe67f248b25a79394bbfae03039223e3" kind="function"><name>initializationMethodToString</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1ad2ef46ae0aab6b051023cbf9ab6368e7" kind="function"><name>initializationMethodFromString</name></member>
     <member refid="classvisp__tracker__common_1_1BaseTracker_1a7845c65b2ce5c0fc0d8f94e0b092e2c5" kind="function"><name>getAvailableInitializationMethod</name></member>
@@ -169,7 +173,7 @@
     <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fc" kind="enum"><name>PointsType</name></member>
     <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fcaaebdbcb765394d25d6a604589a890f82" kind="enumvalue"><name>POINT</name></member>
     <member refid="display_8hpp_1a428868c0160a8a615f3481d97be7e0fca04dd53a8e6c2306e9bbf944c1d6047f2" kind="enumvalue"><name>CROSS</name></member>
-    <member refid="display_8hpp_1a31a9205af4bf31e91062375353c1300b" kind="function"><name>displayNamedFeature</name></member>
+    <member refid="display_8hpp_1acb728264d2c25482be9e4f86a14cd47d" kind="function"><name>displayNamedFeature</name></member>
   </compound>
   <compound refid="BaseMultiModalTracker_8hpp" kind="file"><name>BaseMultiModalTracker.hpp</name>
   </compound>

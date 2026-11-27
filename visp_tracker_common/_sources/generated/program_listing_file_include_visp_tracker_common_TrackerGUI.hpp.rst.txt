@@ -182,6 +182,7 @@ Program Listing for File TrackerGUI.hpp
      int m_frame_cnt = 0; 
      unsigned int m_features_thickness = 1; 
      FeaturesType m_features_type = FeaturesType::POINT; 
+   
      std::optional<visp::vpCameraParameters> m_opt_rgb_cam = std::nullopt; 
    
      // ----- Others -----
